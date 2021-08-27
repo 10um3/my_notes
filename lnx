@@ -1,0 +1,1062 @@
+apt-get update (linux sistemimizi günceller)
+apt update && apt upgrade = sistemdeki çoğu depoyu günceller (programları vs günceller)
+apt update yapınca paket listesini İndirir (hangisinin yeni surumu var bu sekilde gorebilirsin), upgrade ile de bunları indirir kurar. aradaki && sadece biri digeriinin ardından calissin diye (and operatoru)
+Update sadece yeni surumleri var mi diye kontrol ediyor, tum paketlerin surum bilgisini indiriyor. Upgrade ise direkt paketleri indiriyor ve kuruyor. Apt ise paket yoneticisinin ismi
+https://aliozgur.gitbooks.io/git101/content/
+linuxda programların kurulumunu sağlayan dosya genelde bin klasörünün içinde .sh uzantılı bir dosya olur ve bunu ./"dosyaismi" şeklinde terminalden çalıştırıp kurbiliriz
+terminale jupyter notebook yazarak jupyter i açabiliriz
+echo linuxda ardından sonra eklenen şeyi output olarak yazdırır python daki print gibi
+touch bir dosya oluşturur (klasör hariç)
+rm bir dosyayı silmeye yarar 
+rm -rf bir dosyayı remove force yöntemiyle siler 
+rm -rf * bütün dosyaları siler :D 
+virtualbox'da tam ekrana girip çıkmak için kısayol sağ ctrl+f
+extension pack virtual box a yüklenmeden açık olan sanal makine kapatılmalıdır
+linux sistemlerde ekran görüntüsü almak için sistem dili ingilizce ise "screenshot" türkçe ise ekran görüntüsü yazarak ilgili programa ulaşabiliriz 
+Linux mimarisini iç içe geçmiş ve birbirini kapsayan 3 adet daire ile tanımlayacak olursak en içeride kernel yani şletim sistemi çekirdeği, kısaca çekirdek, işletim sistemindeki her şeyin üzerinde denetimi olan merkezi bileşenidir. Uygulamalar ve donanım seviyesindeki bilgi işlemleri arasında bir köprü görevi görür. Çekirdeğin görevleri sistemin kaynaklarını yönetmeyi de kapsamaktadır. 
+onun bir üstünde shell yani kabuk Kabuk programlama, Unix ve benzeri sistemlerde sistem yönetimini sağlayan komutlar ve bu komutları işlemeye yarayan kontrol mekanizmalarının bulunduğu terminal ekranıdır 
+linux işletim sisteminin adı değil kernel in adıdır
+kernel yani çekirdek RAM yönetimi RAM bellek, bilgisayarınızın kısa süre içinde ihtiyacı olacağını düşündüğü şeyleri depoladığı ve ihtiyaç anında aşırı hızlı bir şekilde bu bilgileri okuyan donanımdır.
+Rastgele erişimli hafıza (İng. İngilizce: Random Access Memory, RAM) mikroişlemcili sistemlerde kullanılan ve genellikle çalışma verilerini ve makine kodunu depolamak için kullanılan herhangi bir sırada okunabilen ve değiştirilebilen bir tür veri deposudur. Buna karşın diğer hafıza aygıtları (manyetik kasetler, diskler) saklama ortamındaki verilere önceden belirlenen bir sırada ulaşabilmektedir, çünkü mekanik tasarımları ancak buna izin vermektedir.
+Bir RAM yongasında herhangi farklı iki veriye ulaşmak için aşağı yukarı aynı süre harcanmaktadır. Buna karşılık disk ve benzerleri okunan verinin başı bulunan noktaya yakınsa az zaman, uzaksa çok zaman harcamakta ve baş konumu sürekli yer değiştirmektedir. 
+CPU yönetimini Merkezî işlem birimi, dijital bilgisayarların veri işleyen ve yazılım komutlarını gerçekleştiren bölümüdür. Çalıştırılmakta olan yazılımın içinde bulunan komutları işler. 
+Central Process Unit (merkezi işlem birimi)
+İşletim sistemi en temelde bilgisayarımızın fiziksel bileşenlerinin yazılım ortamında kullanabilmemiz için bizlere bir köprü vazifesi görür 
+kernel da bu işletim sisteminin en temelinde bu işleri organize eden bir beyin gibidir 
+yani hangi programın ne kadar ram kullanacağını hangi programın ne kadar cpu kullanacağını hangi börevin nasıl çalışacağını dosya sisteminin nasıl yönetildiğini vs düzenleyen ana birim kernel çekirdektir 
+shell (kabuk) kullanıcıların işletim sistemi ile iletişime geçtiği katmandır bu iletişim çeşitli komutlar vasıtasıyla yürür bunlara shell komutları diyebiliriz
+linux kullanmak shell kullanmaktır
+işletim sistemini kullanmak için kernel ve shell yeterlidir kullanıcı arayüzüne gerek yoktur kullanıcı arayüzü işletim sistemini daha rahat/kolay kullanmamız için oluşturulmuş bir ara birimdir
+user intercade de en dıştaki dairedir genellikle önümüze U.I olarak çıkar 
+terminal shell in kendisi değil shell in içinde komutlar çalıştırdığımız bir arabirimdir emülatör 
+string = yazıdır echo didem yazarak terminale didem çıkısını verebiliriz didem burada stringdir burada rakam veya sayı da çıktı olarak verilebilir 
+echo terminalde noktalı virgülü ; çıktı olarak vermez $ dolar işaretini de çıktı olarak vermez bunun sebebi çevre değişkenleridir 
+iki nokta ve virgül alınır : , 
+ECHO $SHELL komutu ile shell in hangi dizin içerisinde olduğu konumu/yolu çıktı olarak alınır shell tamamı büyük harfle yazılmalıdır yoksa çıktı alınmaz bu linuxda önemli bir ayrıntıdır 
+echo $ZSH_VERSION komutu ile shell imizin terminalimizin versiyonunu görüntüleyebiliriz her dağıtımda terminal in shell in ismi farklı olabilir  bunun için usr/bin klasörününi çierisine göz atıp
+kontrol etmek faydalı olacaktır.
+$SHELL --version  komutu da daha detaylı bir shell versiyonu sorgulama komutudur 
+cd komutu (change directory) (dizin değiştir) anlamına gelir cd komutu ile başka bir dizine gidebiliriz 
+$ işaretinin sonunda veya başında bulunan dalga yani ~ tilde işareti /home dizisi manasına gelir 
+cat komutu çıktıları terminalde bastırmak/yazdırmak için kullandığımız bir komuttur 
+ls komutu dizin içindeki dosyaları ve her şeyi listelemek için kullanılıyor ismini yazdırmak
+örneğin echo komutunda bir girdiyi terminale yazdırırız ama bazen bu girdiyi bir dosyanın içine yazdırmak isteyebiliriz veya herhangi başka bir yere yazdırmak isteyebiliriz bunun için de yönlendirme komutlarını 
+kullanıyoruz 
+dökumanın içine ismimizi yazdırmak için yönlendirme komutunu kullanmamız gerekiyor 
+dosya sisteminde herhangi bir dizinde sağ tıklayıp bu dizinde terminal aç diyerek direk olarak o dizinin yolunda mevcut dizin olarak oo dizinde bir terminal başlatabiliriz 
+linuz terminalinde bir komut yazarken veya bir dizine giderken o komutun ismini veya dizinin isminin tamamını yazmak zorunda değiliz aynı isimde bir dosya bulunmayacak kadar harfini girdiğimizde 
+TAB tuşuna basarsak bizim için otomatik olarak bunu tamamlar burada önemli olan benzersiz ve tek bir olasılık olacak kadar harfi yazmak yani pattern i örgüyü sağlamak 
+buna bash compilation 
+cd den sonra yazdığımız dizinin sonundaki / işareti ise bunun bir dizin olduğunu içerisinde dosyalar veya başka dizinler de barındırdığını ifade eder 
+yönlendirme de iki kural var eğer yönlendirmek istediğimiz dosya yoksa shell bizim için o dosyayı oluşturur 
+eğer öyle bir dosya varsa doayanın içeriğini TAMAMEN silerek yazdırmak istediğimiz şeyi yazdırır 
+echo serhat > bos.txt yazarsak bos.txt dosyasının içerisine serhat yazdırır bu yaptığımız yönlendirme tekli yönlendirmedir 
+terminaledeki komutları tamamen silerek temizlemek için clear komutunu kullanabiliriz 
+eğer 2 tane dosyayı aynı anda görüntülemek istiyorsak cat dosya1 dosya2 her bir komuttan veya dosya isminden sonra boşluk olmak kaydıyla bu şekilde yazarız ve ikisinin içindeki verileri de
+alt alta çıktı olarak bize verir 
+terminalde operasyon sıralaması komut > parametre > argüman şeklindedir 
+argüman dosyadır 
+man komutu herhangi bir komut için ayrıntı nasıl kullanılacağı ile ilgili yardım sağlayan açılımı manuel olan bir komuttur 
+man cat yazdığımız zaman bizi cat in help sayfasına götürür 
+man sayfasından çıkmak için q ya basıyoruz 
+cat -n dosya ismi komutu açmak istediğimiz dosyanın içerisindeki bütün verileri satır satır numaralandırır 
+cat -n bos > bos2 komutunu çalıştırırsak bos dosyasındaki verileri numaralandırılmış bir şekilde bos2 dosyasına aktarır (bos2 diye bir dosya oluşturup onun içine yazdırır.)
+bos isimli dosyanın içeriğini dolu ya yazdırıp bu içeriği numaralandırılmış bir iekilde dolu2 isimli bir dosyaya yazdırmak için şu komutları kullanıyoruz
+örneğin bos un içerisinde 1 dolu nun içerisinde 2 dolu2 nin içerisinde 3 yazsın 
+biz echo bos > dolu yazarsak 1 dolu isimli dosyaya yazdırılmış olur echo dolu dediğimizde bunu görürüz içinde bir yazan dolu dosyasını numaralandırmak için cat -n dolu yazıp kontrol ediyoruz
+numaralandırdı şimdi ise cat -n dolu Z dolu2 deidğimizde üç yazan dolu 2 dosyasının verileri tamamen silinip dolu dosyasının içerisindeki bir yazısı dolu2 ye yazılır ve numaralandırılmış bir şekilde 
+çiftli yönlendirmede ise yazdırılan girdi yazdırılacak dosyanın içeriğini tamamen silip üzerine yazılmaz nevcut olan girdiye eklenir 
+örneğin serhat > isimsoyad komutunu yazarsak isimsoyad diye içinde serhat yazılı bir dosyamız olur echo bakır >> isimsoyad diyip cat isimyoad dersek serhat bakır çıktısını alırız 
+tekli veya çiftli yönlendirmeden sonra dosya ismini karaktere bitişik veya ayrı yazabiliriz bu komutun çalışmasını değiştirmez 
+pipe komutu algr+alt-tire işaretine aynı anda basdığımızda çıkan karakterdir 
+pipe = boru demek 
+borularla bir şeyi birşeye bağlarız
+genel olarak şu işe yarar bir işlemin sonucu ile başka bir işlem yapıyoruz 
+grep = Grep'in acilimi evrensel düzenli ifade yazicisi dır. (Global Regular Expression Printer). Daha aciklayici olmak gerekirse grep , verilen bir yazidan belirli kriterler dahilinde parcalar cikarir.
+ctrl+f yazıp aramak istediğimiz kelimeyi yazmak gibi 
+bu alıştırmada bir metinde geçen bir içeriği arıyacağız pipe ile bunu yaparken başka bir komut daha kullanacağız grep
+döküman içerisinde güvenlik geçen satırı terminalde çıktı olarak almak 
+terminalde dökumanın çıktısını alabiliriz ama satırı nasıl getireceğiz ?
+grep bize aradığımız kelimeyi dökumanda bulunduran satırı çıktı olarak veriyor 
+cat crypto | grep in yaptığımızda crypto dosyasının içinde in geçen bütün satırları terminale yazdırır 
+grep büyük küçük harf duyarlıdır 
+| pipe komutu bir komutun çıktısını diğer komutun girdisi olarak kullanır bir devi oradan devam ettirir 
+$SHELL --version > ilk shell in versiyonunu ilk isimli dosyaya yazdırır 
+cat ilk > shell dersek ilk in içindeki veriyi shell isimli bir dosyaya yazdırır 
+cat shell | grep free > özgürlük için                  shell dosyasının içinde geçen free  kelimesinin bulunduğu satırları özgürlükiçin isimli dosyaya yazdırır 
+cat ozguryazılım | grep özgür >> özgürlükiçin dersek ozgur yazılımın içindeki özgür kelimesinin bulunduğu satırı (büyük küçük harf duyarlılığından dolayı bu dökumanda bu kelimeyi içeren yalnızca bir satır var)
+özgürlükiçin isimli dosyanın sonuna EKLER >> den dolayı içeriğini silmez içeriğini silen >
+hiyerarşi = Hiyerarşi, oluşum açısından kelimesine dayanan, bir toplumdaki ya da kuruluştaki bireylerin belirli faktörlere bağlı olarak statü, görev, alt ve üst arası ilişkiler sınıflandıran
+ ve bu sınıflara bağlı standartlar sunan yapı
+LINUX DA DOSYA HIYERARŞISI 
+linuxda dosya hiyerarşisi soldan başlamak üzere sağa doğru daha aşağılara iner örneğin ~/Desktop üst katmanlar ve alt katmanlar arasında / (slash işareti) bulunur 
+/ ----> kök dizinidir yani hiyerarşinin en başıdır (root)
+bu kök dizininin altında belirli işleri yapan belirli kategorilere ait dosyalar veya alt klasörler oluşturan ana dizinler vardır 
+linuxda dosyaların hiyerarşik bir düzende olması bize bir güvenlik sağlar hassas olan bilgilerin farklı farklı kategorize edilmesi ve aynı dizin içerisinde bulunmaması olası bir tehdit durumunda
+daha güvenli bir düzen olmasını sağlıyor 
+linux da geçici olarak cihazımıza takılan bellekler veya diskler mnt klasörüne bağlanır (geçici olarak) istersek kalıcı olarak da bağlayabiliriz ama genelde geçicis olarak bağlanır başka bir dizine 
+de bağlayabiliriz 
+home klasörü user bilgilerimizin tutulduğu dizindir home un atında varolan userların kendi dizinleri bulunur 
+etc konfigrasyon dosyalarının bulunduğu dizindir en önemli dizinlerden bir tanesidir çünkü burada sistem ayarları program ayarları bulunur 
+proc dizininin içinde süreç ile alakalı bilgiler bulunur örneğim cpu bilgilerimiz ram bilgilerimiz bulunur 
+bin (binary) = çalıştırılabilir anlamına geliyor çalıştırılabilir dosyalar hakkında bilgiler bulunur çalıştırdığımız tüm dosyalar buradadır 
+sbin dizininde sistem binaryleri yani sistemdeki çalıştırılabilir dosyalar bulunur  sistem içerisindeki programların toplandığı dizin örneğin fdisk yani diski bölümlendirmeye yarayan birdosya vardır 
+fdisk biçimlendirmeye yarayan bir sistem tooludur 
+opt (optional) (opsiyonel(tercihe bağlı)) 3. parti programların yüklendiği dizindir 
+terminalde nbir depodan kurudğumuz programlar buraya gelmez tamamen 3. parti bir yerden indirip kurduğumuz programları içerir bu dizin 
+linux içerisinde sisteme bağlı programları belirli bir depoya bağlı programları  paket yöneticisine bağlı programları kurduğumuz zaman opt ye yüklenmez
+media dizininde flash disk harddisk gibi dosya sistemlerini bağladığımızda buraya bağlıyoruz 
+linux da her şey bir dosyadır cd-rom flash disk vs 
+bu derste dosya oluşturma ve silmeyi öğreneceğiz 
+boş bir dosya yı touch komutuyla oluşturuyoruz /touch dosyaismi.uzantısı
+linuxdaki problemimiz için touch ilk yazıyoruz 'ilk' isminde bir dosya oluşuyor 
+bu dosyayı silmek için rm komutunu (remove) kullanıyoruz 
+rm -f / rm --f bir dosyayı force yaparak siler yani zorla siler herhangi bir soru sormaz hata mesajı almadan ne olursa olsun silmek istersek bunu kullanırız 
+rm dosyaismi yazarak bir dosyayı silebiliriz 
+bu derste dizin (klasör) oluşturup silmeyi öğreneceğiz 
+mkdir (make directoru) komutu ile bir klasör/dizin oluşturabiliriz mkdir dizin mesela dizin isminde bir dizin oluşturur 
+rm ile sadece dosyaları silebiliriz dizin/klasörleri silemeyiz 
+bir dizin silmek için rmdir komutunu kullanıyoruz rmdir dizinismi şeklinde 
+rm ilk diyerek ilk dosyasını siliyoruz
+ardından touch ile boş bir dosya oluşturuyoruz / touch ikinci 
+dizinler terminalde genelde sonlarında dizin olduğunu ifade etmek için / karakterini bulundururlar 
+bu derste dizin içeriğini görüntülemeyi öğreneceğiz 
+arayüzden değil de kolayca terminale çıktı almak daha kolay olacaktır dizin içeriğini görüntülerken hem gizlenmiş dosyalar da olabilir bunu da ilerleyen zamanlarda öğreneceğiz 
+dizin içeriğini görüntülemek için ls(list/listele) komutunu kullanacağız bu komut mevcut dizinin içersindeki bütün klasör/dizin veya dosyaların uzantılarıyla birlikte isimlerini terminalimize yazdırır 
+ls in çok parametresi var bu derste en çok kullanılan parametrelerini öğreneceğiz 
+ilk parametresi ls -a veya ls --all bu parametre dizin içerisinde ne var ne yok göster bütün dosyaları göster demek (gizli klasör ve gizli dosyalar dahil)
+linuzda dosya gizleme özelliği windows dan biraz farklı dosyanın ismini değiştirip başına nokta koyuyoruz bu dosya artık varsayılan olarak listelenemiyor 
+özellikle konfigrasyon dosyaları nokta ile başlar eğer sistem içerisindeki bütün konfigrasyon dosyaları böyle açıktan olsaydı hem görünüş olarak karmaşık olurdu hem de açık seçik olurdu ve user tarafında 
+böyle yanlışlıkla silmelere değiştirmelere ve modifikasyon / düzenlemelere maruz kalabilirdi 
+şimdi -t parametresini öğreneceğiz bu parametre ile dosyaları örneğin açıldığı,değiştirildiği,oluşturulduğu zamana göre filtreleyerek listeliyor 
+-l parametresi long listing format manasına gelir çıktıyı biraz daha detaylı veriyor bizlere windows da da kullandığımız liste halinde dosyaları göster dediğimiz zaman o dosyaların ardışık şekilde 
+dizin,kilobyte gibi çeşitli özelliklikler ile listelenmesini sağlıyor 
+-n , --numeric-uid-gid / de dosyaların tamamen sahiplik ve grupluk özelliklerini de çıktıya kat manasında kullanılan bir parametre izinler ve yetkiler doğrultusunda -n daha net anlatılacak 
+ubuntu da home da ls yazarsak terminalde bazı çıktılar mavi bazıları ise beyazdır beyaz olanlar dosyaları mavi olanlar dizinleri ifade eder 
+ls -a yazdığımızda nokta ile başlayan bazı dosyaların da olduğunu görüyoruz bunlar gizlenen dosyalardır 
+linuxda bir dizinin içindeyken aynı adla veya karakter ile başlayan birden çok dosya varsa örneğin nokta(.) ile başlayan dosyalar varsa bunları görüntülemek için cd . yazıp tab tuşuna bastığımızda 
+nokta ile başlayan bütün dosyaların ismi aşağıda sıralanır 
+cd yi salt cd şeklinde yazarsak mevcut kullanıcımızdaki home dizinini gideriz otomatik olarak 
+ls -at dediğimiz zaman gizli açık bütün dosyaları zaman sırasına göre listeler ilk açılan son açılan ilk/son değiştirme tarihi vs 
+ls -l long listing format hangi dosyanın hangi tarihte açıldığını, bütün dosyaların veya dizinlerin hangi gruba veya kullanıcıya ait olduğunu hangi izinlere sahip olduğunu listeler 
+PROBLEMLERİMİZ kısmındaki problemlere devam ediyoruz !! rmdir denemedizin/ ile bu dizini siliyoruz 
+daha sonra mkdir denemedizin2 isimli bir dizin oluşturuyoruz 
+bu dersimizde linux da dosya nasıl taşınır bunu öğreneceğiz şimdi ikinci adlı dosyayı denemedizin2/ adlı dizine taşıyacağız 
+dosya taşımayı mv komutu (move anlamına gelir) = taşımak denemk ile yapıyoruz 
+mv --verbose parametresi ile dosya taşırken eğer hata alırsak aldığımız bu hatanın sebebini detaylı olarak yazdırılmasını sağlayan bir parametre / mv -v de kullanılıyor 
+mv -f/--force bir dosyayı taşırken hiç bir hata mesajı vermeden zorlayarak taşımak demektir sorgusuz sualsiz dosya taşınır 
+mv komutunun uygulanışı mv ikinci denemedizin/ (mv 'boşluk' dosya ismi 'boşluk' dizinismi/)
+eğer taşınacak dizinin ismini doğru yazmassak linux bizim için ne yazdıysak o isimde bir dizin oluşturacaktır ve dosyamızı onun içine atacaktır 
+mv komutu ile bir dizini başka bir dizinin içine taşıyabiliriz 
+bu derste dizin taşıma işlemini öğreneceğiz bunun için de mv komutunu kullanacağız 
+denemedizin2/ isimli dizini Desktop/ a taşıyacağız bunun için mv denemedizin/ (sonundaki slash önemli) Desktop/ = mv denemedizin2/ Desktop/ 
+bu derste dosya kopyalama işlemini öğreneceğiz şimdiki problemimiz denemedizin2/ isimli dizine gir ve ikinci adlı dosyayı aynı dizin içine kopyala ve son olarak dizin içeriğini görüntüle 
+kopyalamak için cp komutunu kullanıyoruz 
+cp ikinci ikinci dersek ikinci adlı bir dizine yine aynı adda bir dosya kopyalayamayacağımıza dair bir mesaj alırız bu yüzden cp ikinci ikinci2 diyebiliriz 
+bu dersimizde denemedizin2/ dizinini Documents klasörüne kopyalamayı öğreneceğiz 
+bir dizini başka bir dizinin içine parametre kullanmadan sadece cp komutu ile taşıyamayız bunu yapmak için cp -r parametresini kullanmamız lazım 
+cp yapıp kopyalamak istediğimiz zaman hata veriyor çünkü kopyalamak istediğimiz dizinin içindeki bütün dosyaları tek tek kopyalamak istiyor 
+cp -r komutu ile kopyalamak istediğimiz dizinin içindeki bütün dosyaları tek tek hedef dizine kopyalıyoruz 
+kopyalayacağımız dizinin içindeyken aynı dizini kbaşka bir dizine kopyalama işlemi yapamayız 
+problemimizi şu şekilde çözebiliriz cp -r /home/Documents/ 
+bu derste terminal üzerinde arama işlemlerini öğreneceğiz bu işlemleri yaparken kullanacağımız 2 temel komut var problemimiz de terminalde ikinci adlı dosyayı ara ve bul 
+bu komutlar find ve locate find shell yazıldıktan sonra ortaya çıkan eski bir komuttur locate biraz daha yenidir find aramamızı istediği bir dosyayı işletim sisteminin içindeki bütün dizinlere tek tek girerek 
+bakar ve bu şekilde arayarak bulmaya çalışır bu yüzden biraz yavaştır locate ise belirli bir database üzerinden dosyayı arar ve biraz daha hızlıdır bir okulda bir öğrenciyi tek tek bütün sınıfların içine girip 
+aramak find bu sınıfların öğrenci listelerindeki isimlere bakmak ve o şekilde listelenmiş bir dökuman üzerinden aramak da locate dir 
+find / -name ikinci diyerek aramamızı yapıyoruz eğer permission denied hatası alırsak bu aramayı root da yapmadığımız için yetkimizin olmadığı klasörlere/dizinlere eriştiğimiz içindir bunu şeye benzetebiliriz 
+bir okulda aradığımız öğrenciyi müdür yardımcısının odasında veya yetkimizin olmadı öğretmenler odasında ya da kapısı kilitli sığınak da aramaya benzetebiliriz 
+find / | grep ikinci dediğimizde de / dizinindeki (root) yani işletim sistemindeki bütün dizinleri içeren bir dizin arama yapar bu komut içinde ikinci geçen bütün dosyaları listeler 
+find / -name ikinci komutunda ise ismi sadece ikinci olan dosyaları çıkarır 
+man locate ile locate in nasıl kullanıldığını öğrenebiliriz 
+locate /var/lib/mlocate/mlocate.db konumdaki veritabanını kullanıyor 
+locate ikinci diyerek aramak istediğimiz dosyayı yazabiliriz
+locate / yazarsak slash ı bir yol olarak değil aranılacak bir karakter olarak algılar o yüzden find daki gibi yol belirtemiyoruz çünkü hazır bir veritabanı üzerinden arıyor 
+locate arama işlemini ctrl+c ile durdurabiliriz 
+touch aradikbulamadik ile bir dosya oluşturup ardından locate aradikbulamadik yaptığımızda dosyayı bulamayız çünkü yeni oluşturduğumuz dosya veritabanına eklenmedi veritabanına ekleyip güncellemek için rootta iken 
+updatedb veya normal kullanıcıdayken sudo updatedb yazarız ve tekrar locate aradikbulamadik yaptığımızda dosyayı bulmuş oluruz 
+bir dosya oluşturup veritabanını güncelledikten sonra oluşturduğumuz dosyayı sildiğimizde find ile arayınca gerçekten dosyayı bulamaz çünkü dosyayı sildik ama locate ile aradığımızda dosya yı hala eski konumunda 
+gösterir çünkü sildikten sonra da veritabanını güncellememiz gerekir doğru sonuç almamız için 
+bu derste dosya arşivleme ve çıkartma komutlarını öğreneceğiz denemedizin2 adlı dizindeki ikinci adlı dosyayı arşivle ve daha sonra masüstüne taşıyıp arşivden çıkar 
+arayüzden yaparken sağ tıklayıp compress veya kalide create archive yapıyoruz bunu deyince karşımıza hangi uzantıda sıkıştırmak isteidğimizi soruyor .zip dersek her işletim sisteminde çalışabilecek bir 
+şekilde sıkıştırırız .tar.xz linux un kendi arşivleme aracı ile oluşturulan bir uzantı .7zip de yine windows da mac ve linux da kullanılan bir sıkıştırma uzantısı 
+arşivlemek için arşivleeyceğimiz dosyanın olduğu dizine gidip terminalde tar -cvf ikinci.tar ikinci [c = create arşiv oluştur anlamına gelen komut/ v = verbose yapılan bütün işlemleri terminale yazdır bütün süreçleri/f=file
+arşivlemek istediğimiz dosyanın ismini girmemizi sağlayacak olan parametre] bunları yazdıktan sonra oluşan arşivin isminin ne olmasını istyorsak onu yazıyoruz daha sonra mevcut dizindeki arşivlemek istediğimiz dosya 
+nın ismini yazıyoruz şimdi bu arşivi masaütsüne taşıyacağız mv ikinci.tar /home/kali/Desktop 
+arşivi masaüstüne çıkarmak için de tar -xvf ikinci.tar [x=extract = ayıkla demek ]
+fakat çıkardığımız dosyaları her zaman bir klasörün içine çıkarmak daha faydalı olacakır bunu yapmak için de tar -xvf denemedizin2.tar -C /home/kali/arsivdençıkart komutunu yazarak arsivdençıkart isimli bir klasörün içine çıkarıt 
+dosyalarımızı dosya yolundan önceki -C(BÜYÜKC) komutu farklı bir dizine çıkart manasına gelir eğer arsivdençıkart isimli biz klasör yoksa bize bir hata verecektir ve bu klasörün varolmadığını söyleyecektir çünkü bu komutta 
+klasörü kendi oluturamıyor kendimiz oluşturmamız lazım mkdir arşivdençıkart yazıp klasörümüzü oluşturuyoruz bunu yaparken terminalde çıkartılacağı yolda olmamız gerekiyor 
+ls i illa mevcut dizindeki klasörleri listelemek için kullanmak zorunda değiliz başka bir mevcut bulunduğumuz dizinin dışındaki dizinlerin de içeriklerini ls ile listeleyebiliriz bunun için ls /dizinyolu şeklinde girmeliyiz 
+klasör oluşturmadan tek bir komut ile istediğimiz bir dizine dosyalarımızı çıkartmak için tar -xvf denemedizin2.tar --one-top-level=serhat dersek hangi terminalde mevcutta hangi diizndeysek o dizine serhat isminde 
+bir klasör oluşturup arşivimizdeki dosyaları buraya çıkarır peki hem mevcut bulunmadığımı konumda hem de mevcut olmayan bir klasöre nasıl çıkartabilirim dosyalaırmızı bunun için de 
+tar -xvf denemedizin2.tar --one-top-level=/home/kali/Desktop/linux öğrendim komutu ile arşivimizi desktop da linuxöğrendim isimli bir klasöre çıkartır 
+bu derste dosya içeriğini detaylı bir şekilde okumayı öğreneceğiz problemimiz şu ikinci adlı dosyanın içeriğini / (kök) dizinine yönlendirmek 
+ls / yaptığımızda kök dizini yani root u listeler ls / >  Desktop/ikinci ardından cat ikinci yazdığımızda root dizinindeki dosyaların içeriklerini yazı halinde ikinci isimli dosyamıza kaydemiş olduk (problemi yanlış
+yazmış olaiblirim doğrusu bu cümle) cat ile dosyayı görüntülediğimiz gibi başka bir komut ile de bu işlemi yapaibliriz o komut da more 
+more ikinci yazdığımızda aramak istediğimiz veriyi bulana kadar entera bastıkça çıktımızın sonuna doğru ilerleyen bir görüntüleme komutudur aşağı kısımda dosyanın yüzde kaçını görüntülemediğini belirtir 
+tamamı görüntülendiğinde de komut satırına geri döneriz
+bir dosyanın ilk sekiz satırını yazdırmak için örneğin dosya ikinci olsun head ikinci yazarız son sekiz satırı yazdırmak için de tail ikinci yazarız 
+cat de bir dosyanın içindeki verileri sondan başa doğru yazdırmak istersek de cat in ters yazılışı olan tac ı kullanırız örneğin tac ikinci 
+şimdiki problemimiz ikinci adlı dosyamızın ilk 8 satırındaki içeriği masaüstünde üçüncü adlı boş bir dosyaya yönlendireceğiz bunu da head ikinci > üçüncü
+diğer problemimiz de üçüncü adlı dosyamızdaki içerikleri tersten yazdırılacak bir şekilde dördüncü adlı bir dosyaya yönlendirmek bunun için de tac üçüncü > dördüncü 
+BU DERSTE DOSYA İÇERİK EDİTÖRLERİNİ ÖĞRENECEĞİZ 
+arayüz içerisinde geddit onu kullanırız genelde görsel olarak artık termianl üzerinde de editör kullanacağız 
+sunucu yönetiminde genelde terminalden daha iyi yönetebiliriz 
+bu editörlerden 2 tanesini göreceğiz birincisi nano yazarak açabiliriz ismi nano diğerini de vi yazarak açabiliriz ismi vim 
+nanoyu direk nano aolarak açarsak mevcut dizinde bir dosya oluşturma aşamasındayız demektir ama bir yol belirterek açarsak nano /Desktop/dördüncü 
+nano içerisinde altta bulunan bazı özellikler var write out kaydetmek demek ctrş+s ye tekabüldür exit çıkış demek alt+f4 e denk gelir 
+peki bunları nasıl kullanacağız kaydetmek için ^O ÇIKMAK için ^X yazıyor buradaki ^ karakteri klavyede CTRL tuşunu ifade eder ctrl+o ve ctrl+x 
+ctrl+x yaparsak bize dosyayı kaydetmek isteyip istemediğimizi soruyor Y ye basarsak yes anlamına gelir kaydedip çıkar N ya basarsak kaydetmeden çıkar ctrl+c ye basarsak çıkma işlemini iptal eder ve nano ya 
+geri döneriz 
+ctrl+o ya bastığımızda dökumanı nano ile oluşturduğumuz için ona hangi ismi vermek isteidğimizi soruyor ismini veriyoruz ardından ctrl+x e bastığımızda kaydetme sorusunu sormadan dökumanı kapatır 
+nano ile açtığımız bir dökumanda herhangi bir şeyi aramak için ctrl+w ye basıp aramak istediğimiz şeyi yazıyoruz 'Where is' özelliği 
+ctrl w yapıp ctrl t yaparsak istediğimiz herhangi bir satır ve sütüna gidebiliriz ilk yazdığımız rakam satır ve bir boşluktan sonra girdiğimiz sayı da sütünu ifade eder 
+ctrl+\ ile replace yapabiliriz (türkçe klavyede ctrl+algr+soru işareti tuşu sıfırın sağında)
+bunu yaptıktan sonra dökuman içindeki değiştirmek istediğimiz stringi giriyoruz ardından ne ile değiştirmek isteidğimizi giriyoruz örneğin onbir diye bir string var on u değiştirip onun yerine yirmi yazdığımızda
+yeni değişen stringimiz yirmibir olur dökuman içinde bulunan bütün onları otomatik yapmaz her 10 geçtkçe y ile onaylamamız gerekir veya no ile geçmemiz nano ile dosya ismi belirtirken yol belirtirsek o konuma 
+belirrtiğimiz dosya ismi şeklinde kaydeder 
+şimdi vim i açıyoruz terminle vi diyerek bir vi de 2 türlü mod vardır biri komut modu diğeri içerik modu örneğin arayüz olmadığı durumlarda vi den nasıl çıkaccağız jfglkşjdşlkgd yazdık örneğin önce esc ye basıyoruz daha sonra
+: ya basıp enter a basıyoruz iki nokta aşağıda çıacak bu komut moduna geçtiğimiz anlamına geliyor daha sonra yazdıklarımızı kaydetmeden çıkmak için q! komutunu kullanıyoruz 
+şimdi kaydederek nasıl çıkabiliriz bunu öğreneceğiz bunu için de bir şeyler yazıp esc ve iki nokta : a basıyoruz komut moduna geçiyoruz w dosyaismi dersek bulunduğumuz vi yi açtığımız diizne kaydeder 
+ancak w dosyayolu/dosyaismi olrak belirtirsek bu yola dosyamızı kaydeder
+bir dosyayı vi kullanarak dosya olu belirterek nasıl açabiliriz vi dosyayolu/dosyaismi 
+komut modundan editör içerik moduna geçmek için de esc ye basıyoruz ardından i ye bastığımızda içerik moduna geçiyoruz 
+vi nin içinde shell komutları da çalıştırabiliriz içeriği yazdık komut moduna geçtikten sonra wq dersek kaydederek çıkar 
+
+Bölüm Sonu Alıştırma Soruları
+
+https://drive.google.com/open?id=1fi9NoBFoUvJMmtiEh5nv-CSfsmnRPL3e
+
+
+1-Linkteki Dosyayı arşivden /home/"kullanıcı-adınız"/Documents/IlkSoru adlı dizine çıkaralım
+
+2-Dizin İçeriğini Masaüstüne Taşıyalım
+
+3-Taşıdığımız dizini Masaüstünde "ÜçüncüSoru" adlı boş bir dizin içerisine kopyayalim.
+
+4-Terminal üzerinde "içerik1" adlı dosyaları bulalım.
+
+5-Bulduğumuz dosyaların içeriklerini tek tek Masaüstü içerisinde "beşincidosya" adında bir dosya içerisine yönlendirelim.(Dosya içerikleri birbirine eklensin(çift yönlendirmeyi kastetmiş))
+
+6-"beşincidosya"  içeriğine Masaüstü dizin içerik çıktısını ekleyelim.
+
+7-"beşincidosya" adlı dosya içeriğinin ilk satırına "bölümSonu" kelimesini ekleyip kaydedelim ve çıkalim.
+
+8-Dosya içeriğini tersten yazdırıp "son" kelimesi geçen satırları filtreleyelim.
+
+ÇÖZÜMLER :
+
+1- Öncelikle dosyamızı linux umuza indiriyoruz. cd Downloads/ a gidip indirdiğimiz dosyayı ls ile görüyoruz daha sonra ilk soru isimli dizinimizi oluşturacağız mkdir /home/kali/Documents/ilksoru
+tar -xvf icerik1.tar -C /home/kali/Documents/ilksoru diyip entera basıyoruz (-C normalde arşivi bir dizinin içerisine dosyanın ismine ait bir dizin içerisinde çıkartırken sadece dosyayı da belirtilen dizinin içerisine
+çıkartabiliriz) 2- mv /home/kali/Documents/ilksoru /home/kali/Desktop yazııyoruz 3- cd Desktop yazıyoruz cp -r ilksoru/ ücüncüsoru/ 4- find / -name icerik1 yazyoruz 5- cat/home/kali/Desktop/ilksoru/icerik1
+>> besincidosya 6- aynı dizindeysek direk olarak sadece ls yazıyoruz belirtilenden farklı bir dizindeysek de ls /home/kali/Desktop yazıyoruz sorumuzun cevabını içeren komut ise ls /home/kali/Desktop >> besincidosya 
+7 - bu işlemi nano ile yapacağız nano besincidosya dosyamız açıldıktan sonra 1 defa enter a basıp bölümsonu yazıyoruz ardından ctrl+o daha sonra enter ve son olarak ctrl+x e basıyoruz 
+9- tac besincidosya | grep son diyoruz ve bölümsonumutluluğu:)
+                                          bölümsonumutluluğu:) çıktısını alıyoruz 
+
+ Üçüncü Problemlerimiz
+
+Sistemde oturumu açmış olduğun kullanıcı(ları) terminalde çıktı olarak al.
+
+Oturumu açık olan kullanıcının kullanıcı id'sini öğren.
+
+Sistemdeki bütün kullanıcıları görüntüle.
+
+Oturum açtığın kullanıcının bulunduğu grupları öğren.
+
+Oturum açtığın kullanıcı ile /etc içerisinde bir dosya oluştur.
+
+Root kullanıcısı olarak login ol.
+
+Terminal üzerinden kullanıcı değişikliği yap.
+
+Masaüstünde sadece root kullanıcısının yetkilere sahip olduğu boş bir döküman oluştur. Dökümanın adı yetki olsun.
+
+Yeni bir kullanıcı oluştur, kullanıcının adı yetkilibey olsun.
+
+Yeni bir grup oluştur. Grubun adı yetkililer olsun.
+
+Oturum açtığın kullanıcıyı "yetkililer" adlı gruba ekle.
+
+yetki adı verdiğimiz dökümanın sahibini yetkilibey olarak değiştir.
+
+yetki adı verdiğimiz dökümanın grup sahipliği yetkililer grubunda dahil et.
+
+Oturum açtığınız kullanıcı ile yetki adlı dökümanın içeriğine yetkilendirildim yazısını yönlendir.
+
+yetkilibey adlı kullanıcıyı sistemden kaldır.
+
+yetkililer adlı grubu sistemden kaldır.
+
+<---------------------------------------------------------------------------------------------------------->
+
+sistemde oturum açtığımız kullanıcıyı terminalde çıktı olarak nasıl alabiliriz 
+linux multi-user yani çoklu kullanıcı yapısına sahiptir işletim sistemini aynı anda birden çok kullanıcı ile kullanmamıza izin veriyor
+users komutu ile sisteme kayıtlı olan bütün kullanıcılaırn ismini çıktı olarak verir 
+kullanıcı id si sitem bütün kullanıcıları bir numara atar her kullanıcının her kullanıcı grubunun spesifik numaraları vardır bizim login olduğumuz oturum açtığımız kullanıcıların id numaraları 1000 den başlar 
+mevcut kullanıcının id numarasını öğrenmek için terminale id -u yazıyoruz sadece id yazarsak çok daha fazla sonuca ulaşaibliriz eğer sistemdeki mevcut kullanıcıdan başka bir kullanıcının id sini öğrenmek istiyorsak da 
+id -u kullnıcı-adı şeklindedir oturum açan kullanıcıların id si 1000 - 1001 /2-3-4 şeklinde birer birer artarak gider sistem kullanıcıların id si de genellikle 1-99 araı bir numaradır / root kullanıcısının id si 0 dır 
+root en yetkili kullanıcıdır hiyerarşinin en tepesindeki kullanıcıdır windows sistemlerde Administrator veya Admin şeklinde geçer root un karşılığı olarak 
+bu dersimizde sistemde bulunan bütün kullanıcıları görüntüleyeceğiz bunu yaparken aslında sistemdeki çeşitli ayar dosyalaırnın içeriğini öğrenerek bunu yapacağız bunu öğrenmek için bir komut yok bunun yerine 
+sistem ayarlarını tutan bazı dökumanların içeriğini görüntüleyerek bunu öğreneceğiz cat /etc/passwd dediğimiz zaman sistemde kullanılan bütün kullanıcıların bir çıktısını alırız 
+bu çıktıdaki pulse isimli kullanıcı süreci yöneten kullanıcıdır bu süreç ses konusunda işletikm sisteminden verim almamızı sağlayan bir nevi driver yönetim aracıdır 
+diğer bir kullanıcı olan gdm (gnome display manager) ise işletim sisteminde gördüğümüz tüm arayüzün (görsel kısımların) kullanıcıya sunulması açıısndan taban görevi görüyor 
+sadece mevcut kullanıcımızı terminale bastırmak istersek cat /etc/passwd | grep kullanıcı-adı şeklinde kullanabiliriz
+burada yazdırılan ilk 100 değeri kullanıcı id si diğer 1000 grup id si (bağlı olduğu grubun id si) ubuntu kali gibi dağıtımlarda kullanıcı oluşturma işleti arayüz ile halledildiğinden biz mnuel olarak oluşturduğumuz kullanıcıya 
+bir shell yolu /bin/bash atamayız otomaik olarak atanır ama manuel olarak atarkjen eğer /home/kullanıcı-adı/bin/bash şeklinde bir shell yolu belirtmezsek oluşturduğumuz kullanıcı shell i yani terminali kullanamaz 
+linuxda sistem kullanıcıları da böyledir bir shell yolların sahip değildirker hepsi farklı bir hizmeti gerçekleştirmek için oluşturulmuşlardır linuxda hangi kullanıcıların sistem kullanıcısı hangi kullanıcıların 
+oturum açılabilen veya shell yolu yolan kullanıcılar olduğunu anlamanın bir kaç yolu vardır ilki belirtilen bir shell yolu var mı yok mu buradan bakmak bir fikir verebilir bizlere 
+cat passwd komutunda hangi kullanıcılara bir shel yolu atanmış bunu filtreleyerek bastırmak için de cat /etc/passwd | grep bash yazabiliriz 
+peki sistemde bash den başka bir shell versiyonu kullanılıyorsa o zaman nasıl filtreleyebileceğiz bizim gibi herhangi bir shell kullanma yetkisine sahip bir kullanmıcı olup olmadığını bunun için de 
+kullanıcı id lerine bakabiliriz shell yetkisi olan kullanıcıların id numrası 1000 ile başlar anlamanın başka bir yolu da bu kullanıcıları bastırdığımız zaman en sonda verilen yolda no-login (login olmayan 
+kullanıcı olarak belirtilir)
+
+Bu dersimizde yetki konusuna giriş yapacağız
+yetki kavramı işletim sistemi bağlamında bir işlemi yapma veya yapmama hakkı olarak tanımlanabilir 
+mevcut kkullanıcımızın yetkisini aşan bir işlem yapmak isteidğimizde permission denied hatası alırız 
+id komutunu kullanarak mevcut kullanıcımızın ait olduğu grubu öğrenebiliriz bu komut ile kullanıcı ve grup id mizi de görüntüleyebiliriz
+ubuntu yüklemesi sırasında açtığımız kullanıcıya takriben sistem tarafından otomatik olarak adımıza bir grup da oluşturulmuş bu tamamen önyükleyicinin opsiyonel davranışı her zaman böyle 
+olmak zorunda değil cat /etc/group komutunu yazarak linuxda varolan bütün grupların ismini görüntüleyebiliriz 
+1000 id nin altındaki gruplar sistem grupları olarak isimlendirilebilir 
+0. grubun ismi root grubudur root grubu içerisine başka bir kullanıcı açarsak oluşturduğumuz yeni kullanıcı root kullanıcısı olarak root grubuna ait olacak 
+sistemde varolan gruplardan bir tanesi de disk grubudur bu grup disk üzerindeki işlemlerin yapılabilmesi için gereken yetkilerin donatıldığı bir gruptur 
+audio ses ile ilgili işlemlere sahip olan gruptur 
+şimdiki problemimiz oturum açtığımız kullanıcı ile etc/ dizininde bir dosya oluştur 
+etc konfigrasyon dosyalarının tutulduğu bir dizindir 
+touch /etc/dosyaismi dediğimiz zaman permission denied hatası alırız çünkü bu dizin içerisinde bir dosya oluşturmaya yetkimiz yok 
+linuxda bir dosyanın veya dizinin sahipliklerini veya tetkilerini öğrenmek için dosyaya sağ tıklayıp en aşağıdaki seçenek olan properties e tıklıyoruz 
+açılan pencerede permission isimli sekmeye geliyoruz permission = izinler demek 
+linuxda her dosyanın veya dizinin bir kullanıcı sahibi bir de grup sahibi vardır
+bunu şöyle anlatabiliriz örneğin bir dosyanın sahibi ömer ve bu dosyanın grup sahipleri/shipliği de ömer'i sevenler grubuna ait olan kişilerin olsun grubun sahibi ömer onlara 
+böyle bir hak versin ömer'i evenler grubu grubun yetkileri doğrultusunda o dosya üzerinde hak iddia edebiliyorlar 
+linuxda dosyalar üzerinde yapılabilen temelde 3 adet işlem vardır birincisi okuma ikincisi yazma üçüncüsü de çalıştırma 
+silme ve oluşturma işlemleri,  yazma ana başlığının altına girer bir de others isimli kullanıcılar/grup var bunlar da dosyanın sahibi olmayan veya dosya üzerinde herhangi 
+bir yetkisi olmayan kullanıcı veya grupların tamamıdır 
+properties kısmındaki access bölümü o dosya veya dizine ulaşım erişim demektir örneğin bir klasöre olan erişim hakkımızı kendi elimizden alabiliriz bunu yapıp tekrar 
+o klasöre girmeye çalıştığımızda bize o sistemde bu dosyayı açmay yetkili olan bir kullanıcının login şifresini isteyecektir aslında bu istek bir nevi görsel bir sudo komutu 
+işlemidir 
+sudo bir programdır bir tooldur sudo, windowsda bir programı sağ tık yapıp yönetici olarak çalıştır işlemine benzer mevcut kullanıcımızın yetkisini aşan bir durum olduğunda 
+sudo komutu ile sanki root kullanıcısıymışız gibi o işlemi yapmamıza olanak sağlar 
+/etc içerisinde bir dosya oluşturmak için yine sudo yu kullanırız sudo touch /etc/dosyaolustur komutunu girdiğimizde bize root kullanıcısının şifresini sorar yazıp enterladığımız
+da dosyamızı oluşturmuş oluruz mevcut kullanıcıyla etc/ içerisinde bir dosya silmeye çalıştığımızda yine permission denied hatası alırız çünkü yetkimiz yok bunu da yine sudo 
+komutu ile aşabiliriz sudo komutunu kullanmak için sudoers isimli bir konfigrasyon dosyası var ve bu dosyanın içerisinde bazı ayarlamaları yapmadan sudo komutunu kullanamazyız normalde 
+ama ubuntu,kali linux gibi vb linux dağıtımlarının önyükleyicileri bunu bizim için default olarak konfigre edilmiş bir şekilde işletim sistemini yüklerler 
+soers dosyasını konfigre etmek için root olmamız gerekiyor bunu sadece root yapabiliyor 
+bu dosyayı konfigre etmek için terminale sudo nano /etc/sudoers komutunu yazıp enterlıyoruz bu sudowers dosyasını nano ismindeki bir text editör ile root kullanıcısı olarak açar 
+bu dosyadaki # ile başlayan satırlar yorum satırlarıdır 
+bizim ilgileneceğimiz kısım # allow members of group sudo to execute any command bu ifade sudo grubuna sahip olan herkesin sudo komutunu  çalıştırabilir manasına gelen bir 
+entry 
+bu dersimizdeki problemimiz root kullanıcısı ile login olmak öncelikle ubuntu da sisteme root kullanıcısı ile login olmak defsult da kapalı olarak geliyor 
+kullanıcı şifresi oluşturmak veya değiştirmek için terminale passwd yazıyoruz passwd kullanıcı adı şeklinde kullanırsak istediğimiz herhangi bir kullanıcının şifresini değiştirebiliriz 
+dediğimizde hata verecek çünkü bunu yapmaya yetkimiz yok onun için sudo passwd root diyoruz root için bir şifre belirliyoruz şimdi tekrar arayüzden login ekranına dönüş yapıyoruz 
+not listed? yazısına tıklıyoruz  username = root password = belirlediğimiz şifre yi yazıyoruz ancak ubuntu da default olarak arayüzden bu şekilde root kullanıcısına geçme işlemi 
+kapalı/engellenmiş olarak geliyor biz arayüz yerine terminal üzerinden root kullanıcısına geçeceğiz yetkimizi aşan her komutda sudo xxx yazmak yerine sudo su yazıp o terminal 
+tabında root kullanıcısına geçiş yapabiliriz terminal kapanana veya kapatılana kadar root kullanıcısı üzerinden işlemlerimizi yaparız 
+tekrar eski kullanıcımıza dönmek için de exit komutunu kullanabiliriz 
+
+bu dersimizde terminal üzerinden kullanıcı değişikliği yap problemimizi çözeceğiz arayüz üzerinden kullanıcı oluşturmak için -ubuntu da- sağ üstte pil simgesinin solundaki 
+ses ikonuna tıklayıp mevcut kullanıcımız insan ikonunda karşımıza çıkar ota tıkladığımızda Log out ve Account Settings seçenekleri çıkıyor eğer birden fazla kullanıcı oluşturmuş olsaydık bir de
+Switch User simgesi de çıkacaktı buradan account settings e tıklıyoruz ya da sol alttaki applications kısmından users yazarak yine aynı ayar penceresine ulaşabiliriz 
+açılan pencereden sağ üstteki unlock kısmına basıyoruz ve burada da bir sudo işlemi uygulanıyor bizden bir şifre isteniyor şifreyi girdiğimizde root olarak artık bu pencereyi düzenleyebiliriz 
+yine sağ üstte Add User seçeneği açıldı buraya tıklayıp yeni bir kullanıcı oluşturabiliriz şifre verip oluşturduktan sonra eğer istersek sağ alttaki remove user butonundan 
+oluşturduğumuz bu kullanıcıyı silebiliriz (linuxda bir şifreye sahip olmayan bir kullanıcı oluşturamayız /yeni bir kullanıcı oluştururken şifre girmrmizi isteidği ekranda 
+şifre girmek istemezsek bir sonraki oturum açıldığında şifreyi sor diye bir seçenek gelir)
+terminalde mevcut olan başka bir kullanıcıya geçmek için su kullanıcı-ismi şeklinde geçebiliriz tabii ki bu login olma geçiş işlemi sadece o terminal tabı içerisinde geçerli olacaktır
+terminali kapattığımızda yine eski kullanıcımızı kullanmaya devam ederiz su root olarak yine root olabiliriz 
+örneğin bir kullanıcıya geçtikten sonra tekrar eski kullanıcımıza döndüğümüzde terminale users komutunu yazarsak ilk geöiş yaptığımız kullanıcının ismini görürüz bu unutu nun 
+masaüstü ortamı ile alakalı bir durumdur -bunun sebebini öğren-
+yeni oluşturduğumuz bir kullanıcıda sudo komutunu çalıştırmaya çalışırsak hata alırız çünkü bu yeni kullanıcı sudoers dosyasının içine tanımlanmamış 
+aynı zamanda bu yeni kullanıcı sudo grubu içerisine de dahil olmadığı için yani bu kullanıcımızı ya sudoers dosyasının içerisine tanımlamamız gerekiyor 
+ya da sudo grubunun içerisine eklememiz gerekiyor su komutu terminal içerisinde kullanıcı geçişi yapmamızı sağlar 
+masaüstünde sadece root kullanıcının yetkisi olduğu boş bir dökuman oluştur dökumanın adı yetki olsun  bir dosyanın hangi izinlere sahip olduğunu terminale bastırmak için 
+o dosyanın bulunduğu dizindeyken ls -la örneğin drwxr-xr-x 22 kali kali  4096 Mar 14 17:49 . buna benzer bir çıktı alacağız burada 22 den sonraki ilk kali (kısım) dosyanın/klasörün 
+hangi kullanıcıya ait olduğunu ikinci kalinin olduğu kısım ise hangi gruba ait olduğunu (veya hangi grubun içerisinde olduğunu) ifade eder 
+en baştaki d harfi -directory |dizin/klasör|- anlamına gelir daha sonra her tire (-) karakteri ile ayrılmış kısım farklı bir yetki grubunu ifade ediyor 
+bu örneğimizde rwx yani ilk 3 karakterimiz ilk kısmı ifade eder ilk kısım da bu dosyanın sahibi olan kullanıcının izinleridir kısımlar sırayla şu şekildedir 
+ilk 3 karakter dosyanın/dizinin sahibi olan kullanıcının izinleri / ikinci 3 karakter dosyanın/klasörün sahibi veya içinde bulunduğu grubun isimleri / son 3 karakter de 
+bu 2 kısıma ait olamayn yani ne dosyanın veya klasörün sahip olduğu kullanıcı olmayan ne de bu dosyanın içinde bulunduğu, dosyaya sahip olan gruptan olmayan diğer herkesin 
+izinlerini ifade eder buradaki rwx karakterlerinin anlamı da şudur r (read yani dosyayı okuma izni) write (yazma yani dosyaya bir şeyler ekleme veya silme izni dosyada herhangi
+bir değişiklik yapma izni) x de (execute yani dosyayı çalıştırma,açma izni)
+ls -lna komutunu yazarak da bu sefer dosyaya sahip olan kullanıcı ve grupların id lerini ekrana bastırabiliriz buradaki id numaraları bütün dosyalar için aynı olabilir ama farklı 
+iki grubun idleri de yanı olabileceğinden ona göre düşünmek gerekir 
+
+bu dersimizde dosya izinlerini değiştirmeyi öğreneceğiz bir dosyanın sırayla dosyaya sahip olan kullanıcının grubun ve others ın izinlerinin hepsini rwx yapmak için 
+chmod u=rwx,g=rwx,o=rwx yetki (dosya-adı) şeklinde kullanabiliriz (değiştirmek için terminalde, dosyayla aynı dizinde mi olmamız gerkeiyor araştır) ls -ln diyerek değişmiş mi kontrol ediyoruz 
+chmod u=r,g=w,o=x yetki şeklinde farklı bir dğeişiklik de yapabiliriz problemimizdeki sadece root kullanıcının yetkisi olduğu yetki isminde boş bir dökuman oluştur ifadesi
+u,g, ve o daki bütün yetkilerin kaldırılması ile mümkün olan bir şeydir böylece sadece root kullanıcısının yetkisi olmuş olur 
+chmod u=0,g=0,o=0 yetki ile bunu gerçekleştirebiliriz bir dosya herhangi bir sahip kullanıcı veya grubu olmaması mümkün müdür yani herhangi bir gruba ait değil ve ona sahip bir kullanıcı da yok 
+ls -ln diyerek bu dosyanın yetki kısmının ------------- şeklinde olduğunu görebiliriz 
+root un yetkilerini elinden alabilir miyiz bunu araştır 
+
+bu dersimizde dosya izinlerini sayyısal kullanım ile dğeiştirmeyi öğreneceğiz 
+bir dosyadan veya dizinin herhangi bir izni kaldırmak için de chmod -(hangisinden-hangi-yetkiyi-kaldırmak-istiyorsak-onun-numeric-karşılığını yazıyoruz) dosya ismi 
+örneğin yetki isimli dosyanın SADECE bağlı olduğu grubun execute(çalıştırma) yetkisini elinden almak istiyoruz bunun için chmod -010 yetki komutunu kullanırız 
+aynı şekilde chmod + komutu ile de istediğimiz birine istediğimiz yetkiyi verebiliriz 
+
+bu dersimizde linux üzerinde nasıl kullanıcı oluşturaibliriz bunu öğreneceğiz bunun için addduser kullanıcı-adı komutunu giriyoruz (adduser linux un farklı dağıtımlarında çalışmıyor
+olabilir ama ubuntu da çalışıyor) örneğin adduser yetkilibey yazdığımızda bu isimde hem bir kullanıcı oluşturdu hem de bu kullanıcıyı yine yetkilibey isimli bir grup oluşturarak 
+bu gruba ekledi kullanıcının eklenip eklenmediğini doğrulamak için cat /etc/passwd dosyasını açıyoruz burada en sondaki satırda kullanıcımızın eklendiğini görüyoruz 
+satırın en sonundaki yol bu kullanıcının shell yoludur /bin/bash yazıyor bu örnekte eklemenin bir farklı yolu daha var o da useradd komutu ama onunla eklemek biraz daha karışık 
+olduuğu için biz adduser komutunu kullandık 
+
+bu dersimizde linuxda bir grup nasıl oluştuurlur bunu öğreneceğiz bu uygulamadaki problemimiz yetkililer isimli bir grup oluşturmak kullanıcı oluştururken de grup oluştururken de 
+bizden root yetkisi istiyor sudo groupadd yetkililer diyerek oluşturuyoruz oluştuğunu doğrulamak için cat /etc/group yazıyoruz en sonda yetkililer isimli grubun eklendiğini görüyoruz 
+
+bu dersimizde dosy sahipliklerini değiştirmeyi öğreneceğiz problemimizde ywtki adını veridğimiz dökumanın sahibini yetkili bey olarak dğeiştir! 
+yani istiyoruz ki mevcut sahibi olan serhat-bakır ı yetkili bey olarak değiştirmek 
+bunu yapmak için kullanacağımız komut sudo chown yetkilibey:serhat-bakır yetki   şimdi yetki isimli dosyada sadece yetkili bey e ywtki verelim ve dökumanımızı serhat-bakir kullanıcısına 
+geçiş yaparak görüntülemeye/okumaya çalışalım bunun için sudo chmod 700 yetki komutunu çalıştırıyoruz echo serhat > yetki komutunu çalıştırdığımızda halihazırda serhat-bakır da 
+oturum açmış olduğumuz için permission denied hatası alacağız şimdi yetki adlı dosyaya grup izni verelim bunu sudo chmod 770 yetki komutunu çalıştırarak yapıyoruz 
+tekrardan echo serhat > yetki dediğimizde dosyaya serhat yazdıraibliyoruz çünkü yetkinin içinde bulunduğu gurubun bir üyesi de biziz sudo chown yetkilibey:yetkililer yetki 
+komutu ile de yetki dosyasının sahibini yetkilibey grubunuda yetkililer olarak değiştirebiliriz tekrar echo serhat > yetki komutunu çalıştırırsak hata alacağız çünkü serhat-bakır 
+kullanıcısı yetkililer grubunda değil bu dosyaya serhat-bakır ın da bir şeyler yazmasını sağlamak için other a yetki verebiliriz bunun için sudo chmod 777 yetki komutunu 
+kullanabiliriz
+
+bu dersimizde kullanıcı grubunu değiştirme / ekleme konusunu göreceğiz 
+bir kullanıcıyı bir veya birden fazla grup içerisine ekleyebiliriz serhat-bakır kullanıcısını yetkililer grubuna ekleyelim 
+bunun için sudo usermod -a -G yetkililer serhat-bakır eklendiğini doğrulamak için cat /etc/group komutunu çalıştırabiliriz yetkililer grobunun bulunduğu satırın sonunda serhat-bakır 
+ın eklendiğini görüyoruz doğrulamak için id komutunu kullanırsak oturumu kapatıp amçadığımız sürece güncellenmeyeceği için id komutu ile sağlıklı bir sonuç alamayabiliriz 
+sudo chmod 070 yetki ile sadece gruba yetki veriyoruz daha sonra echo serhat > yetki komutunu başarıyla çalıştıraibliriz eğer permission denied alırsak reboot komutu ile sistemi yeniden 
+başlatarak group listesini güncelleyebiliriz 
+
+bu dersimizde bir kullanıcıyı sistemden kaldırmayı öğreneceğiz ancak bunu öğrenmeden önce spesifik bir kullanıcıyı isteidğimiz bir gruptan kaldırmayı öğreneceğiz 
+ki yanlışlıkla bir kullanıcıyı bir gruba eklediğimizde o kullanıcıyı tekrar kaldırmayı öğrenmek için 
+
+sudo deluser serhat-bakır yetkililer komutu ile bunu yapaibliriz cat etc/group içine bakarak işlemimizi doğrulayabiliriz yetkilibey kullanıcısını sistemden TAMAMEN kaldırmak için 
+de sudo userdel yetkilibey komutunu çalıştırarak bu işlemi gerçekleştirebiliriz cat /etc/password dosyasını görüntüleyerek bunu doğrulayabiliriz 
+peki yetki dosyasının sahibi yetkilibey di yetkilibey sistemden tamamen silinince bu dosyanın sahibi kim olacak bunu öğrenmek için de yetki dosyasının bulunduğu dizindeyken 
+terminalde, ls -la yazıyoruz ve yetki dosyasının sahibinin olmadığını (sahipsiz olduğunu) görüyoruz ancak dosyanın sahibinin 1002 id li bir user olduğunu görüyoruz bu id ye sahip 
+kullanıcının kim olduğunu öğrenmek için cat /etc/password çalıştırıyoruz böyle bir kod gözükmüyor reboot yapıyoruz dökumanımıza sağ tık properties deidğimiz zaman 
+owner ı user#1002 olarak görüyoruz ama böyle bir kullanıcı yok yani dosyamız tamamen sahipsiz eğer bu dosyanın grubunda dosyadan başka biri yoksa ve dosya da sahipsiz ise 
+bu dosyada yetki sahibi sadece root tur 
+
+bu dersimizde yetkililer grubunu sistemden tamamen silmeyi öğreneceğiz sudo groupdel yetkililer komutunu çalıştırmamız yeterli ardından sudo şifremizi giridğimiz anda 
+yetkiller grubu sistemden tamamen silinecektie test in bulunduğu dizindeyken tekrar ls -la diyoruz ve group id 1004 görünüyor ama ne sahibi olan kullanıcı ne de sahibi 
+olan grubun ismi olmadığı için dosya sahipsizdir 
+
+Bölüm Sonu Alıştırma
+
+1- Terminal Üzerinden ilkgrup adında bir grup oluştur.
+
+2- Terminal üzerinden ikincigrup adında bir grup oluştur.
+
+3- Linkteki dosyayı indirip arşivden çıkart.
+
+4- bolumsonu içeriğini bolumsonu2 adlı dosyaya yönlendir. (sudo yetkisi olmadan yönlendirme gerçekleşmeli)
+
+5-Terminal üzerinden sahip adında bir kullanıcı oluştur.
+
+6-sahip adlı kullanıcıyı ikincigrup'a ekle
+
+7-Oturum açtığın kullanıcını ilkgrup 'a ekle
+
+8- bolumsonu adlı dosyanın sahibi oturum açtığın kullanıcın, grup sahipliği ilkgrup olsun
+
+9- bolumsonu2 adlı dosyanın sahibi sahip adlı kullanıcı, grup sahipliği ise ikincigrup olsun.
+
+10- bolumsonu adlı dosyanın içeriğini bolumsonu2 adlı dosyaya yönlendir.(Sudo yetkisi olmadan gerçekleşmeli + Other grubuna yetki vermeden.)
+
+11-Grupları ve kullanıcıları sistemden temizle
+
+
+ilk problemimiz terminal üzerinden ilkgrup adında bir grup oluşturmak sudo groupadd ilkgrup komutunu çalıştırıyoruz daha sonra ikinci problemimizi 
+sudo groupadd ikincigroup yazarak tamamlıyoruz 3. problemimiz https://drive.google.com/file/d/1C5UrkjvuVP4RT3UbAJqBpXVFui27CYF_/view
+linkindeki dosyayı indiriyoruz dosyayı dektop a kaydediyoruz tar -xvfbolumsonu.tar çalıştırıyoruz ls -la diyince dosyaların ikisinin de 
+hiç bir şekilde yetkilendirilmediğini görüyoruz ikisinin de izinleri --------------- şeklinde 4. problem bolumsonu içeriğini bolumsonu2 ye yönlendir 
+deniliyor bunun için mevcut kullanıcımızda yazma yetkisi olmalı her ki dosya için de bunu da sağlamak için chmod 700 bolumsonu ve chmod 700 bolumsonu2
+komutlarını çalıştırıyoruz ardından cat bolumsonu > bolumsonu2 diyerek içeriği yönlendiriyoruz 5. problemde sahip isminde bir kullannıcı oluşturmamız 
+gerekiyor sudo adduser sahip komutunu çalıştırıyoruz yeni kullanıcımız için bir password belirliyoruz 6. problemde sahip adlı kullanıcıyı ikincigrup isimli 
+gruba eklememiz gerekiyor bunu yapmak için de sudo usermod -a -G ikincigrup sahip şeklinde bunu da gerçekleştirebiliriz 7. soru oturum açtığımız 
+şuan halihazırda işlem yaptığımız mevcut kullanıcımızı ilkgrup a ekle sudo usermod -a -G ilkgrup serhat-bakir 
+ilgili kullanıcılar gruplara eklenmiş mi sudo gedit /etc/group komutu ile [gedit editörü ile açarak] doğrulayabiliriz 
+
+bölümsonu isimli dosyanın sahiplik yetkisi mevcut oturum açtığımız kullanıcı olarak atansın grup sahipliği de ilkgrup a ait olsun bu da 
+8. problemimiz bunun için sudo chown serhatbakir:ilkgrup bolumsonu komutunu çalıştırarak grubunu sahibini serhat bakir grubunu ilkgrup yapıyoruz
+hangi dosyanın yetkisini değiştirdiysek de en sonr o dosyanın ismini yazıyoruz
+9. problemdeki bolumsonu2 grup yetkisini ikincigrup a sahipliğini de sahip isimli kullanıcıya vermek için de
+sudo chown sahip:ikincigrup bolumsonu2 komutunu çalıştırıyoruz 
+10 problemimiz bolumsonu adlı dosyanın içeriğini bolumsonu2 adlı dosaya yönlendir sudo yetkisini ve other a yetki verme işlemini kullanmadan 
+burada other a yetki vermeden serhatbakir i ikinci grup a dahil edip bolumsonu nun içeriğini bolumsonu2 ye yönlendirme yani yazma yetkimiz olsun 
+bolumsonu dosyasına müdahale konusunda herhangi bir yetki problemi yaşamıyoruz ama bolumsonu2 ye içerik yönlendirileceğinden doalyı bolumsonu2 için bizim serhatbakir 
+kullanıcımız others kısmında değerlendirilir bunu yapmak için öncelikle ikincigrup un içerisindeki sahip isimli kullanıcıya login olmamız daha 
+sonra onun yetkisi onun ikincigrup a bir kullanıcıyı ekleme yetkisi olduğu için serhatbakir i onun yetkisi ile ikinci grup a ekleyeceğiz 
+ardından chmod 770 bolumsonu2 diyerek bu dosyanın grubuna bütün yetkielri verdik sudo usermod -a -G ikincigrup serhatbakir çalıştırıyoruz 
+
+ardından su serhatbakir diyerek serhat bakir a gçeiş yapıyoruz ve cat bolumsonu Z bolumsonu2 diyerek 10. problemimizi tamamnlıyoruz 
+çalışmazsa reboot komutunu kullanıp sistemi tekrar başlattıktan sonra deneyebiliriz 
+11. problemimiz için önce sahip kullanıcımızı kaldıracağız sudo userdel sahip (burada mevcut giriş yaptğımız kullanıcımızın şifresini soruyorenterlıyıp sahip i kaldırabiliriz
+) sudo groupdel ilkgrup diyerek ilkgrup u kaldırıyoruz sudo groupdel ikinci grup diyoruz problemimizi tamamlıyoruz 
+
+
+BÖLÜM 6 SÜREÇ İŞLEMLERİ
+
+Dördüncü Problemlerimiz
+
+Sistemde çalışan süreçleri görüntüle.
+
+Gedit programını çalıştıralım ve PID değerini görüntüle.
+
+Sadece root kullanıcısına ait süreçleri görüntüle.
+
+Gedit programının sürecini sonlandır.
+
+Gedit programını tekrar çalıştıralım, PID değerini bul ve süreci arkaplanda çalıştır.
+
+Arkaplandaki süreçleri görüntüle.
+
+Sistemde çalışan servisleri görüntüle.
+
+User servislerinin lokasyonunu görüntüle.
+
+Arayüz servisimizi kapat ve yeniden başlat.
+
+bu dersimizde linux da süreç(proccess) nedir bunu öğreneceğiz kısaca çalışan her şey demektir gördüğümüz veya arkaplanda çalışan herhangi bir işlem 
+bu süreçlerin hepsinin kendine ait benzersiz(unic) bir kimlik numarası (PID) si vardır 
+windowsda arama kısmından task manager(görev yöneticisi) yazarak ulaştığımız süreç yönetim arayüzüne linuxdan da system monitor yazarak ulaşabiliriz 
+
+bu süreç yönetim programlarında süreçlerin sahip olduğu pid leri ne kadar ram kaynağı tükettikleri ne kadar cpu gücü tükettikleri gibi bilgileri
+görüntüleyebiliriz 
+
+ps komutu ile sistemde çalışan Processleri görüntüleyebiliriz ancak bu şekilde yazıp enterladığımızda bize çok kısıtlı bir çıktı verecektir 
+bunun sebebi sistem tarafından çalıştırılan entegre olarak önümüze sunmaması daha ayrıntılı bir çıktı için ps in prametrelerinden 
+faydalanmamız gerekiyor bunun için man ps yazarak parametrelerini görüntüleyebiliriz ps -a yazarsak tüm süreçleri görüntüleyebiliriz 
+
+ps -aux veya ps aux yazarak sistemde kayıtlı olan bütün kullanıcıların çalıştırdığı süreçleri görüntüleyebiliriz burada a (all/hepsi/bütün)
+u(user-kullanıcı) x de (bütün kullanıcıları ifade eder)
+
+bu çıktı bize hangi süreci hangi kullanıcının çalıştırdığını gösterir bunu USER sütununun altında görebiliriz 
+bir sonraki sütun olan PID de bu süreçlerin sahip olduğu unic id yi görüyoruz sen sondaki sütun olan COMMAND ilgili olan süreç çalıştırılabilir bir 
+dosya olduğu için bu sürecin sistemde kayıtlı olduğu dizin/çalıştırılacağı komutu görebiliriz ve ilgili sürecin hangi parametre ile başlatıldığını 
+görebiliriz 
+
+command sütununun altındaki değer aslında bir nevi o çalışan sürecin/programın adıdır bu şekilde 1. problemimiz olan sistemde çalışan süreçleri
+görüntüle kısmını bitirdik
+
+2. problemimiz için terminale gedit yazıp çalıştırıyoruz ardından new tab diyerek yeni bir terminal sekmesi açıyoruz 
+açtğımız bu yeni sekmeye ps aux | grep gedit yazıp enterlıyoruz burada iki tane çıktı alacağız bunun sebebi 
+ps aux | grep gedit komutu da bir proccess yani komutun kendisinin çalıştırılması da bir proccess olduğu içindir 
+
+ve çıktıyı verdikten sonra bu proccess sonlanır bir sürecin pid di sinin bilinmesi o süreci sonlandırmak isteidğimizde bu pid yi kullandığımız 
+için önemlidir 
+
+bir süreci sonlandırmak için kullandığımız komutun ismi kill dir man kill veya kill -l yazarak kill in kullanabileceğimiz parametrelerini 
+görüntüleyebiliriz kill -l parametresi sinyal (signal) olarak geçer kill in en çok kullanılan parametresi kill -9 dur 
+bu ilgili süreci sert ve hızlı bir şekilde sonlandırır kill -15 de bir proccess i sonlandırır ama -9 kadar force (zorlayarak) yapmaz 
+
+-9 (sigkill) ile eğer bir dökumanın süreci sonlandırılırsa ve dökuman kaydedilmediyse veri kaybı olabilir 
+
+arayüzdeki bir pencereyi sonlandırmak örneğin donan bir programı kapatmak için xkill komutunu kullanabiliriz bunu yazdıktan sonra donan 
+yani yaptığımız işleme cevap vermeyen bir ptrogram veya pencereyi kapattığımızda ctr+alt+del den görevi sonlandır dediğimiz gibi ilgili işlemi 
+sonlandıracaktır 
+
+terminale ps aux | grep root yazdığımızda root un çalıştırmış olduğu süreçleri görüntüleyebiliriz (3. problemimizin cevabı)
+
+ancak burada içinde root geçen (command kısmında veya isim olarak olduğ için root un çalıtırmadığı proccess ler de görüntülenebilir)
+
+sadece root un çalıştırmış olduğu süreçleri görüntülemek için ps -auroot kommutunu çalıştırabiliriz 
+
+sudo su gedit yazarak gedit i root olarak çalıştırıyoruz ve tekrar ps -auroot çalıştırıyoruz bir proccess i 2 şekilde sonlandırabiliriz 
+birincisi process in pid sini yazarak ikincisi killall gedit (killall dan sonra süreci çalıştıran programın adını yazarız)
+
+fakat kill all gedit gedit ismindeki/gedit geçen bütün proccess leri sonlandırır yani bir nevi gedit ile alakalı bütün işlemleri sonlandırır 
+ancak kill -9 3926 -gedit in pid si- girersek sadece ilgili süreci sonlandırır ancak bu komutu çalıştırdığımızda çalışmayacak çünkü operation 
+not permitted yani bu işlemi sonlandırmak için yetkimiz yok bunu aşmak için sudo kill -9 326 çalıştıraibliriz 
+
+bir süreç her zaman aynı pid yi almaz sistemin o an o işlem için hangi numarayı almasını isterse onu alır 
+
+bu yüzden ezberden kill yerine her zaman kontrol edip sonlandırmakta fayda var 
+
+bu dersimizde arkaplan süreçlerini yönetmeyi, süreçleri nasıl arka plana atarız, arkaplandaki bir süreci nasıl ön plana taşırız bunu öğrenelim 
+arkaplana taşı süreci arayüzde simge durumunda küçült butonunu kullandığımızda gerçekleşen şeydir aslında 
+öncelikle terminalde gedit çalıştırıyoruz ardından ctrl+z ye bastığımızda gedit sürecini/işlemini arkaplana (bu kısayol ile atabiliriz) 
+
+jobs -l komutunu çalıştırarak arkaplandaki programları görüntüleyebiliriz veya bg komutunu çalıştırabiliriz
+
+burada ilgili programın ismi ve bir id si bulunur bu id yi kullanarak -örneğin arkaplandaki programın id si 1 olsun- ön plana taşımak için 
+fg 1 komutunu çalıtırıyoruz gedit arkaplanda iken terminale komut girebiliriz ama arkaplana taşınmadan ön plandayken terminalde komut çalıştıramayız 
+(fg = front ground [ön plan demek]) (bg = back ground [arka plan demek])
+terminalde bir program çalışırken bg ye basınca arkaplan a mı atıyor bunu araştır 
+
+bu dersimizde servis kavramının ne olduğunu öğrenelim 
+
+linuxdaki bütün servislerin yönetildiği kısma system d denir 
+
+servis denilen şey aslında arkaplanda sürekli çalışan ve çeşitli komutlar bekleyen süreç yazılımlarıdır diyebiliriz 
+
+bir çok servis tipi vardır; kullanıcılara özel veya root a özel olan... veya bizzatt sistemin kendisine özel servisler bulunmaktadır 
+
+örneğin terminal arayüzünü kullanmamızı sağlayan servis gnome display manager dır 
+
+ssh,http,mysql,apache servislere örnek verilebilir 
+
+service komutu ile ilgili servisin o anki durumunu; çalışıp çalışmadığını görüntüleyebiliriz servisi kapatıp yeniden açabiliriz 
+
+service gdm3 status komutunu çalıştırarak gnome display manager3 servisinin status parametresi ile bu servisin durumunu görüntüleyebiliriz 
+gnome display manager (görüntü yönetici servisi) bu komutu çalıştırdığımızda servis hangi işlemleri yapıyor ne zaman hangi işlemleri yapmış 
+bu bilgileri bize veriyor bu bilgiler çok önemli çünkü ilgili servisle alakalı zaman zaman bazı hatalar olduğunda bu hataların tutulduğu günlük içerisinden 
+hatanın debug edilmesi konusunda bizlere faydalı oluyor aldığımız çıktının 2. satırında Loaded: loaded (/lib/systemd/system/gdm.service) 
+satırı bizim için önemli bu satır servisin yüklendiği dizini belirtiyor yeni bir terminal tab ında bu dizini kopyalayıp nano ile 
+nano /lib/systemd/system/gdm.service çalıştırarak açıyoruz bu servisin içerisinde # ile başlayan satırlar devoloper ın koyduğu yorumlar service ile 
+alakalı bilgiler içeriyor 
+aşağıda [Service] kısmında ise ilgili servisin tanımı vardır bu servis in executestart lokasyonu olacak (exec start location ne demek araştır)
+yine bir parametre ile başlayıp başlamadığı belirtiliyor olabilir sistem açılırken otomatik başlatılıyor mu bu yazıyor olabilir 
+farklı bağlantı noktaları var mı bu bilgiler belirtilmiş olabilir service --help komutunu çalıştırarak service komutunun diğer parametrelerini görüntüleyebiliriz 
+
+bu dersimizde problemlerimizde belirtildiği sistemde çalışan servisleri görüntüleyelim service --status-all komutunu çalıtırarak sistemimizde çalışan 
+bütün servisleri görüntüleyebiliriz systemctl list-units --type=service komutu ile yine sistemimizdeki çalışan ve çalışmayan var olan bütün servisleri 
+görüntüleyebiliriz 
+
+önemli olan bazı servislerden bahsedelim acpid bilgisayarımızın güç düğmesine bastığımızda bilgisyaarımızın uyuma moduna geçmesini açılmasını 
+kapanmasını vs denetleyen araçları yöneten bir servistir 
+
+alsa-utils servisi windowsdaki realtek in linuxdaki karşılığıdır ses hizmeti sağlayan bir servistir 
+
+bluetooth servisi bluetooth hizmetini sağlayan servistir 
+
+cron servisi windowsdaki zamanlanmış görevler servisinin linuxdaki karşılığıdır örneğin bir dosya içerisine belli bir zamanda bazı görevler oluşturabilmemizi sağlayan bir servistir 
+ve belirtilen tarihte süreç kendi kendine otomatik olarak gerçekleşiyor 
+
+gdm3 ü zaten biliyoruz arayüz ortamımızı denetleyen/yöneten servistir 
+
+network-manager ağ yönetici servisidir network/ağı kullanabilmemiz için bu servisin çalışması şarttır (network interface ini aktif edebilmemiz için)
+
+systemctl service komutundan daha önce yazılmış ve daha çok çıktı veren daha geniş bilgiler yazdıran bir komuttur 
+
+bu dersimizde arayüzü yeniden başlatmayı öğrenelim 
+service gdm3 restart çalıştırıyoruz bunu yapınca karşımıza bir parola ekranı geliyor bunun sebebi gdm3 servisinin yöneten kişinin system veya root olmasından dolayı 
+yetkimizin olmadığı bir kullanıcıda iken bu parola ekranının görüntüsü gelir 
+
+bunu doğrulamak için systemctl status gdm3.service çalıştırıyoruz gelen çıktıdaki Main PID 853 (her zaman 853 olmayabilir kontrol edip yap)
+
+ps aux | grep 853 çalıştırıyoruz yeni bir terminal tabinde gelen çıktıda kırmızı ile filtrelenen 853 ün olduğu sütundan bir önceki sütunda bunu 
+çalıştıran/yetkisi olan kullanıcının rot olduğunu görüyoruz bu yüzden yetkimizin aştıığı bir işlem olduğunu bu şekilde doğruladık 
+
+bu yüzden az önceki işlemi sudo komutu ile gerçekleştirmemiz gerekiyor sudo service gdm3 restart çalıştırabiliriz veya 
+
+sudo systemctl restart gdm3.service komutu ile bunu gerçekleştireibliriz 
+
+her sistem servisini yeniden balatırken veya durdururken sudo kullanmak zorunda değiliz user servislerinin çalıştığı lokasyonu görüntüle isimli 
+problemde bunu göreceğiz 
+
+sistemdeki bütün servisler root servisleri değildir bazı servisleri kullanıcı da yönetebilir kullanıcının kendi oluşturduğu servisler de 
+olabilir bunlar sudo komutunu kullanmamızı gerektirmez bunları da /etc/systemd/user dizinine yeni bir sistem olunca buraya oluştururuz veya koyarız 
+ayrıca /home/.config isimli dosyada konfigrasyon dosyaları bulunur bir sistem servisi oluşturup bu dizindeki dosyaya da koyabiliriz 
+
+şimdi bir network servisini durdurup yeniden başlatma işlemlerini yapalım service --status-all ile servislerimizi yeniden görüntüleyelim 
+
+ardından yeni bir terminal tabında veya penceresinde service network-manager stop komutunu çalıştırarak ilgili servisi durdurabiliriz 
+
+durdurduğumuzu yine aynı terminalde service network-manager status komutunu çalıştırarak doğrulayabiliriz 
+
+gelen çıktıdaki Active:inactive(dead) satırından bunu doğrulayabiliriz 
+
+bu servisi tekrar çalıştırmak için sudo service network-manager start komutunu çalıştırabiliriz (durdururken sudo istemedi tekrar başlatırken neden istedi araştır)
+
+restart bir aç kapa düzelir mantığından çok bunun faydasını çok yorulduğumuzda enerjimizin yeniden gelmesi için uyuyup uykumuzu aldıktan sonra dinç 
+bir şekilde uyanmaya benzetebiliriz (: 
+
+her komutun başına sudo yazmak daha uğraştırıcı ama direk root olarak bu hassas komutları çalıştırmak geri dönülemez bir takım problemlere sebep olabileceğinden 
+bu şekilde sudo ile çalıştırmak daha mantıklıdır 
+
+şimdi arayüzü yöneten servisi yeniden başlatalım sudo service gdm3 restart çalıştırıyoruz arayüzü yöneten servisi yeniden baştlattığımız için kısa bir 
+süreliğine ekran gidip -siyah olup- ardından görüntü tekrar gelecektir ancak kullanıcımızı seçip şifremizi girmeye çalıştığımızda bir bug dan dolayı giriş yapamadığımızı 
+görüyoruz (ubuntu da böyle diğer dağıtımları bilmiyorum) arayüz servisi biraz hassas olduğu ve bir defa dead olduktan sonra yeniden başlattığımızda bu tarz 
+hatalar ile karşılaşabiliriz bunun sebebi ekran kartının driver ı ile veya kullandığımız linux dağıtımı ile ilgili olabilir 
+
+bunlrın dışında arayüz ortamı ile çok ilgilidir gnome3 biraz yavaş çalışan bir arayüz ortamıdır bir çok linux dağıtımı gnome3 ü kullanıyor çok tercih edilen 
+bir arayüz ama sanal makinada kullanırken daha düşük özellikli bir cihazda kullanırken gnome3 bu tarz problemlere sebep olabilir 
+
+bu problemi ancak yeniden başlatarak giderebiliriz 
+
+bu dersimizde kabuk programlamanın ne olduğunu öğrenelim 
+kabuk programlama shell denilen kabuk programlama sisteminde komutları girdiğimiz kısımdır kabuk programlama sheşş scripting olarak da karşımıza 
+çıkar bunun yanı sıra bash scripting olarak da karşımıza çıkar bunun sebebi bash in en çok kullanılan shell versiyonu olmasından dolayıdır 
+bu videoda kabuk programlamayı neden öğrenmeliyiz bunu görelim 
+
+bauk programlamanın günlük hayattaki faydasına bir örnek oalrak örneğin bir sistemde aktif oalrak hangi kullanıcılar var sistemi o an izlemek adına 
+bir script oluşturup çok kolay bir şekilde normalde tek tek bir sürü komut yazarak ulaşabileceğimiz verileri bunu bir shell script dosyasının içerisinde 
+çalıştırılabilir bir dosyaya çevirip direk oalrak bu dosyayı çalıştırarak ilgili işlemleri arka arkaya otomatik olarak yapabiliriz 
+bunun dışında .eşitli veri tabanların günlük dökümlerini inceleyebiliriz veya belirli işlemleri belirli bir sıraya koyarak bunları bir 
+shell scripti içerisine kaydedip daha sonra zamanlanmış görevler oluşturabiliriz. 
+
+bu dersimizde yararlı bash scriptlerini görelim bu tarz bir bash scriptinin kodlarını github da kolaylıkla bulabiliriz 
+bunun dışında reddit ve stackoverflow da buna  benzer kodlar bulabiliriz 
+
+https://www.reddit.com/r/bash/
+https://stackoverflow.com/questions/tagged/bash
+https://github.com/awesome-lists/awesome-bash
+https://github.com/alexanderepstein/Bash-Snippets linkleri bash ile ilgili faydalı bazı bağlantılardır 
+
+https://github.com/alexanderepstein/Bash-Snippets/blob/master/weather/weather termianlde hava durumunu gösteren bir bash scripti 
+github da bir dosyayı çalıştırmadan ilgili dosyanın içerisindeki soruce kod u görüntüleyebiliyoruz 
+bu linkte de ilgili bash uygulamasının kodlaırnı görebiliriz 
+
+https://raw.githubusercontent.com/alexanderepstein/Bash-Snippets/master/weather/weather
+bu linkteki bütün kodu kopyalıyoruz 
+ardından linux terminalimizi açıp gedit çalıştırıyoruz kodu yapıştırıyoruz /Desktop/weather isminde kaydediyoruz 
+ardından gediti kapatıyoruz cd /Desktop yapıyoruz chmod +x weather (weather a çalıştırma yetkisi veriyoruz) 
+daha sonra ./weather çalıştırıyoruz (bir bash / shell scriptini / dosyasını çalıştırmak için ./dosya-ismi çalıştırırız)
+bu noktanın anlamı çalıştır anlamında değil de şuan mevcut bulunduğum dizindeki /xxx dosyasını çallıştırmak/açmak istiyorum anlamına gelir 
+.. (2 nokta da) bir önceki dizini ifade eder örneğin cd .. yaptığımızda mevcut bulunduğumuz dizinden bir önceki dizine geçiş yaparız 
+3 günlük hava durumunu animasyonlu bir şekilde önüzüme çıkardı bu bash scripti 
+
+https://github.com/alexanderepstein/Bash-Snippets bağlantısındaki sağ tarafta bulunan yeşil Code butonuna basıp çıkan kısımda en aşağıda 
+Download ZIP seçeneğini seçip bütün bash scriptlerini bilgisayarımıza indirebiliriz arından linuxda indirdiğimiz kısma gelip ilgili zip e 
+sağ tıklayıp Extract Here ( buraya çıkart diyoruz) daha sonra çıkan arşivden çıkan klasöre giriyoruz currensy klasörüne gidiyoruz 
+currency dosyasına sağ tık yapıp open with text editor diyoruz buradan ilgili uygulamanın bsh kodlarını görüntüleyebiliriz 
+bu tarz uygulamalar internetten veri çektiği için internet yokken bunların çalışması konusunda problemler yaşayabiliriz  
+
+daha sonra stocks klasörünün içieriisnde de stoklar ile ilgili verileri çeken bir bash uygulaması var  buraya girip 
+stocks dosyasına sap tık ile open with text editr diyerek kodlarını inceleyebiliriz bu halka açık stoklarla ilgili bilgiler veriyor 
+terminalde dosyanın olduğu dizine gidip ./stocks Apple çalıştırıyoruz
+
+bu dersimizde kendi bash scriptimizi yazalım 
+
+bu uygulamada senaryomuz şu bir sistem günlüğünü yönettiğimizi varsayalım örneğin bir firewall olsun bir firewall dan sürekli lo geliyor 
+ve her gelen logdan (kayıtdan) belirli satırdaki verileri örneğin belirli bir id yi belirli bir makineyi oduğu satırı alıp bir
+ dökumanın içerisine ekleyelim örneğin spesifik bir makineye (cihaza) 1 hafta boyunca ne kadar saldırı gelecek diye 
+   bunu yapmak için öncelikle firewall lolglarını alacağımız bir dosyaya ihtiyacımız var şimdi o log dosyasını oluşturalım 
+   terminalde gedit çalıştırıyoruz şimdi bir log dosyası oluşturuyoruz buradaki bilgileri rastgele gireceğiz maksat burada bir sistem günlüğü 
+   olsun gedit in içerisine 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 aslan 
+   127 mehmet
+   127 gizem 
+   127 aslan 
+   127 mehmet
+   127 gizem 
+   127 aslan 
+   127 mehmet
+   127 gizem 
+   127 aslan 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 gizem 
+   127 aslan 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 gizem 
+   127 aslan 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 gizem 
+   127 aslan 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   127 serhat
+   127 aliozgur
+   127 mehmet
+   127 gizem 
+   şeklinde yazıyoruz ardından bu dosyayı program arayüzünden /Desktop a log ismiyle kaydediyoruz bu log dan her gün geldiğini varsayalım 
+   
+   ve yöneticimiz bize gelip bu log dosyasının içinden serhat satırlarının geçtiği satırları al bu satırların başındaki numaralara bakacağım 
+   dedi bu satırları alıp numaralandırdıktan sonra da bu bilgileri kaydettiğin yeni dosyayı sistemde fazla yer kaplamasın diye arşivle dedi 
+   daha sonra terminalde yine gedit çalıştırıyoruz 
+
+   daha sonra 
+
+   !# /bin/bash yazmamız gerekiyor ilk satıra (bunu yazmmak şart değil ama bu kod yazacağımız kodun bir shell scripti olduğunu tanımlıyor
+   buradaki shell ismi ilgili linux dağıtımına göre farklılık gösterebilir)
+
+   şimdi öncelikle log dosyasının içerisinden serhat kelimesinin geçtiği satırları yazmamız gerekir o yüzden ikinci satıra da 
+   !# /bin/bash
+   cat log | grep serhat >> /home/serhat-bakir/Desktop/logtoplam 
+   mkdir /home/serhat-bakir/Desktop/Loglar 
+   mv logtoplam /home/serhat-bakir/Desktop/Loglar/logtoplam     
+   tar -cvf /home/serhat-bakir/Desktop/Loglar/logtoplam.tar /home/serhat-bakir/Desktop/Loglar/logtoplam    
+   echo İŞLEM TAMAM 
+
+   bu dosyayı /Desktop dizinine shellscript ismiyle kaydediyoruz 
+
+   ardından terminali açıyoruz /Desktop ta iken chmod +x shellscript çalıştırıyoruz ardından da ./shellscript çalıştırıyoruz 
+
+bu dersimizde Program Yükleme Ünitesine giriş yapalım öncleikle bir program ubuntu dağıtımında arayüzden (Software Center)
+ nasıl yüklenir bunu öğreneceğiz. Paket kavramından ve Paket Yöneticisinden bahsedelim update ve upgrade işlemlerinden bahsedelim 
+ dah sonra da bir paket yöneticisi olmadan bir kurulumm nasıl yapılır bunu öğrenelim 
+
+ bu dersimizde en basit manada bir program nasıl yüklenir bunu öğrenelim 
+ ubuntu da application kısmından Ubuntu Software kısmına giriyoruz bu program slında sistemimizde ve sistemimize yükleyebileceğimiz paketlerin 
+ bir arayüzüdür programın en üstünde All | Installed | Updates kısımları var Installed tabında sistemimizde yüklü olan programları görmekteyiz 
+ kaldırmak istediğimiz programın bulunduğu satrın en sonundaki Remove butonuna basarak ilgili programı sistemden kaldırabiliriz 
+ Updates kısmı da yüklü olan programların güncel sürümlerini yüklediğimiz güncellediğimiz kısım Application kısmından sistemde olan veya olmayan 
+ herhngi bir programı ararken ilgili programı hem sistem içerisinde hem de Ubuntu Software içerisinde arıyor eğer sistemde olmayıp Ubuntu Software 
+ içerisinde o program varsa çıktının hemen aşağısında bu programı gösteriyor kolaylık olsun diye herhangi bir programa tıkladıktan sonra açılan 
+ kısımda Programın logosunun hemen altında Install butonuna basarak programı yükleyebiliriz her program yüklenirken bir sudo işlemi gerçekleştiği 
+ için kullanıcı şifresi istenecek arayüzden bunu girip işlemimize devam ediyoruz arkaplanda önce ilgili programın dosyalarını indiriyor 
+ bir software deposundan indiriyor tıpkı google / app store uygulamalarında olduğu gibi ve oradan bilgisayarımızın lokaline indirilip işleniyor 
+ yükleniyor kısayolu oluşturuluyor ve çalıştırılabilir hale getiriliyor ardından Install dediğimiz ekranda program yüklendikten sonra Launch 
+ butonuna tıkladığımızda programımızı çalıştırabiliriz 
+
+bu dersimizde linuxda paket kavramı nedir bunu öğrenelim 
+paket programları yükleyebilmemiz için oluşturulmuş yükleme dosyalarıdır windowsdaki bir paket (kurulum dosyası) linuxda çalışmayabilir 
+bunun sebebi paket yönetim sisteminin farklı olmasıdır aynı şekilde bir linux dağıtımından bir kapeti alıp windowsda kurma şansımız da yoktur 
+bir paketi bütün linux dağıtımlalarında da kullanamayabiliriz dağıtımdan dağıtıma çalışmadığı durumlar oluyor çünkü farklı dağıtımların 
+paket yönetim sistemleri birbirinden farklıdır 
+
+https://packages.ubuntu.com adresinden ubuntu dağıtımındaki istediğimiz bir paketi aratabiliriz 
+
+https://packages.ubuntu.com/bionic/amd64/leafpad/download burada aşağğıda seçili olan kıtalardaki herhangi bir linkten leafpad paketini indirebiliriz
+paketi masaüstüne taşıyoruz dosya .deb ile bitmesinin sebebi ubuntu dağıtımının debian işletim sistemini temel alarak oluşturulduğu için 
+ve paket yönetim sistemleri debian ile aynıdır ubuntunun kullandığı paket yöneticisine dpkg (açılımı debian package) denir 
+  dpkg ile çdeb uzantılı dosyaları kaldırma,silme,kurtarma,kurma gibi işlemleri yapabilriz ama artık dpkg yerine apt kullanılıyor çünkü 
+  apt daha gelişmiş bir paket yöneticisidir (açılımı advanced packet tool dur) .deb uzantılı dosyaları kurmamızı sağlıyor 
+  apt dpkg ye nazaran bir çevrimiçi iletişim hizmeti de sunar bizlere yani .deb uzantılı bir paketi indirip manuel olarak kurmak yerine 
+  apt ile bir sunucudan dosyayı terminal üzerinden indirip arkaplanda dpkg ye kurdurabiliyoruz yani apt de bize aslında ubuntu software 
+  in yaptığı işi terminal üzerinden yapmış oluyor terminal üzerinden yapmak daha iyi çünkü terminalde neler olduğunu / nelerin yüklendiğini daha
+  ayrıntılı bir şekilde görebiliyoruz 
+
+  terminalde /etc/apt/sources.list çalıştırıyoruz bu bir konfigrasyon dosyası içerisinde apt nin .deb uzantılı paketleri indirebileceği 
+  depolar var bunlar sisteme entegre olarak kurulu bir şekilde gelen ancak zaman zaman güncellenmesi gereken ubuntunun kendi debian paket 
+  depolarıdır bu depolara ekstralar yapılabilir http://tr.archive ile başlayan bağlantılar depoların url adresleridir 
+  yani özetle apt indirmek istediğimiz dosyaları bu depolarda aratıp eğer böyle bir paket varsa bizim lokalimize indiriyor 
+dolayısıyla bu adreslerin olmaması veya geçersiz (kullanılamaz) olması apt üzerinden bir kurulum yapamamamız anlamına gelir 
+bu da çok kritik bir problem olabilir bu yüzden sık sık bu depoları güncellemeliyiz bunun için terminalde çalıştırabileceğimiz bir komutumuz var 
+sudo apt update çalıştırdığımızda apt nin bu source server listleri arkaplanda güncellenir daha doğrusu source list içerisindeki yeni eklenen 
+veya değiştirilen kaldırılan paketler apt nin veritabanına yazılıyor ve o veritabanına yazılan paketlerin isimleri neticesinde apt üzerinden 
+başarılı bi paket araması ve paketi yüklerken bakacağımız adresleri vs görüntülüyoruz eğer eski bir apt veritabanıyla bir işlem yapmaya 
+çalışırsak apt bunu yapmamıza izin vermeyebiliyor dpkg ile bu şekilde çevrimiçi olarak bir dosyayı indirip kuramıyoruz sadece kurulum dosyası 
+mevcut olan bir paketi kurabiliriz 
+
+bu dersimizde apt ile paket yükleme ve silme konusunu öğrenelim 
+
+bu yugulamamızda leafpad paketini yükleyeceğiz herhangi bir paketi yüklemek için de apt install paket-adı şeklinde çalıştırabiliriz terminalden 
+sudo apt install leafpad çalıştırıyoruz yükleme ve kurulum işlemi gerçekleştikten sonra imleç komut istemcisinde yanıp sönmeye başlar 
+apt ile yüklenilen programlar aynı zamanda Application kısmında da yer alır buraya girip ismini aratıp buradan da çalıştırabiliriz uygulamamızı 
+silmek için de sudo apt remove paket-ismi bizim uygulamamızda ise sudo apt remove leafpad ardından silmekten emin miyiz sorusu alıyoruz Y ye basıp 
+enterladığımızda silecektir n yapıp entera basarsak da silme işlemini iptal edebiliriz 
+
+bu dersimizde apt ile yüklemek istediğimiz paketin/programın adını araştırma/öğrenme konusuna bakalım 
+bu işlemi öğrenmemizin faydası bazen apt ile yüklemek isteidğimiz paket/programın adını bilmiyor olabiliriz (apt deposundaki ismini)
+apt ile bir programı başarılı bir şekilde kurulumunu yaparken de bu depoda kaydedildiği ismiyle kodumuzu çalıştırmamız gerektiği için 
+bunu öğrenmek gerçekten çok faydalı olacaktır 
+
+bunu arayüzden Software Center dan da yapabiliriz ama biz bunu terminalden nasıl yapılır öğrenelim 
+
+bunu yapmak için apt search anahtar-kelime şeklinde aratabiliriz bunu yaptığımızda paketlerin isminde ve açıklamalarda geçen ilgili anahtar 
+kelime çıktı olarak verilecek biz uygulamamızda chromium u aratmak istiyoruz bunun için apt search chromium çalıştırıyoruz terminalimizde 
+
+gelen çıktılarda her paketin öncelikle yeşil renkle ismini ve yanında sürümü hangi mimariyle uyumlu olarak çalıştığı ve açıklaması gibi bilgiler bulunur 
+bizim aradığımız paket chromium-browser isimli pakettir 
+
+apt ile aynı tek bir komut ile birden fazla paket de yükleyebiliriz bunun için sudo apt install paket-ismi paket-ismi2 şeklinde çalıştırabiliriz 
+örneğin apt get install browser-chromium leafpad çalıştırabiliriz 
+
+bu dersimizde dpkg ile paket kurulumunu öğrenelim dpkg, apt nin bir low-level interface i gibi düşünebiliriz 
+
+örneğin bir web sitesinde dizi izliyoruz dizi izlerken browser bizden flash-layer eklentisini yüklememizi istiyor ya da örneğin bir python yazılım 
+cısıyız python kodlarını yazabilmemiz için çeşitli python kütüphanelerini yüklememiz gerekiyor işte bu flash player,yüklenen kütüphaneler 
+bunlar birer dependency(bağımlılık / zorunluluk) dir yani bir işlemi yapmak / gerçekleştirmek için yapmak zorunda olduğumuz başka bir işlemdir/işlemlerdir 
+(yani bir progrmaın çalıması için gereken başka bir program) eskiden paket yüklerken bu dependency süreçlerini elle tek tek manuel olarak yapmak zorundaydık 
+arkaplanda bunu bizim için yapan bir hizmet yoktu dpkg de bunu sağlamıyordu yani dpkg de elle tek tek yüklememiz gerekiyordu 
+dpkg -i paket-ismi.uzantısı komutunu çalıştırarak istediğimiz bir paketi yükleyebiliriz terminalde dosyanın bulunduğu dizindeysek o zaman direkt olarak 
+dosya ismini yazarak yükleyebiliriz dğeilsek /dizin/ismi/belirtiyoruz
+
+dpkg -l komutunu çalıştırdığımzda sistemde yüklü olan paketleri görüntüleyebiliriz 
+dpkg -r paketin-sistemde-kayıtlı-ismi (örneğin leafpad i dpkg ile kaldırmak istiyoruz bunun için önce dpkg -l | grep leafpad çalıştırıp 
+leafpad in sistemde kayıtlı olduğu ismini öğrendikten sonra -r parametresi ile kaldırabiliriz)
+dpkg -r lefpad çalıştırdığımızda sistemden kaldırabiliriz 
+
+bu dersimizde kaynak koddan paket kurulumu işlemini öğrenelim 
+
+kaynak koddan kurulum; yani bir paket yöneticisi formatı ile toparlanmamış, bir paket haline gelmemiş şekilde kurulumlara kaynak koddan kurulum diyoruz 
+yani programın/yazılımın kodu yazılmış ve orada duruyor önce işletim sistemi içerisinde derlenip daha sonra yükleme işlemine geçmemiz gerekiyor 
+bunun için işletim sisteminde kodun derlenmesi ve derleme sonrası işlemler için gereken bazı arabirimler var bunların yüklenmesi gerekiyor 
+
+sudo apt build-essential çalıştırıyoruz (bu paketi yüklemezsek kaynak koddan derleme ve yükleme yapamayız) 
+http://savannah.nongnu.org/download/leafpad/leafpad-0.8.17.tar.gz (leaf pad i google da aratıp offical page ine girip DOWNLOAD başlığı altındaki
+.tar.gz dosyasını indiriyoruz) bu dosyayı linux umuza indirip dosyamıza sağ tık extract here diyoruz 
+
+terminalden da çıkartma işlemini yapabiliriz dosyanın bulunduğu dizine cd ile gidiyoruz ardından tar -xvf dosya-ismi.tar.gz çalıştırıyoruz 
+
+ardından cd çıkan-klasör-ismi çalıştırıyoruz şimdi bu dosyaların yükleneiblir bir format almsı için konfigre etmemiz gerekiyor 
+ardından ./configure  çalıştırıyoruz ve bir çevre değişkeninin eksik olduğunu görüyoruz terminalden new tab e gelip sudo apt install pkg-config
+çalıştırıyoruz ardından bir önceki tab a gelip tekrar ./configure çalıştırıyoruz buradaki konfigrasyon hata mesajalrını internette aratarak 
+çözümlerine ulaşabiliriz tekrar bir hata aldık ardından yeni açtığımız taba gelip apt search libgtk2 çalıştırıyoruz bu çıktıların arasından 
+sudo apt install libgtk2.0-dev çalıştırarak ilgili paketi yüklüyoruz y ile basarak yüklemeyi onaylıyoruz ardından eski tab a gelip 
+tekrar ./configure çalıştırıyoruz ve hiç bir hata almadık konfigrasyon işlemi tamamlandı şimdi yükleme kısmına geçelim 
+make komutunu çalıştırıyoruz (bu komut ile konfigrasyon sonrası derleme işlemini gerçekleştiriyoruz) derleme sırasında bir hata ile karşılaşırsak 
+ya programın kaynak koudunun içerisinde bir hata vardır ya da bir dependency problemi vardır derleme işlemi gerçekleştikten sonra imleç komut istemcisin 
+de yanıp söndüğünde artık programı yükleme kısmına geliyoruz sudo make install çalıştırıyoruz şifremizi giriyoruz ve leafpad imizi başarıyla 
+yüklemiş olduk şimdi kaynak koddan derleyip yüklediğimiz bir programı silmeyi öğrenelim bu şekilde yüklenmiş bir programı software center dan 
+silemeyiz çünkü kaynak koddan derleme sistem içerisinde farklı yerlere loklize ediyor dosyayı ve klasik apt yöneticisinin veya dpkg nin 
+yüklediği lokasyonlarda programımızı bulamayabiliriz nitekim bir önceki bölümde dpkg ile kaldırdığımız leaf pad i software center da arattığımızda
+sistemimizde yüklü gözükmüyor sudo make uninstall çalıştırıyoruz (leafpad arşivden çıkan klasörün içerisindeyken terminalde) ve siliniyor 
+bu kadar basit aslında genelde 3.parti programlar /opt dizininin içerisine yüklenir (apt ile veya dpkg ile yüklenmeyen programların yer aldığı dizin)
+
+ubuntu software dan Tweaks programını aratarak cihazımıza indiriyoruz daha sonra Launch diyerek çalıştırıyoruz tweaks de işletim sisteminde 
+kullanılan fontları, ikonları, arkaplanı, kilit ekranını, workspaces ( birden fazla çalışma alanı ekleyebileceğimiz) gibi özellikleri 
+yönetebiliriz / değiştirebiliriz 
+
+açılan pencereden Appearance tabına geliyoruz burada temalar (themes) var Adwaita-dark seçerek pencere temamızı siyah-koyu yapabiliriz 
+yine bu kısımda ikonların temalarını da değiştirebiliriz 
+
+application kısmına settings yazarak ayarları açıyoruz buradan Background tabını seçiyoruz background (arkaplan) ve lock screen (kilit ekranı)
+resimlerini buradan ayarlayabiliriz libreoffice impress programı ile sunum hazırlayabiliriz (windowsdaki powerpoint gibi)
+
+sistemde yüklü olarak genel simple Simple Scan programı ile yazıcı vs bağlarsak cihazımızı scanner olarak ve dosya çıktısı almak için 
+bu programdan yönetebiliriz 
+
+Yine yüklü olarak genel Transmission programı, torrent işlemcisi (client ı)
+
+Applications > Utilities kısmında sistem araçlarını bulabiliriz Document Viewer ile belgelerimizi görüntüleyebiliriz 
+
+Remmina programı ile uzak bağlantı sağlayabiliriz (SSH vb protokolleri kullanarak) [putty nin bir benzeri] 
+
+
+bu dersimizde Arayüz Ortamı ve Pencere Yöneticisi Kavramları konularını öğrenelim 
+
+bu dersimizde arayüz ortamlarının bileşenlerini ne tür arayüz ortamları var bunları görelim 
+
+bir işletim sisteminin kullanıcıya bir ekran aracılığıyla görüntü verebilmesi için çeşitli driverlara ihtiyacı vardır 
+burada karşımıza çıkan x-server kavramı vardır x-org dediğimiz bir görsel arayüz sistemidir aynı şekilde klavye yönetimi 
+fiizksel donanımları işletim sistemine tanıtan bir maket gibi düşünebiliriz xorg görüntü arayüzünün temelini oluşturur 
+
+bu arayüzün kullanıcı ile buluşmasını sağlaaycak olan bazı arabirimler vardır xorg üzerinden bunu entegre olarak yapabiliyoruz 
+
+ancak display-manager (görüntü yönetici) si ile de bu işlemi gerçekleştirebiliyoruz display manager bilgisayarı açtığımızda 
+(örneğin ubuntu) user ekranı geldiği zaman display manager ın bizi ilk karşıladığı kısımdır 
+user şifremizi girdikten sonra display manager hangi masaüstü ortamını kullanıyorsak onun gerekli servislerini gerekli başlangıç scriptlerini 
+çalıştırarak bize o arayüzü oluşturur 
+
+pencere yöneticisi bir programı açtığımız zaman bir pencere içerisinde arayüzlü bir biçimde görüntülenmesini sağlayan ilkel bir araştır 
+bizim bilgisayarımızda kullandığımız arayüzün ta kendisi diyebiliriz (pencere bazında) bir sistemde terminal dışında görmül olduğumuz pencere 
+görünümündeki görüntüleri kontrol eder normalde bir sistemde pencere yöneticisi olması arayüz olması için yeterlidir 
+
+fakat desktop-envoirement (masaüstü ortamı) bir pencere yöneticisinin üstüne çeşitli bileşenlerin kendine ait terminallerin kendine ait fontların 
+kendine ait display-manager ları barındıran çok daha geniş ölçekte araçlar barındıran bir ortamdır yani örneğin gnome bir dektop envoirement 
+olarak örnek verilirse gnome ile birlikte gelen çok fazla ek bileşen vardır örneğin gnome un pencere yöneticisi,terminali,gnome un dosya yöneticisi 
+gnome un temaları,gnome un fontları vs kısaca her şeyi gnome desktop envoiremtn ı yüklediğimiz anda gelen özelliklerdir 
+
+https://wiki.archlinux.org/title/desktop_environment bu bağlantıdan pek çok farklı masaüstü ortamlarına ulaşabiliriz 
+
+bazı dektop envoirent lar kendi display manager leri ile beraber gelirler / yüklenirler 
+örneğim gnome gdm3.service isminde bir display managerı ile beraber gelir 
+windows manager listesine de yine bu bağlantıdan ulaşabiliriz örneğin bu pencere yöneticilerinden openbox düzenleme konusunda bize büyük bir özgürlük 
+sağlar css kodu yazar gibi pencere yöneticimizin görüntüsünü dğeiştirebiliriz 
+
+bu dersimizde arayüz değiştirme, farklı bib,r masaüstü ortamı kurmayı öğrenelim 
+
+gnome2 den sonra gnome3 çıkınca gnome2 = mate ismini aldı 
+
+linux terminalimize gelip sudo apt install mate-desktop-enviroment çalıştırıyoruz daha sonra Y yazıp enterlıyoruz 
+
+desktop enviroment yüklendikten sonra bilgisayarın yeniden başlatılmasında yarar vardır çünkü display-manager o değişikliği algılayacak 
+yeni bir desktop enviroment ın olduğunu görmesi için boot ettikten sonra dekstop enviroment ın kullanılması daha sağlıklı olacaktır 
+desktop enviroment ın düzgün çalışması için 
+
+gnome 3 ün üzerine gnome2 (mate-desktop-enviroment) kurduğumuz zaman gnome 3 silinmez bilgisayar açılış ekranında bize hangi desktop ortamını 
+kullanmak istediğimizi soran bir ekran çıkacak buradan hangisini istiyorsak sistemi onunla başlatabiliriz 
+
+windows işletim sisteminde bir desktop ortamı yüklemek için içinde çeşitli temalar bulunan bir program yardımıyla bunu yapabiliyoruz ancak 
+windows un default olarak genel arayüz motorunun üzerine bir kabuk ekleyince (görsel arayüz kabuğu) bu sistemin donanım kaynaklarını çok 
+fazla tüketebileceğinden cihazımın yavaşlayabilir bu örnekte yani linuzda yapılan ise tamamen farklıdır burada spesifik bir bileşeni değiştiri 
+yoruz aslında yani temelinde bir kabuk eklemiyoruz mate kurulduktan sonra cihazımızı yeniden başlatıyoruz ubuntu dan örnek vermek gerekirse 
+cihazımıza hangi user ile giriş yapacağımızı seçtiğimiz ekran geldiğinde hangi kullanıcı ile giriş yapmak istersek onu seçiyoruz 
+bunu yaptıktan sonra açılan kısımda password girmemiz gereken inputunhemen sağ altında küçük bir çark / dişli simgesi var buna tıklıyoruz ve 
+açılan seçeneklerden sisteme hangi desktop ortamı ile girmek istediğimizi sçeip passwordu yazdıktan sonra login olabiliriz 
+
+daha sonra ekranda the panel encountered ile başlayan bir hata alırsak (bu hatanın ne anlama geldiğini neden oluştuğunu detaylı bir şekilde 
+buraya yaz) aşağıdaki hata seçeneklerinden Delete yi seçiyoruz 
+
+mate ın arayüzü daha basit ve hızlı çalışır ekranın en sağ altında birden fazla workstation ile çalışmamıza olanak sağlayan tabs lar var 
+
+https://www.mate-look.org/browse/cat/135 bağlantısından dilediğimiz mate temasını indirip kurabiliriz bizim kullandığımız mate versiyonu 
+GTK 3.x dür o yüzden gtk2 temalarını kurmamamız daha sağlıklıdır 
+
+https://www.mate-look.org/p/1187179/ temasını kuralım bu bağlantının sağ üstündeki Download butonuna tıklayıp Matcha-sea.tar.xz yazısına 
+tıklıyoruz daha sonra save file diyoruz ve dosyayı /Desktop a kaydediyoruz ardından linuxumuzda sol üstten arama kısmına Appearance yazıp 
+çift tıklıyoruz Appearance Prefences penceresi açılıyor karşımıza bu pencerenin sağ altındaki Install butonuna tıklıyoruz sol taraftan 
+Desktop u seçiyoruz daha sonra sağdaki kısımdan Matcha-sea.tar.xz dosyasını sçeip çift tıklıyoruz ve pencerelerimizin çerçevelerinin değiştiğini 
+görüyoruz Customize butonuna tıklayarak diğer çerçeve görünümlerine bakabiliriz 
+
+desktop enviroment dediğimiz şey içerisinde bir çok bileşen; terminal, dosya yöneticisi, üst ve alt bar, arkaplan, masaüstü ortamı / görünümü 
+çeşitli, temalar, ikon paketleri ve benzeri toplu paket halinde şeyler barındıran arayüz ortamlarıdır görsel arayüzün marşını basan / çalıştıran 
+arabirimlerdir 
+
+bu dersimizde Arayüz Değiştirme - Farklı Pencere Yöneticisi konularını öğrenelim 
+(apt install ile apt-get install arasındaki fark nedir bunu araştır buraya yaz)
+
+bu işlemimizi mate arayüzünde yapalım mate terminalinde sudo apt install openbox çalıştırıyoruz ardından Y yazıp enterlıyoruz
+ardından yükleme / kurulum işlemi tamamlandıktan sonra reboot çalıştırarak sistemimizi yeniden başlatabiliriz 
+ubuntu login ekranı geldiğin sign in buyonunun hemen solundaki ayarlar kısmından OpenBox i seçip login oluyoruz 
+
+open box masaüstü ortamı tam olarak yüklendikten sonra masaüstünde sağ tık > terminal emulator e tıklayarak terminalimizi açabiliriz 
+
+bilişimde kendimizi geliştirmenin en iyi yollarından biri aldığımız / karşımıza çıkan hata mesajlarını google da aratarak çözümlerini 
+incelemek ve hatanın sebebini anlayarak nasıl bir çözüm sunulduğunu anlamak ve uygulamaktır 
+
+ardından tekrar login ekranında mate i seçip login oluyoruz daha sonra appearance prefences > theme kısmına geliyoruz 
+
+açılan kısımda arkaplanı mavi olan this theme will not look as intended because the required icon theme 'matcha' is not installed 
+
+hatasını görürsek bu matcha temasının ikon paketini yüklemediğimiz anlamına geliyor   
+  
+ https://github.com/vinceliuice/Matcha-gtk-theme bu bağlantının 
+
+ ubuntunun (veya hangi dağıtımı kullanıyorsak) kendi depoları dışından başka bir yerden terminal üzerinden bir şey indirirken add-apt-repository 
+ komutunu kullanırız  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

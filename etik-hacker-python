@@ -1,0 +1,5107 @@
+ Integrated Development Environment'in kısaltması olan IDE = Tümleşik geliştirme ortamı, bilgisayar programcılarının hızlı ve rahat bir şekilde yazılım geliştirebilmesini amaçlayan, geliştirme sürecini organize edebilen birçok araç ile birlikte geliştirme sürecinin verimli kullanılmasına katkıda bulunan araçların tamamını içerisinde barındıran bir yazılım türüdür.
+ python kodlarımızı, pycharm ide,sublime text,jupyter notebook gibi ortamlarda yazabiliriz 
+
+ https://www.anaconda.com/products/individual bağlantısından anaconda 64 bit i indirelim 
+
+kurulum dosyamızı indirdikten sonra çift tıklayarak kuruluma başlıyoruz:
+next > i agree > just me (recommended) > C:\Users\mycomputer\anaconda3 dizinine yüklüyoruz > Next > Add anaconda3 to my path enviroment variable
+kutucuğunu işaretliyoruz (burada neyi işaretlediğimizi araştır ve işaretlememizin faydası ne onu buraya yaz)
+ve onun altındaki register anaconda3 as my default python 3.8 kutucuğunu da işaretle (burayı işaretlememizin anlamı ne yani işaretleyerek ne yapmış 
+olduk işaretleyince bir uyarı mesajı çıktı orada ne söylüyor bunları araştır buraya yaz)
+ daha sonra next diyoruz ve kurulum barının üzerinde Completed yazdığında Next diyoruz > Next > Finish 
+
+ ardından windows da sol alttaki pencere ikonuna tıklayıp anaconda navigator yazıyoruz karşımıza gelen yeşil çember ikonuna tıklıyoruz 
+ açılan pencerede jupyter notebook ikonunun altındaki Launch butonuna basıyoruz ve tarayıcımızda jupyter notebook açılacak 
+ bunu dilersek tarayıcımızda manuel olarak hangi tarayıcıda açmak istiyorsak adres çubuğuna localhost:8888/tree yazıp enterlıyoruz 
+ açılan sayfada sağ tarafta Upload butonunun yanındaki New > Python 3 dersek bizim için yeni bir python3 note defteri oluşturulur 
+
+ print('hello world')
+print("hello world")
+
+şeklinde karşımıza çıkan satırlara bunları yazıp shift enter yaparsak 
+
+hello world
+hello world 
+
+çıktılarını aldık burada bir stringi yani = hello world /veya başka bir metinsel ifadeyi tek tırnak ('  ') veya çift tırnak ("  ") arasında yazma 
+lıyız ve eğer çift tırnak seçmişsek o parantez içerisinde tek tırnak kullanamayız (istisnai yani kaçış karakteri ile kullanma örneği var mı 
+araştır buraya yaz) tek tırnak ile başladıysak da çift tırnak kullanamayız 
+
+yazdığımız python kodlarını shift+enter veya sayfanın yukarısındaki Cell Tabının aşağısındaki >| Run butonuna basarak çalıştırabiliriz 
+
+Run butonunun bulunduğu satırdan sondan bir önceki kısımdaki selectordan o an ne yazmak istediğimizi seçebiliriz örneğin burada Markdown u seçersek 
+programımızla alakalı notlar alabiliriz (yorum satırı gibi bir şey # (yorum satırı) ve markdown arasındaki fark nedir araştır buraya yaz)
+
+az önce print('hello world') kodunu yazdığımız satıra Markdown u seçip bir şey yazıp shift+enter a bastığımızda bir kod gibi çalıştırılmayacaktır 
+yazdığımız şey not olarak eklenecektir 
+
+sayfada Help tabına tıklayıp Keyboard Shortcuts a tıklarsak, jupyter de kullanabileceğimiz kısayolları (örneğin run = shift+enter gibi) 
+öğrenebiliriz 
+
+bu kısayol sayfasını H tuşuna basarak da doğrudan ulaşabiliriz (tekrar h ye bastığımızda jupyter kod yazma ekranımıza geri döneriz)
+
+bir kod yazarken Enter tuşuna basarsak o kodumuzu çalıştırmadan yeni bir satıra geçeriz (aynı kod parçacığı içinde)
+
+sayfanın sol en üstündeki jupyter yazısının hemen sağındaki Untitled kısmına tıklarsak açmış olduğumuz bu nota yeni bir isim verebiliriz 
+daha sonra sağ alttan Rename vererek ismini güncelleyebiliriz 
+
+file tabından save as e basarsak note umuzu farklı kaydet seçeneği ile kaydedebiliriz 
+
+save and checkpoint dersek ne olacağını bilmiyorum bunu araştır 
+
+zaten kodumuzu yazdıkça belirli aralıklarla jupyter bizim için notdefterimizdeki değişiklikleri kaydedecektir 
+
+En üstte proje ismimizin hemen sağında Last Checkpoint: 18 dakika önce (autosaved/otomatik kaydedildi) kısmından en son ne zaman ve hangi 
+şekilde kaydedildiğini öğrenebiliriz 
+
+eğer jupyter içerisinde kod yazarken veya herhangi bir şekilde / sebepten dolayı jupyter ın çalışmasıyla alakalı bir bozukluk yaşarsak; 
+takılma veya buga girme gibi bir şey olursa Kernel tabına tıklayıp  interrupt a basıp daha sonra restart diyerek ilgili not defterimizi 
+-yoksa jupyter in tamamını mı? araştır- baştan başlatabiliriz tabii bunu yapmak yerine jupyter ı tarayıcıdan kapatıp tekrar açmayı da tercih ede 
+biliriz 
+
+jupybook umuzu açıyoruz ve new > python3 diyerek yeni bir not oluşturuyoruz ve bu dersimizde python daki dğeişkenler konusunu öğrenelim 
+
+5+6 yazıp s.e yaptığımızda 11 çıktısını alırız bu python da matematiksel hesaplamalar yapabileceğimiz anlamına gelir 
+
+900 / 7 s.he yaptığımızda 128.57142857142858 çıktısını alırız 
+
+500 - 200 s.e > 300 çıktısını ve 30 * 4 s.e > 120 çıktısını aldık 
+
+örneğin 2 üzeri 3 ün değerini hesaplamak istiyoruz bunu nasıl yapabiliriz ? 
+
+2*2*2 s.e yaparak > 8 çıktısını alabiliriz ama bunu yapmanın daha kolay bir yolu da var 
+
+2 ** 3 s.e yaptığımızda > 2**3
+8 çıktısını aldık ** ifadesi ile dilediğimiz sayının üslü ifadesini bulabiliriz 
+
+bunu doğrulamak için 2^9 un değerini önce uzun sonra kısa yol ile bulalım 
+
+2*2*2*2*2*2*2*2*2 çalıştırdığımızda  > 512 çıktısını alırız 
+
+2**9 çalıştırdığımızda da 512 çıktısını alırız 
+
+kod yazarken bu örnek te boşluk bırakmamız sonucu değiştirmeyecektir örneğin 
+
+2** 9 , 2 ** 9 , 2 **9 , 2 **     9 , 2     **9 şeklinde yazmamız sonucu değiştirmez ancak 2* *9 şeklinde çalıştırırsak bir hata alırız 
+
+python da x sayısının y nin bölümünden kalan değeri bulabiliriz bunun için 10 % 2 çalıştırdığımızda 0 çıktısını aldık çünkü 10 sayısı 2 sayısına tam bölünür 
+yani 10 un içerisinde 5 tane 2 olduğu için kalansız bir şekilde bölünür bu yüzden 0 çıktısını aldık 
+
+11 % 2 çalıştırdığımızda da 1 çıktısını aldık çünkü 11 in içerisinde 5 tane 2 ve bir tane de 1 var bu yüzden 1 çıktısını aldık 
+
+
+11 % 3 aynı mantıkla 11 in içerisinde üç adet 3 sayısı ve bir adet te 2 sayısı var bu yüzden bu kalan sayıyı çıktı olarak aldık 
+
+aldığımız çıktılardaki  128.57142857142858 hariç bütün sayılar tam sayı (integer) sayıdır bu tür sayıların veri tipi integer dır 
+
+ 128.57142857142858 değeri de float veri tipidir örneğin 0.4 * 3.0 çalıştırdığımızda çıktı olarak aldığımız 1.2000000000000002 çıktının veri tipi de 
+ float dır peki bunun sonucu neden 1.2 olarak yazdırılmadı da sonunda 02 değeri var bunun sebebini araştır buraya yaz 
+
+ diğer veri tipleri de örneğin 'hello world' veya 'james'
+ gibi verilerin veri tipi string (metinsel ifade / metinsel veri) dir 
+
+ bu dersimizde python daki variables (değişkenler) konusunu öğrenelim 
+
+ x = 3 
+y = 5
+x+y 
+
+
+çalıştırdığımızda 8 çıktısını alırız yine x**y çalıştırdığımızda 243 çıktısını alırız burada kendisine 3 ve 5 değerleri atanan şeyler değişken 
+(variable) olarak isimlendirilir programlama dillerinde 
+
+ardından 
+
+x = 4 
+x+y  
+
+çalıştırdığımızda 9 çıktısını aldık burada az önce 3 değerini atadığımız x değişkeninin değerini 4 olarak dğeiştirip tekrar y ile topladık ve 0 çıktısını 
+aldık bu da değişkenlerin değerlerini değiştirebileceğimiz anlamına gelir programlama dillerinde 
+
+örneğin kullanıcıya alanını bulmak istediği bir dairenin yarı çapını girmesini istediğimiz bir input oluşturalım 
+
+r = input("r:") çalıştırdığımızda r: şeklinde içine istediğimiz şeyleri yazabildiğimiz bir input / veri girdisi alanı oluşur; örneğin burada 5 
+yazıp enterlarsak r:5 çıktısını alırız tabii burada bir print ifadesi yok çıktı almak derken girdiğimiz veriyi sonuç olarak görürüz 
+
+r * 2 * 3.14  çalıştırdık ve 
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-27-0a9777b45a98> in <module>
+----> 1 r * 2 * 3.14
+
+TypeError: can't multiply sequence by non-int of type 'float'
+
+
+şeklinde bir hata aldık bu hatanın nasıl çözüleceğine dair bir ipucu olarak TypeError: can't multiply sequence by non-int of type 'float' ifadesini 
+google da aratarak hatanın sebebini öğrenip bu hatayı nasıl giderebileceğimizi bulabiliriz https://stackoverflow.com/ sitesinden yazdığımız kodu 
+paylaşabilir ve aldığımız hata hakkında, bu hatanın sebebini ve nasıl giderebileceğimizi buradaki deneyimli yazılımcılardan öğrenebiliriz 
+
+burada kısaca hatamızın sebebi r ifadesine girilen değeri bir integer olarak kabul etmemesinden dolayıdır python un peki bu ne anlama geliyor 
+
+örneğin type(x) çalıştırdığımızda int çıktısını alırız çünkü x iismli bir değişkenimiz vardı ve onun değeri de 4 dü biz de bu kod ile bu değişkenimizin 
+veri tipini öğrenmiş olduk 4 sayısı da bir int yani integer olduğu için bu çıktıyı aldık 
+
+farklı bir örnek olması amacıyla 
+
+pi = 3.14
+type(pi)
+
+çalıştırdığımızda önce pi isimli bir dğeişken oluşturup bu değişkene 3.14 şeklinde bir float veri tipine sahip bir değer atadık daha sonra program 
+lamada kodlar yukarıdan aşağı sırayla teker teker çalıştırıldığı için pi değişkeninin veri tipi ekrana yazdırıldı yani float çıktısını aldık 
+
+peki biz de aynı mantıkla r ye 5 değerini girmiştik neden r * 2 * 3.14 çalıştırdığımızda hata aldık bunun sebebi aslında r değişkeninin değerinin 
+veri tipinden kaynaklıdır type(r) çalıştırdığımızda str yani string çıktısını alırız r nin değerinin nasıl string olduğunu daha iyi anlamak için 
+
+r çalıştırırsak '5' çıktısını alırız daha önceki derslerden hatırlarsak hello world olsun james olsun bu tarz stringler tek veya çift tırnak 
+içerisinde yazılırlar kullanılırken o yüzden r ye girdiğimiz herhangi bir ifade giirlen değerin kendisinin veri tipinden bağımsız olarak r 
+değişkenine string bir şekilde atanacaktır 
+
+bu yüzden r * 2 * 3.14 çalıştırdığımızda hata aldık çünkü bir int veri bir string ile çarpılamaz (diğer 4 işlemler yapılabilir mi araştır buraya yaz)
+(iki string çarpılabilir bu ve diğer dört işlem yapılaiblir mi buraya yaz)
+
+peki r değişkenini r * 2 * 3.14 komutunu başarıyla çalıştırmak için nasıl kullanabiliriz bunun için 
+
+r_int = int(r)
+r_int * 2 * 3.14
+
+çalıştırdığımızda 31.400000000000002 çıktısını alırız burada r nin '5' değeri integer bir değere çevrilerek r = 5 yapıldı ve koddaki işlem gerçekleşti 
+(peki r='5a' vs ve başka varyasyonları olsaydı nasıl bir çıktı alırdık) ve burada r nin kendi değeri hala '5'olarak kalır dğeişmez yani sadece 
+int a dönüştürülen değer YENİ bir değişken olan r_int a değer olarak atanır r nin değerinin dğeişmediğini 
+
+r * 2 * 3.14 çalıştırarak aynı hatayı alıp onaylayabiliriz 
+
+type(r_int) çalıştırdığımızda da int çıktısını alırız bu int fonksiyonunun işlevini gerçekleştirdiği anlamına gelir 
+
+ve son olarak çevreyi hesaplamak için r_int * pi * 2 çalıştırdığımızda 31.400000000000002 çıktısını alırız 
+
+https://github.com/atilsamancioglu/PythonCourse adresinden python etik hacker örnekleriyle isimli kursta anlatılan konuları içeren python kodlarını 
+indirebiliriz linke tıkladıktan sonra sayfada sağ üstte çıkan yeşil Renkteki Code butonuna tıklayıp açılan kısımdan Download ZIP diyerek bütün dosyaları 
+bir arşivlenmiş şeklinde indirebiliriz 
+
+örneğin indirdiyiğimiz bir .ipynb dosyasındaki kodları çalıştırmak istediğimizde tek te ken üstteki satırdan aşağıya doğru shift+enter diyerek 
+çalıştırmamız lazım çünkü o kodlar birbirleriyle bağlantılı olabilir örneğin aşağıda kullanılacak bir fonksiyon veya değişken yukarıda oluşturulup 
+programa tanıtılması gerekiyor olabilir bu gibi durumlarda tek tek bütün kod satırlarını çalıştırmak ile uğraşmamak için jupyter notebook da 
+
+cell tabına tıklayıp Run Cells dersek not defterimiz içerisindeki bütün hücreleri (kod satırlarını / kod bloklarını) çalıştırabiliriz 
+ya da örneğin x satırındaysak ve sadece aşağıdaki kodları çalıştırmak istiyorsak o zaman da Cell > Run All Below a tıklayabiliriz 
+
+eğer örneğin not defterinde ortalarda bir cell in altına bir cell daha eklemek istiyorsak hangi cell in altına eklemek istiyorsak o cell e tıklıyoruz 
+daha sonra Edit tabınadan Split Cell e tıklıyoruz (bu işlem tam olarak anlattığım gibi oluyor mu dene doğrula buraya yaz)
+
+bu dersimizde python da metinleri -yazısal ifadeler yani string değişken tipini inceleyelim 
+
+"hello world" çalıştırırsak /s.e 
+
+'hello world' çıktısını alırız yine aynı şekilde 
+
+'hello world' çalıştırırsak 'hello world' çıktısını alırız (tek veya çift tırnak kullanarak stringlerimizi içine yazabiliriz her ikisinde de 
+stringlerimiz tek tırnak içerisinde çıktı olarak bastırılacaktır)
+
+ancak genellikle çift tırnak kullanılması daha faydalı olabilir çünkü 
+
+'i'am a pilot diyip çalıştırırsak 
+
+  File "<ipython-input-3-4fd028a4ca55>", line 1
+    'i'am a pilot
+       ^
+SyntaxError: invalid syntax
+
+
+çıktısını alırız çünkü 2. ' karakterini bir kesme işareti değil de ilgili string ifadenin sonu olarak algıladığı için böyle bir hata aldık 
+
+ancak "i'am a pilot" şeklinde çalıştırsaydık "i'm a pilot" çıktısını alırdık burada ilginç bir şekilde 'i'm a pilot' şeklinde bir çıktı almadık 
+bunun sebebini arşatır buraya yaz görsel olarak kafa karıştırıcı olmasın diye mi böyle bir konfigrasyon yapmışlar ? 
+
+stringleri, aynı değişken mantığıyla herhangi istediğimiz bir değişkene atayabiliriz örneğin; x = "hello world" şeklinde s.e yaparsak x isimli bir 
+dğeişken oluşturup bu değişkenin değerini "hello world" stringi olarak ayarlayabiliriz 
+
+daha sonra herhangi bir kod satırında x yazıp çalıştırdığımızda 'hello world' çıktısını alırız 
+
+dilersek bu x değişkeninin değerini daha sonra değiştireibliriz örneğin x = "hello" çalıştırırsak daha sonra x çalıştırdığımızda bu sefer x in 
+değerini değiştirdiğimiz için güncel değeri ne ise o ekrana bastırılacak ve 'hello' çıktısını alırız 
+
+örneğin daha sonra x = 3 çalıştırdığımızda ve x i bastırdığımızda 3 çıktısını alırız ancak diğer pek çok programlama dili böyle bir şey yapmak istediğimizde 
+bize hata verecektir çünkü ilk önce string olarak oluşturduğun bir değişkeni daha sonra neden int olarak değiştirdiğimiz için ancak python çok esnek bir dil 
+olduğu için bunu yapmamıza izin veriyor 
+
+daha sonra x = "hello world" çalıştırıyoruz ve ardından type(x) çalıştırdığımızda str çıktıısnı alırız çünkü x değişkeninin içindeki verinin tipi 
+bir string değerdir (str = string kelimesinin kısaltması) 
+
+len(x) çalıştırdığımızda 11 çıktısını alırız bu lenght yani uzunluk kelimesinin kısaltmasıdır len() fonksiyonu ile veri tipi string olan bir değişkenin 
+(1 den fazla değişken tek bir fonksiyon içerisinde sorgulanabiliyor mu araştır ve sadece string veri tipine sahip değişkenler mi kullanılabilir bu fonksiyon)
+
+o değişkenin içerisinde kaç adet karakter var bunu ekrana bastırır hello = 5 + world = 5 = 10 yapıyor ancak burada ' ' booşluk yani whitespace 
+karakteri de sayıldığı için toplamda 11 çıktısını aldık 
+
+print(x) çalıştırırsak hello world çıktısını alırız önceki çıktılarımızda bir defa "i'm a pilot" diğerlerinde de hep 'çıktı' şeklinde tek tırnak 
+içinde aldık ama bu sefer herhangi bir karakter içerisinde değil de clear bir şekilde aldık çıktımızı 
+
+örneğin biz 
+
+hello
+python 
+
+çıktısı almak istiyoruz ve 
+
+print("hello
+      python")
+
+    çalıştırırsak 
+
+      File "<ipython-input-7-b66eedb0f8fb>", line 1
+    print("hello
+                ^
+SyntaxError: EOL while scanning string literal
+
+hatası alırız biz çıktılarımızı alt alta almak istediğimizde escape characters denilen kaçış karakterlerinden \n den faydalanırız yani; 
+
+print("hello\npython") çalıştırarak veya    print("hello \npython") çalıştırırsak ikisinde de aynı çıktı olan 
+
+hello   
+python
+
+ı alırız ancak 
+
+print("hello \n python")
+
+çalıştırırsak 
+
+
+hello 
+ python
+
+ şeklinde bir adet boşluk ile giirntili bir şekilde python kelimesinin kaydığını görürüz bunun sebebi \n den sonra bir boşluk bırakmamaız bu ifadenin 
+ önündeki ilgili metnin veya sayının yeni satırda o girinti ile başlamasına sebep olmasından dolayıdır 
+
+ örneğin bir TAB tuşuna bastığımız kadar boşluk bırakmak istiyorsak bunun için de 
+
+ print("hello\tpython") çalıştırabiliriz veya yine aynı çıktıyı verecek olan print("hello \tpython") çalıştırabiliriz ve; 
+
+ hello	python çıktısını alırız 
+
+ print("hello\t python") şeklinde çalıştırırsak ise bir adet tab + 1 adet boşluk kadar mesafe bırakmış oluruz 
+
+1 TAB = 2 det whitespace boşluğa denk gelir / eşdeğerdir 
+
+bu dersimizde string konusunun ileri seviye işlemlerini öğrenelim 
+
+jupyter notebook da yeni bir defter açıyoruz 
+
+my_string = "hello world"
+
+s.e yapıyoruz ve ardından 
+
+my_string çalıtırdığımızda 'hello world' çıktısını alırız 
+
+şimdi indexing isimli konuyu öğrenelim pythonda; 
+
+örneğin my_atring[0] s.e yaparsak / çalıştırırsak 'h' çıktısını alırız 
+
+my_atring[0] kodumuzu çalıştırarak my_string isimli değişkenimizin ilk elemanını ekrana bastık / çıktı olarak aldık bu değişkenimizin ilk elemanı 
+da h karakteridir ve stringler çıktı olarak tek tırnak içerisinde yazdırıldığı için de 'h' çıktısını aldık indexing konusu da ilgili değişkenimizin 
+elemanlarının her birinin bir numarası vardır bunlara index / sıra numarası denir ve index numarası her zaman default / varsayılan olarak 0 sayısından 
+başlar; yani bir değişkenin 0. index indeki elemanı o değişkenin 1. elemanıdır yani bizim örneğimizde h elemanıdır / karakteridir 
+
+örneğin değişkenimiz içerisinde hello daki o karakterini ekrana bastırmak istiyoruz bunun için hangi komutu kullanırız ? 
+
+cevap : my_string[4] çünkü o karakteri my_string in 5. elemanı dır bu elemanın index değeri / sayısı da 4 tür 
+
+h (0)  e (1)  l (2) l (3)  o (4)  w (5)  o (6)  r (7)  l (8)  d (9)
+
+örneğin bir değişkenimizdeki veya dizimizdeki elemanların sonuncusunu ekrana bastırmak istiyoruz bunun için hangi komutu yazardık 
+
+cevap: my_string[9] ancak ilgili elemanın index değerini biraz daha uğraşarak bulduk önce değişkenimizin içerisinde kaç adet karakter olduğunu bulmamız 
+gerekiyor (boşluk/boşluklar dahil) daha sonra bu sayıdan 1 çıkartarak onu my_string[elemans_ayısı-1] şeklinde çalıştırmamız gerekiyor bu 
+eleman sayısı elle sayılamayacak kadar fazla olan durumlarda büyük bir problem olabileceğinden çok daha basit bir kod ile son elemanı ekrana bastıra 
+bilriz bunu gerçekleştiren komutumuz da 
+
+my_string[-1] dir 
+
+yine aynı mantık ile sondan bir önceki elemanı ekrana bastırmak istersek my_string[-2] komutunu çalıştırabiliriz 
+
+peki ilgili dğeişkenimiz / dizimizdeki İLK 3 harf / krakter / elemanı almak istersek nasıl bir kod yazmamız gerekiyor ? 
+
+my_string2 = "1234567890" s.e yapıyoruz 
+
+my_string2[2:] çalıştırdığımızda '34567890' çıktısı alırız my_string2[2:] komutu ile my_string2 isimli değişkenimiz içerisindeki elemanlardan 
+2. index numarasından sonuncu index numarasına kadar (2. ve sonuncu index numaralarındaki elemanlar da dahil olmak üzere) ekrana bastır diyoruz 
+ve 1. ve 2. index numarasına sahip olan 1 ve 2 elemanları hariç bütün elemanları ekrana bastırmış olduk 
+
+az önce yaptığımız bu işleme slicing (dilimleme denir) 
+
+örneğin 5 karakteri dahil ve son elemana kadar olan karakterlerin çıktısını nasıl alırız 
+
+my_string[4:] çalıştırarak istediğimiz çıktıyı alabiliriz 
+
+peki my_string2 değişkenimizdeki 2. index numarasına kadar olan elemanları (2. index dahil değil yani sadece 0 ve 1 numaralı indexe sahip olan elemanları bastırmak için)
+
+hangi komutu kullanabiliriz 
+
+my_string2[:2] çalıştırırsak '12' çıktısını alırız 
+
+bu yaptığımız işleme de stopping index denir 
+
+slicing : karakterinin sol tarafına koyduğumuz bir rakam / sayı ile elde edilen sonuç iken stopping index de : karakterinin sağ tarafına yazdığımız 
+sayı / rakam sonucunda aldığımız çıktıya denir 
+
+yine my_string2[:4] çalıştırırsak '1234' çıktısını alırız 
+
+peki 2. index numarasından balayıp (2. indexdeki eleman dahil) 4. indexdeki elemana kadar bastır (4. indexdeki eleman dahil değil) dersek nasıl 
+bir çıktı alırız ve bu işlemin komutunu python da nasıl yazabiliriz ?
+
+my_string2[2:4] şeklinde yazabiliriz ve '34' çıktısını alırız bunun sebebi 2. ve 3. index deki elemanları ekrana bastırdığımız içindir çünkü 
+2. indexten önceki indexdeki elemanları komutumuza dahil etmedik (yani 0. ve 1. indexdekileri) ve (4. idexten son idexe kadar olan elemanları da 
+çıkarınca) my_string2 değişkenimizde ekrana bastırılacak sadece 2. ve 3. indexdeki elemanlar kaldı 
+
+peki my_string2[2:3] veya  my_string2[3:3] çalıştırırsak nasıl bir çıktıs alırız deneyip buraya yaz 
+
+şimdi de step-size denilen biir işlemi öğrenelim 
+
+my_string2[::] şeklinde çalıştırırsak direkt olarak değişkenimizin kendi değeri olan '1234567890' çıktısını alırız 
+
+my_string2[::3] çalıştırırsak '1470' çıktısını alırız buradaki mantık ::3 yazarak başlangıç ve bitiş değeri yani 
+
+başlangıç-indexi:bitiş-indexi:atlama-aralığı mantığıyla ilk 2 kısıma bir değer vermediğimiz için 0. indexten yani değişkenimizin ilk elemanından 
+son elemanına kadar (ilk eleman dahil sonuncusu da dahil mi araştır buraya yaz?) 3 er 3 er index numarası atlayarak sonuç olarak dğeişkenimizdeki 
+
+0. index | 3. index | 6. index | 9. index numaralarına sahip elemanları ekrana bastırır 
+
+my_string2[::1] çalıştırırsak atlama aralığı 1 olduğu için '1234567890' bütün elemanlarımızı ekrana bastırır 
+
+my_string2[::2] komutunu çalıştırırsak da bu sefer 0. | 2. | 4. | 6. | 8.| indexdeki elemanları ekrana bastırır 
+
+yani '13579' çıktısını alırız 
+
+yine aynı mantık ile 2. indexden balayıp 4. indexe kadar olan (4. index dahil değil) ve atlama aralığı 2 olan elemanları da ekrana bastırabiliriz 
+
+yani my_string2[2:4:2] çalıştırdığımızda '3' çıktısını alırız 
+
+peki my_string2 dğeişkenimizdeki elemanları tersten yazdırmak istesem yani normal hali olan 1234567890 yerine 0987654321 şeklinde yazdırmak 
+istersek de bunu my_string[::-1] çalıştırarak '0987654321' çıktısını alarak yapabilriz 
+
+my_string2[:4:-1] şeklinde çalıştırırsak da sonuncu elemandan 4. indexteki elemana kadar (4. ind dahil değil / son eleman dahil) elamanların çıktısını alırız 
+yani '09876' 
+
+peki son elemandan 4. indexdeki elemana kadar 2 atlama aralığı ile olan elemanları bastırmak istesek hangi çıktıyı alırız 
+
+burada son elemanın indexi 9 olduğu için ve 4. indexdeki eleman çıktıya dahil olmadığı için 9 | 7 | 5 . idex numarasına sahip elemanlar ekrana bastırılır 
+my_string2[:4:-2] komutunu kullanırız ve aldığımız çıktı da '086' olur 
+
+biz my_string2 = "1234567890" şeklinde değerler atarken bu değerler istring oalrak atadık " " karakterleri arasında atadığımız için peki bu değerleri 
+
+my_string2 = 1234567890 şeklinde atasaydık yine indexleme işlemi yapabilir miydik bunu araştır buraya yaz 
+
+bu dersimizde advance strings üzerinden string metodları konularını öğrenelim 
+
+işlemlerimize jupyter notebook üzerinden devam edelim jupyter de bir cell i silmek için Edit tabından Delete Cells butonuna basabiliriz 
+
+my_name = "atil" yazıp s.e yapıyoruz 
+
+ardından my_name. yazıp tab tuşuna basarsak my_name değişkenimiz için kullanabileceğimiz bazı özellikleri (properties) görebiliriz 
+
+my_name.capitalize
+my_name
+
+yazıp s.e yaptığımızda 
+
+'Atil' çıktısını alırız .capitalize özelliği değişkenimizdeki stringin ilk harfini / karakterini büyük yapar (upper letter)
+
+my_name.capitalize() şeklinde yazıp s.e yaptığımızda da 'Atil' çıktısını alırız 
+
+my_name.capitalize çalıştırdığımızda <function str.capitalize()> çıktıısını alırız neden bu çıktıyı aldık araştır sebebini buraya yaz 
+
+yukarıdaki .capitalize ile yaptığımız 2 işlemde de aslında my_name stringimizde bir değişikliğe sebep olmadık (kalıcı olarak)
+
+ancak 
+
+my_name_capitalized = my_name.capitalize()
+my_name_capitalized
+
+şeklinde yeni bir değişkenin içerisine my_name.capitalize işleminin çıktısını buraya değer olarak atarsam 
+
+'Atil' çıktısını alırız 
+
+
+
+
+my_name = "Atil Samancioğlu"
+
+çalıştırıp ardından; 
+
+my_name.split() çalıştırırsak 
+
+['Atil', 'Samancioğlu'] çıktısını alırız 
+
+yine bir önceki örnekte olduğu gibi bu split işlemi bizim asıl değişkenimiz olan my_name de kalıcı bir değişikliğe sebep olmadı bunu 
+
+my_name çalıştırıp 'Atil Samancioğlu' çıktısını alarak doğrulayabiliriz 
+
+ancak 
+
+my_name_split = my_name.split()
+my_name_split 
+
+çalıştırırsak bu işlemin çıktısını my_name_split isimli yeni bir değişkene atadığımız için 
+
+['Atil', 'Samancioğlu'] çıktısını alırız bu işlemin yaptığı şey aslında 
+
+ilgili string de boşluk ile ayrılan bütün karakter kümelerini bir listenin elemanı olarak atıyor örneğin 
+
+my_name_split[0] çalıştırırsak 'Atil' çıktısını alırız 
+
+
+my_number = 123 yazıp s.e yaptıktan sonra my_number. yazdıktan sonra tab a basarak veri tipi integer olan bir değişkenin properties lerini de görebilirdik 
+
+
+
+
+my_name = "atil samancioglu" çalıştırıp ardından my_name.upper() çalıştırırsak 
+
+'ATIL SAMANCIOGLU' çıktısını alırız 
+
+eğer bu properties lerin hangisinin ne işe yaradığını bilmiyorsak ilgili özelliği yazdıktan sonra 
+
+örneğin my_name.find shift+tab tuşuna basarsak bu satırın hemen aşağısında küçük bir kutucuk açılır ve bu kutucukta ilgili özellik ile ilgili 
+bir tanım / açıklama bilgisi yer alır 
+
+bizim örneğimiz için 
+
+Docstring:
+S.find(sub[, start[, end]]) -> int
+
+Return the lowest index in S where substring sub is found,
+such that sub is contained within S[start:end].  Optional
+
+şeklinde bir açıklama bilgisi geldi ekrana ancak buradaki açıklamalar her zaman bizim için yeterli ve anlaşılır olmayabilir bu gibi durumlarda 
+
+https://docs.python.org adresinden python ve python un ilgili sürümleriyle alakalı bütün dökumantasyonlara ulaşabiliriz spesifik olarak bir 
+kelime ile iligli dökuman aramak istiyorsak da örneğin bu kelime string olsun sayfanın sağ en üstündeki içinde Quick search yazan inputun içerisine 
+string yazıp hemen sağındaki Go butonuna tıklıyoruz ve bu kelime ile alakalı dökumanlar veya dökumanlar içerisinde geçen ifadeler gelir 
+
+normalde çoğu programlama dilinde string bir veri ile integer bir vernin toplanmasına / çarpılmasına vs (diğer işlemler için de geçerli mi bu araştır buraya yaz)
+izin verilmez ama python da bunu yapabiliyoruz (çarpmayı yapabiliyoruz diğerlerini denemedip onları da deneyip olası olasılıkların sonuçlarını 
+ve mümkün olup olmayacaklarını ve çıktılarını da buraya yaz)
+
+örneğin 
+
+"james" * 10 çalıştırdığımız zaman 
+
+'jamesjamesjamesjamesjamesjamesjamesjamesjamesjames' çıktısını alırız bu 10 adet james kelimesinin yan yana yazılmış halinden oluşan bir çıktıdır 
+
+bunu "james" * 10 * 10 şeklinde yazarsak bu defa 100 adet james çıktısı alırız 
+
+
+ancak "james" * 1.0 çalıştırdığımızda 
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-24-a50bb47dfed3> in <module>
+----> 1 "james" * 1.0
+
+TypeError: can't multiply sequence by non-int of type 'float'
+
+çıktısı alıyoruz yani python bir string ile bir float sayının çarpılmasına izin vermiyor peki burada neden 'james' çıktısı almadık bunun sebebini 
+araştır buraya yaz çünkü "james" * 1 çalıştırdığımızda 'james' çıktısı alıyoruz yine aynı şekilde; 
+
+"james" * 1.5 çalıştırdığımızda da aynı hatayı alırız 
+
+
+"james" + 5 çalıştırdığımızda 
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-28-48cd6221be06> in <module>
+----> 1 "james" + 5
+
+TypeError: can only concatenate str (not "int") to str
+
+hatası alıyoruz bu python ın bize bir string ile bir integer veriyi toplamamıza izin vermediği anlamına geliyor 
+
+
+ancak 5 verisini "5" şeklinde kullanıp daha sonra "james" + "5" çalıştırırsak 
+
+'james5' çıktısını alırız 
+
+yine aynı mantıkla "james" + "lars" çalıştırırsak "jameslars" çıktısını alırız 
+
+my_name = "atıl"
+my_surname = "samancıoğlu"
+
+çalıştırıp ardından my_name + my_surname çalıştırırsak 'atılsamancıoğlu' çıktısını alırız 
+
+
+
+yine aynı şekilde 
+
+my_full_name = my_name + my_surname
+my_full_name
+
+çalıştırırsak 
+
+'atılsamancıoğlu' çıktısını alırız 
+
+eğer bu çıktısı 'atıl samancıoğlu' şeklinde almak istersek 
+
+my_name = "atıl"
+my_surname = " samancıoğlu"
+my_full_name = my_name + my_surname
+my_full_name
+
+şeklinde veya 
+
+my_name = "atıl "
+my_surname = "samancıoğlu"
+my_full_name = my_name + my_surname
+my_full_name
+
+şeklinde veya 
+
+my_name = "atıl"
+my_surname = "samancıoğlu"
+my_full_name = my_name + " " + my_surname
+my_full_name
+
+şeklinde çalıştırırsak her üçünde de 
+
+'atıl samancıoğlu' çıktısını alırız 
+
+bu dersimizde pythondaki listeler konusunu öğrenelim 
+
+my_string = "atil"
+my_string[0] = "b"
+
+şeklinde çalıştırdığımızda 
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-1-3f28c406871b> in <module>
+      1 my_string = "atil"
+----> 2 my_string[0] = "b"
+
+TypeError: 'str' object does not support item assignment
+
+hatası alırız bunun sebebi my_string değişkenimiz daha sonra 
+
+my_string = xyz şeklinde yeni bir değer atanabilse bile index numarası belirtip yukarıda olduğu gibi 0. index deki a karakteri / elemanı 
+b şeklinde değiştirilip my_string = batil yapılamıyor bunun sebebini araştır neden yapılamıyor neden bu şekilde karar vermişler diye 
+
+aynı şekilde my_string[2] = "c" çalıştırdığımızda da aynı hatayı alırız 
+
+
+my_list = [1,2,3] çalıştırarak yani köşeli parantezler kullanarak bir liste oluşturabiliriz daha sonra 
+
+my_list[0] çalıştırdığımızda 1 çıktısını alırız 
+
+my_list[0] = 5
+my_list
+
+çalıştırdığımızda [5, 2, 3] çıktıısnı alırız bu da demek oluyor ki listelerde index numarası belirtip bu index numarasındaki veriyi değiştire 
+biliyoruz (peki bu bir liste içerisindeki string veri için de geçerli mi bunu araştır buraya yaz)
+
+variables = immutable (değiştirilemez)
+
+lists = mutable (değiştirilebilir)
+
+peki my_list iismli listemizin sonuna 7 rakamını eleman olarak eklemek istiyoruz bunu nasıl yapabiliriz ? 
+
+my_list.append(7)
+my_list
+
+çalıştırdığımızda 
+
+[5, 2, 3, 7] çıktıısnı alırız yani .append özelliği bir listeye bir veri eklememizi sağlar (string de ekleyebiliyor muyuz deneyip buraya yaz
+veya float sayı gibi vb)
+
+my_list.pop() çalıştırdığımızda 7 çıktısını alırız yani .pop özelliği bizim listemizdeki son elemanı listemizden çıkarır ve çıkardığı bu elemanı ekrana bastırır 
+
+tekrar my_list çalıştırdığımızda [5,2,6] çıktısını alırız 
+
+my_list.pop çalıştırdığımızda <function list.pop(index=-1, /)> çıktısını alırız yani parantez kullanmadan append metodunda da böyle mi dene buraya yaz 
+ve neden böyle bir çıtkı alıyoruz buraya yaz sebebini 
+
+
+my_mixed_list = [1,2,3,"a","bc","dfe"]
+my_mixed_list
+
+çalıştırdığımızda [1, 2, 3, 'a', 'bc', 'dfe'] çıktısını alırız bu da python da liste oluştururken farklı veri türlerini aynı liste içeriisne eleman olarak 
+atayabildiğimiz anlamına gelir 
+
+my_mixed_list[-1] çalıştırırsak 'dfe' çıktısını alırız yine aynı şekilde 
+
+my_mixed_list[-2] çalıştırırsak 'bc' çıktısını alırız 
+
+çoğu programlama dilinde bir liste oluştururken içerisindeki verilerin hepsi aynı türden olmalı yani bu şekilde karışık değil de float bir değer 
+atadıysak diğer değerler de float string ise string veya integer ise integer olması gerektiğini söyler programlama dili 
+
+my_list_1 = ["a","b","c"]
+my_list_2 = ["d","e","f"]
+my_list_3 = my_list_1 + my_list_2
+my_list_3 
+
+şeklinde çalıştırdığımız zaman 
+
+['a', 'b', 'c', 'd', 'e', 'f'] çıktısı alırız bu da python da listeler arasında toplama işlemi yapabildiğimiz anlamına gelir (bölme çarpma ve çıkarma işlemleri 
+de yapaiblir miyiz araştır buraya yaz)
+
+my_list_1 * 3 çalıştırırsak 
+
+['a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c'] şeklinde bir çıktı alırız çarptıktan sonra asıl listemiz olan my_list_1 in elemanlarını dğeiştirmez bunu 
+doğrulamak için ardından my_list_1 çalıştırırsak ['a', 'b', 'c'] çıktısını alırız (.append ve .pop işlemlerinde listemizi kalıcı bir şekilde değiştirmişti)
+
+my_list_1 + 5 çalıştırdığımızda 
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-18-4b6027f851f4> in <module>
+----> 1 my_list_1 +5
+
+TypeError: can only concatenate list (not "int") to list
+
+çıktısını alırız peki listemizdeki bütün elemanlar integer verilerden oluşsaydı bu sefer toplar mıydı veya bütün elemanları integer olan 
+bir listeye örneğin bu liste my_list_1 olsun my_list_1 + "abc" çalıştırsaydık nasıl bir çıktı alırdık bu iki durumu da dene sonucu buraya yaz 
+
+
+my_list_1 * 5.3 çalıştırırsak; 
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-19-3cc431e98be3> in <module>
+----> 1 my_list_1 * 5.3
+
+TypeError: can't multiply sequence by non-int of type 'float'
+
+hatasını alırız 
+
+peki bütün elemanları integer olan bir listeyi 5.3 ile çarpabilir miyiz 
+
+veya içinde 3 adet string bir değer bir tane de integer bir eleman olan bir listeyi float bir sayı ile çarpmak istediğimizde nasıl bir çıktı alırız 
+araştır buraya yaz 
+
+my_list_1.reverse()
+my_list_1
+
+çalıştırdığımızda my_list_1.reverse()
+my_list_1
+my_list_1.reverse()
+my_list_1
+​
+['c', 'b', 'a']
+ çıktıısnı alırız yani listemizdeki elemanları baştan sona doğru değil de sondan başa doğru ekrana bastırdı ve bu değişikliği kalıcı bir şekilde 
+gerçekleştirdi ilgili değişkenimiz için 
+
+
+
+bu dersimizde ileri seviye list işlemleri gerçekleştirelim 
+
+nested list: iç içe geçmiş listeler için / anlamında kullanılır 
+
+new_list = [1,4,"a"]
+new_list = [1,4,"a",[3,"c"]]
+new_list
+
+şeklinde çalıştırdığımızda [1, 4, 'a', [3, 'c']] çıktısını alırız bu duruma iç içe geçmiş listeler denir yani new_list listemin içerisinde 
+3 ve "a" elemanlarına sahip (isimsiz? içerideki liste nin bir ismi yok mu yoksa içinde bulunduğu ana listenin ismine mi sahip olur otomatikmen eğer 
+öyleyse biz bu default ismi değiştirebilir miyiz araştır buraya yaz)
+
+new_list[2] çalıştırırsak 'a'
+ çıktıısnı alırız yine aynı mantıkla 
+
+ new_list[3] çalıştırırsak 
+
+ [3, 'c'] çıktısını alırız 
+
+ nested_list = new_list[3]
+nested_list
+
+çalıştırırsak [3, 'c'] çıktısını alırız yani bir önceki işlemin çıktıısnı yeni bir listenin elemanı yapabiliriz 
+
+peki new_list = [1,4,"a",[3,"c"]] listemizden direkt olarak c yi ekrana bastırmak istersek ne çalıştırmamız gerekiyor ? 
+
+new_list[3][1] çalıştırırsak 'c' çıktısını alırız bunun sebebi new_list listesinde önce c nin bulunduğu listenin indexi yani 3.index i belirttik 
+daha sonra c nin bu içerideki listede hangi index numaraısnda olduğunu -1.index- yazarak c yi ekrana bastırabiliriz 
+
+new_list[2:] çalıştırırsak ['a', [3, 'c']] çıktısını alırız bunu önceki derslerde öğrenmiştik ilgili listedeki 
+2. index dahil son indexe kadar olan elemanları ekrana bas dedik 
+
+new_list[:2] çalıştırırsak da [1, 4] çıktısını alırız bu sefer de ilk elemandan 2. indexe kadar olan -2. index dahil değil- 0. ve 1. indexdeki 
+elemanları ekrana bastırdık 
+
+bu dersimizde dictionary dediğimiz yani python daki sözlükler konusunu öğrenelim 
+
+bu konu listeler ile benzerlik gösterir ama farklı olduğu noktalar da vardır sözlüklerin 
+
+my_dictionary = {"key":"value"} şeklinde çalıştırırsak key = anahtar value = değer çiftlisi içeren my_dictionary isimli bir sözlük oluşturduk 
+
+my_dictionary["key"] çalıştırırsak 'value' çıktısını alırız 
+
+my_dictionary["value"] çalıştırırsak da 
+
+---------------------------------------------------------------------------
+KeyError                                  Traceback (most recent call last)
+<ipython-input-6-ebd79b0948c3> in <module>
+----> 1 my_dictionary["value"]
+
+KeyError: 'value' 
+
+hatasını alırız bu da python da bir sözlüğün değerini çağırıp; o değerin key ini çıktı olarak almak istediğimizde hata aldığımızı / python un buna izin vermediğini görüyoruz 
+
+örneğin hangi sporun kaç kalori yaktığı ile alakalı bir örnek yapmak istersek ve ilgili sporun kaç kalori yaptığının çıktısını almak istersek 
+bunu sözlüklerle basit bir şekilde yapabilriz listelerle de bu çıktıyı alabiliri ancak bu biraz uğraştırıcı olur listeler ile nasıl yapılır 
+bunu bir örnekte görelim
+
+my_list = [100,200]
+my_list2=["yüzme","koşma"]
+my_list[0]
+
+çalıştırırsak yüzmenin yani 100 çıktıısnı 
+
+my_list = [100,200]
+my_list2=["yüzme","koşma"]
+my_list[1]
+
+
+çalıştırırsak da koşmanın yani 200 çıktısını alırız 
+
+şimdi de bu örneği dictionary kullanarak gerçekleştirelim 
+
+my_fitness_dictionary = {"run":100,"swim":200}
+my_fitness_dictionary["run"]
+
+çalıştırdığımızda 100 çıktısını alırız yani run ın value sini 
+
+aynı şekilde
+
+
+my_fitness_dictionary = {"run":100,"swim":200}
+my_fitness_dictionary["swim"] 
+
+çalıştırırsak da 300 çıktıısnı alırız 
+
+bu anahtar-değer çiftine ingilizce key-value pairing denir; yani bir anahtar kelime ile bir değeri birleştireceksek, bir anahtar kelimeye 
+bir değer atayacaksak, kısacası birbiriyle ilişkili şeyleri aynı yerde tutmak istersek dictionary i kullanabiliriz 
+
+bunun dictionary olmasının sebebi sözlüklerde bilgiler 
+
+kelime - keliminin anlamı şeklinde bir formata sahip olduğu için bu kelimeyi kullanmışlar 
+
+listelerde olan / kullanılabilen bütün özellikler sözlükler için de geçelridir 
+
+
+
+my_dictionary2 = {"key1":1,"key2":2,"key3":"apple"}
+my_dictionary2["key3"]
+
+şeklinde çalıştırdığımızda 'apple' çıktısı alırız bu da bir sözlükte key value eklemeye örneğin value si integer bir sayı şeklinde oluşturmaya 
+başladıysak bunu baka bir key-value çifti için value kısmında string verebilidğimiz anlamına geliyor (peki float ve diğer veri tiplerini de value olarak 
+verebiliyor muyuz bir de key i integer veya başka veri tipi ile oluşturabilir miyiz? araştır buraya yaz)
+
+my_dictionary3 = {20:30}
+my_dictionary3[20]
+
+çalıştırdığımızda 30 çıktısını alırız bu da key in integer bir veri tipi olabileceği anlamına gelir 
+
+
+my_dictionary4 = {"key1":100,"key2":[10,20,30],"key3":{"a":5}}
+my_dictionary4["key2"]
+
+çalıştırdığımızda [10, 20, 30] çıktısını alırız bu da bir dictionary içerisinde bir liste kullanabildiğimiz anlamına geliyor 
+
+my_dictionary4 = {"key1":100,"key2":[10,20,30],"key3":{"a":5}}
+my_dictionary4["key3"]
+
+çalıştırdığımızda 
+
+{'a': 5}
+
+çıktısını alırız bu da bir dictionary içeriisnde bir dictionary daha kullanabiliyoruz anlamına gelir (a keyini verip bu key in valuesini ekrana nasıl bastırabiliriz?)
+
+
+
+my_dictionary4 = {"key1":100,"key2":[10,20,30],"key3":{"a":5}}
+my_dictionary4
+
+çalıştırırsak {'key1': 100, 'key2': [10, 20, 30], 'key3': {'a': 5}} çıktıısnı alırız yani ilgili bir sözlüğün içeirisndeki bütün key-value değerlerini görebiliriz 
+
+örneğin internetten bir dictionary indirdik ve bu sözlükteki key leri göremiyoruz bunun için ne yapabiliriz ? 
+
+my_dictionary4.keys() çalıştırırsak 
+
+
+dict_keys(['key1', 'key2', 'key3']) çıktısını alırız yani iligli sözlüğün içeriisndeki bütün keyleri bu şekilde ekrana bastırabiliriz 
+
+my_dictionary4.values() çalıştırırsak da 
+
+dict_values([100, [10, 20, 30], {'a': 5}])
+
+ilgili sözlüğün içeriisndeki valueleri ekrana bastırabiliriz burada a elemanı hem value dir (neyin valuesidir yani bu a kelimesinin key i nedir 
+araştır buraya yaz) hem de 5 değeriviv -valuesinin- key idir 
+
+my_dictionary4["key3"]["a"] çalıştırırsak 5 çıktısını alabilriz yani bir sözlük içeirsindeki bir sözlüğün valuesine ulaşmak için bu şekilde 
+kademe kademe keyleri vererek ilgili değere ulaşabiliriz [peki bir sözlüğün içeriisndeki sözlüğüin içeriisnde bir sözlük oluşturaibliyor muyuz]
+
+ 
+
+my_dictionary = {"k1":1,"k2":2}
+my_dictionary["k1"] = 3 
+my_dictionary
+
+şeklinde çalıştırırsak {'k1': 3, 'k2': 2} çıktısını alırız bu da bir sözlük içeriisndeki bir key in valuesi dahasonra değiştirilebilir anlamına gelir 
+
+peki mevcut bir sözlüğe bir key-value çifti eklemek istersek bunu nasıl yapabiliriz ? 
+
+
+
+my_dictionary = {"k1":1,"k2":2}
+my_dictionary["k3"] = 7
+my_dictionary
+
+çalıştırdığımızda {'k1': 1, 'k2': 2, 'k3': 7} çıktısını alırız yani bir sözlükte mecut olmayan bir key e bir değer atarsak python bizim için ilgili sözlüğe 
+varolmayan bu key-value yu oluşturup kaydedecektir 
+
+
+
+bu dersimizde pythondaki set / sets ve farklı oluşturma yöntemleri konusunu öğrenelim 
+
+set, aslında listeler gibi dictionary ler gibi farklı veri tiplerini içine koyabildiğimiz bir sınıf (sınıftan kastı ne neden bu kelime kullanılmış set i tanımlamak için araştır buraya yaz)
+
+fakat burada yani set lerde aynı elemandan birden fazla olamaz yani; 
+
+örneğin bir liste oluştururken 
+
+my_list = [1,2,3,1]
+my_list
+
+çalıştırdığımızda [1, 2, 3, 1] çıktıısnı alırız yani bir liste içeriisnde birdne fazla defa tekrar eden bir eleman oluşturabiliriz 
+
+int(str) şeklinde bir string veriyi integer yapma işlemine pythonda casting denir 
+
+my_set = set(my_list)
+my_set
+
+çalıştırdığımızda {1, 2, 3} çıktısını alırız (peki neden süslü parantez içerisinde geldi araştır buraya yaz)
+
+ve gördüğümüz gibi set içeriisnde bir eleman birden fazla defa tekrar etmeyeceği için my_set i yazdırdığımızda {1, 2, 3} çıktısını alırız 
+
+my_list = [1,2,3,4,2,1,1,5,6,7,6,5,2,7]
+my_set = set(my_list)
+my_set
+
+
+çalıştırdığımızda yine aynı şekilde 
+
+{1, 2, 3, 4, 5, 6, 7} çıktısını alırız 
+
+my_list = [9,8,7,9,8,6,5,7,4,6,5,8,9,2,4]
+my_set = set(my_list)
+my_set
+
+
+şeklinde büüykten küçüğe birden fazla tekrar edecek şekilde çalıştırıldığında da 
+
+{2, 4, 5, 6, 7, 8, 9} çıktısını alırız yani set oluşturulduğu zaman default olarak (her zaman da böyle mi arşatır buraya yaz) çıktı küçükten 
+büyüğe doğru gidecek bir şekilde yazdırılır 
+
+type(my_set) çalıştırırsak da ilgili değişkenin set veri tipinde olduğunu set çıktısını alarak görebiliriz 
+
+peki bir set te sadece integer değerler mi olabilir bununla ilgili bir örnek yapalım ? 
+
+my_set = {"a","b","c"}
+my_set
+
+çalıştırdığımızda {'a', 'b', 'c'} çıktısını alırız 
+
+bu da setler içerisinde string değerler de kullanabildiğimiz anlamına gelir 
+
+
+my_set = {"b","a","c","a"}
+my_set
+
+çalıştırdığımızda 
+
+{'a', 'b', 'c'}
+
+çıktıısnı alırız bu da int de olduğu gibi stringlerde de aynı ifadeden birden fazla olduğu zaman bu ifadeden sadece bir tanesini alıyor ve 
+oluşturulan setteki verileri alfabetik olarak yazdırıyor / set e kaydediyor peki hem int hem string olursa önce int mi yazdırılır elemanlarda 
+yoksa string mi yani "a" mı önce gelir yoksa 1 mi bunu araştır buraya yaz 
+
+my_list = []
+my_list
+
+şeklinde çalıştırırsak  
+
+[] çıktısını alırız bu şekilde boş bir liste oluşturabiliriz 
+
+my_list = 
+
+çalıştırırsak 
+
+  File "<ipython-input-4-27ee9ecfd029>", line 1
+    my_list =
+              ^
+SyntaxError: invalid syntax
+
+
+çıktısını alırız 
+
+my_list = []
+my_list.append(1)
+my_list
+
+çalıştırarak oluşturduğumuz boş bir listeye eleman ekleyebiliriz alacağımız çıktı da 
+
+[1] olacaktır 
+
+type(my_set) çalıştırırsak 
+
+dict çıktısını alırız gördüğümüz gibi bu şekilde oluşturduğumuzda set oluşturmuş olmuyoruz sözlk oluşturmuş oluyoruz 
+
+my_set = set()
+type(my_set) çalıştırarak boş bir set oluşturabiliriz 
+
+my_set = set()
+my_set
+
+çalıştırırsak 
+
+set() çıktısı alırız peki nedne my_set{} çıktısını almadık bunu araştırıp buraya yaz
+
+
+my_set.add(1)
+my_set
+
+çalıştırırsak 
+
+{1} çıktısını alırız bu şekilde boş bir set e bir eleman atayabiliriz 
+
+my_set.add(2)
+my_set
+
+çalıştırırsak {1, 2} çktısını alırız 
+
+my_set.add(1)
+my_set
+
+tekrar bunu çalıştırırsak 
+
+{1, 2} çıktısını alırız 
+
+
+my_dict = dict() çalıştırarak yeni bir sözlük oluşturabiliriz 
+
+my_dict ["key1"] = 1 
+my_dict 
+
+çalıştırırsak 
+
+{'key': 1} çıktısını alırız 
+
+my_list = list()
+my_list.append("a")
+my_list
+
+çalıştırarak aynı işlemi listeler için de uygulayabiliriz ve ['a'] çıktısı alırız 
+
+
+my_list.append([1,2])
+my_list
+
+çalıştırırsak da ['a', [1, 2]] çıktısını alırız 
+
+
+
+
+bu dersimizde python daki tuple konusunu öğrenelim 
+
+my_tuple = ("a",1,"c")
+my_tuple[0] = "b" 
+
+çalıştırarak önce bir tuple oluşturup içerisine bazı değerler atadık daha sonra bu tuple ımızın 0. indexindeki elemanı değiştirmek istediğimiz 
+zaman 
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-2-1af322f1c280> in <module>
+      1 my_tuple = ("a",1,"c")
+----> 2 my_tuple[0] = "b"
+
+TypeError: 'tuple' object does not support item assignment
+
+çıktısını alırız bu da tuple a bir değer atadıktan sonra ilgili değerlerden birini / elemanlardan birini dğeiştirmek istediğimiz zaman python 
+buna izin vermiyor 
+
+peki my_tuple isimli tuple ımıza bir eleman ekleyebiliyor veya çıkarabiliyor muyuz ? bunu araştır buraya yaz 
+
+yani tuple, immutable bir kavramdır 
+
+tuple ın kullanım alanları örneğin bir programda bazı veriler bize tuple içerisinde veriliyor olabilir bunun sebbei programın ilgili verilerin 
+değiştirilmesini istememesinden dolayıdır -peki neden değişitirlmesini istemesin değiştirilmemesi gerekiyorsa değiştiirlmez zaten bunun tam mantığını 
+anlamadım burada bir güvenlik zaafiyeti gibi vs bir şey mi var neden tuple kullanılır avantajları ve dezavantajları nedir araştır buraya yaz
+
+
+my_tuple.count("a") çalıştırdığımızda 1 çıktıısnı alırız bu özellik ile my_tuple içerisinde "a" elemanından / ifadesinden kaç adet geçtiğini 
+bulabiliriz 
+
+
+
+my_tuple2 = (1,1,1,2,"a","c")
+my_tuple2.count(1) çalıştırdığımızda 
+
+3 çıktıısnı alırız 
+
+
+my_tuple2 = (1,1,1,2,"a","c")
+my_tuple2.index("a")
+
+çalıştırırsak ilgili elemanımızın index numarasını ekrana bastırır biz 4 çıktısını alırız 
+
+my_tuple2 = (1,1,1,2,"a","c")
+my_tuple2.index(1)
+
+çalıştırsaydık 0 çıktısını alırdık bu da eğer bir tuple içeriisnde birden fazla aynı elemandan varsa ve index özelliği kullanarak bu elemanın 
+index numarasını ekrana bastırmak istediğimizde index numarası en küçük olanın index numarası ekrana bastırılır 
+
+bu dersimizde boolean veri tipni öğrenelim 
+
+boolean veri tipi en basit tabirler, True ya da False cevabını döndüren bir operatördür 
+
+True çalıştırdığımız zaman True çıktısını (dikkat edersek çıktıyı 'True' şeklinde değil True şeklinde aldık bunun sbeebini araştır buraya yaz)
+
+False çalıştırdığımızda da False çıktısını alırız 
+
+Programalmada genelde bir karşılaştırma yapıyorsak ya da if kontrolleri yani eğer kontrolleri gibi örneğin 
+
+"x olursa y'yi yap" gibi işlemleri yaparken bize çok yardımcı olur 
+
+örneğin bilgisayarın x/y/z dizininde w isimli bir dosya varsa şunu / bunu yap gibi yani o dizinde bir dosya varsa = True ise diyerek bu işlemde 
+boolean kullanabiliriz 
+
+veya ip adresi 154.543.212 ise yani True ise şu şu işlemleri yap derken kullanabiliriz 
+
+
+5 > 3 çalıştırırsak True çıktısını alırız 
+
+3 > 4 çalıştırırsak False çıktısını alırız 
+
+> işareti büyüktür anlamına gelir < işareti küçüktür anlamına gelir == işareti eşittir anlamına gelir 
+
+
+x = 5 
+y = input("y: ")
+
+çalıştırdığımızda x isimli bir dğeişken oluşturup bu değişkene 5 değerini atadık daha sonra 
+
+y isimli bir değişken oluşturup, bu değişkene atanacak değer olarak kullanıcıya bir input (girdi kutusu) çıkartarak buraya gireceği 
+değeri y nin değeri olarak atadık 
+
+örneğin bu değer 3 olsun 
+
+ancak bu 3 değeri str olduğu için (çünkü inputa girilen değer " " karakterleri içinde çalıştırılacak) bu değeri önce 
+
+y_int = int(y) çalıştırarak bir integer değere dönüştürelim 
+
+daha sonra y_int > x çalıştırırsak 4 sayısı 5 sayısından büyük olmadığı için False çıktısı alırız 
+
+<--------------------------------------- SINAV 1 ----------------------------------------------------------------------------------->
+
+Soru 1 : 
+
+Aşağıdaki stirngin 5. harfini my_letter isimli bir değişkene atayın. 
+
+my_string = "James Hetfield" 
+
+Cevap: my_string[4] çalıştırıyoruz ve 's' çıktısını alıyoruz 
+
+Soru 2 : 
+
+Aşağıdaki string in 5. ve 8. karakterleri arasındaki tüm harflerini yazdırın (5 ve 8 dahil)
+
+my_new_string = "QuentinTarantino"
+
+Cevap : my_new_string[4:8] çalıştırıyoruz aldığımız çıktı da 'tinT' 
+
+Soru 3: Aşağıdaki string i kod ile tersten yazın. 
+
+my_last_string = "Afyonkarahisarlılaştıramadıklarımızdanmısınız"
+
+cevap : my_last_string[::-1] çalıştırıyoruz ve 'zınısımnadzımıralkıdamarıtşalılrasiharaknoyfA' çıktıısnı alıyoruz 
+
+INTEGER & FLOAT KISMI 
+
+Soru 1: 
+
+Aşağıdaki işlemin sonucu hangi veri tipinde olacaktır -çıktı / sonuç verisi hangi veri tipine sahip olacaktır / çıktının sonucun veri tipi nedir? 
+
+3 + 10.2 + 50 
+
+cevap : 
+
+number = 3 + 10.2 + 50 
+type(number)
+
+çalıştırırsak float çıktısını alırız çünkü bu işlemin toplamı 63.2 yapacaktır bu sayı da float bir sayıdır 
+
+Soru 2 :
+
+Aşağıdaki işlemin sonucu kaçtır ? 
+
+5 + 8 * 12 
+
+cevap: 5+ 8 * 12 çalıştırıyoruz ve 101 çıktısını alıyoruz (önce çarpma işlemi sonra toplama işlemi yapılır)
+
+
+LİST & DİCTİONARY & SET 
+
+soru 1 : 
+
+Bu listeyi 3 farklı yoldan oluşturunuz 
+
+LİSTEMİZ ------>  [1,2,"a"]
+
+cevap: 
+
+Birinci yolu : 
+
+my_list_1 = [1,2,"a"] çalıştırarak oluşturabiliriz 
+
+İkinci yolu: 
+
+my_list_2 = []
+my_list_2.append(1)
+my_list_2.append(2)
+my_list_2.append("a")
+my_list_2 
+
+çalıştırırsak [1,2,'a'] çıktısını alırız 
+
+Üçüncü yol: 
+
+my_list_3 = list()
+my_list_3.append(1)
+my_list_3.append(2)
+my_list_3.append("a")
+my_list_3 
+
+çalıştırırsak [1,2,'a'] çıktısını alırız 
+
+
+soru 2 : 
+
+Aşağıdaki "a" yı tek seferde alınız. 
+
+my_list = [1,4,[2,3,"a]]
+
+cevap : my_list[2][2] çalıştırırsak 'a' çıktısını alırız 
+
+
+Soru 3: 
+
+Aşağıdaki "b" yi tek satırda alınız. 
+
+my_dictionary = {"k1":2, "kk":[4,{"kkk":"b"}]}
+
+cevap: 
+
+my_dictionary["kk"][1]["kkkk"] çalıştırırsak 'b' çıktısını alırız 
+
+(b, kkk nın değeridir; kkk da kk nın değeridir bu yüzden önce kkk değerini almak için "kk" yazdık ancak kkk bir listenin içerisinde olduğu için 
+kkk ya ulaşmak için bir index numarası vermemiz gerekiyor kkk da içinde bulunduğu listenin 1. indexinde olduğu için [1] yaxdık daha sonra 
+son sözlüğümüze geldik burada b değerine ulaşmak için son olarak "kkk" yazdık çünkü b, kkk nın valuesidir)
+
+soru 4 :
+
+Aşağıdaki listeyi set e çevirirsek hangi değerler kalır / yeni oluşan set in içerisindeki değerler / elemanları ne olur ? 
+
+my_list_to_be_set = [11,12,22,33,11,22,45,32,21,22,33,45]
+
+cevap : 
+
+my_new_set = set(my_list_to_be_set)
+
+yeni bir değişken oluşturarak my_list_to_be_set içeirisndeki elemanları set e çevirerek yeni değişkene değer olarak atadık daha sonra 
+
+my_new_set koumtuyla, yeni set i bastırdık ve {11, 12, 21, 22, 32, 33, 45} çıktısını aldık 
+
+
+BOOLEAN SORULAR 
+
+Soru 1 : 
+
+Aşağıdaki ifadenin sonucu ne olur ? 
+
+x = 40 * 5 + 3 
+
+y = 208 - 2 * 4 
+
+ifademiz ise x>y ? 
+
+x in değeri x = 203 olur  y in değeri y = 200 olur 
+
+x > y çalıştırırsak da True çıktıısnı alırız 
+
+cevap : True 
+
+soru 2 : 
+
+Aşağıdaki ifadenin sonucu ne olur ? 
+
+a = 40 * (4 - 2)
+
+b = 80 - 2 * -5
+
+a in değeri a = 80 olur  b in değeri b = 90 olur 
+
+ifademiz a > b ? 
+
+cevap : False 
+
+Bu dersimizde python programlama dilinde sıklıkla kullanılan Kontroller ve Döngüler konusunu öğrenmeye başlayalım. 
+
+comparison = karşılaştırma demektir 
+
+x = 5 
+y = 4 
+x >= y 
+
+çalıştırırsak True çıktısını alırız bu şu anlama gelir x değişkeninin değeri yani 5, y nin değeri olan 4 den büyüktür veya eşittir 
+burada veya yani or mantığı kullanılır büyük veya eşit olduğu durumlardan bir tanesi sağlanırsa True çıktısı alırız 5, 4 den büüyk olduğu için 
+True çıktısını aldık 
+
+x >=5 çalıştırırsak bu sefer ikinci koşul sağlandığı için yine True çıktısını aldık 
+
+x >= 5.0 çalıştırırsak yine True çıktısını alırız 
+
+
+x = "selam"
+y = 4 
+x >= y 
+
+çalıştırırsak 
+
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-2-bf250590c907> in <module>
+      1 x = "selam"
+      2 y = 4
+----> 3 x >= y
+
+TypeError: '>=' not supported between instances of 'str' and 'int'
+
+hatasını alırız çünkü bir int ve bir str veri tipi birbirleriyle karşılaştırılamazlar 
+
+
+
+x = "5"
+y = 4 
+x >= y 
+
+çalıştırırsak yine aynı çıktıyı alırız 
+
+x>5.1 çalıştırırsak False çıktısını alırız 
+
+x = y çalıştırdığımızda; x, y nin değerine eşit mi demiş olmayız aksine; x in değeri olan 5 i, y nin değeri olan 4'e dönüştürürürz / değiştiririz 
+
+x = 5
+y = 4 
+x = y 
+x
+
+çalıştırdığımızda 4 çıktısını alırız 
+
+
+
+x = 5
+y = 4 
+x == y 
+
+çalıştırırsak x, değeri ile y değeri birbirine eşit mi karşılaştırması yaparız ve eşit olmadığı için False çıktısını alırız 
+
+
+
+x = 5
+y = 4 
+x != y 
+
+
+çalıştırırsak da bu sefer x in değerinin y nin değerine eşit değil mi sorusunu sorarak karşılaştırırız eğer eşit değilse True çıktıısnı alırız 
+eşitse False çıktısını alırız 
+
+True çıktısını aldık çünkü x ve y birbirine eşit değilidir 
+
+2 > 1 and 3 > 2
+
+çalıştırdığımızda True çıktısını alırız çünkü burada and / ve operatörünü kullandık ve 2 koşul da doğru ise bize True çıktısını verdi 
+
+2 sayısı 1 sayısından; 3 sayısı da 2 sayısından büyük olduğu için 2 koşul da sağlanmış oldu ve True çıktısını aldık 
+
+2 > 1 and 3 > 4
+
+çalıştırdığımızda False çıktısını alırız çünkü sağdaki koşul doğru değil yani 3 sayııs 4 sayısısndan büüyk olmadığı için and koulu sağlanmadı 
+
+ancak or operatöründe 2 veya kaç adet koşul kullanılıyorsa birinin doğru olduğu duurmlarda True çıktısı alınır 
+ve yalnızca eğer bütün koşullar doğru değilse / yani sağlanmıyorsa False çıktısını alırız 
+
+(and ve or operetörlerinde 2 den fazla koşul yazılabiliyor mu bunu dene buraya yaz)
+
+2 > 1 or 4 > 5
+
+çalıştırdığımızda True çıktısını alırız 
+
+1 > 10 or 4 > 5 çalıştırdığımızda False çıktısını alırız 
+
+not 10 == 10 çalıştırdığımızda da  False çıktısını alırız çünkü not operatörünün görevi True olan bir koşulun zıttı bir değer ekrana bastırmasıdır 
+bu sonucu False olan bir işlem / süreç için de geçerlidir örneğin; 
+
+not 100 < 1 çalıştırdığımızda True çıktısını alırız 
+
+Bu dersimizde If kontrollerini öğrenelim (ingilizce kullanımı If Statements dır)
+
+if kontrolü eğer x, işlemi olursa y yi yap demektir 
+
+
+if 3 > 2:
+    print("3 is greater than 2") çalıştırdığımızda 
+
+    3 is greater than 2 çıktısnı alırız buradaki if 3 > 2: ifadesi, eğer yani -if- 3 sayısı 2 sayısından büyükse aşağıya geç / aşağıdaki kondları çalıştırablirsin 
+    bir alt satıra inebilirsin diyoruz; ve üç, iki den büüyk olduğu için bir aşağıdaki satıra geçiyor (if kullandıktan sonra entera basarak bir alt satıra 
+    geçtiğimizde belli bir girinti yani satır boşluğu bırakılıyor bunun sebebi python kodları bu boşluklara göre çalıştırıyor, boşluğun sebebini 
+    tam anlamadım araştır buraya yaz ve neden if kullanılan  satırın en sonuna : -iki nokta üst üste karakteri kullanılıyor bunun sebebi,mantığı
+    nedir araştır buraya yaz)
+
+    if kontrolünü sonlandırmadığımız sürece her biir yeni satıra geçtiğimizde girintili bir şekilde başlarız 
+
+    if 3 > 2:
+    print("3 is greater than 2")
+    print("atil samancioğlu")
+
+    çalıştırırsak 
+
+3 is greater than 2
+atil samancioğlu 
+
+çıktısını alırız 
+
+x = 5 
+y = 4 
+if x>y:
+    print("x is greater")
+
+    çalıştırdığımızda x is greater çıktısını alırız 
+
+    peki ya programımızda ki koşul if i sağlamıyorsa yani örneğin 
+
+x = 4 
+y = 5 
+if x>y:
+    print("x is greater")
+
+    çalıştırmak istiyorsak nasıl bir çıktıs alırız ? 
+
+cevap: hiç bir çıktı almayız. peki, biz if in sağlanmadığı koşulda başka bir işlem gerçekleştirmek istiyoruz örneğin bu örneğimiz üzerinden 
+gidersek x, y nin değerinden büüykse x daha büyüktür diye bastırdık peki ya y nin değeri büüykse ekrana y daha büüyktür diye nasıl bastırabiliriz 
+
+x = 4 
+y = 5 
+if x>y:
+    print("x is greater")
+else:
+    print("y is greater")
+
+    çalıştırdığımızda y is greater çıktısını alırız çünkü if koşulu sağlanmadı bunun için otomatik olarak else kontrolüne geçildi 
+    aslında else e bir kontrol demek çok doğru olmaz çünkü if sağlanmadığ için her halükarda else in altındaki kod bloğu çalışacaktı 
+
+    bu yüzden ekrana y is greater çıktısı verildi ancak şöyle komik bir durum var ki eğer x ve y eşit olsaydı yine ekrana y is greater çıktısı 
+    yazdırılacaktı (: 
+
+    else de, de if de olduğu gibi ilgili koşul sonlanana kadar bütün satırlar girintili şekilde başlar 
+
+    x = 4 
+y = 5 
+if x>y:
+    print("x is greater")
+else:
+    print("y is greater")
+    print("maybe or not (:")
+
+    çalıştırdığımızda 
+
+y is greater
+maybe or not (:
+
+çıktısını alırız yine if de olduğu gibi else in sonunda da : iki nokta üst üste karakteri var 
+
+peki x == y olduğu durumlarda ne tür bir algoritma yazaibliriz buna bakalım 
+
+x = 5 
+y = 5 
+if x>y:
+    print("x is greater")
+elif x==y:
+    print("x is y")
+else:
+    print("y is greater")
+    print("maybe or not (:")
+
+    çalıştırırsak 
+
+    x is y çıktısını alırız çünkü x ve y birbirine eşitler 
+
+    programlarımızda elif kontrollerini istediğimiz kadar yazabiliriz / istediğimiz sayıda kullanabiliriz 
+
+    (peki if ve else leri de istediğmiz sayıda kullanabilir miyiz kod bloklarımızda? / yani aynı kod bloğu içerisinde 1 den fazla if ve else kullanabilir miyiz 
+    araştır buraya yaz)
+
+    şimdi de elif lerin birden fazla kullanabildiğimiz bir uygulama yapalım örneğin bu uygulamada da kullanıcıdan en sevdiği süper kahramanı bir inputun 
+    içerisine girdi olarak girmesini istedik 
+
+    my_superhero = input("superhero: ") 
+if my_superhero == "Batman":
+    print("Batmaaan")
+elif my_superhero == "Superman":
+    print("Supermaan")
+elif my_superhero == "Ironman":
+    print("Ironmaan")
+else: 
+    print(":(")
+
+    çalıştırdıktan sonra çıtkı olarak karşımıza superhero: input/girdi-alanı 
+
+    şeklinde bir input çıkacak ve biz Buraya Batman, Superman, Ironman verilerinden birini girersek sırayla hangisini girdiysek 
+
+    Batmaan Supermaan Ironmaan şeklinde bir çıktı alacağız bunların haricinde bir veri girerske de :( çıktısını alırız)
+
+   and ve or mantıksal operatörlerdir (not da bir mantıksal operaötr müdür arşatır buraya yaz)
+
+a = 10 
+b = 15 
+c = 20 
+if a > b or b < c:
+    print("superman")
+
+    çalıştırdığımızda superman çıktısını alırız çünkü burada a nın b den büüyk olduu durumda VEYA b nin c den küçük olduğu durumlardan birisi 
+    gerçekleşiyorsa ekrana superman yazdır dedik 
+
+    a = 10 
+b = 15 
+c = 20 
+if a > b or b < c:
+    print("superman")
+elif a < b and b > c:
+    print("batman")
+
+    şeklinde çalıştırırsak yine superman çıktısını aldık çünkü if koşulu sağlandıktan sonra dieğr kontrol mekanizmaları durur bu sadece iş için geçerli 
+    değil bir kontrolde bir şart / kontrol sağlandıktan sonra aşağıdaki kontrollere bakılmaz 
+
+    ama sağlanmadığı durumda eğer elif okntrolü sağlanırsa batman yazdırılabilirdi tabii eğer elif in içeriisndeki şartlar sağlanırsa 
+
+    elif in şartları sağlanmazsa ve doğal olarak if in de şartı sağlanmadığı bir koşulda eğer else operatörü kullanılmadıysa çıktı olarak 
+    hiç bir veri almaz mıyız bunu araştır buraya yaz 
+
+    isDead=False
+if isDead==False:
+    print("character is not dead")
+    
+    çalıştırarak isDead (Yani o, [karakter] ölü mü ismind bir dğeişken oluşturuyoruz) eğer ölü mü ? = değil / false ise ekrana character is not dead yazısını bastırıyoruz 
+
+    ve bunu çalıştırırsak da çıktı olarak character is not dead
+
+    isDead=False
+if isDead==False:
+    print("character is not dead")
+else:
+    print("character is dead")
+
+    şeklinde yazarak da ölü olduğu durumla ilgili bir durum belirtebiliriz 
+
+    son iki örnekte de kontrolleri bolean veri tüpleriyle beraber kullanmış olduk 
+
+   yukarıdaki örnekte if isDead==False: şeklinde belirtmek yerine şu şekilde daha kolay ve kısa bir şekilde de yazabiliriz 
+
+   isDead = False çalıştırdıktan sonra 
+
+  if isDead:
+    print("character is dead")
+else:
+    print("character is not dead")
+
+    çalıştırırsak character is not dead çıktısını alırız (burada ilk print yani if işlemini isDead = True olduğu durumlarda else: 
+    kısmını da False olduğu durumlarda mı yazdırıyor bunu araştır buraya yaz bu yüzden ilk pirinte hangisini yazacağımız çok önemli 
+    isDead=False dedikten sonra ilk print e "character is not dead" yazarsak python bunu True olduğu için otomatik olarak atlayıp ikinci printi False 
+    durumunda yazdırılacak şey olarak değerlendirip karakter ölmemesine rağmen ekrana character is dead yazdırır)
+
+    if not isDead:
+    print("character is not dead")
+
+    çalıştırırsak 
+
+    character is not dead çıktısını alırız bunun sebebi not kendisinden sonra gelen boolean değeri tersine / zıttına çevirirdi 
+    isDead = False olduğu için ve if not isDead: çalıştırdığımızda sonucu True olan kısım çalıştırılacaüı yani hemen bir alt satırdaki Print 
+    çalıştırılacağı için ekrana character is not dead yazısı bastırıldı yani bir öncekiyle aynı mantık 
+
+    if not isDead:
+    print("character is not dead")
+    print("character is not dead")
+    print("character is not dead")
+    print("character is not dead")
+
+    çalıştırsaydık 
+
+character is not dead
+character is not dead
+character is not dead
+character is not dead
+
+çıktısını alırdık yani eğer if koşulu sağlandıysa koşul bitene kadar koşulun altındaki kodlar / satırlar çalıştırılır (sadece girintili olanlar)
+
+bu dersimizde if in daha önceki gördüğümüz kullanımlarından daha pratik ve güzel kullanımlarını öğrenelim; 
+
+
+
+my_string = "Hello World"
+if my_string == "Hello World":
+    print("equal")
+
+    çalıştırırsak 
+
+    equal çıktısını alırız 
+
+
+ancak 
+
+my_string = "hello World"
+if my_string == "Hello World":
+    print("equal")
+
+çalıştırsaydık hiç bir çıktı almazdık çünkü == karakteri eğer iki stringi birbirleriyle eş mi değil mi karşılaştırıyorsak büyük-küçük harf 
+hassasiyetine sahiptir
+
+örneğin biz bir değişkenin içindeki çook uzuun bir stringin içerisinde hello kelimesi geçiyor mu, bunu öğrenmek istiyoruz 
+
+my_string="flfksşlsdjgşlsdkfhellofkldkdşlfksşlkf"
+if "hello" in my_string:
+    print("true")
+
+    çalıştırıyoruz ve true çıktısını alıyoruz burada if "hello" diyerek (eğer hello stringi varsa) -nerede?- in my_string (my_string değişkeninin içerisinde)
+    -ne yap?- 
+
+    print("true") yani ekrana true yazısını yazdır 
+
+
+
+    my_string="flfksşlsdjgşlsdkfhellofkldkdşlfksşlkf"
+if "Hello" in my_string:
+    print("true")
+else:
+    print("false")
+
+    çalıştırsaydık false çıktısını alırdık çünkü aradığımız stringi büyük harfle yazdık 
+
+  my_list = [1,2,3,4,5]
+if 2 in my_list:
+    print("true")
+else:
+    print("false")
+
+    çalıştırarak listeler içerisinde de arama faaliyeti yapabiliriz ve true çıktısını alırız 
+
+    (peki bir listenin içerisinde geçen bir stringi arayabilir miyiz o stringin listenin içerisinde olduğu ve olmadığı durumlarda 
+    python bize nasıl bir çıktı verir ve yine aynı şekilde boolean ve float verileri de liste içerisinde bu şekilde arayabilir miyiz bunları 
+    araştır buraya yaz)
+
+
+my_dictionary = {"k1":100, "k2":200, "k3":300}
+if 100 in my_dictionary.keys():
+    print("true")
+else:
+    print("false")
+
+    çalıştırdığığmızda false çıktıısnı alırız çümkü .keys yani my_dictionar sözlüğümüzün anahtar isimlerinde 100 sayısı var mı ? 
+    anlamında bir arama yaptık bütün key ler de string olduğu için 100 yoktur olmadığı için de false çıktısını aldık 
+
+
+
+    my_dictionary = {"k1":100, "k2":200, "k3":300}
+if 100 in my_dictionary:
+    print("true")
+else:
+    print("false")
+
+    çalıştırdığımızda da false çıktıısnı aldık bu şekilde çalıştırdığımızda biz .keys yazmasak bile otomatik olarak key isimleri içerisinde mi 
+    100 sayıısnı arıyor bunu araştır buraya yaz 
+
+    my_dictionary = {"k1":100, "k2":200, "k3":300}
+if "k1" in my_dictionary.keys():
+    print("true")
+else:
+    print("false")
+
+    çalıştırdığımızda true çıktısını aldık 
+
+
+    my_dictionary = {"k1":100, "k2":200, "k3":300}
+if 100 in my_dictionary.values():
+    print("true")
+else:
+    print("false")
+
+    çalıştırdığımızda da  true çıktısını alırız çünkü .values (değerler) içerisinde aradık 
+
+
+
+    bu dersimizde pythondaki for loop yani for döngüsü dneilen bir kavramı öğrenelim 
+
+    for döngü demek kısaca ilgili değişkenin içerisindeki her bir elemanın tek tek ele aldığımız ve bu her bir eleman için bir işlem yaptığmız 
+    bir süreçtir. 
+
+    my_list = [1,2,3,4,5]
+for number in my_list:
+    print("atil samancioglu")
+
+    bit liste oluşturduk ve içerisine bazı değişkenler atadık daha sonra for number my_list: diyerek bir for döngüsü oluşturduk 
+    my_list in içerisindeki bütün elemanları number isimli bir değişkene atadık (number da ilgili değerler atandıktan sonra bir liste mi olur yoksa 
+    set,dictionary vb gibi bir şey mi olur ? bunu araştır buraya yaz) 
+
+    ve artık her bir eleman için bir işlem yapılacak yapılacak işlem de print("atil samancioglu") işlemidir peki alacağımız çıktı nedir ? 
+
+atil samancioglu
+atil samancioglu
+atil samancioglu
+atil samancioglu
+atil samancioglu
+
+çıktısını alırız çünkü for döngüsü her bir eleman için bir print("atil samancioglu") işlemi yapana kadar döngüyü sonlandırmadı 
+sonuncu eleman için print("atil samancioglu") yapıldıktan sonra göngü bitti ve çıktımızı aldık peki burada python my_list içeriisindeki elemanlara 
+bakarak mı işlem yaptı yoksa number isimli değişkenin içeriisndeki elemanlara bakarak mı işlem yaptık arkaplanda ? onu araştır buraya yaz 
+
+my_list = [1,2,3,4,5]
+for number in my_list:
+    print(number)
+
+    çalıştırırsak da 
+
+1
+2
+3
+4
+5
+
+çıktısını alırız 
+
+my_list = [1,2,3,4,5,"a"]
+for number in my_list:
+    print("atil samancioglu")
+
+    çalıştırırsak 
+
+atil samancioglu
+atil samancioglu
+atil samancioglu
+atil samancioglu
+atil samancioglu
+atil samancioglu
+
+çıktıısnı alırız yani bir string yazıldığı zaman bunu da bir eleman olarak sayarak 6 defa yazdırdı 
+
+
+my_list = [1,2,3,4,5]
+for item in my_list:
+    new_number = item * 5
+    print(new_number)
+    
+
+    çalıştırdığımızda 
+
+5
+10
+15
+20
+25
+
+çıktısını alırız 
+
+burada önce my_list iismli bir değişken oluşturarak içine 1 2 3 4 5 elemanlarını atadık daha sonra item isimli bir değişken oluşturduk 
+ve 1 2 3 4 5 değişkenini item ın içine aradık ve for döngümüzü başlattık daha sonra ise new_number isimli bir dğeişken oluşturarak bu değişkenin 
+içerisine item değişkeninin içindeki her bir elemanın 5 ile çarpımını new_number a eleman olarak atadık yani:
+
+new_number = 5,10,15,20,25 oldu ve daha sonra print ile new_number ı bastırdık tek merak ettiğim şey çıktıyı neden teker teker ve yukarıdan 
+aşağı hepsi bir satırda olacak şekilde aldık bunu araştır buraya yaz 
+
+
+my_list = [1,2,3,4,5]
+for number in my_list:
+    if number % 2 == 0: 
+        print(number)
+        
+
+        çalıştırdığımızda 
+
+2
+4
+
+çıkyısını alırız yani my_list içerisindeki çift sayıları bu şekilde ekrana bastırabiliriz 
+(burada for ile oluşturulan bir değişken, o değişken ile gerçekleştirilen yani o değişkene atanan değerlere göre mi değişkenin tipi değişir 
+yoksa for ile oluşturulan büütn dğeişkenlerin türü var mı? değişken türü diye bir şey var mı araştır buraya yaz)
+
+bir önceki dersimizde if kontrolü kullanarak bir değişkenin içerisinde istediğimiz bir integer sayı veya string ifadeyi aramıştık if ile yapılan 
+şekliyle bu arama yöntemi kolay ve kısa olanıdır 
+
+bu arama işlemini for döngüsü ile de gerçekleştirebiliriz bununla ilgili bir örnek yapalım 
+
+my_list = [1,2,3,4,5]
+for number in my_list:
+    if number == 2:
+        print("true")
+    
+
+    çalıştırdığımızda true çıktısını alırız yani önce my_list i oluşturduk bunun içine 1 2 3 4 5 değerlerini atadık daha sonra 
+    for ine number isimli bir değişken oluşturarak my_list deki elemanları number a değer / eleman oalrak atadık 
+    daha sonra number == 2: diyerek şunu kontrol ettik number değişkeninin içerisinde 2 diye bir eleman var mı ? olduğu için true çıktısını sldık 
+
+    buradan şunu anlıyoruz ki bir liste, içeriisndeki bütün elemanlarına eşdeğerdir !!! 
+
+    for döngüsü sadece listelerle değil diğer veri tipleri veya değişken türleriyle de kullanılabilir 
+
+    my_string = "James Hetfield"
+for letter in my_string:
+    print(letter)
+    
+        çalıştırdığımızda 
+
+J
+a
+m
+e
+s
+ 
+H
+e
+t
+f
+i
+e
+l
+d
+
+çıktısını alırız (bu for döngüsünün string ile kullanıldığı bir örnektir)
+
+şimdi de tuple lar ile ilgili bir örnek yapalım 
+
+
+my_tuple = (1,2,3)
+for item in my_tuple:
+    print(item)
+
+    çalıştırdığımızda 
+
+1
+2
+3
+
+çıktısını alırız 
+
+my_tuple = (1,2,3)
+for item in my_tuple:
+    print(item *5 -10)
+
+    çalıştırarak da my_tuple ın içerisindeki bütün elemanları önce 5 sayısı ile çarpıp daha sonra 10 eksiltip ekrana bastırabiliriz alt alta teker teker 
+
+-5
+0
+5
+
+for döngüsü kullanarak aldığımız çıktıların alt alta bastırılmasının sebebi ilgili eleman veya döngünün gerçekleşmesine kadar olan ki süreç 
+için her bir süreçte ilgili çıktının ekrana bastırılıp bir sonraki çıktıyı da yeni bir satırda bastırmasından dolayı mı bunu araştır buraya yaz
+
+
+bu dersimizde for döngüsü praitk kullanımlarını öğrenelim 
+
+my_new_list = [("a","b"),("c","d"),("e","f"),("g","h")]
+
+çalıştırarak içerisidne tuple lar bulunan bir liste oluşturabiliriz / oluşturuyoruz 
+
+my_new_list = [("a","b"),("c","d"),("e","f"),("g","h")]
+for element in my_new_list:
+    print(element)
+
+    çalıştırdığımızda 
+
+
+    
+('a', 'b')
+('c', 'd')
+('e', 'f')
+('g', 'h')
+
+çıktısını alırız 
+
+my_new_list = [("a","b"),("c","d"),("e","f"),("g","h")]
+for (x,y) in my_new_list:
+    print((x,y))
+
+    çalıştırırsak yine yukarıdaki çıktıyla aynı çıktıyı 
+
+('a', 'b')
+('c', 'd')
+('e', 'f')
+('g', 'h')
+
+alırız 
+
+my_new_list = [("a","b"),("c","d"),("e","f"),("g","h")]
+for x,y in my_new_list:
+    print((x,y))
+
+    şeklinde x ve y yi parantez içine koymadan da kodumuzu çalıştırabiliriz; alacağımız çıktı yine aynı olucaktır 
+
+('a', 'b')
+('c', 'd')
+('e', 'f')
+('g', 'h')
+
+
+my_new_list = [("a","b"),("c","d"),("e","f"),("g","h")]
+for x,y in my_new_list:
+    print(x,y)
+
+    şeklinde çalıştırısak 
+
+a b
+c d
+e f
+g h
+
+
+çıktı olarak sadece x leri veya y leri de alabiliriz örneğin ix leri alalım sadece
+
+
+my_new_list = [("a","b"),("c","d"),("e","f"),("g","h")]
+for x,y in my_new_list:
+    print(x)
+
+    çalıştırdığımızda 
+
+a
+c
+e
+g
+
+çıtkısını alırız yine sadece y leri bastırmak istersek print(y) çalıştırabiliriz 
+
+my_new_list = [("a","b"),("c","d"),("e","f"),("g","h")]
+for x,y in my_new_list:
+    print(x)
+    print(y)
+
+    çalıştırdığımızda  da 
+
+a
+b
+c
+d
+e
+f
+g
+h
+
+çıktısını alırız 
+
+şimdi de bir liste içerisinde 3 elemana sahip tuple lar ile ilgili bir uygulama yapalım 
+
+my_new_list = [(0,1,2),(3,4,5),(6,7,8)]
+for x,y,z in my_new_list:
+    print(z)
+
+    çalıştırdığımızda 
+
+2
+5
+8
+
+
+çıktısını alırız 
+
+my_dictionary = {"key1":100,"key2":200,"key3":300}
+my_dictionary.items()
+
+çalıştırdığımızda 
+
+dict_items([('key1', 100), ('key2', 200), ('key3', 300)]) çıktısını alırız yani değişkenin içerisindeki key-value ları 
+
+bir tuple olarak bize verdi 
+
+my_dictionary = {"key1":100,"key2":200,"key3":300}
+for key,value in my_dictionary.items():
+    print(key,value)
+
+    çalıştırırsak
+
+key1 100
+key2 200
+key3 300 
+
+çıktısını alabiliriz 
+
+bu dersimizde pythondaki, break, continue ve pass kelimelerinin ne anlama geldiğini ve bunların nasıl kullanılabildiğini öğrenelim.
+
+bu kavramları hem for döngüsünde hem de while döngüsünde kullanabiliriz.
+
+continue - devam etmek 
+
+break - kesmek, durmak, durdurmak 
+
+pass - pas geçmek, geçmek, devam etmek (bir şey yapmamak)
+
+anlamalarına gelirler. 
+ 
+
+şimdi bu üçünün döngülerle nasıl kullanıldıklarını görelim.
+
+ my_list = [10,20,30,40,50,60]
+for number in my_list:
+    if number==30:
+        break
+    print(number)
+
+    çalıştırdığımızda, normalde break yazmadan çalıştırsaydık; sırayla:
+
+    10
+    20
+    30
+    40
+    50
+    60
+
+    şeklinde çıktı alacaktık ancak burada if number==30: diyerek eğer döngüde sıra 30 elemanına / sayısına geldiği zaman yani loop / döngü 
+    bu eleman ile ilgili işlemi sırasında /aşamasında / sürecinde iken (bir alt satıra geçeriz ve)
+
+    break yap yani devam eden döngüyü durdur yani for döngüsünü durdur, kes, devam ettirme diyoruz ve 
+
+    20 çıktısına gelip 20 ekrana yazdırıldıktan sonra 30 elemanına geldiğimizde eleman if number==30 ve break komutunu gördükten sonra 
+    python döngümüzü durduruyor ve ekrana bastırılabilecek olan elemanları yazdırıyor biz de bu çıktıyı alıyoruz 
+
+
+peki 
+
+my_list = [10,20,30,40,50,60]
+for number in my_list:
+    if number==30:
+        break
+        print(number)
+
+        şeklinde çalıştırsaydık nasıl bir çıktı alırdık ? 
+
+        cevap: hiç bir çıktı almazdık çünkü eğer öyle alsaydık bu sefer print komutumuz if in hakimiyeti olduğu alanda olacaktı ona bağımlı / 
+        onun bir substringi / subscript i olacaktı ama if ile aynı hizada yazdığımızda if gibi bağımsız bir komut satırı oldu ve if şartı sağlanmadığı 
+        için print komutumuz ilk iki eleman için çalıştı 
+
+        peki ya 30 sayısına / elemanına gelince bu elemanı atlasın, bu eleman hakkında bir işlem yapmasın ve listedeki diğer elemanlar ile devam etsin 
+        istiyorsak nasıl bir komut yazabiliriz ?
+
+
+my_list = [10,20,30,40,50,60]
+for number in my_list:
+    if number==30:
+        continue
+    print(number)
+
+    çalıştırarak 
+
+10
+20
+40
+50
+60
+
+
+çıktısını alabiliriz burada da continue komutunu kullanarak 30 sayısına geldiğimizde bu elemanı hiç yokmuş gibi düşünüp sıradaki eleman ile devam 
+ederek 30 elemanı hariç bütün elemanları ekrana bastırıp döngümüzü tamamlayabiliriz 
+
+pass komutu da daha çok bir yazılım yazarken pratik amaçlı olarak kullanılır.
+
+örneğin, yazılımımızda bu şekilde kod satırları yazdık
+
+my_list = [10,20,30,40,50,60]
+for number in my_list:
+
+ancak bu kod satırlarının devamını getirmedik o an, ve başka bir kod bloğuyla ilgilenerek işlemlerimize devam ettik veya kod satırı böyle iken 
+programımızı çalıştırmak istiyoruz eğer bu şekilde programımızı çalıştırırsak 
+
+  File "<ipython-input-5-3620698a0d5d>", line 3
+    
+    ^
+SyntaxError: unexpected EOF while parsing
+
+
+şeklinde bir hata aldık kodumuzu sonlandırmadığımız ve bir işlem belirtmediğimiz için 
+
+bu hatayı almamak için pass komutunu kullanabiliriz 
+
+
+my_list = [10,20,30,40,50,60]
+for number in my_list:
+    pass
+    
+
+çalıştırırsak hiç bir çıktı almadan programımızı hatasız bir şekilde çalıştırabiliriz / test edebiliriz 
+
+eğer bir program çalışırken hata alınırsa ilgili program, yazılım çökebilir kapanabilir ve kullanan kişinin bundan sonra herhangi bir işlem 
+yapamaması anlamına gelebilir biz de bu durumu istemediğimiz için bu gibi durumlarda pass komutunu kullanabiliriz.
+
+bu dersimizde while loop (while döngüsü) konusunu öğrenelim 
+
+while döngüsünde bir koşul tuttuğu / gerçekleştiği sürec, ilgili işleme devam etmesi, ilgili döngüye devam edilmesine izin verilir;
+while döngüsü bize bunu sağlar.
+
+a = 0
+while a < 5:
+    print("hello")
+
+    çalıştırdığımızda sürekli ekrana hello yazdırıldığını görürüz 
+
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+hello
+.....
+
+buna programlamada sonsuz döngü denir ve bu işlem bilgisayar donana, veya komutun çalıştırılmasını engelleyecek bir durum oluşana kadar devam eder çünkü 
+komutta a değişkenine 0 değerini atadıktan sonra şunu dedik;
+
+a değişkeni 5 rakamında / sayısından küçük olduğu süre boyunca / durumda ekrana hello yazdı ve bunu bir döngü içerisinde gerçekleştirdiğimiz ve döngülerde 
+de bir şart belirttiğimiz zaman o şartı bypass edecek bir şart belirtmemiz haricinde döngü sürekli tekrarlanacağı için sonsuz bir döngü oluşur.
+
+biz sonsuz bir döngüye girmek istemeyeceğimiz için 
+
+a = 0
+while a < 5:
+    print("hello")
+    a = a + 1
+
+    şeklinde kodumuzu çalıştırırsak 
+
+hello
+hello
+hello
+hello
+hello
+
+çıktısı alırız burada print ile ekrana hello yazdırdıktan sonra a değişkenimizin değerini 1 (bir) artırarak değişen bu güncel değeri ile döngümüzün
+2. aşamasına / adımına / sürecine geçiyoruz 
+
+daha sonra değişkkenimizin değeri 1 olduğu ve hala 5 ten küçük olduğu için değişkenimizin değeri 5 olana kadar sürecimiz devam eder ve hello stringi 
+ekrana bastırılır ancak değişkenimizin değeri 5 olduüu zaman 2. komut satırına gelindiğinde python a nın 5 ten küçük olmadığını aksine eşit olduğunu gördüğünde 
+döngüyü sonlandırır ve döngünün saplandığı durumlardaki süreçlerin çıktılarını yukarıdan aşağı sırayla 1,2,3,4 . süreçlerin çıktısını ekrana bastırır 
+
+peki neden ekranda 5 adet çıktı satırı var bunun sebebi de a nın ilk değeri 0 olduğu için a nın 0,1,2,3,4 değerlerine sahip olduğu zamanki 
+durumların çıktısı ekrana bastırılır bu da bize 5 adet satırı çıktı olarak verir 
+
+while döngüsünü genellikle numaralar / sayılar ile kullanırız ama listeler,stringlerle de çalışabiliriz.
+
+
+list = [1,2,3,4,5]
+while 3 in list:
+    print("3 in my list")
+
+    çalıştırırsak 3 sayısı / elemanı list isimli değişkende / listede olduğu sürece bu durum devam ettiği sürece 3 in my list stringini yazdır 
+    dedi ve bu şekilde sonsuz bir döngü oluşturmuş ve sürekli 
+
+3 in my list
+3 in my list
+3 in my list
+3 in my list
+3 in my list
+3 in my list
+3 in my list
+
+çıktısı almaya devam ederiz 
+
+eğer bu yazdırma işlemini durdurmak istersek jupyter de yukarıdaki tabların altındaki seçeneklerden |> Run butonunun hemen sağındaki 
+interrupt the kernel butonuna basabiliriz 
+
+list = [1,2,3,4,5]
+while 3 in list:
+    print("3 in my list")
+    list.pop()
+
+    çalıştırdığımızda ise 
+
+3 in my list
+3 in my list
+3 in my list
+
+çıktısını alırız çümkü  list.pop() komutu ile her döngünün son aşamasında listemizin son elemanını çıkarıp atıyoruz 
+daha sonra 
+
+2. aşamada list=[1,2,3,4] oluyor ve hala listemizde 3 elemanı olduğu için 3 in my list çıktısı ekrana bastırılıyor daha sonra yine 
+listenin en sonundaki / en sağındaki eleman listeden atılıyor daha sonra listemiz = [1,2,3] şeklinde kalıyor ve sonuç olarak 3 elemanı listeden 
+çıakrıldıktan sonra bir sonraki döngünün 2. satırında döngü sona erer 
+
+ number = 0
+while number < 10:
+    print(number)
+    number +=1
+
+    şeklinde çalıştırdığımızda
+
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+çıktısını alırız burada number += 1 ile / number = +1 aynı şeydirler 
+
+number = 0
+while number < 10:
+    if number == 5:
+        break
+    print(number)
+    number +=1
+
+    çalıştırdığımızda 
+
+0
+1
+2
+3
+4
+
+çıktısını alırız number her döngüde 1 arttıktan sonra 5 e eşitlendiği duurmda break ile döngüyü durdurduk bu yüzden 5 çıktısını almadık 
+çünkü print komutu break in altında ve break den sonra hiç bir şey çalıştırılmaz.
+
+p = 0
+while p < 20:
+    print('value p: '+ str(p))
+    p += 1
+
+    çalıştırdığımızda 
+
+value p: 0
+value p: 1
+value p: 2
+value p: 3
+value p: 4
+value p: 5
+value p: 6
+value p: 7
+value p: 8
+value p: 9
+value p: 10
+value p: 11
+value p: 12
+value p: 13
+value p: 14
+value p: 15
+value p: 16
+value p: 17
+value p: 18
+value p: 19
+
+çıktısını alırız burada p nin değeri 20 den küçük olduğu sürece print('value p: '+ str(p)) komutunu çalıştırıyoruz yani 
+
+value p:  str(p) [yani p nin o döngüdeki değerini value p:  sitringi ile beraber ekrana bastırırız]
+
+yukarıdaki komutu 
+
+p = 0
+while p < 20:
+    print('value p:',p)
+    p += 1
+
+    şeklinde de çalıştırarak yine aynı çıktıyı alabiliriz çünkü zaten p bir int değer olduğu için bir stringle beraber yazdırmak için illa +str(p) dememize gerek yok
+
+aldığımız çıktı : 
+
+value p: 0
+value p: 1
+value p: 2
+value p: 3
+value p: 4
+value p: 5
+value p: 6
+value p: 7
+value p: 8
+value p: 9
+value p: 10
+value p: 11
+value p: 12
+value p: 13
+value p: 14
+value p: 15
+value p: 16
+value p: 17
+value p: 18
+value p: 19
+
+şeklindedir 
+
+p = 0
+while p < 20:
+    print(f'value p: {p}')
+    p += 1
+
+    çalıştırdığımızda da 
+
+    value p: 0
+value p: 1
+value p: 2
+value p: 3
+value p: 4
+value p: 5
+value p: 6
+value p: 7
+value p: 8
+value p: 9
+value p: 10
+value p: 11
+value p: 12
+value p: 13
+value p: 14
+value p: 15
+value p: 16
+value p: 17
+value p: 18
+value p: 19
+
+çıtkısını alırız gördüğümüz gibi yine aynı çıktıyı aldık ama burada print(f'value p: {p}') şeklinde kullanarak bir stringin içerisinde 
+süslü parantezler içerisinde bir int değere sahip bir değişkeni kullanarak str ye değiştirmek için uğraşmadan çıktılarımızı alabiliriz 
+
+buraadaki işleme yani f kullandığımız işleme formatting (biçimlendirme / formatlama) denir ve bu şekilde bir stringin içerisinde herhangi bir değişkeni 
+bu şekilde yazdırabiliriz bu kullanımın while loop ile alakası yok yani tamamen while döngüsünden bağımsız, while döngüsünü kullanmadığımız 
+kod bloklarında da formatting i kullanabiliriz. 
+
+
+bu dersimizde python da hayat kurtaran bazı bilgileri öğrenelim: 
+
+daha önce öğrenmediğimiz ama ileride karşımıza çıkabilecek ve kod yazarken gerçekten hayatımızı kolaylaştırabilecek bazı metodları görelim:
+
+bu dersimizde çok faydalı olabilecek değişik, operatör, fonksiyon ve metodları öğrenelim 
+
+kod yazarken işimize yarayabilecek ve işimizi kolaylaştırabilecek kavramları görelim: 
+
+bu işlemlerimizi jupyter notebook da yapıyoruz 
+
+örneğin 1 den 20 ye kadar olan sayılardan olulan bir liste oluşturmak istiyoruz 
+
+tek tek 1,2,3,4,5...20 şeklinde yazmak zorunda kalmadan bu listeyi oluşturabiliriz.
+
+bu işlemi gerçekleştiren ve built-in (yani pythonla beraber gelen / içinde default olarak hazır olarak gelen) metodun ismi range dir 
+
+list(range(20))
+
+çalıştırdığımızda 
+
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19] çıktısını alırız 
+
+for number in list(range(20)):
+    print(number * 5)
+
+    çalıştırırsak 
+
+0
+5
+10
+15
+20
+25
+30
+35
+40
+45
+50
+55
+60
+65
+70
+75
+80
+85
+90
+95
+
+
+for ile oluşturulan değişkenler (for döngüsü / komutu satırı veya kapsamında oluşturulan) döngü bittikten sonra silinir mi yani o döngü sınırları 
+içerisinde mi geçerli olurlar programın dveamında bir yerde bu değişeni çalıştırsak ne olur bunu araştır buraya yaz 
+
+for number in list(range(5,20)):
+    print(number)
+
+    çalıştırırsak da 
+
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+    
+
+çıktısını alırız 
+
+for number in list(range(5,20,3)):
+    print(number)
+
+    çalıştırırsak 
+
+    5
+8
+11
+14
+17
+
+çıktısını alırız 
+
+şimdi de enumarate metodunu görelim:
+
+biz bazen for loop larda, bir veri yazdırdığımızda (sayısal / metinsel) ilgili verinin, ilgili değişkenin kaçıncı indexinde bulunduğunu 
+yazdırmak isteyebiliriz 
+
+index = 0
+for number in list(range(5,15)): 
+    print(f"no: {number} ix: {index}")
+    index += 1
+    
+
+    çalıştırdığımızda 
+
+no: 5 ix: 0
+no: 6 ix: 1
+no: 7 ix: 2
+no: 8 ix: 3
+no: 9 ix: 4
+no: 10 ix: 5
+no: 11 ix: 6
+no: 12 ix: 7
+no: 13 ix: 8
+no: 14 ix: 9
+
+ilgili elemanın hangi index numarasında olduğunu bu şekilde yazdırabiliriz ama bu işlem enumerate metoduna göre nispeten daha uzun ve uğraştırıcı 
+
+for element in enumerate(list(range(5,15))): 
+    print(element)
+
+    çalıştırdığımızda 
+
+(0, 5)
+(1, 6)
+(2, 7)
+(3, 8)
+(4, 9)
+(5, 10)
+(6, 11)
+(7, 12)
+(8, 13)
+(9, 14)
+
+çıktısını alırız 
+
+(index-sırası,elemanın-ismi) formatında istediğimiz işlemi kolay bir şekilde gerçekleştirebildik 
+
+peki örneğin tuple larla çalışıyor olsaydık ve tuple de değerler çift çift birbirinden ayrıldıkları için 
+
+for index,number in enumerate(list(range(5,15))):
+    print(index)
+    print(number)
+
+    şeklinde çalıştırarak 
+
+    index-numarası
+    yukarıdaki-indexe-sahip-eleman
+    index-numarası
+    yukarıdaki-indexe-sahip-eleman
+    index-numarası
+    yukarıdaki-indexe-sahip-eleman
+    index-numarası
+    yukarıdaki-indexe-sahip-eleman
+    index-numarası
+    yukarıdaki-indexe-sahip-eleman
+
+    formatında bir çıtkı alırız yani; 
+
+0
+5
+1
+6
+2
+7
+3
+8
+4
+9
+5
+10
+6
+11
+7
+12
+8
+13
+9
+14
+
+çıktısını alırız 
+
+bu dersimizde zip ve random metodlarını öğrenelim 
+
+rnadom: rastgele -gelişi güzel- bir sayı oluşturmak istediğimizde kullandığımız bir metoddur. (pythonda random metoduyla ilgili yani örneğin rastgele bir sayı üretmek için pek çok kütüphane mevcut)
+
+bir modülü yani (haihazırda yazılmış bir python dosyasını) kendi projemizde / programımızda / yazılımımızda kullanmak istersek 
+
+import komutunu kullanıyoruz (ithal etmek / almak / içeride kullanmak anlamlarına geliyor)
+
+
+
+from random import randint
+randint(0,1000)
+
+
+çalıştırarak öncelikle python da built-in olarak gelen random metodunun içerisindeki randint (yani random integer / rastgele bir integer değer üretmemizi sağlayan özellik)
+i import ediyoruz yani programımızda kullanabileceğimiz bir hale getirmek için projemize dahil ediyoruz 
+
+daha sonra randint(0,1000) çalıştırdığımızda 46 çıktısını alıyoruz yani biizm için rastgele bit int sayı üretti 
+
+tekrar aynı komutu çalıştırırsak farklı bir değer alırız rastgele ürettiği için 
+
+ my_list_2 = list(range(0,10))
+from random import shuffle 
+shuffle(my_list_2)
+my_list_2
+
+
+çalıştırdığımızda 
+
+[4, 6, 9, 2, 7, 3, 1, 5, 0, 8] çıktısını alırız burada önce range metodunu kullanarak bir liste oluşturduk bu listedeki değerleri my_list_2 
+isimli değişkene değer olarak atadık daha sonra random metodun DAN shuffle isimli bir özelliği import ettik daha sonra my_list_2 
+
+değişkeninin değerleri olan [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] değerleri / elemanları kendi içerlerinde karıştırarak (yerlerini değiştirerek)
+
+
+[4, 6, 9, 2, 7, 3, 1, 5, 0, 8] çıktısını alırız 
+
+(bu arada shuffle ı her çalıştırdığımızda farklı bir liste döndürür bize aynı random gibi bu karıştırma işlemini rastgele bir şekilde yapar)
+
+
+şimdi de zip isimli metodu öğrenelim 
+
+örneğin elimizde bir çok liste var ve biz bunları birleştirmek istiyoruz.
+
+sport_list = ["run","swim","basketball"]
+calories_list = [100,200,300]
+day_list =  ["monday","tuesday","wednesday"]
+new_list = zip(sport_list,calories_list,day_list)
+new_list
+
+çalıştırdığımızda <zip at 0x1d692d39140> çıktısını alırız neden bu çıktıyı aldık araştır buraya yaz 
+
+sport_list = ["run","swim","basketball"]
+calories_list = [100,200,300]
+day_list =  ["monday","tuesday","wednesday"]
+new_list = list(zip(sport_list,calories_list,day_list))
+new_list
+
+şeklinde çalıştırırsak 
+
+
+[('run', 100, 'monday'),
+ ('swim', 200, 'tuesday'),
+ ('basketball', 300, 'wednesday')]
+
+ çıktısını aldık yani 3 farklı listemizdeki aynı index numarasına saihp olan elemanları gruplayarak tek bir liste içerisinde tuple?-tuple olarak 
+ mı birleştirmiş oldu bunu araştır buraya yaz- 
+
+ yine aynı şekilde 
+
+ for elements in new_list:
+    print(elements) çalıştırırsak 
+
+('run', 100, 'monday')
+('swim', 200, 'tuesday')
+('basketball', 300, 'wednesday')
+
+çıktısını alırız 
+
+
+
+bu dersimizde bazı ileri seviye liste işlemlerini görelim: (list advanced)
+
+new_list = []
+my_string = "metallica"
+
+for elements in my_string:
+    new_list.append(elements)
+new_list
+    
+
+    çalıştırdığımızda 
+
+    ['m', 'e', 't', 'a', 'l', 'l', 'i', 'c', 'a'] çıktısını alırız çünkü 
+
+    my_string içeriisndeki bütün karakterleri ayrı ayrı append özelliğini kullanarak 'ayrı bir eleman olarak' new_list değişkenine atadık 
+
+ve bu çıktıyı aldık 
+
+bu şekilde bir değişkenin içerisindeki strinkin bütün karakterlerini başka bir değişkenin içerisine tek bir eleman olarak atamanın daha kısa bir yolu var 
+
+bunun için;
+
+my_string = "metallica"
+new_list = [element for element in my_string]
+new_list
+
+
+çalıştırdığımızda 
+
+['m', 'e', 't', 'a', 'l', 'l', 'i', 'c', 'a'] çıktısını alırız 
+
+burada öncelikle my_String değişkenini oluşturduk ve içerisine bir string aradık daha sonra element for element in my_string diyerek 
+my_String içerisindeki stringi oluşturan bütün karakterleri bir döngü halinde her döngü boyunca / süresince / sürecinde / aşamasında bir tanesini 
+new_list değişkenine değer olarak atadık 
+
+new_list = [number for number in list(range(0,10))]
+new_list
+
+
+çalıştırdığımızda da [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] çıktısını alırız bu örnekte ayrı ayrı satırlarda 2 değişken oluşturmadan tek bir satırda iki değişken oluşturarak 
+uygulamamızı tamamladık 
+
+new_list = [number*5 for number in list(range(0,10))]
+new_list
+
+çalıştırırsak da 
+
+
+[0, 5, 10, 15, 20, 25, 30, 35, 40, 45] çıktısını alırız 
+
+
+new_list = [number**5 for number in list(range(0,10))]
+new_list
+
+çalıştırdığımızda da her bir elemanın üssü 5 indeki değerini çıktı olarak alırız 
+
+[0, 1, 32, 243, 1024, 3125, 7776, 16807, 32768, 59049] çıktısını alırız 
+
+
+bu dersimizde işlemlerimizi jupyter notebook üzerinden yapmayalım ve kod yazarken kullanabileceğimiz, diğer ide veya script editör denilen 
+ programlara bakalım bu dersimizde sublime text i deneyelim.
+
+ https://www.sublimetext.com/ bağlantısından sublime text i indiriyoruz.
+
+ sublime text bir text editördür sadece python da değil pek çok programlama dilinde kodlarımızı bu editör üzerinde yazabiliriz.
+
+şuan örneğin print("hello world") yazarsak bu komutu jupyter deki gibi renkli bir şekilde göstermeyecektir çünkü yazmış olduğumuz kodun bir python kodu olduğunu bilmiyor 
+bunun için sublime text in File tabında tıklayıp > Save As (ctrl+shift+s) ile istediğimiz bir dizine example.py ismiyle kaydediyoruz. 
+
+ve dosyamızı kaydedir kaydetmez print("hello world") kodumuzun renklerinin dğeiştiğini görebiliyoruz 
+
+preferences tabından > settings e tıklarsak istediğimiz bir ayarı değiştirebiliriz bu pencereden.
+
+bu pencerede sol taraftaki yeşil renkli ayarlardan değiştirmek istediğimizi sağ taraftaki 
+
+{
+
+}
+
+iki süslü parantezin içerisine yazıp örneğin "font_size": ayarını değiştirmek istiyoruz bu ayarın ismini kopyalayıp 
+
+{
+    "font_size":26
+}
+
+
+yazıp file tabından save butonuna tıkladığımız an değiştirmiş olduğumuz ayar kaydedilir ve güncel ayar bize görüntülenir.
+
+sublime-text de yazmış olduğumuz python kodlarını kod blokları / parçaları halinde jupyter deki parça parça shift+enter a basarak çalıştıramıyoruz 
+
+kodlaırmızı yazıp bitirdikten sonra çalıştırabiliyoruz bunu yapmak için de;
+
+tools tabından > Build (ctrl+b) ye tıklıyoruz bize sayfanın orta en üstünde bize Python ve Python - Syntac Check isimli iki seçenek sunacak biz 
+üstteki olan Python u seçiyoruz ve sayfanın en aşağısında küçük bir bölüm açıldı ve burada hello world çıktısını aldık 
+
+my_list = [1,2,3,4,5,6]
+for number in my_list:
+	print(number)
+
+    yazıp ctrl+b yaptığımızda aşağıdaki küçük bölümde 
+
+    1
+2
+3
+4
+5
+6
+[Finished in 134ms]
+
+çıktısını alırız (finished in 134ms de kodu çalıştırdıktan sonra ilgili çıktıyı almamızın kaç milisaniye sürdüğünü gösterir)
+
+ayrıca daha önce oluşturduğumuz bir dğeişkeni sublime text içerisinde daha sonra yazarken bu değişkenin isminin tamamını yazmamıza gerek yok sublime text bize 
+o dğeişkenin ismini yazdığımızı anlayıp öneri olarak çıkarttıkğında enter a tıklarsak otomatik olarak bizim için tamamlar 
+
+şimdi de python u cmd (command prompt / komut istemcisi üzerinden nasıl kullanabiliriz bunu öğrenelim)
+
+windows tuuna basıp cmd yazıp entera basıyoruz ardından cmd de dir çalıştırırsak 
+
+bize gelen çıktıda  Directory of C:\Users\mycomputer şuan komut istemcisinde (terminalde) hangi dizinde olduğumuzu söylüyor 
+
+örneğin Desktop a gitmek istiyoruz bunun için de cd Desktop yazıp çalıştırıyoruz (cd De yazdıktan sonra tab tuşuna basarsak biizm için tamamlar)
+
+dir bir nevi linuxdaki ls komutudur içinde bulunduğumuz diizndeki dosya ve dizinler listeliyor bizim için 
+
+cls çalıştırarak cmd ekranını temizleyebilriz -linuxtaki clear komutu- 
+
+cls = clear screen = ekranı temizle 
+
+yine linuxda olduğu gibi 
+
+C:\Users\mycomputer\Downloads\Documents\baba bunları silme\works\çalışmalar\hacking\python> cmd de bu dizindeyken 
+
+cd .. çalıştırırsak da ilgili diiznden bir önceki dzine geçiş yaparız 
+
+cd C:\Users\mycomputer\Downloads\Documents\baba bunları silme\works\çalışmalar\hacking\python çalıştırdıktan sonra 
+
+python example.py çalıştırırsak 
+
+1
+2
+3
+4
+5
+6
+
+çıktısını alırız eğer biz example.py yi bir .exe dosyası haline getirseydik tam olarak karşımızda açılan ekranda 
+
+1
+2
+3
+4
+5
+6
+
+çıktısını alırdık 
+
+bu dersimizde python ile Adam Asmaca oyununu yazalım 
+
+name = input("Enter name: ")
+print("Hello " + name + " time to play hangman!")
+
+secret_word = "Metallica"
+
+guess_string = ""
+
+lives = 10
+
+while lives > 0:
+
+  character_left = 0
+
+  for character in secret_word:
+
+    if character in guess_string:
+
+      print(character)
+    else:
+      print("-")
+      character_left += 1
+
+  if character_left == 0:
+    print("You won!!!") 
+    break
+
+
+  guess = input("Guess a word: ")
+  guess_string += guess
+
+  if guess not in secret_word:
+    lives -= 1
+    print("Wrong!")
+    print(f"You have {lives} left")
+
+    if lives == 0:
+      print("You died!")
+
+python da global değişken demek herhangi bir döngüden veya kontrolden erişebileceğimiz / çağırabileceğimiz o döngüye ait / özel olmayan değişkenlerdir.
+
+
+name = input("Enter name: ")
+print("Hello " + name + " time to play hangman!")
+
+secret_word = "Metallica"
+
+lives = 10
+
+while lives > 0:
+
+  character_left = 0
+
+  for character in secret_word:
+      print(character)
+
+  şeklinde yazdığımızda yani;
+
+  secret_word = "Metallica"
+for character in secret_word:
+      print(character)
+
+      şeklindeki kod bloğu bize 
+
+M
+e
+t
+a
+l
+l
+i
+c
+a
+
+çıktısını verir 
+
+bu kodumuzu python kodumuzu cmd de, dosya ismi vererek çalıştırdığımızda bizden bir username isteyecek o username i verdiğimizde Welcome username time to play hangman çıktısını ve 
+
+M
+e
+t
+a
+l
+l
+i
+c
+a
+
+çıktısını alırız 
+
+şimdi bu bir tahmin oyunu olduğu için biz tahmin edilecek kelimeyi öncelikle gizlenmiş bir şekilde verip;
+
+oyuncunun bu kelimenin içerisinde geçen harfleri / karakterleri bilip bilmeme durumuna göre bu karakterleri kaldırmamız gerekiyor.
+
+name = input("Enter name: ")
+print("Hello " + name + " time to play hangman!")
+
+secret_word = "Metallica"
+
+guess_string = ""
+
+lives = 10
+
+while lives > 0:
+
+    for character in secret_word:
+
+        if character in guess_string:
+           print(character)
+        else:
+           print("-")
+
+      komutumuz ile
+
+
+      guess_string += guess çalıştırdığımızda guess_string isimli global değişkenimizin içerisine guess inputuna girilen karakterleri ekliyoruz ve eşitliyoruz ve eğer girilen karakter tahmin edilecek kelimenin içerisinde mevcutsa 
+
+       if character in guess_string:
+           print(character)
+
+           komutumuzdan dolayı o karakteri ekrana bastırıyor yok hayır değil ise 
+
+           else:
+           print("-")
+
+           komutundan dolayı ekrana - karakterini bastırıyor ve programı ilk çalıştırdığımızda direk olarak ekranda - çıktısını alıyoruz ve sonsuz döngüye giriyor bunun sebebini anla buraya yaz 
+
+           ve hel bulunan harften sonra bir önceki bulunan harf ekrana bastırılmış bir şekilde kalıyor silinmiyor yani bunun sebebi nedir bunu araştır buraya yaz 
+
+           ve bir harf bulunduktan sonra bir sonraki tahminde bu harfi verdiğimizde canımız azalmıyor ve yine aynı çıktıyı alıyoruz 
+
+           peki bu durumda oyucumuz bütün karakterleri bilse bile oyun bitmeyecek çünkü bittiğine dair bir kod yazmadık daha doğrusu tahmin edecek kelimesi kalmadığını anlayacak bir kod yazmadık veya canı bitip oyunu tamamlayamadığını anlayacak kodu yazmadık bunun için 
+
+name = input("Enter name: ")
+print("Hello " + name + " time to play hangman!")
+
+secret_word = "Metallica"
+
+guess_string = ""
+
+lives = 10
+
+while lives > 0:
+
+  character_left = 0
+
+  for character in secret_word:
+
+    if character in guess_string:
+      print(character)
+    else:
+      print("-")
+      character_left += 1
+
+      komutunu yazdığımızda eğer oyuncunun tahmin ettiği karakter scret_word ün içerisinde varsa character_left==0 olmaya devam edecek ve döngü devam edecek döngü sadece ilgili değişkenin içerisindeki bütün elemanlarla ilgili işlem yapılmadan bitmeyeceği için bu devamlılığı sağladık ardından eğer bütün 
+
+      elemanları doğru bir şekilde tahmin ederse 
+
+      aşağıdaki if kontrolü çalışacak ve 
+
+        if character_left == 0:
+    print("You won!!!") 
+    break
+
+    komutumuzdan dolayı kullanıcı You won!!! mesajını alacak 
+
+    ama yapamadığı durumda canını bir düşürerek kaybetme seçeneğini de eklememiz gerektiği için 
+
+    if guess not in secret_word:
+    lives -= 1
+    print("Wrong!")
+    print(f"You have {lives} left")
+
+    if lives == 0:
+      print("You died!")
+
+      yazarak her yanlış tahmin hakkında yani tahmin ettiği karakterler eğer secret_word değişkeninin içeriisnde yer almadığı her durumda canı -1 olacak ve  print(f"You have {lives} left")
+
+      komutundan dolayı kaç cnaı kaldığı ekrana bastırılacak ve nihayet canı 0 olunca yukarıdaki if kontrolü atlanıp en sondaki if çalıştırılacak ve lives == 0 olduğu için ekrana You dies yazısı bastırılacak 
+
+      bu dersimizde fonksiyon nedir bunu öğrenelim;
+
+      metodlar (methods), objelerin içinde (programlama dilinde obje ne demek araştır buraya yaz) tanımlanmış fonksiyonlardır. 
+
+my_string = "Atil"
+my_string.upper()
+
+çalıştırdığımızda
+
+'ATIL'
+
+çıktısını alırız burada upper = ilgili stringimizin / metnimizin içerisindeki bütün karakterleri büyük harfe çevirmemizi sağlayan bir metoddur 
+
+my_string = "Atil"
+my_string.upper()
+my_string 
+
+çalıştırdığımızda 
+
+'Atil'
+
+çıktısını alırız yani .upper metodu bizim my_string değişkenimiz içerisinde kalıcı bir değişiklik yapmadı 
+
+my_string = "Atil"
+my_string_upper = my_string.upper()
+my_string_upper
+
+
+şeklinde upper metodunun çıktısını yeni bir değişkene atayabiliriz aldığımız çıktı da 
+
+'ATIL'
+
+olur.
+
+pythondaki metodların ne işe yaradığını python documents leri okuyarak öğrenebiliriz 
+
+ya da merak ettiğimiz metodun üzerine imlecimizi getirip shift+tab e basıp açıklamasını okuyabiliriz.
+
+help(my_string.upper) çalıştırarak da ilgili metodun ne işe yaradığını öğrenebiliriz.
+
+def hello_world():
+    print("hello")
+    print("world")
+hello_world()
+
+çalıştırdığımızda 
+
+hello
+world
+
+çıktısını alırız burada def ile hello_world isimli bir fonksiyon oluşturup bu fonksiyonun içerisinde 
+
+hello
+world 
+
+yazdırılmasını istedik ve bu fonksiyonu çağırdığımızda bu şekilde bir çıktı aldık.
+
+fonksiyonlar bir girdi alabilir ve bir çıktı verebilirler 
+
+def hello_programming(name):
+    print('hello')
+    print(name)
+hello_programming('python')
+
+çalıştırdığımızda 
+
+hello
+python
+
+çıktısı alırız burada hello_programming isimli bir fonksiyon oluşturduk bu fonksiyonuna name isminde bir argüman ekledik ve hello_programing(name) [name kısmına istediğimiz bir veriyi yazabiliriz] 
+çağırdığımızda öncelikle 
+
+hello
+argümana-yazılan-şey
+
+çıktısını alıyoruz 
+
+def hello_program(name='python'):
+    print('hello')
+    print(name)
+hello_program()
+
+çalıştırdığımızda da 
+
+hello
+python
+
+çıktısını aldık burada argümana bir değer atayarak yeni oluşturduğumuz fonksiyonu argüman vermeden çağırdık ve bu çıktıyı aldık 
+
+ancak bu yeni oluşturduğumuz fonksiyonda sadece python çıktısını almayız örneğin 
+
+hello_program('java') çalıştırırsak 
+
+hello
+java
+
+çıktısını alırız bunun sebebi name argümanının default ta -yani varsayılan olarak değeri- python değerine sahip olmasından dolayıdır.
+
+fonksiyonlarda sadece string veriler kullanılmaz sayısal veriler de kullanabiliriz; örneğin, 
+
+
+def sum(number1,number2):
+    number3 = number1+number2
+    print(number3)
+sum(5,8)
+
+çalıştırdığımızda sum yani toplama işlemini gerçektiren bir fonksiyon u kullanarak number1 ve number2 şeklinde 2 adet argüman oluşturduk ve bu argümanların toplamını number3 isminde bir değişkene değer olarak atayıp bu değişkenin değerini ekrana bastırmak istedik ve 13 çıktısını aldık 
+
+tek başına sum(5,8) çalıştırdığımızda da 13 çıktısını aldık ancak burada bir fonksiyon oluşturup verilecek argümanları ve sonuç değerini number3 olarak kendimiz oluşturduk 
+
+ancak burada örneği daha iyi anlamak için fonksiyonumuzun ismini summ şeklinde yazabiliriz.
+
+def summation(num1,num2,num3):
+    return num1+num2+num3
+summation(10,20,30)
+
+çalıştırdığımızda 60 çıktısını aldık burada summation isminde bir fonksiyon oluşturup bu fonksiyona 3 argüman vererek bu argümanların toplamını döndürerek başka bir değişkene değer olarak atamaya hazır hale veya daha sonra bu fonksiyonu programımızın ilerleyen yerlerinde tekrar çağırarak kullanmak için tercih edebiliriz 
+
+örneğin 
+
+my_result = summation(10,20,30)
+print(my_result)
+
+çalıştırdığımızda 60 çıktısını aldık ancak 
+
+my_sonuc = summ(10,20) çalıştırdıktan sonra (yukarıda summ değil sum şeklinde oluşturduk ancak onu summ şeklinde gibi oluşturduğumuzu varsayarsak..)
+
+my_sonuc çalıştırırsak hiç bir çıktı alamayız çünkü summ fonksiyonunun çıktısını bir yere döndürmedik yani çıktısı bu şekilde retuen komutu kallanmadan başka bir değişkene atanamaz !!! 
+
+
+
+def control_string(s):
+    if s[0] == 'm':
+        print(s.capitalize())
+control_string("metallica")
+
+çalıştırırsak Metallica çıktısını alırız;
+
+burada control_string isminde bir fonksiyon oluşturduk ve bu fonksiyona s isminde bir argüman verdik bu s argümanına verilen değer in ilk karakteri m olursa bu karakteri print(s.capitalize()) şeklinde verilen argümanın ilk karakteri büyük harfe çevirilmesini söyleyerek ekrana bastırdık 
+
+control_string("Metallica") çalıştırırsak veya control_string("amsterdam") çalıştırırsak hiç bir çıktı almayız çünkü sadece ilk karakteri m olduğu zaman bu fonksiyon çalışır.
+
+
+
+bu dersimizde fonksiyonlarla ilgili biraz daha ileri seviye bazı işlemleri öğrenelim.
+
+bu dersimizde arbitary arguments & keyword arguments konularını öğrenelim.
+
+örneğin bir fonksiyon oluştururken  kullanıcı istediği kadar argüman kullansın ve biz bu kullandığı kadar argüman ile işlem yapmak istersek ? yani örneğin bir toplama ile ilgili fonksiyon yazdık ancak her kullanıcı 2 sayısal veriyi toplamak istemeyebilir örneğin bir tanesi 3 sayıyı, başka bir tanesi 10 sayıyı toplama ihtiyacı hissedebilir bu gibi durumlarda kullanıcının kullanacağı argüman sayısının kesin olarak belli olmadığı durumlarda arbitary arguments (keyfi argüman lar) ı kullanabiliriz.
+
+def summation2(*args):
+    return sum(args)
+summation2(10,20,30)
+
+çalıştırarak bunu yapabiliriz burada istenilen kadar argüman girilmesini sağlayan karakter / olay * (yıldız) 
+karakteridir bu karakteri kullandığımız için python bu fonksiyon içerisinde arbitary arguments kullanıldığını anlıyor ve ne kadar argüman girilse giirlsin girilen argümanlar ile ilgili işlem yapabiliyor bu dabize büyük bir esneklik sağlıyor ve 60 çıktısını alırız şimdi de daha fazla sayı ile bu fonksiyonumuzu çalıştıralım 
+
+def summation2(*args):
+    return sum(args)
+summation2(10,20,30,40,50)
+
+çalıştırdığımızda 
+
+150 çıktısını aldık 
+
+def summation2(*args):
+    return sum(args)
+summation2(10,20)
+
+yine daha az argüman kullanarak çalıştırdığımızda da fonksiyonumuz sorunsuz bir şekilde çalışacaktır.
+
+aldığımız çıktı da 30 olacaktır.
+
+
+def my_func(*args):
+    print(args)
+my_func('a','b',1,2)
+
+çalıştırdığımızda ('a', 'b', 1, 2) çıktısını alırız burada gördüğümüz gibi return komutunu kullanmadan da arb-arg ı kullanabiliyoruz 
+
+def my_func2(*atil):
+    print(atil)
+my_func2('at','il',1,2,3)
+
+çalıştırdığımızda ('at', 'il', 1, 2, 3) çıktısını alırız bu da args stringinin keyfi olarak verilen argümanın / argümanların ismini belirttiğini ve değiştirilebilir olduğunu burada keyfi argüman olarak işlem yapılmaısnı sağlayan şeyin * karakteri olduğunu anlıyoruz 
+
+ancak programlarımızı yazarken *args olarak yazarsak kodu okuyan kişi bunun bir arbitary arguments olduğunu kolaylıkla anlar aksi halde bunun bir arbitary arguments olduğunu anlamayabilir.
+
+şimdi de keywords arguments konusunu öğrenelim 
+
+def example_func(**kwargs):
+    print(kwargs)
+example_func(run=100,swim=200,basketball=300)
+
+çalıştırdığımızda aynı sözlüklerdeki gibi burada da kullanıcının İSTEDİĞİ kadar anahtar kelimeyi kullanarak o anahtar kelime nin değerini ekrana bastırabiliriz.
+
+ve 
+
+{'run': 100, 'swim': 200, 'basketball': 300} çıktısını alırız (bu kwargs ı tam anlamadım hangi durumlarda kullanılır burada sadece anahtar değer çiftleri mi girmemiz lazım veya bu fonksiyonu çağırdığımızda sadece anahtar değer çiftleri mi ekrana bastırılır bu fonksiyonu da tekrar çağırmak için return komutunu kullanmamız gerekiyor mu araştır buraya yaz)
+
+arbitary arguments de tek * (yıldız) kullandığımız için sonucumuz tuple olarak döner.
+
+keywords arguments de ise ** (çift yıldız) kullandığımız için sonucumuz dictionary olarak döner 
+
+kwargs ın farkı fonksiyonu çağırırken anahtar-değer ilişkisi ile çağırabilmemizdir 
+
+
+örneğin internetten bir veri çekeceğiz ve bu veriyi bir fonksiyonda işlemek istiyoruz ve bu verinin ne kadar geleceğini bilmiyoruz; örneğin 3 tane mi 200 tane mi geleceğini bilmiyoruz örneğin fonksiyonumuz 3 tane eleman alıyor ve ve bizim internetten çekdiğimiz ver i5 elemana sahip ise fonksiyonumuz çalışmayacağından dolayı biz arb arg ve kwargs ı kullanırız.
+
+ def keyword_func(**kwargs):
+    if "Metallica" in kwargs:
+        print('heavy metal!')
+    else:
+        print('rock is dead')
+keyword_func(Metallica=10,Madonna=5,Muslum=4)
+
+çalıştırdığımızda heavy metal! çıktısını alırız bunun sebebi kwargs kullanarak eğer fonksiyonumuzun argümanı olarak içinde Metallica stringi geçen bir argüman verilerek fonksiyonumuz çalıştırılırsa ekrana heavy metal! 
+eğer bu metin geçmeden bir argüman ile fonksiyonumuz çalıştırılırsa ekrana rock is dead yazısı bastırılır.
+
+yukarıda bizim örneğimizde bu ifade geçtiği için bu çıktıyı aldık ancak 
+
+def keyword_func(**kwargs):
+    if "Metallica" in kwargs:
+        print('heavy metal!')
+    else:
+        print('rock is dead')
+keyword_func(Madonna=5,Muslum=4)
+
+çalıştırsaydık rock is dead çıktısını alırdık.
+
+bu dersimizde fonksiyonlarda kullanabileceğimiz pratik yöntemleri / kullanımları öğrenelim 
+
+def divide(number):
+    return number / 2
+divide(10)
+
+çalıştırdığımızda 5.0 çıktısını alırız bu şekilde argüman olarak verdiğimiz bir sayıyı 2 ye bölen bir fonksiyon oluşturmuş olduk.
+
+ peki biz örneğin my_list = [1,2,3,4,5,6,7,8] listemizin içerisindeki bütün elemanları 2 ye bölmek istersek bunu nasıl yapabiliriz ? 
+
+for num in my_list:
+    print(divide(num))
+
+    şeklinde çalıştırarak bunu yapabiliriz 
+
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+4.0
+
+çıktısını alırız ancak her zaman program yazarken fonksiyonumuz bu kadar kolay olmayabilir yani bu fonksiyon içerisindeki bilgileri print(divide(num)) şeklinde çalıştırdığımızda istemediğimiz başka işlemleri de gerçekleştirebileceğimizden dolayı veya listemiz çok uzun olduğundan dolayı performans kayıplarımız olacağından dolayı pythonda bunu kolay bir şekilde yapmamızın bir yöntemi var.
+
+bu yöntem python içerisinde built in olarak gelen map fonksiyonudur.
+
+map(argüman1,argüman2) şeklinde map kullanılırken bizden argüman1 olarak fonksiyonumuzun ismini / kullanmak istediğimiz fonksiyonumuzu 2. si de iterable object yani ilk argümanda verdiğimiz fonksiyonumuzun üzerindeki bütün elemanlara tek tek işlem yapabileceği bir liste veya listeye benzer bir yapıda olan değişkenimizi vermemizi istiyor.
+
+(iterable object tam oalrak ne araştır buraya yaz ne olunca iterable oluyor ne olunca olmuyor?)
+
+list(map(divide,my_list)) şeklinde çalıştırdığımızda 
+
+
+[0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0] çıktısını alırız eğer list olmadan map(divide,my_list) şeklinde çalıştırmış olsaydık yani;
+
+map(divide,my_list) çalıştırsaydık <map at 0x1c86debb040> çıktısını alırdık 
+
+bunu map olmadan yukarıdaki gibi bir for loop ile uzun bir şekilde yazarak ve çıktımızı da LİSTE halinde almak için,
+
+my_new_list = []
+for num in my_list:
+    my_new_list.append(divide(num))
+print(my_new_list)
+    
+çalıştırarak ve 
+
+[0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0] çıktısını alarak gerçekleştirebilirdik.
+
+ama map fonksiyonunu kullanarak tek bir satırda yazdığımız kodu for loop kullanarak 5 satırda yazdık.
+
+map(divide(),my_list) çalıştırsaydık hata alırdık.
+
+def control_string(string):
+    if 'Metallica' in string:
+        return True
+control_string('Metallica kgşlfkg')
+
+çalıştırdığımızda True çıktısını alırız. bunun sebebi control string in içerisinde verdiğimiz argümanın içerisinde Metallica stringi varsa True yazısını ekrana bastırmak istedik.
+
+eğer olmasaydı hiç bir çıktı almazdık 
+
+def control_string(string):
+    if 'Metallica' in string:
+        return True
+control_string('jfklgjdklfjMetallicajglkdjflkgj')
+
+çalıştırsaydık yine True çıktısını alırdık.
+
+bu kodu daha kolay bir şekilde şu şekilde yazabiliriz.
+
+def control_string(string):
+    return 'Metallica' in string
+control_string('Metallica')
+
+çalıştırarak da yazabiliriz yine True çıktısını alırız çünkü bir python da if kullanmadan bir fonksiyon a argüman vererek çalıştırdığımızda eğer o fonksiyon içerisinde in ifadesi vr ise ve bu ifade de argüman ile sağlanıyorsa True çıktısı alırız 
+
+def control_string(string):
+    return 'Metallica' in string
+control_string('metallica')
+
+eğer bu şekildeki gibi sğalanmıyorsa False çıktısını alırız.
+
+def control_string(string):
+    return "metallica" in string
+my_artist_list = ["metallica,","madonna","queen","mwgadeath","muslum"]
+list(map(control_string,my_artist_list))
+
+çalıştırdığımızda [True, False, False, False, False] çıktısını alırız bunun sebebi my_artist_list listemizdeki elemanların her biri için control_string fonksiyonunu çalıştırarak bu elemanların içerisinde "metallica" stringi bulunuyor / geçiyor / mevcut mu diye kontrol ettik ve geçiyorsa True geçmiyorsa False çıktısını aldık.
+
+def control_string(string):
+    return "metallica" in string
+my_artist_list = ["metallica,","madonna","queen","mwgadeath","muslum","metallica2","metallica3"]
+list(filter(control_string,my_artist_list))
+
+şeklinde filter fonksiyonunu kullanarak aldığımız çıktı da 
+
+['metallica,', 'metallica2', 'metallica3'] olacaktır çünkü filter fonksiyonu ile my_artist_list içerisindeki elemanlardan YALNIZCA metallica ifadesi geçen elemanları ekrana bastırmak istedik ve bu çıktıyı aldık.
+
+bu dersimizde lambda yı öğrenelim;
+
+lambda genellikle python da tek kullanımlık fonksiyonlarda kullandığımız bir gösterimdir.
+
+örneğin bir fonksiyon oluşturalım ve bunu bir de lambda fonksiyonu ile oluşturalım / lambda ile gösterimini yapalım.
+
+def multiply(number):
+    return number * 3 
+multiply(5)
+
+çalıştırdığımızda 15 çıktısını alırız.
+
+yukarıdaki kodumuzu 
+
+def multiply(number): return number * 3 
+multiply(5)
+
+şeklinde de çalıştıraibliriz yine 15 çıktısını alırız.
+
+şimdi de bu fonksiyonumuzu lambda ile oluşturalım 
+
+multiply = lambda number:number * 3
+multiply(5)
+
+çalıştırdığımızda 15 çıktısını alırız.
+
+lambda yı programımızda bir işlem gerçekleştirirken sırf bu işlem için yeniden ilgili fonksiyonu uzun uzun yazmak yerine tek bir satırda işlemimizi haleltmek için kullanabiliriz.
+
+örneğin my_list_3 = [3,5,7,9] şeklinde bir listemiz var ve bu listemizdeki elemanları hızlı bir şekilde 4 ile çarpmak istiyoruz. bunun için 
+
+list(map(lambda number:number*4,my_list_3)) çalıştırırsak
+
+[12,20,28,36] çıktısını alırız.
+
+bu dersimizde pythondaki scope konusunu öğrenelim 
+
+scope, kelime anlamı olarak 'kapsam' demektir.
+
+python da değişkenlerin kapsamları
+
+number = 10 
+
+def multiply(num):
+    number = 5 
+    return num * number
+multiply(10)
+
+çalıştırdığımızda 50 çıktısını alırız
+
+ancak print(number) çalıştırdığımızda 10 çıktısını alırız dikkat edersek 5 çıktısını almadık halbuki sonra yazılan kod en son çalıştırılacağından 5 çıktısını almamız gerekirdi python hangi number ı seçeceğini / yazdıracağını nasıl anlıyor ? 
+
+python un bu durumlarda hangi değişken ile iligli işlem yapacağına karar vermesini sağlayan bir mekanizma var buna da LEGB mekanizması denir.
+
+L --> Local
+
+E --> Enclosing
+
+G --> Global
+
+B --> Built-In
+
+my_string = 'Atil'
+
+def my_func():
+    my_string = 'James' 
+    
+print(my_string)
+
+çalıştırdığımızda Atil
+
+ancak my_func() çalıştırırsak James çıktısını aldık bir önceki örneğimizin tamamen aynısı ancak bu örnekte stringler ile işlem yaptık.
+
+
+ancak 
+
+my_string = 'Atil'
+
+def my_func():
+    my_string = 'James' 
+    
+    def my_func2():
+        my_string='Lars'
+        print(my_string)
+    my_func2()
+        
+    
+yazdıktan sonra my_func() çalıştırırsak Lars çıktısını alırız.
+
+my_string = 'Atil'
+
+#Global
+
+def my_func():
+    my_string = 'James' 
+    
+    #Enclosing
+    
+    def my_func2():
+        
+        #local 
+        my_string='Lars'
+        print(my_string)
+    my_func2()
+        
+    
+  bu şekilde bir değişkenin herhangi bir fonksiyon içerisinde tanımlanmadan genel olarak tanımlanmış haline global değişken; bir fonksiyon içerisinde ilk tanımlanan değişken türüne enclosing; fir fonksiyonun içerisindeki bir fonksiyonun içerisinde tanımlanan değişkenlere de local değişkenler denir
+
+  bir değişken bir fonksiyonun içerisinde çağırıldığı zaman sırayla o fonksiyonun içerisinde local olarak ilgili değişken var mı yoksa enclosing olarak tanımlanmış mı eğer tanımlanmamışsa globa olarak tanımlanmış mı diye kontrol edilir eğer bu 3 şekilde de ilgili değişken tnaımlanmamışsa bu çağırılan değişken bir built-in yani python içerisinde print, len, max gibi hazır gelen değişkenlerden mi diye bakılır eğer ilgili değişken böyle bir değişken de değilse python bize bir hata mesajı döndürür.
+
+  y = 10 
+
+def func_new(y):
+    print(y)
+   
+   çalıştırdıktan sonra func_new(y) veya func_new(10) çalıştırdığımızda 10 çıktısını alırız.
+
+
+   y = 10 
+
+def func_new(y):
+    print(y)
+    y = 5
+    print(y)
+   
+
+   yazdıktan sonra new_func(10) çalıştırdığımızda 
+
+   10
+   5 
+
+   çıktısını aldık çünkü önce fonksiyona argüman olarak verdiğimiz sayı bastırıldı çünkü fonksiyonda öncelikle argüman olarak verilen sayı daha sonra da local olan y sayısı (ama global olan değil local olan çünkü legb mekanizması olduğu için ) ekrana bastırıldı.
+
+   örneğin my_func(3) çalıştırsaydık 
+
+   3
+   5
+
+   çıktıısnı alırdık.
+
+   y çalıştırdığımızda 5 çıktısını alırız çünkü global olan y yi çağırdık ve global olan y fonksiyon içerisinde aynı isimle yani y isminde bir değişken olsa ve bu değişkenin değeri global y dğeişkeninden farklı olsa bile global olan y değişkeninin değeri değişmez peki biz bu global y nin değerini değiştirmek için ne yapabiliriz ? 
+
+   y = 10 
+
+def func_new(y):
+    print(y)
+    y = 5
+    print(y)
+    return y
+
+çalıştırdıktan sonra y = func_new(y) çalıştırırsak 
+
+10
+5 
+
+çıktısını alırız böylece global y nin değerini func_new(y) nin değerine yani 5 olarak değiştirdik 
+
+önce 10 olan değeri tekrar 10 ile daha sonra da lokal y değişkeninin değeri olan 5 olarak değiştiirldi.
+
+global bir değişkenin değerini değiştirmenin bir başka yolu da örneğin y değişkeninden örnek verirsek 
+
+global y = 3 şeklinde global kelimesini kullanarak bu şekilde bir değişiklik yapabiliriz.
+
+bu dersimizde decorator kavramını öğrenelim
+
+def func(new_func):
+    print('func started')
+    new_func()
+    print('func ended')
+
+    çalıştırdıktan sonra 
+
+    def hello_func():
+    print('hello world')
+
+    çalııştırdıktan sonra 
+
+    func(hello_func) çalıştırırsak 
+
+func started
+hello world
+func ended
+
+çıktısını alırız bunun sebebi func fonksiyonuna bir parametre olarak başka bir fonksiyon yani hello_func ı verdik (bir fonksiyona parametre olarak baka bir fonksiyon verme işlemine decorator mu denir araştırıp buraya yaz.)
+
+çıktımızı bu sırada almamızın sebebi func fonksiyonu ister bir parametre verilerek ister vermeden çalıştırıldığında ekrana func started yazısı bastırılır daha sonra argüman çalıştırılır bu da hello_func fonksiyonunun çıktısı olan hello world dür daha sonra da new_func isimli bir fonksiyon çalıştırılır ve func ended çıktısını alırız.
+
+def new_func():
+    
+    def new_func2():
+        print('new func 2')
+
+        çalıştırdıktan sonra new_func() çalıştırırsak hiç bir çıktı almayız çünkü new_func ın içerisindeki new_func2 fonksiyonunu çağırmadık veya return etmedik bundan dolayı new_func2 fonksiyonumuz çalıştırılmayacaktır.
+
+
+new_func2() çalıştırırsak 
+
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-4-255254ae6793> in <module>
+----> 1 new_func2()
+
+NameError: name 'new_func2' is not defined
+
+hatası alırız (neden bu hatayı aldık sebebini araştır buraya yaz / sanırım scope konusundan dolayı)
+
+def new_func():
+    
+    def new_func2():
+        print('new func 2')
+    new_func2()
+new_func()
+
+çalıştırdığımızda new_func2 yi new_func fonksiyonunun içerisinde çağırdığımız için gözle görülebilir bir çıktı alabiliriz.
+
+def new_func():
+    
+    def new_func2():
+        print('new func 2')
+    return new_func2
+new_func()
+
+çalıştırırsak
+
+
+<function __main__.new_func.<locals>.new_func2()> (çıktısını alırız neden bu çıktıyı aldığımızı araştır sebebini buraya yaz)
+
+def new_func():
+    
+    def new_func2():
+        print('new func 2')
+    return new_func2
+new_string = new_func()
+new_string()
+
+çalıştırırsak new func 2 çıktısını alırız.
+
+def new_func():
+    print('new func')
+    def new_func2():
+        print('new func 2')
+    return new_func2
+new_func()
+
+çalıştırdığımızda new_func ı çalıştırdıktan sonra new_func2 yi de çalıştırdığını görebiliriz çünkü ilk çıktı new func ın çıktısı ikinci çıktı da new func2 nin çıktısıdır.
+
+new_string = new_func() çalıştırırsak new_func çıktısını alırız bunun sebebini anlamadım neden 
+
+new_func
+
+<function __main__.new_func.<locals>.new_func2()> çıktısını almadık return kullandığımız için mi (bunu raştır buraya yaz)
+
+new_string = new_func() çalıştırdığımızda, çalıştırılma sırasından dolayı new_func2 en son çalıştırıldığından dolayı new_string in değeri önce new_func daha sonra da new_func2 olarak ayarlanır 
+
+bunu doğrulamak için new_string() çalıştırırsak new func 2 çıktısını alırız 
+
+(new_string bir değişkenden nasıl bir anda bir fonksiyona dönüşştü ve new_stringi çağırırken fonksiyon gibi yani () parantezleri kullanarak çağırdık bunun sebbeini araştır buraya yaz)
+
+def decorator_function(func):
+    
+    def wrapper_function():
+        
+        print('wrapper started')
+        
+        func()
+        
+        print('wrapper stopped')
+    return wrapper_function
+
+çalıştırdıktan sonra  
+
+def func_new():
+    print('hello world')
+
+    çalıştırdıktan sonra    
+
+example_func = decorator_function(func_new)
+example_func()
+
+çalıştırırsak 
+
+wrapper started
+hello world
+wrapper stopped
+
+çıktısını alırız çünkü önce decorator function çalıştı daha sonra argüman olarak verilen func() yani 
+
+func_new çalıştırıldı decorator_function(func_new) de example_func değişkenine değer olarak atanıp example_func çalıştırıldı ve bu çıktı alındı.
+
+@decorator_function
+def func_new():
+    print('hello world')
+func_new()
+
+çalıştırarak 
+
+wrapper started
+hello world
+wrapper stopped
+
+çıktısını alırız halbuki func_new() tek başına çalıştırıldığında hello worl çıktısını  verirken / vermesi gerekirken decortor kullanarak kolaylıkla bu çıktıyı alabiliriz (decorator pratik olarak hangi uygulamalarda kullanılır araştırıp buraya yaz.)
+
+
+bu dersimizde hesap malinesi yazmayı öğrenelim 
+
+def calc(x,y,ops):
+
+  if ops not in "+-/*":
+    return 'Only +-/* !!!' 
+
+  if ops == '+':
+    return(str(x) + ' ' + ops + str(y) + ' = ' + str(x+y))
+
+  elif ops == '-':
+    return(str(x) + ' ' + ops + str(y) + ' = ' + str(x-y))
+
+  elif ops == '/':
+    return(str(x) + ' ' + ops + str(y) + ' = ' + str(x/y))
+
+  elif ops == '*':
+    return(str(x) + ' ' + ops + str(y) + ' = ' + str(x*y))
+
+while True:
+
+  x = int(input('Please enter first number: '))
+
+  y = int(input('Please enter second number: '))
+
+  ops = input('Choose between +, -, /, * : ')
+
+  print(calc(x,y,ops))
+
+  kodumuzu yazarak hesap makinemizi tamamlayabiliriz.
+
+  def calc(x,y,ops):
+
+  if ops not in "+-/*":
+    return 'Only +-/* !!!' 
+
+    burada calc isimli bir fonksiyon oluşturduk ve bu fonksiyona argüman olarak x y ve ops u belirledik.
+
+  ve bir if kontrolü başlatarak eğer ops argümanına girilen değer + - / * karakterlerinden biri değilse (not in) ekrana / kullanıcıya Only + - / * / yani sadece bu karakterleri kullanın şeklinde bir uyarı mesajı çıkartmamızı sağlar.
+
+
+ if ops == '+':
+    return(str(x) + ' ' + ops + str(y) + ' = ' + str(x+y))
+
+  elif ops == '-':
+    return(str(x) + ' ' + ops + str(y) + ' = ' + str(x-y))
+
+  elif ops == '/':
+    return(str(x) + ' ' + ops + str(y) + ' = ' + str(x/y))
+
+  elif ops == '*':
+    return(str(x) + ' ' + ops + str(y) + ' = ' + str(x*y))
+
+    burada return ile tekrar aynı print gibi kullanıcının ekranına istediğimiz şeyi bastırmak istediğimizi söylüyoruz da yine bir if kontrolü başlatarak eğer ops argümanına girilen değer 
+
+    + ise (öncelikle bu ops argümanı hesap makinemizde 4 işlemden birini gerçekleştireceği için) ve girilen ilk ve ikinci sayı da int bir değer olacağı bunu string e çeviriyoruz (peki neden stringe çeviriyoruz çevirmeden yapsak olmaz mıydı bunu araştır buraya yaz) (sebebi string bir değer ile int bir değerin toplanamaması olabilir mi )
+
+    ardından + diyerek ' ' yazıyoruz bu bir boşluk koyduğumuz anlamına geliyor 
+
++ ops + ile ilk sayı yani (x) girildikten sonra ekranda + karakterinin gözükmesi için bunu yazdık
+
++ str(y) + yine burada da kullanıcıs tarafından girilen ikinci sayı string e çevirilip ekrana bastırılıyor 
+
++ ' = ' + str(x+y) ifadesinde de = karakteri ekrana bastırıldı ve sonuç olarak da x+7 yani kullanıcı tarafından girilen birinci ve ikinci sayının toplamı ekrana bastırıldı
+
+yani kısaca çıktının formatı şu şekildedir.
+
+1 + 2 = 3 
+
+bu işlem - / * işlemleri için de aynen geçerlidir işleme göre satırda değişecek tek şey sondaki str(x?y)
+
+karakteridir.
+
+son olarak ise 
+
+while True:
+
+  x = int(input('Please enter first number: '))
+
+  y = int(input('Please enter second number: '))
+
+  ops = input('Choose between +, -, /, * : ')
+
+  print(calc(x,y,ops))
+
+  kısmında while True: yazmamızın sebebi hesap makinemizi çalıştırdıktan ve verdiğimiz 2 sayı ile işlem yaptıktan sonra programımız tamamlandığı için programdan çıkış yapılır ve tekrar başka bir işlem yapmak istediğimizde python example.py ile komut istemcisinden programımızı çalıştırmamız gerekiyor burada 
+
+  while True: yani doğru olduğu sürece (True var olduğu sürece anlamına mı geliyor) yani sonsuz bir döngü oluşturarak programımızda ctrl+c veya komut istemcisi kapatılmadan kullanıcıdan sürekli sayılar isteyerek ilgili işlemi programı tekrar çalıştırmadan gerçekleştirmesini sağlayabiliriz.
+
+  burada int(input) şeklinde yazmamızın sebebi kullanıcının verdiği değerin int a dönüştürülmesini sağlamaktır
+
+  peki kullanıcı kendisinden sayı istendiği yerde string bir değer girerse ne olur ? 
+
+  - programımız çöker ve kapanır.
+
+  OOP = Onject Oriented Programming (Obje Odaklı / Yönelimli Programlama)
+
+  bu dersimizde OOP'de Class konusunu öğrenelim.
+
+  class, kelime anlamı olarak sınıf demektir.
+
+  my_list = list() çalıştırdığımızda aslında yaptığımız şey liste (list) sınıfından -classından- my_list isimli bir obje -object- oluşturmaktır.
+
+  (yani bu cümleden tuple,dictionary,list bunların hepsi birer class mı olmuş oluyor bunu araştır buraya yaz)
+
+  burada my_list objesine liste sınıfının, instance 'ı denir.
+
+  my_list.append şeklinde buradaki append de my_list objesinin attribute udur (özelliğidir)
+
+  şimdi kendi sınıfımızı yazalımve arkaplanda gerçekleşen süreçleri inceleyelim.
+
+  bir sınıf oluştururken class sınıf-ismi şeklinde bir format kullanıyoruz örneğin;
+
+  class Musician 
+
+  peki sınıfın ilk harfini neden büyük yazdık? Bunun sebebi programlama dillerinde bir değişken veya bir class oluşturulurken ilgili objeye veya sınıfı isimlendirilirken bir çok farklı isimlendirme stili kullanılır; bunlardan iki tanesi 
+
+  #snake = my_string , my_variable, my_tuple vs gibi
+
+  #camel = myString, myVariable, myTuple gibi 
+
+  biz de class ımıza isim verirken camel yöntemini kullanalım.
+
+  genellikle değişken isimlerinde snake, class isimlerinde de camel kullanılır 
+
+  (snake = snake case | camel = camel case)
+
+  class Musician():
+    
+    def __init__():
+
+    şeklinde classımıza isim verdikten sonra aynı fonksiyonlarda olduğu gibi parantezimizi açıp kapatıp ardından iki nokta üst üste koyuyoruz.
+
+    buradaki init kısaltması aslıında initialize (başlatmak) kelimesinden gelir.
+
+
+     class Musician():
+    
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+        
+
+        çalıştırdığımızda Musician isimli bir class ve bu class ımıza name ve age isimli 2 adet attribute oluşturmuş / tanımlamış olduk.
+
+        (buradaki self kelimesi Musician a referans oluyor yani Musician.name veya Musician.age yazmak yerine self.name veya self.age yazıyoruz [Musician.name de yazsak çalışır mı yoksa sadece self.name mi yazmamız gerekiyor bunu araştırıp buraya yaz])
+
+        ardından my_musician = Musician('James',50) çalıştırdıktan sonra jupyter notebook da my_musician. 
+        yazdıktan sonra tab tuşuna basarsak age ve name attribute lerimizi seçeneklerde görebiliriz.
+
+        my_musician.age çalıştırırsak 50 , my_musician.name çalıştırırsak da 'James' çıktısını alırız.
+
+my_musician.name = 'Lars'
+my_musician.name
+
+şeklinde name özelliğinin değerini değiştirdiğimizde Lars çıktısını alırız.
+
+class Musician():
+    
+    def __init__(self,name,age):
+        self.name_attribute = name
+        self.age_attribute = age
+
+        şeklinde attribute isimlerini istediğimiz gibi değiştirebiliriz ancak def __init__(self,name,age): kısmındaki parantez içerisindeki değerler ile 
+
+self.name_attribute = name
+self.age_attribute = age
+
+satırlarındaki = karakterinden sonraki dğerler AYNI olmak KOŞULU İLE !!! 
+
+bu şekilde özelliklerimizin ismini değiştirdikten sonra güncel ismiyle örneğin 
+
+my_musician.name_attribute çalıştırıp bu şekilde çağırmamız gerekiyor.
+
+class Musician():
+    
+    def __init__(self,name,age,instrument):
+        self.name = name
+        self.age = age
+        self.instrument = instrument
+
+        şeklinde daha da fazla özellik oluşturabiliriz.
+
+ class ımız müzisyenlerle ilgili olduğu için ve her müziyenin ortak özelliğinin mesleklerinin müzisyen olmasından dolayı bu ortak noktayı her müzisyen için beilrtmek için 
+
+ class Musician():
+
+    job = 'musician'
+    
+    def __init__(self,name,age,instrument):
+        self.name = name
+        self.age = age
+        self.instrument = instrument  
+
+çalıştırabiliriz / çalıştırdıktan sonra da my_musician.job çalıştırırsak 'musician' çıktısını alırız.
+
+yine aynı şekilde def içerisinde tanımladığımız özelliklerin değerlerini sonradan manuel olarak değiştirebildiğimiz gibi 
+
+my_musician.job = 'singer'
+my_mumsician.job 
+
+çalıştırırsak 
+
+'singer' çıktısını alırız.
+
+şimdi pythondaki Metodlar konusunu öğrenelim; 
+
+Mwthods -metodlar- class içerisindeki fonksiyonlardan çok da farklı bir kavram değildir.
+
+ class Musician():
+
+    job = 'musician'
+    
+    def __init__(self,name,age,instrument):
+        self.name = name
+        self.age = age
+        self.instrument = instrument 
+
+    #Methods 
+
+    def sing(self): 
+
+    (buradaki self kelimesi yukarıda olduğu gibi, burada metodu instance a bağlayan kelimedir) 
+
+yani musician sınıfından bir instance oluşturduğunda method daki obje de metodu kullanabilsin 
+
+örneğin 
+
+ class Musician():
+
+    job = 'musician'
+    
+    def __init__(self,name,age,instrument):
+        self.name = name
+        self.age = age
+        self.instrument = instrument 
+
+    #Methods 
+
+    def sing(self): 
+        print('We are the champions!') 
+
+çalıştırdıktan sonra my_mmusician. yazdıktan sonra TAB tuşuna bastığımızda özellikler arasında sing in de geldiğini görüyoruz 
+
+ve my_musician.sing() çalıştırdığımızda We are the champions! çıktısını alırız.
+
+peki biz bu metodun içerisindeki print e yukarıdaki name veya age attribute unu eklersek yani bu özellikleri metod içerisinde kullanırsak ne olur ? 
+
+ class Musician():
+
+    job = 'musician'
+    
+    def __init__(self,name,age,instrument):
+        self.name = name
+        self.age = age
+        self.instrument = instrument 
+
+    #Methods 
+
+    def sing(self): 
+        print(f'We are the champions! {instrument') 
+
+        çalıştırdıktan sonra  my_musician.sing() çalıştırırsak name 'instrument' is not defined hatası alırız.
+
+        yani burada name diye bir şey tanımlı değil halbuki __init__(self,name,..) şeklinde ve bunun aşağısındaki satırda biz name i tanımlamıştık peki neden böyle bir hata verdi? 
+
+ama self kelimesi class içerisinde bütün instance lar ile bağlantı kuran kelime olduğu için instrument i doğru bir şekilde çağırmak için 
+
+ class Musician():
+
+    job = 'musician'
+    
+    def __init__(self,name,age,instrument):
+        self.name = name
+        self.age = age
+        self.instrument = instrument 
+
+    #Methods 
+
+    def sing(self): 
+        print(f'We are the champions! {self.instrument') ı çalıştırmamız gerekiyor bu şekilde çalıştırdığımızda da We are champions! Guitar çıktısını alırız.
+
+
+Bu dersimizde Class konusunun pratik kullanımlarını öğrenelim.
+
+ class DogYears():
+    year_factor = 7
+    
+    def __init__(self,age):
+        self.age = age 
+        
+    def calculation(self):
+        return self.age * self.year_factor
+
+çalıştırdıktan sonra
+
+my_dog = DogYears(3)
+my_dog.age
+
+çalıştırırsak 3 çıktısını alırız.
+
+
+my_dog = DogYears(3)
+my_dog.calculation() 
+
+çalıştırırsak da 21 çıktısını aldık bu örneği bir köpek yılının 7 insan yılına eşdeğer olduğundan dolayı 
+
+x insan yaşının tekabül ettiği köpek yaşını bulmak için oluşturduk 
+
+peki biz 
+
+my_dog = DogYears()
+my_dog.calculation() 
+
+şeklinde herhangi bir sayı vermeden default olarak belli bir sayı alıp ata almadan / program çökmeden class ı nasıç çalıştırabiliriz bunun içinde 
+
+ class DogYears():
+    year_factor = 7
+    
+    def __init__(self,age=5):
+        self.age = age 
+        
+    def calculation(self):
+        return self.age * self.year_factor
+
+çalıştırdıktan sonra 
+
+my_dog = DogYears()
+my_dog.calculation() 
+
+
+çalıştırırsak 35 çıktısını alırız
+
+peki aynı bir önceki örnekteki gibi kullanıcı örneğin name isimli bir instance a bir değer atamayıp sadece age özelliğine bir değer atasa ama program çökmeden default olarak name özelliğğine bir değer atayabilir miyiz
+
+evet bunu şu şekilde yaabiliriz;
+
+ class DogYears():
+    year_factor = 7
+    
+    def __init__(self,age=5):
+        self.age = age 
+        self.name = 'Bar'
+        
+    def calculation(self):
+        return self.age * self.year_factor
+
+çalıştırdıktan sonra 
+
+my_dog.name çalıştırırsak 'Bar' çıktısını alırız.
+
+peki kullanıcıdan bir değer almadan direk olarak default daki değeri çarpacak bir özellik oluşturabilir miyiz? 
+
+class DogYears():
+    year_factor = 7
+    
+    def __init__(self,age=5):
+        self.age = age 
+        self.age_multiplied = age * 7
+        
+    def calculation(self):
+        return self.age * self.year_factor
+
+çalıştırdıktan sonra 
+
+my_dog.age_multiplied çalıştırırsak 35 çıktısını alırız yani kısaca buradan anlayacağımız şey class oluşturduğumuzda bir özellik oluştururken bu özelliğin sayısal veya metinsel girdilerini kullanıcıdan almak zorunda değiliz bunu kendimiz default olarak veya manuel olarak değerler vererek oluşturabiliriz ve . TAB yaptıktan sonra oluşturduğumuz bu özellikleri görüp başarılı bir şekilde kullanabiliriz.
+
+class DogYears():
+    year_factor = 7
+    
+    def __init__(self,age=5):
+        self.age = age 
+        self.age_multiplied = age * 7
+        
+    def calculation(self):
+        return self.age * self.year_factor
+
+        burada year_factor direkt olarak DogYears sınıfının altında oluşturulmuş bir değişken olduğu için bazı kullanımlarda 
+
+        class DogYears():
+    year_factor = 7
+    
+    def __init__(self,age=5):
+        self.age = age 
+        self.age_multiplied = age * 7
+        
+    def calculation(self):
+        return self.age * DogYears.year_factor
+
+        şeklinde görebiliriz yani self.years_factor olarak da DogYears.year_factor olarak da kullanımlarını görebiliriz.
+
+        
+
+  bu dersimizde obje odaklı dillerin en önemli özelliklerinden biri olan  Inheritance (Miras Alma) konusunu öğrenelim.
+
+  class Class1():
+    def __init__(self):
+        print('Class1 created')
+        
+    def method1(self):
+        print('method1')
+    
+    def method2(self):
+        print('method2')
+
+çalıştırdıktan sonra my_instance = Class1() çalıştırırsak Class1 created çıktısını alırız 
+
+(peki neden Class1 created method1 method2 şeklinde çıktı almadık araştır buraya yaz)
+
+my_instance.method1() çalıştırırsak method1 çıktısını, my_instance.method2() çalıştırırsak da method2 çıktısını alırız 
+
+peki bir projede birden fazla class ile çalışıyorsak ve bir class daki örneğin bizim örneğimiz için Class1 ilk oluşturulan class olsun ve ardından oluşturduğumuz Class2 de Class1 i kullanmak istesek (argüman olarak almak istesek) bunu nasıl yapabiliriz.
+
+class Class2(Class1):
+    
+    def __init__(self):
+        Class1.__init__(self)
+        print('class2 created')
+        
+my_instance2 = Class2()
+
+çalıştırırsak (burada Class2 ye argüman olarak Class1 i verdik ve init fonksiyonunda da Class1 in init fonksiyonunu çağırdık / çalıştırdık.) ve 
+
+Class1 created
+class2 created
+
+çıktısını aldık (neden diğer print çıktılarını almadık aeraştır buraya yaz)
+
+yine aynı şekilde 
+
+my_instance2. yazdıktan sonra tab a basarsak method1 ve mmethod2 nin seçeneklerde karşımıza çıktığını görebiliyoruz.
+
+my_instance2.method1() çalıştırırsak method1 
+
+my_instance2.method2() çalıştırırsak method2 çıktısını alırız.
+
+class Class2(Class1):
+    
+    def __init__(self):
+        Class1.__init__(self)
+        print('class2 created')
+        
+    def method3():
+        print('method3')
+        
+my_instance2 = Class2()
+
+şeklinde bir class ı başka bir class içeriisnde çağırdıktan sonra çağıran class ın içerisinde başka metodlar da oluşturabiliriz.
+
+bunu doğrulamak için my_instance2. yazdıktan sonra tab e basarsak method3 ün de seçenekelrde olduğunu görebiliriz.
+
+ancak my_instance. yazdıktan sonra tab e basarsak yalnızca method1 ve method2 seçenekleri gözükecektir.
+
+burada başka bir Class ı bir class içerisine çağırdıktan sonra çağrılan class ın metodlarını, öelliklerini kullanabilme özelliğine nheritance denir.
+
+     class Class2(Class1):
+
+        def __init__(self):
+            Class1.__init__(self)
+            print('class2 created')
+
+        def method2():
+            print('method3')
+            
+        def method1(self):
+            print('method1 override')
+
+    my_instance2 = Class2()
+
+çalıştırıp Class1 de tanımlanan method1 i Class2 de aynı isimle tekrar tanımlarsak en sonra yazılmış olan method2 nün bilgileri geçerli olacaktır buna override (üstüne yazma) denir 
+
+yeni yazılanın geçerli olduğunu doğrulamak için 
+
+my_instance2.method1() çalıştırırsak method1 override çıktısını alırız.
+
+bu dersimizde polymorphism konusunu öğrenelim 
+
+class Apple():
+    
+    def __init__(self,name):
+        self.name = name 
+        
+    def information(self):
+        return self.name + '100 calories'
+        
+
+çalıştırıyoruz (bu örnekte her yiyeceği farklı bir kategoriye ayırmak ve bu yiyeceklerin kalorilerini göstermek için sınıflar oluşturalım)
+
+class Banana():
+    
+    def __init__(self,name):
+        self.name = name 
+        
+    def information(self):
+        return self.name + '200 calories'
+
+çalıştırıyoruz 
+
+  banana = Banana('banana')
+apple = Apple('apple')
+banana.information()
+
+çalıştırırsak 
+
+'banana 200 calories' çıktısını alırız.
+
+banana = Banana('banana')
+apple = Apple('apple')
+apple.information()
+
+çalıştırırsak 
+
+'apple 100 calories' çıktısını alırız.
+
+fruit_list = [banana,apple]
+for fruit in fruit_list:
+    print(fruit.information())
+
+    çalıştırırsak 
+
+    banana 200 calories
+apple 100 calories
+
+çıktısını alırız.
+
+polymorphism = farklı sınıflarda aynı metod (aynı isme sahip metod) bile olsa, farklı sınıfların instance ında onu o sınıfa ait metod gibi çalıştırmamız özelliğine denir.
+
+def get_info(fruit):
+    print(fruit.information())
+    
+get_info(banana)
+
+çalıştırırsak;
+
+banana 200 calories çıktısını alırız 
+
+(yukarıdaki get_info örneği diğer örneklerden nispeten daha bağımsız bir örnek olarak düşünebilriz yani get info diyerek ilgili ürün ile ilgili bilgileri ekrana bastırabiliriz.)
+
+bu dersimizde pythondaki bazı özel metodları öğrenelim;
+
+ilk öğrendiğimiz özel metod, __init__ metoduydu bu metod, bir sınıftan bir obje oluşturulunca ilk çağrılan metoddur.
+
+ class Fruits():
+    def __init__(self,name,calories):
+        self.name = name
+        self.calories = calories 
+        
+        çalıştırıyoruz (buradaki name ve calories ilgili meyvelerin isim ve kalori değerleridir)
+
+my_fruit = Fruits('Banana',200)
+my_fruit.calories
+
+çalıştırırsak 200 çıktısını alırız 
+
+şimdi ython daki built-in olan örneğin print , len gibi fonksiyonlarını kendi sınıfımızda nasıl kullanabiliriz bunu öğrenelim.
+
+(çünkü normalde print veya len gibi built-in fonksiyonları kullanarak sınıfımızdaki bir objeyi print ettirmek istediğimizde hata alırız)
+
+bu sorunun cevabı 'özel metodlar ile' dir 
+
+(python da str fonksiyonu ne işe yarıyor araştır buraya yaz)
+
+class Fruits():
+    def __init__(self,name,calories):
+        self.name = name
+        self.calories = calories 
+    def __str__(self):
+        return "example"
+
+çalıştırdıktan sonra 
+
+print(my_fruit) çalıştırırsak example çıktısını alırız
+
+
+class Fruits():
+    def __init__(self,name,calories):
+        self.name = name
+        self.calories = calories 
+    def __str__(self):
+        return f"{self.name} has {self.calories}"
+print(my_fruit)
+
+
+        çalıştırırsak 
+
+Banana has 200 çıktısını alırız 
+
+az önce str ismindeki built-in fonksiyonu class ımızda kullandık şimdi de len fonksiyonunu class ımızda kullanalım.
+
+class Fruits():
+    def __init__(self,name,calories):
+        self.name = name
+        self.calories = calories 
+    def __str__(self):
+        return f"{self.name} has {self.calories}"
+    def __len__(self):
+        return self.calories
+len(my_fruit)
+
+çalıştırırsak da 200 çıktısını alırız.
+
+bu tarz special methods lara dunder methods lar da denir 
+
+https://dbader.org/blog/python-dunder-methods bağlantısından bu tarz özel metodlara ulaşabiliriz.
+
+
+bu dersimizde hataları ele alma (error handling) konusunu öğrenelim.
+
+örneğin x ve y sayılarını toplayan bir toplama fonksiyonu oluşturalım 
+
+def summation(num1,num2):
+    return num1 + num2
+
+    çalıştırdıktan sonra 
+
+    x = input('Enter number: ') çalıştırıyoruz ve 10 sayısını girip entera basıyoruz.
+
+    y = input('Enter number: ') çalıştırdıktan sonra 20 sayısını girip enterlıyoruz 
+
+    summation(x,y) çalıştırınca 1020 çıktısını alıyoruz bunun sebebi de x ve y yi birer str yani string veri tiine ait olarak gördüğü içn bu stringleri topladığımızda -yani yan yana getirdiğinde- bu çıktıyı aldık.
+
+    x_int = int(x)
+y_int = int(y)
+summation(x_int,y_int)
+
+çalıştırırsak 30 çıktısını alırız.
+
+ancak biz x_int e str , y_int e integer bir değer girseydik toplma kısmında sorun olacaktı
+
+def number_power(num1):
+    return num1 ** 2
+a = int(input('Enter a number: '))
+
+çalıştırdıktan sonra james değerini girersek bir hata alırız çünkü burada bir sayının karesini alma ile ilgili bir fonksiyon yazıdk ama james bir int/sayısal bir değer olmadığı için hata aldık.
+
+hata aldık ve programımız çöktü (bir uygulama yazıyor olsaydık bu durumda programımız çökecekti (kapamacaktı vs))
+
+şimdi programımızı bu hatayı alsak bile çökmez bir hale getirelim.
+
+bunu yaparken kullanabileceğimzi üç adet komutumuz var. bunlar; 
+
+try , except , finally
+
+şimdi bu üç komutu kullanarak error handling nasıl yapılır bunu öğrenelim.
+
+try:
+    a = int(input('Enter a number: '))
+except:
+    print('Enter a number! ')
+    
+    çalıştırıp bir int değer girersek Enter a number: 3 çıktısını alırız ancak int bir değerin haricinde bir değer girersek örneğin james değerini girersek 
+
+    Enter a number: james
+    Enter a number!  
+
+    çıktısını alırız 
+
+    while True:
+
+    try:
+        a = int(input('Enter a number: '))
+    except:
+        print('Enter a number! ')
+        continue
+
+        şeklinde while True: yazarak sonsuz bir döngüye alıyoruz. böylece örneğin 2 şeklinde int bir değer verirsek 
+
+Enter a number: 2
+OK
+
+çıktısını alırız ve tekrar başa dönerek yine bizden bir sayı ister bu isteme işlemini while True mu sağlıyor yoksa continue mi sağlıyor bunu araştır burya yaz
+
+while True:
+
+    try:
+        a = int(input('Enter a number: '))
+    except:
+        print('Enter a number! ')
+
+yazdığımuzda ve int veya başka bir  veri girdiğimizde de bizden sürekli bir sayı isttiyor 
+
+while True:
+
+    try:
+        a = int(input('Enter a number: '))
+    except:
+        print('Enter a number! ')
+        continue
+    else:
+        print('OK')
+        break
+    finally:
+        print('finally')
+
+        çalıştırdıktan sonra 3 değerini girersek 
+
+Enter a number: 3
+OK
+finally
+
+çıktısını, x değerini girersek de 
+
+Enter a number: x
+Enter a number! 
+finally
+
+çıktısını alırız ve tekrar bizden bir sayı girmemizi isteyen bir input la karşılaşırız.
+
+buradaki else: = except: in gerçekleşmediği durumlarda çalıştırılacak kısım bu yüzden sadece sayısal bir dğeer girildiğinde OK yazısını alıyoruz 
+
+(bu codda continue nin görevi ne? ne işare yaradı / yarıyor araştır buraya yaz)
+
+ve finally: her iki durumda da (int veya int dışındaki girilen bir veride) çalıştırıldı ve finally çıktıısnı aldık finally ile bir kodda herhangi bir durumda çalıştırılmaısnı istediğimiz bir kod veya döndürülmesini istediğmiz bir yazı olursa bu durumlarda kullanabiliriz.
+
+eğer istenilen veri tipini yani bir int veri girersek bizden bir daha -tekrar kodu çalıştırmadığımız sürece- bir sayı girmemizi istemez.
+
+bu dersimizde python da modüller ve paketler konusunu öğrenelim;
+
+https://pypi.org/ bu bağlantıdan python da gerçekleştirmek istediğimiz projenin alanına uygun olan modülleri / kütüphaneleri aratabiliriz. 
+
+örneğin biz bu dersimiz için gerçekleştirecğimiz proje için numpy isimli kütüphaneyi kullanalım ancak numpy ı projemize imort etmek için bilgisayarımızda numpy ın yüklü olması gerekiyor anaconda yı kurduğumuzda halihazırda pek çok dış kütüphane de kurulu gelecektir ancak numpy ın yüklü olup olmadığını doğrulamak için 
+
+python daki pip aracını kullanarak modülleri/kütüphaneleri bilgisayarımıza yükleyebiliriz.
+
+(python da, modül = kütüphane midir ? değilse farkları nedir araştır buraya yaz)
+
+https://pypi.org/project/numpy/ bağlantısından numpy modülünün sayfasına gidiyoruz; sol üstte numpy 1.21.1 yazısının altında pip install numpy yazısının olduğunu görüyoruz bu, ilgili modülün -bu örneğimiz için numpy başka bir modülde bu kısımdaki kodu çalıştırıp ilgili modlü yükleyebiliriz- 
+
+Requirement already satisfied çıktısını alırsak zaten sistemimizde numpy halihazırda yüklüdür demektir.
+
+(numpy, istatistik, veri bilimi, yapay zeka vb işlemler için faydalı bir kütüphanedir.)
+
+numpy ı yüklemek için cmd yi açıyoruz
+
+
+import numpy
+
+grades = numpy.random.normal(80,30,1000)
+numpy.mean(grades)
+
+çalıştırdığımızda 
+
+81.18898613444826 çıktısını alırız -ancak her çalıştırdığımızda farklı bir çıktı alırız çünkü bu kodda 80 sayısından büyük, standart sapması 30 olan -standart sapması 30 olması ne anlama geliyor araştır buraya yaz-
+1000 adet sayı üret -bin adet not üret çünkü örnepğimiz grades (sınav notu gibi)- 
+
+ve bu üretilen notların mean(grades) ile ortalamasını aldık. (bu 1000 ayı üretilirken random olarak üretiliyor /bunu rağlayan özellik de .random) 
+
+(.normal özelliği bu örnek için ne işe yaradı bunu araştır buraya yaz)
+
+
+import numpy as np 
+
+grades = np.random.normal(80,30,1000)
+np.mean(grades)
+
+şeklinde de kodumuzu çalıştırabilriz aynı sql deki allianze özelliği gibi 
+
+import numpy as np 
+import matplotlib.pyplot as matplot
+
+grades = np.random.normal(80,30,1000)
+np.mean(grades)
+
+şeklinde başka bir kütüphaneyi import ediyoruz.
+
+matplot.hist(grades,50)
+matplot.show() 
+
+çalıştırırsak 
+
+bir görsel grafik çıktısı alırız.
+
+bu dersimizde kendi modülümüzü yazmayı öğrenelim.
+
+modül = uzantısı .py ile biten ve içerisinde herhangi bir python scripti / kodu olan dosyaya verilen isimdir.
+
+package = birden fazla modül barındıran daha geniş kapsamlı projelere verilen isimdir.
+
+bu dersimizde sublime text programını kullanalım herhangi bir .py uzantılı dosyayı sublime text ile açalım.
+
+def func():
+  print("atil module function")
+
+func()
+
+yazıp, ctrl+s ile kaydedelim ardından başka bir .py dosyası oluşturup yeni oluşturduğumuz dosyada eski dosyamızdaki fonksiyonu çağıralım 
+
+örneğin ilk dosyamızın ismi atilmodule.py olsun.
+
+yeni oluşturduğumuz dosyada 
+
+from atilmodule import func
+
+func()
+
+yazıp ctrl+s ile kaydediyoruz ve cmd ile iki dosyamızın bulunduğu dizine gidip ikinci dosyamızı çalıştırdığımızda ilk dosyamızdaki fonksiyonu başarıyla kullanabildiğimizi görebiliriz.
+
+(bunu yapmak için ikisinin de aynı dizinde mi olması lazım bunu araştır buraya yaz)
+
+(cmd den yeni dosyayı çalıştırdığımızda ne çıktısı alırız araştır buraya yaz)
+
+(ikinci dosyada ilk dosyada oluşturduğumuz bir fonksiyonu kullanırken yani import ederken fonksiyonun ismini aynen ilk dosyadaki fonksiyonun ismi gibi yazmamız gerekiyor.)
+
+bu şekilde kendi modülümüzü oluşturup, projelerimizde kullanabiliriz.
+
+bu dersimizde kendi paketlerimizi oluşturmayı öğrenelim.
+
+masaüstünde sağ tık yapıp yeni bir klasör oluşturuyoruz.
+
+bu klasörün ismini metallica package yapıyoruz
+
+bir projede genellikle bir ana paket -package- olur ve bu ana paketin içerisinde bir sürü sub-package (alt paketler) olur örneğin random paketi var ve bu random paketinini içerisinde shuffle paketi var bu şekilde.. 
+
+bu metallicapackage in içeirsine bir adet subpackage isminde bir klasör daha oluşturuyoruz.
+
+şimdi de bu klasörlerin, normal bir klasörden farklı olduğunu python a bildirmek için içerilerine init fomksiyonu gibi init.py dosyaları kaydedelim.
+
+ardından metallicapackage klasörünün içine __init__.py isminde bir dosya oluşturuyoruz.
+
+ve aynı şekilde sub-package isimli klasörün altına da __init__.py isminde bir dosya oluşturuyoruz.
+
+ardından metallicapackage klasörünün altına rock_script.py isimli bir dosya oluşturuyoruz.
+
+ardından bu rock_script.py yi açıyoruz ve içine 
+
+def func():
+  print('rock n roll')
+
+yazıp ctrl+s ile kaydediyoruz ardından sub-package klasörünün içerisine metal_script.py isminde bir dosya oluşturuyoruz.
+
+ve metal_script.py dosyasının içerisine de 
+
+def func():
+  print("metal music")
+
+yazıp ctrl+s ile kaydediyoruz.
+
+bir önceki derste oluşturduğumuz 2. dosyayı açıp bu dosyada, bu derste oluşturduğumuz modülleri kullanmak bunları import etmek için 
+
+from metaalicapackage import rock_script 
+from metallicapackage.sub-package import metal_script
+
+rock_script.rock()
+
+metal_script.metal()
+
+yazarak bu fonksiyonları import edebiliriz.
+
+bunu doğrulamak için bu dosyayı cmd den çalıştırabiliriz.
+
+bu dersimizde imported vs direct konusunu öğrenelim 
+
+masaüstünde yoda.py ve anakin.y isminde iki adet dosya oluşturuyoruz.
+
+ve bu iki dosyayı sublime text de açıyoruz.
+
+yoda.py ye geliyoruz ve;
+
+def func_direct():
+  print("yoda direct")
+
+def func_imported():
+  print("yoda imported")
+
+  ve anakin.py de yoda.py deki bir modülü çalıştırabiliyoruz 
+
+  (eğer çağırmamıza rağmen modül çalışmadıysa yoda.py yi kaydedip tekrar denememiz gerekiyor.)
+
+  biz python da yoda.py veya yoda.py nin içerisindeki herhangi bir modül direkt olarak cmd den çalıştırılırsa veya import ederek çalıştırılırsa gibi farklı senaryolarda farklı işlemler gerçekeltirebiliriz.
+
+  direkt olarak anakin.py de 
+
+  import yoda
+
+  yoda.func_direct()
+
+  şeklinde yazarak da çalıştırabilirdik modülü
+
+  def func_direct():
+  print("yoda direct")
+
+def func_imported():
+  print("yoda imported")
+
+  if __name__ = '__main__':
+    func_direct()
+  else:
+    func_imported()
+
+    kodunu yoda.py ye yazıp ctrl s ile kaydediyoruz ardından 
+
+    anakid.py ye gelip 
+
+import yoda 
+
+print("anakin")
+
+yazıp kaydediyoruz 
+
+ardından cmd ye gelip masaüstü dizinine gidip 
+
+python anakin.py yi çalıştırdığımızda 
+
+yoda imported
+anakin
+
+çıktısını aldık çünkü anakin.py çalıştırıldığında yoda import ederek çağırılmıştı ve biz de yoda.py nin içerisindeki 
+
+__name__ özeli değişkeni __main__ olmadığı süre boyunca bunu import edilerek çalıştırılmış olarak kabul et ve ekrana yoda imported yaz demiştik bu yüzden bu çıktıyı aldık.
+
+ama eğer python yoda.py çalıştırırsak 
+
+yoda direct çıktısını alırız.
+
+bu dersimizde kali linux a pycharm ı yüklemeyi öğrenelim
+
+https://www.jetbrains.com/pycharm/download/download-thanks.html?platform=windows&code=PCC bağlantısından pycharm community edition u indiriyoruz.
+
+ardından kali dosya gezgininden Downloads a gidiyoruz ardından indirdiğimiz dosyayı sağ tık Cut diyoruz.
+
+pencerenin sol tarafındaki Other Location kısmına tıklıyoruz daha sonra açılan kısımda Computer e çift tıklıyoruz. daha sonra opt isimli klasöre çift tıklıyoruz daha sonra boş bir alanda sağ tık paste diyerek dosyamızı yaıştırıyoruz.
+
+indirdiğimiz dosya bir .tar dosyası yani ziplenmiş/sıkıştırılmış bir arşiv dosyası bu yüzden dosyamızın üstüne imleci getirip sağ tık Extract Here yazısına tıklıyoruz. ardından arşivden çıkan klasöre çift tıklıyoruz.
+
+ardından kali temrinalimizi açıyoruz cd /opt çalıştırıyoruz. eğer /root dizinindeysek cd .. çalıştırarak / dizinine gidiyoruz. daha sonra cd opt çalıştırıyoruz. ardından cd arsivden-cıkan-klasör çalıştırıyoruz.
+
+ardından cd bin çalıştırıyoruz daha sonra da ./pycharm.sh çalıştırıyoruz.
+
+ ardından açılan yükleme wizard ında OK butonuna basıyoruz daha sonra açılan pencerede Lisansı kabul edip Contuinue butonuna basıyoruz.
+
+ ardından no thanks butonuna basıyoruz daha sonra dark temayı kullanacağımızı seçiyoruz ardından Next butonuna basıyoruz. 
+
+ son olarak da açılan pencerede sağ alttaki Start using PyCharm butonuna basarak kurulumumuzu tamamlıyoruz.
+
+ ardından pycharm bizim için otomatik olarak başlatılıyor ve açıldığında create new project kısmına tıklayarak yeni bir roje oluşturuyoruz.
+
+ ardından açılan kısımda sağ alttaki Create butonuna basarak devam ediyoruz. 
+
+ ardından karşımıza çıkan küçük enceredeki sol tarafta show tips on startup yazısının tikini kaldırıyoruz (yani programı her başlattığımızda bize pycharm ile ilgili ipucu verme diyoruz)
+
+ pycharm tam olarak açıldıktan sonra sol tarafta Untitled isimli bir dosya olduğunu görüyoruz imleci Untitled yazan kısmın üzerine getirip sağ tık > New > Python File a tıklıyoruz.
+
+ ardından karşımıza çıkan pencerede Name: helloworld.py Kind: Python File şeklinde seçip OK butonuna basıyoruz.
+
+ ardından en yukarıdaki tablardan File > Settings (Ctrl+Alt+S) > açılan kısımda arama yerine Font yazıyoruz ve Font ayarlarından Size:30 olarak ayarlıyoruz ve sağ alttaki Apply idyerek değişikliklerimizi kaydediyoruz.
+
+ daha sonra kodlarımızı yazacağımız yere print("helloe world") yazıp yukarıdaki Run sekmesinden > Run (Alt+Shift+F10) a tıklıyoruz ardından helloworld.y yi seçiyoruz. ve alt tarafta açılan kısımdan kodumuz çalıştırıldıktan sonra çıktısını hello world şeklinde alıyoruz.
+
+ ardından file sekmesinden > Save All (ctrl+s) yaparak dosyamızı kaydediyoruz.
+
+dilersek python dosyalarımızı terminal üzerinden de çalıştırabiliriz bunun için kali terminalimize gleip cd //root/PycharmProjects/Untitled çalıştırdıktan sonra python helloworld.py çalıştırırsak hello world çıktısını alırız.
+
+kali terminalimizde ifconfig çalıştırdıktan sonra gelen çıktıda inet: 10.0.2.15 kısmınddaki değer bizim lokal ip adresimizdir (inet = ip address)
+
+ether:08:00:27:al:b6:e6 kısmındaki değer de mac adresimiz oluyor (ether = mac address)
+
+bazen bazı ağlarda xxx değer aralığına sahip mac adreslerine sahip olan cihazlar ağa bağlanabilsin gibi kurallar olabiliyor hem bu gibi durumlarda hem de bağlı olduğumuz ağda daha anonim olmak için mac adresimizi değiştirmek isteyebiliriz.
+
+bu dersimizde kali linux umuzun mac adresini manuel olarak değiştirmeyi öğrenelim 
+
+bunun için kali terminalimize geliyoruz
+
+(aşağıdaki satırdaki koddaki hw = hardware -yani hardware da bir değişiklik yapmak istediğimiz anlamına geliyor.)
+
+ifconfig eth0 down > ifconfig eth0 hw ether 00:11:22:33:44:55 çalıştırdıktan sonra ifconfig eth0 up > ifcoonfig çalıştırdığımızda 
+
+gelen çıktıda ether kısmında mac adresimizin 00:11:22:33:44:%5 olarak değiştiriğini görebiliriz.
+
+ancak bu mac adresimizle muhtemelen bir internet bağlantımız olmaz çünkkü sanal bir ağda sanal bir makiknenin mac adresini değiştirdiğimiz için (peki neden sanal bir makinenin mac adresini kafamıza göre değiştiremiyoruz bunu araştır buraya yaz)
+
+şimdi pycharm ı açalım /root dizinindeyken > cd.. > cd opt > cd pycharm-community > cd bin > ./pycharm.sh çalıştırarak pycharm ı açıyoruz.
+
+açıldıktan sonra File > New Project > Location kısmının sonunu mymacchanger şeklinde değiştiriyoruz.
+
+daha sonra karşımıza çıkan uyarı penceresinde This Window butonuna tıklıyoruz.
+
+ardından sol üst kısımdan macchanger dosyamızın olduğu kısımda sağ tık New > Python File ı seçiyoruz.
+
+Name: my_mac_changer.py 
+Kind: Python File 
+
+olarak ayarlıyoruz.
+
+sol tarafta klasör ve dosya isimleri yazan barı pycharm ın en solunda yukarıdan aşağı bir şekilde Project yazan yazıya tıklayarak kapatabiliriz.
+
+bu dersimizde python ile mac değiştirici programımızı yazmaya başlayalım 
+
+en son oluşturduğumuz dosyayı pycharm ile açıyoruz.
+
+python da, linux terminalde olduğu gibi ls,cd ifconfig gibi komutları subprocess isimli library yi import ederek gerçekleştirebiliriz subprocess kütüphanesindeki komutları ve parametreleri öğrenmek için dökumantasyonlara bakabiliriz.
+
+
+
+import subprocess 
+
+print("MyMacChanger started")
+
+subprocess.call(["ifconfig","eth0","down"])
+subprocess.call(["ifconfig","eth0","hw","ether","00:11:22:22:11:11"])
+subprocess.call(["ifconfig","eth0","up"])
+
+şeklinde yazıyoruz burada " " (çift tırnak işaretleri arasındaki stringler linux terminalde komut çalıştırılırken boşluk ile ayrılan her bir string dir)
+
+subprocess.call(["ifconfig","eth0","down"]) = ifconfig eth0 down -yani eth0 /ethernet kartının internet bağlantısını kapat anlamına gelen komut gibi
+
+ardından File > Save All diyerek dosyamızı kaydediyoruz.
+
+ardından kali terminalimizde my_mac_changer.py nin bulunduğu dizine gidiyoruz.
+
+başka bir terminalde ifconfig çalıştırıyoruz ve güncel mac adresimizin 00:11:22:33:44:55 olduğunu görüyoruz 
+ardından bir önceki terminal tabında python my_mac_changer.py çalıştırıyoruz ve 
+
+MyMacChanger started çıktısını alıyoruz.
+
+mac adresimizin değişip değişmediğini doğrulamak için tekrar ifconfig çalıştırıyoruz ve artık güncel mac adresimizin 
+
+00:11:22:22:11:11 olduğunu görüyoruz 
+
+bu dersimizde oluşturduğumuz mac changer da kullanıcının eth dışındaki ağ kartlarını kullandığı senaryolarda ve değiştireceği mac adresini kendi seçmek istediği vs gibi durumlar için kodlarımızda değişiklikler yapalım.
+
+import subprocess 
+
+print("MyMacChanger started")
+
+interface = "eth0"
+mac_address = "00:22:33:77:99:11"
+
+subprocess.call(["ifconfig",interface,"down"])
+subprocess.call(["ifconfig",interface,"hw","ether",mac_address])
+subprocess.call(["ifconfig",interface,"up"])
+
+şeklinde kodumuzu güncelliyoruz file > save all yapıyoruz 
+
+bu kodumuzda interface şeklinde bir değişken oluşturarak kullanıcının kullandığı ağ kartı interface ine göre uygun komutu buraya yazmasını sağlıyoruz 
+
+ardından mac_Address isimli bir değişken oluşturup bu değişkene default olarak bir mac atıyoruz ve aşağıda yine mac adresi yazan ksıımda mac_address değişkenini kullandık ki kullanıcı buraya değiştirmek istediği mac adresini yazsın.
+
+import subprocess 
+import optparse
+
+parse_object = optparse.OptionParser()
+parse_object.add_option("-i","--interface",dest="interface",help="interface to change!")
+
+print("MyMacChanger started")
+
+interface = "eth0"
+mac_address = "00:22:33:77:99:11"
+
+subprocess.call(["ifconfig",interface,"down"])
+subprocess.call(["ifconfig",interface,"hw","ether",mac_address])
+subprocess.call(["ifconfig",interface,"up"])
+
+kodumuzun güncel hali bu (kodda anlamadığım bir ka çnokta var; 1. si = optparse.OptionParser() kısmındaki OptionParser() bir fonksiyon mu yoksa bir attribute mu OptionParser() ne işe yarıyor araştır buraya yaz
+
+2. si .add_option özelliği ne işe yarıyor nedne bunu kullandık burada -i ve --interface şeklinde özellik ekledik acaba burada -i yazdıktan sonra yazacağımız eth0 veya wlan0 komutu programda ifconfig -i eth0 hw ether mac_address şeklinde interface değişkenine bir değer olarak mı atanıyor daha sonra bu değer de kodun çalıştırılması aşamasında kullanılıyor peki bu -i nin interface değişkeni kısmına yazılacağını dest=interface komutu mu belirliyor ? burada dest ve help kısımlarını anlamadım neden bunları ve bunlardan sonra = dedikten sonra "interface" ve "interface to change" yazma gereği duyduk bunu araştır buraya yaz )
+
+import subprocess 
+import optparse
+
+parse_object = optparse.OptionParser()
+parse_object.add_option("-i","--interface",dest="interface",help="interface to change!")
+parse_object.add_option("-m","--mac",dest="mac_address",help="new mac address")
+
+print(parse_object.parse_args())
+
+print("MyMacChanger started")
+
+#mac_address = "00:22:33:77:99:11"
+
+#subprocess.call(["ifconfig",interface,"down"])
+#subprocess.call(["ifconfig",interface,"hw","ether",mac_address])
+#subprocess.call(["ifconfig",interface,"up"])
+
+şeklinde son 4 satırı yorum aline getirdik çünkü print(parse_object.parse_args()) ile kullanıcıdan aldığımız argümanları ekrana bastırdıktan sonra yoruma aldığımız kodlar çalışırsa kullanıcı mac adresini dğeiştirse bile daha sonra mac adresi #mac_address = "00:22:33:77:99:11" şeklinde tekrardan değişecektir 
+
+daha sonra cmd de mac_changer.py nin bulunduğu dizine gidiyoruz ve 
+
+python mac_changer.py -i eth0 -m 00:11:22:33:44:55 veya 
+
+python mac_changer.py --interface eth0 --mac 00:11:22:33:44:55
+
+çalıştırırsak mac adresimizi her iki parametre ile de başarıyla değiştirebileceğimizi görüyoruz 
+
+(burada anlmmadığım kısım print(parse_object.parse_args()) kodunda yazdırılan kısımlardan hangisi args yani argümanlar oluyor bunu araştır buraya yaz )
+
+ve bu iki kodda da aldığımız ilk çıktıyı bize dictionary şeklinde veriyor.
+
+import subprocess 
+import optparse
+
+parse_object = optparse.OptionParser()
+parse_object.add_option("-i","--interface",dest="interface",help="interface to change!")
+parse_object.add_option("-m","--mac",dest="mac_address",help="new mac address")
+
+option_dictionary = parse_object.parse_args()
+
+print(option_dictionary["mac_address"])
+
+print("MyMacChanger started")
+
+#mac_address = "00:22:33:77:99:11"
+
+#subprocess.call(["ifconfig",interface,"down"])
+#subprocess.call(["ifconfig",interface,"hw","ether",mac_address])
+#subprocess.call(["ifconfig",interface,"up"])
+
+şeklinde mac_address key ini sorgulatıp bu key in valuesini öğrenmek istediğimizde bize print edilen verinin bir dic değil tuple olduğunu söylüyor
+
+import subprocess 
+import optparse
+
+parse_object = optparse.OptionParser()
+parse_object.add_option("-i","--interface",dest="interface",help="interface to change!")
+parse_object.add_option("-m","--mac",dest="mac_address",help="new mac address")
+
+(user_inputs,arguments)= parse_object.parse_args()
+
+print(user_inputs.interface)
+print(user_inputs.mac_address)
+
+print("MyMacChanger started")
+
+#mac_address = "00:22:33:77:99:11"
+
+#subprocess.call(["ifconfig",interface,"down"])
+#subprocess.call(["ifconfig",interface,"hw","ether",mac_address])
+#subprocess.call(["ifconfig",interface,"up"])
+
+yukarıdaki kodu kaydettikten sonra 
+
+python mac_changer.py --interface eth0 --mac 00:11:22:33:44:55 çalıştırırsak cmd de;
+
+eth0 
+00:22:22:33:33:44
+MyMacChanger started!
+
+çıktısı alırız yani bu kodda 
+
+print(user_inputs.interface)
+print(user_inputs.mac_address)
+
+kodları 
+
+eth0 
+00:22:22:33:33:44
+
+çıktılarını almamıza sebep oldu.
+
+
+import subprocess 
+import optparse
+
+parse_object = optparse.OptionParser()
+parse_object.add_option("-i","--interface",dest="interface",help="interface to change!")
+parse_object.add_option("-m","--mac",dest="mac_address",help="new mac address")
+
+(user_inputs,arguments)= parse_object.parse_args()
+
+user_interface = user_inputs.interface
+user_mac_address = user_inputs.mac_address
+
+print("MyMacChanger started")
+
+subprocess.call(["ifconfig",user_interface,"down"])
+subprocess.call(["ifconfig",user_interface,"hw","ether",user_mac_address])
+subprocess.call(["ifconfig",user_nterface,"up"])
+
+şeklinde mac changer ımızı son olarak bu şekilde güncelliyoruz
+
+bu dersimizde yazmış olduğumuz mac changer ın kodlarını daha düzenli ve verimli bir şekilde nasıl yazabiliriz
+
+bunu öğrenelim
+
+şimdi mac changerımızda temel iki işlem var birincisi 
+
+parse_object = optparse.OptionParser()
+parse_object.add_option("-i","--interface",dest="interface",help="interface to change!")
+parse_object.add_option("-m","--mac",dest="mac_address",help="new mac address")
+
+kısmını içeren, kullanıcıdan girdi, opsiyon aldığımız kısım 
+
+ikincisi de;
+
+subprocess.call(["ifconfig",user_interface,"down"])
+subprocess.call(["ifconfig",user_interface,"hw","ether",user_mac_address])
+subprocess.call(["ifconfig",user_nterface,"up"])
+
+yani mac adresini dğeiştirme işlemi 
+
+bu iki işlemi de ayrı ayrı bir fonksiyon oluşturup bu fonksiyonlar içerisinde gerçekleştirebiliriz.
+
+import subprocess 
+import optparse
+
+def get_user_input():
+    
+
+  parse_object = optparse.OptionParser()
+  parse_object.add_option("-i","--interface",dest="interface",help="interface to change!")
+  parse_object.add_option("-m","--mac",dest="mac_address",help="new mac address")
+
+  return parse_object.parse_args()
+
+
+def change_mac_address(user_interface,user_mac_address):
+
+  subprocess.call(["ifconfig",user_interface,"down"])
+  subprocess.call(["ifconfig",user_interface,"hw","ether",user_mac_address])
+  subprocess.call(["ifconfig",user_nterface,"up"])
+
+print("MyMacChanger started")
+(user_input,arguments) = get_user_input()
+change_mac_address(user_input.interface,user_input.mac_address)
+
+save all dedikten sonra cmd de python my_mac_changer.py --interface eth0 --mac 00:55:11:33:44:22 çalıştırırsak 
+
+MyMacChanger started! çıktısını alırız ifconfig çalıştırdığımızda da mac adresimizin 00:55:11:33:44:22 çalıştırırsak  şeklinde değiştiğini görebiliriz.
+
+sublime text de .py uzantılı bir dosyayı açtığımızda bir fonksiyonun def xyz şeklinde oluşturulduğu satır numarasına imleci getirdiğimizde oradaki küçük ok işaretine tıklarsak bu fonksiyonun altındaki işlemler gözükmeyecek ve sadece fonksiyonun ismini yani def xyz şeklinde oluşturulduğu satırı görürüz bu şekilde daha düzenli bir görünüm elde edebiliriz.
+
+import subprocess 
+import optparse
+
+def get_user_input():
+    
+
+  parse_object = optparse.OptionParser()
+  parse_object.add_option("-i","--interface",dest="interface",help="interface to change!")
+  parse_object.add_option("-m","--mac",dest="mac_address",help="new mac address")
+
+  return parse_object.parse_args()
+
+
+def change_mac_address(user_interface,user_mac_address):
+
+
+def control_new_mac(interface):
+
+  ifconfig = subprocess.check_output(["ifconfig",interface])
+  print(ifconfig)
+
+  subprocess.call(["ifconfig",user_interface,"down"])
+  subprocess.call(["ifconfig",user_interface,"hw","ether",user_mac_address])
+  subprocess.call(["ifconfig",user_nterface,"up"])
+
+print("MyMacChanger started")
+(user_input,arguments) = get_user_input()
+change_mac_address(user_input.interface,user_input.mac_address)
+control_new_mac(user_input.interface)
+
+bu kodu yazarak;
+
+def control_new_mac(interface):
+
+  ifconfig = subprocess.check_output(["ifconfig",interface])
+  print(ifconfig)
+
+  kısmında yeni ifconfig isminde bir değişken oluşturuyoruz ve ifconfig eth0 komutunun çıktısını print(ifconfig) diyerek ekrana bastırıyoruz.
+
+  sadece   ifconfig = subprocess.check_output(["ifconfig",interface]) kullanamayız çünkü bu şekilde çıktıyı ifconfig isimli bir değişkene eşitledik 
+
+  print ile onu bastırmamız gerekiyor çıktıyı görebilmemiz için.
+
+  (interface yerine "eth0" da yazabilirdik ancak başka arayüzler kullnıldığı zaman problem olabilirdi.)
+
+  tabii bu kontrol  işlemi bir fonksiyon içerisinde olduğu için bu kontrolün gerçekleşmesi için fonksiyonu çağırmamız gerekiyor onu da 
+
+  control_new_mac(user_input.interface)
+
+  komutu ile gerçekleştirdik
+
+  (control_new_mac(user_input.interface) yerine control_new_mac(interface) çalıştırsaydık ne çıktısı alırdık den buraya yaz)
+
+daha sonra save all dedikten sonra cmd de python my_mac_changer.py --interface eth0 --mac 00:33:11:33:44:22 çalıştırdığımızda 
+
+geçen sefer aldığımız çıktıya ek olarak ifconfig çalıştırdığımızda aldığımız çıktıyı aldık.
+
+bu dersimizde herhangi bir metinse filrelemeler yapmamızı sağlayan regex i öğrenelim 
+
+regex (regular expression demektir)
+
+regex sadece pytohn için geçerli değil bir çok programlama dilinde regex ile birlikte çalışabiliriz.
+
+https://regex101.com/ python ile uyumlu bir regex editor kullanalım bu dersimizde, bu yüzden bu bağlantıyı tarayıcımızda açıyoruz.
+
+bu sayfada TEXT STRING kısmına filtrelemek istediğimiz metni, bu uygulamada ifconfig çalıştırdığımızda aldığımız çıktıyı yapıştırıyoruz (çıktının tamamını)
+
+REGULAR EXPRESSION kısmına da filtrelemek istediğimiz koşulları yani regex parametrelerimizi yazıyoruz
+
+regex de \s çalıştırırsak seçtiğimiz metinin içeriisndeki bütün boşlukları bize seçer 
+
+\d yazarsak sadece numara,rakam, sayı olanları gösterir 
+
+\w yazarsak herhangi bir harf, karakteri gösterir.
+
+\W yazarsak harf olmayan şeyleri (örneğin. parantez işaretlerini, süslü parantez vs.) gösterir.
+
+sağ alttaki QUICK REFERENCE kısmından hangi parametrenin ne işe yaradığını ve nasıl bir filtreleme yaptığını görebiliriz.
+
+çıktımızı yapıştırdıktan sonra REGULAR EXPRESSION kısmına \d\d:\d\d:\d\d:\d\d:\d\d:\d\d çalıştırırsak metnimizde sadece mac adresinin olduğu değeri filtreler.
+
+ancak mac adresleri sadece rakamlardan oluşmuyor aynı zmaanda mac adreslerinde a-Z karakterler de olabilir.
+
+örneğin mac adresimiz 00:3a:11:33:44:22
+
+\w\w:\w\w:\w\w:\w\w:\w\w:\w\w çalıştırırsak mac adresimizi başarılı bir şekilde seçebiliriz.
+
+import subprocess 
+import optparse
+import re
+def get_user_input():
+    
+
+  parse_object = optparse.OptionParser()
+  parse_object.add_option("-i","--interface",dest="interface",help="interface to change!")
+  parse_object.add_option("-m","--mac",dest="mac_address",help="new mac address")
+
+  return parse_object.parse_args()
+
+
+def change_mac_address(user_interface,user_mac_address):
+
+
+def control_new_mac(interface):
+
+  ifconfig = subprocess.check_output(["ifconfig",interface])
+  new_mac = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w",ifconfig)
+
+  if new_mac:
+    return new_mac.group(0)
+  else:
+    return None
+
+  subprocess.call(["ifconfig",user_interface,"down"])
+  subprocess.call(["ifconfig",user_interface,"hw","ether",user_mac_address])
+  subprocess.call(["ifconfig",user_nterface,"up"])
+
+print("MyMacChanger started")
+(user_input,arguments) = get_user_input()
+change_mac_address(user_input.interface,user_input.mac_address)
+finalized_mac = control_new_mac(user_input.interface)
+
+if finalized_mac == user_input.mac_Address:
+  print("Success!")
+
+else:
+  print("Error!")
+
+  şeklinde güncel olarak bu dersimizde mac adresini değiştirdikten sonra başarıyla değiştirdiğini kontrol ettiğimiz ve burada da regex i kullandığımız kodun güncel hali bu şekilde 
+
+  import re diyerek regex python kütüphanesini import edebiliriz.
+
+    new_mac = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w",ifconfig) komutu ile önce filtreleme yapacağımız regex ifadesini daha sonra da üzerinde filtreleme yapılacak metni giriyoruz 
+
+    en başında r harfinin olması bunun bir regex ifadesi olduğu anlamına geliyor
+
+  if new_mac:
+    return new_mac.group(0)
+  else:
+    return None
+
+    burada da re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w",ifconfig) ifadesinde eğer mac adresi değeri yerine başka bir ifade döndürülürsek (örneğin hata veya mac adresi dışındaki bir çıktı gibi)
+
+    None yani hiç bir çıktı döndürme diyoruz eğer mac adresi başarıyla döndürülürse 
+
+    new_mac.group(0) şeklinde gelen çıktı re kütüphanesinde oluşturulan bu metod gereği direk string olarak döndürülmüyor; index numarası vererek bu şekilde başarıyla döndürebiliriz.
+
+if finalized_mac == user_input.mac_Address:
+  print("Success!")
+
+  bu kodu tam anlamadım araştır buraya yaz neyi kontrol ettiğini
+
+  kullanıcının en başta değiştirilmesini istediği mac adresiyle finalized_mac aynıysa ekrana başarılı değilse hata yazdırıyor
+
+ardından save all dedikten sonra cmd den python my_mac_changer.py --interface eth0 --mac 00:5b:4d:33:44:22 çalıştırdığımızda 
+
+MyMacChanger started!
+Success! 
+
+çıktısını alırız.
+
+bu dersimizde python3  uyumluluk kontrolü konusunu öğrenelim.
+
+biz kodlarımızı python3 de (python un 3. versiyonunda yazdık / çalıştırdık.)
+
+ancak bazı kütüphaneler python2 ve 3 arasında sıkışmış kalmış; bazıları 2 yi bazıları 3 ü destekliyor.
+
+2 ve 3 arasında çalışma prensibi olarak çok küçük farklılıklar var.
+
+cmd de python3 my_mac_changer.py --interface eth0 --mac 00:11:33:22:44:22 çalıştırdığımızda 
+
+(yani bu komutu python3 ile çalıştırdığımızda)
+
+bize bir hata verdi bu hata 34. ve 20. satırda type-error olduğunu söylüyor.
+
+new_mac = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w",ifconfig) bu satırda ifconfig in değerinin string olmadığını söylüyor 
+
+new_mac = re.search(r"\w\w:\w\w:\w\w:\w\w:\w\w:\w\w",str(ifconfig)) şeklinde değiştirebiliriz.
+
+aynı şekilde 34 satırda user_input.interface in bir string olmadığını söylüyor.
+
+ardından save all diyoruz ve cmd de python3 my_mac_changer.py --interface eth0 --mac 00:11:33:22:44:22 çalıştırdığımızda  çalıştırdığımızda programımızın başarılı bir şekilde çalıştığını görebiliriz.
+
+bu kodu cmd de python my_mac_changer.py --interface eth0 --mac 00:11:33:22:44:22 çalıştırdığımızda 
+
+yine herhangi bir hata mesajı almayız.
+
+arp protokolü ip adresi ile mac adresini eşleştirmeye yarayan bir protokoldür (yani lokal ağda bir ip adresine sahip olan cihazın mac adresinin ne olduğunu eşleştirmesi işlemidir.)
+
+bu dersimizde ağ tarayıcısı (network scanner) nedir bundan bahsedelim.
+
+bu uygulamada kali ve windows makinalarının aynı anda açık olduğunu varsayalım.
+
+kali ile yüklü gelen netdiscover isminde bir ağ tarayıcısı vardır.
+
+(netdiscover --help çalıştırırsak manual sayfasına ulaşabiliriz.)
+
+kali terminalimizde netdiscover -r 10.0.2.1/24 çalıştırırsak ağdaki bütün olası ip adreslerine sahip bir cihaz var mı bunun taramasını başlatmış oluruz.
+
+koddaki .1//24 ifadesi (.1/255 yani olası bütün ip adreslerini dene ve bu ip ye sahip bir cihaz varsa listele anlamına gelir.)
+
+aldığımız çıktıda ağdaki cihazların ip adresiyle beraber mac adreslerini de öğrenmiş oluruz.
+
+şimdi windows sanal makinamıza geçiş yapalım.
+
+cmd > ipconfig > gelen çıktıda IPv4Adddress: satırındaki değer windows un lokal ip adresidir.
+
+(windows da ipconfig çalıştırdığımızda ilgili cihazın mac adresi bilgisini de alır mıyız evet ise hangi satırda araştır buraya yaz)
+
+ardından windows sanal makinamızı kapatıyoruz ve kali de ./pycharm.sh (pycharm ın yüklü olduğu dizinde) çalıştırarak pycharm ı açıyoruz gelen ekranda sağ tarafta + Create New Project e basıyoruz.
+
+ardından /my-net-scanner > Create diyerek yeni projemizi oluşturuyoruz.
+
+bu dersimizde network scanner ımızın kodlarını yazmaya başlayalım 
+
+sol üstten my-net-scanner projemize sağ tık > New > Python File a tıklıyoruz. Name: my_net_scanner 
+
+Kind:Python File > OK diyoruz.
+
+import scapy.all as scapy yazıyoruz (bu arp işlemini gerçekleştirmemiz için gerekli olan kütüphane as scapy yazmamızın sebebi de kodları yazarken scapy.all yazmadan direk scapy yazmak, yazım kolaylığı olmaıs için)
+
+https://scapy.readthedocs.io/en/latest/ bu bağlantıdan scapy nin dökumanlarına ulaşabiliriz.
+
+import scapy.all as scapy 
+
+#1)arp_request
+#2)broadcast
+#3)response 
+
+şeklinde programımızın yapacağı işlemleri sırayla yorum satırına alarak kod yazarken bize yardımcı olmasını sağlayabiliriz.
+
+arp_request_packet = scapy.ARP()
+scapy.ls(scapy.ARP())
+
+yazıp save all yapıyoruz ardından kali terminalimize gelip cd /PycharmProjects/my-net-scanner dizinine gidiyoruz
+
+python my_net_scanner.py çalıştırdığımızda scapy.ls(scapy.ARP()) komutunun çıktısı yani scapy.ARP metoduyla alakalı scapy.ls ile bilgi aldık (scapy.ls bir nevi help metodudur.)
+
+aldığımız çıktıda ARP instance ı oluştururken içeri girdi olarak verebileceğimiz inputlar / argümanlar bu şekilde yazabilirsin diyor. örneğin; 
+
+MACField yada IPField gibi...
+
+bizim şuan ilgilendiğimiz argüman IPField. 
+
+import scapy.all as scapy 
+
+#1)arp_request
+#2)broadcast
+#3)response 
+
+arp_request_packet = scapy.ARP(pdst='10.0.2.1/24')
+scapy.ls(scapy.ARP())
+
+
+
+
+
+(burada pdst= yapmamızın sebebi scapy.ls in çıktıısnda aldığımız argümanın ismi olduğu için)
+
+arp_request_packet = scapy.ARP(pdst='10.0.2.1/24') burada ağımızdaki bütün ip adresleri ile alakalı işlem yapmak için bu ip adresleri aralığında işlem yapacağımızı belirtmek için bir arp paketi oluşturduk 
+
+arp_request_packet = scapy.ARP(pdst='10.0.2.1/24') yazdıktan sonra 
+
+#scapy.ls(scapy.ARP()) şeklinde çalıştırılmaması için yorum satırına alabiliriz.
+
+bu dersimizde yayın isteği paketini / konusunu öğrenelim.
+
+
+import scapy.all as scapy 
+
+#1)arp_request
+#2)broadcast
+#3)response 
+
+arp_request_packet = scapy.ARP(pdst='10.0.2.1/24')
+#scapy.ls(scapy.ARP())
+
+broadcast_packet = scapy.Ether()
+scapy.ls(scapy.Ether())
+
+yazıp save all yaptıktan sonra cmd de ilgili dizine gittikten sonra python my_net_scanner.py çalıştırırsak, 
+
+bu sefer çok daha az keyword-arguments çıktı 
+
+dst yani destination mac address argümanı ve 
+
+src yani source/kaynak mac adresi argümanı şeklinde ve bir başka argüman daha toplamda 3 argüan belirtebliiyoruz.
+
+ve dst nin karşısında bu değişkenin default değerinin ff:ff:ff:ff:ff:ff şeklinde olduğunu görüyoruz.
+
+bu mac adresi broadcast yayınının yapıldığı mac adresidir yani kısaca ilgili mesajı modeme yolla o ağdaki bütün cihazlara ulaştırdın demek.
+
+(scapy de sr fonksiyonupaketleri tek tek yollamak için; srp de combined_packet = broadcast_packet/arp_request_packet şeklinde birleştirilmiş 2 veya daha çok farklı paketin kullanıldığı fonksiyondur.)
+
+ombined_packet = broadcast_packet/arp_request_packet satırında 2 paketi birleştirme işlemi yapmış oluruz scapy de / (bölü) işareti bunu yapar.
+
+import scapy.all as scapy 
+
+#1)arp_request
+#2)broadcast
+#3)response 
+
+arp_request_packet = scapy.ARP(pdst='10.0.2.1/24')
+#scapy.ls(scapy.ARP())
+
+broadcast_packet = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
+#scapy.ls(scapy.Ether())
+
+combined_packet = broadcast_packet/arp_request_packet
+
+result = scapy.srp(combined_packet,timeout=1)
+
+yazıp save all yaptık 
+
+scapy.srp(combined_packet,timeout=1) bu satırda göndermek istediğimiz mesaj = combined_packet olduğu için onu yazdık ikinci olarak da timeout=1 yazdık çünkü 255 adet ip deneyeceği için yanıt vermeyenleri beklememek için timeout=1 yaptık çünkü yanıt vermesini beklersek, ip aralığındaki diğer ip leri taramaya/sorgulamaya/bulmaya devam etmeyecekti 
+
+ardından cmd de python my_net_scanner.py çalıştırdığımızda 
+
+Recieved 3 packets, got 3 answers, remaining 253 packets 
+
+şeklinde çıktı aldık bu yayın isteği gönderilen paketlerden 3 tanesi bu yayın isteği paketini almış 253 tanesi almamış yani 3 tanesi bu pakete yanıt vermiş 253 tanesi yanıt vermemiş (yanıt verilmediği zaman timeout=1 den dolayı taramaya, bir sonraki ip den devam edilir.)
+
+bu dersimizde cevapları yazdırmak konusunu öğrenelim. 
+
+import scapy.all as scapy 
+
+#1)arp_request
+#2)broadcast
+#3)response 
+
+arp_request_packet = scapy.ARP(pdst='10.0.2.1/24')
+#scapy.ls(scapy.ARP())
+
+broadcast_packet = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
+#scapy.ls(scapy.Ether())
+
+combined_packet = broadcast_packet/arp_request_packet
+
+(answered_list,unanswered_list) = scapy.srp(combined_packet,timeout=1)
+
+print(list(answered_list))
+
+
+çalıştırdığımızda 
+
+ilgili range i taradıktan sonra karman çorman bir çıktı karşımıza geliyor.
+
+gelen çıktının 4. satırında <ARP pdst=10.0.2.1 |>> <Ether dst=10.0.2.1-in-mac-adresi şeklinde sırayla ilgili range deki ipler ve varsa bu ip lerin mac adreslerini çıktı olarak alırız 
+
+ancak bu çıktı çok karışık; regex ile mac adreslerini,ip adlesleriyle eşleştirerek düzenli bir formata dönüştürebilriz (veya bu listeyi for loop a sokup elemanlarını okuyup bize lazım olan elemanları çekip eşleştirebiliriz) ama scapy de zaten bunu yapan bir metod var.
+
+import scapy.all as scapy 
+
+#1)arp_request
+#2)broadcast
+#3)response 
+
+arp_request_packet = scapy.ARP(pdst='10.0.2.1/24')
+#scapy.ls(scapy.ARP())
+
+broadcast_packet = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
+#scapy.ls(scapy.Ether())
+
+combined_packet = broadcast_packet/arp_request_packet
+
+(answered_list,unanswered_list) = scapy.srp(combined_packet,timeout=1)
+
+answered_list.summary()
+
+save all dedikten sonra cmd de çalıştırıyoruz ve çok daha düzgün bir formatta çıktımızı alabiliriz.
+
+
+
+

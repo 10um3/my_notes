@@ -1,0 +1,1897 @@
+data medir
+herhangi bir çalışmadan sonra anlamlandırılmış metinler topluluğu veya karakterler topluluğu veya resimler topluluğuna veri denir bu kavramlar tekil veya çoğul olabilir 
+data iki türlüdür bir değişebilen ikincisi değişemeyen datadır örneğin kişinin isminin engin olması değişmeyen bir datadır 
+değişen datalra da continious data deniliyor değişen datalara örnek de kilo 
+database Veri tabanları birbirleriyle ilişkili bilgilerin depolandığı alanlardır. Bilgi artışıyla birlikte bilgisayarda bilgi depolama ve bilgiye erişim konularında yeni yöntemlere ihtiyaç duyulmuştur.
+örneğin biz instagrama bir fotoğraf yükleidğimizde önce bu fotoğraf veritabanına kaydedilir sonra onu görüntülemek isteyen herkesin isteğine göre veritabanı onları datanın olduğu bağlantıya yönlendirir 
+database design veritabanı tasarımı verilerimizin anlamlı ve verimli bir şekilde veri tabanlarında tutulması için yapılan tasarımsal çalışmadır 
+burada amaç çoğunlukla veriye sağlıklı bir şekilde erişmektir 
+veri değiştiği zaman onu kolaylıkla değiştirebilmek 
+veriye hızlı bir şekilde ulaşabilmek 
+veritabanı tasarımı veriyi sağlıklı bir formatta tutmak ve ilerideki sağlığını da korumak üzerine yapılan çalışmalardır 
+popüler veritabanı yönetim sistemleri 
+RDBM Relational Database Management System ilişkisel veritabanı yönetim sistemleri 
+SQL SERVER, ORACLE, MYSQL PostgreSQL
+SQL server micrsoft tarafından geliştirilmiştir 
+n
+NoSQL (not only sql)
+mongodb,cassandra,redis
+bunlar ilişkilerin fiziksel olmadığı ve özellikle ve verinin özelliklerinin değişkenlik gösterdiği durumlarda kullanılıyor 
+mesela bir verinin bir özelliği varken zamanla o verinin başka özellikleri de ortaya çıkabilir 
+örneğin  bir müşteriyi veritabanına engin demiroğlu diye kaydettik zamanla başka bir data emgin demiroğlu doğum yeri diyarbakır şeklinde yazılabilir 
+bunlar da özellikle büyük veri dediğimiz özellikle google da çok büyük veri çöplüğü gibi olan şirketlere bunlar daha uygunken daha çok ilişkilendirilebilir verillerin olduğu sunucular içinr
+rdbms daha uygundur 
+SQL Nedir (structured query language) Yapılandırılmış Sorgu Dili 
+veriyi ihtiyacımıza uygun olduğu halde filtreleme olayını sql ile yapıyoruz 
+örneğin bir veritabanında 2 adet ahmet kartal isimli müşteri var bunların ikisi de farklı bir ürün sipariş etmiş bu ahmet kartal ın aynı kişi mi yoksa sadece isim soyad benzerliği olan 2 farklı kişi 
+mi bunu anlamak için normalizasyon kurallarını kullanırız 
+tablo içerisinde satın satır dataların olduğu sutunlar ile kategori edilmiş verilerin olduğu yapıya denir genelde tam tersi de olabilir 
+bu normalizasyon işlemlerinden biri de örneğin ürünler veya müşteriler veya  kategoriler bölümlerinin birer id si olmalıdır 
+"Identification Number (ID) = kimlik numarası 
+normalizasyon kuralarından biri bir kolon yani sütun asla iki bilgiyi tutmaz 
+ad bir bilgidir soyad başka bir bilgidir 
+sql de bir workshop yapmak istiyoruz
+bunun için gereksinimlerimiz 
+*kurs bilgilerini tutmak istiyoruz
+*eğitmen bilgilerini tutmak istiyoruz 
+*bir kursun sadece bir eğitmeni olabilir 
+oracle ın veritabanında mysql gibi tablo isimleri kategoriler tamamı ve hepsi büyük harfle yazılır KURS gibi 
+microsoft teknolojilerinde ise ilk harfi büyük diğerleri küçük olacak bir şekilde çoğul kullanılır Kurslar gibi 
+bir tablonun kendisine has bir id si olmalı 
+bir kursun sadece bir eğitmeni olabilir koşulundan dolayı Kursid kısmını eğitmenler kısmına değil de kurslar kısmına yazmak daha doğru olur çünkü eğitmenler tabloda sadece bir defa geçecek 
+diğer türlü eğitmenler bölümünde olsaydı eğitmen id bir ad soyad ve yine kurs id 1 olacaktı kendimizi tekrar etmiş olacaktık bu yüzden kurslar bölümüne egitmenid olarak yazmak daha doğru olur
+hem böylece farklı iki kursu aynı eğitmen yapmış olursa bir karışıklık çıkmaz 
+1 kursun yalnızca 1 eğitmeni olup eğitmen tablosunda aynı eğitmenin birden fazla olmaması koşulu ama farklı iki kursun aynı eğitmeni olabileceği ilişkisi eğitmen ile kurslar tablosunun arasındaki 
+ilişkinin ismi one to mant (1'den çok(ğa) ilişkisi denir 
+workshop-2
+udemy gibi bir sistemin veritabanını kurmak istiyoruz 
+gereksinimler:
+kurs bilgilerini tutmak istiyoruz 
+eğitmen bilgilerini tutmak istiyoruz 
+bir kursun bir veya birden fazla eğitmeni olabilir 
+bu workshop ı yaparken şöyle bir yanlışa düşebiliriz 3. gereksinim gereği kurslar tablosuna eğitmenid1 eğitmenid2 diye yazabiliriz ama bu sağlıklı doğru bir tasarım olmayacaktır sebebi de 
+eğer böyle yaparsak yeni bir eğitmen eklendiği zaman yeni bir kolon açmamız gerekecek ve sonra bir veritabanında yapmış olduğumuz sorgularda sorgularımızın yapısı değişecek programlarız değişecek 
+başka bir sebebi ise bu tarz bir tasarımda kazara olarak bir kursu tek başına çıkaran bir eğitmenin kursuna başka eğitmenleri de ekleyebiliriz veya hiç olmayan bir eğitmeni ekleyebiliriz 
+bazı veritabanı sistemlerinde şu kural vardır boş olan bir kolona illa ki şu seçenekten biri gelsin örneğin eğitmenid2 veya 3-4-5 kısmına eğitmenlerden biri gelsin diye 
+ama bu kısmı koyamıyoruz veya koymammaız gerekli 
+örneğin herhngi bir bölmeyi boş geçebiliriz bu  sistemde belli  bir kural koyamıyoruz çünkü çok düzensiz 
+dolayısıyla yeni bir eğitmen geldiğinde biz yeni bir kolon eklemek zorunda kalıyorsak o zaman bu sistemde hata var demektir 
+sonuç olarak bu tabloyu düzgün bir şekilde yapılandırmak için bir geçiş tablosu yapmalıyız bunun ismi de KursEgitmen olmalı ve bunun altında sırayla kurs egitmeninin id si yanına kursid onun ynaına da eğitmenid 
+bir eğitmen eklenince buraya yeni bir kayıt ekleyerek veritabanını güncelleriz 
+her tabloda olduğu gibi son eklediğimiz tabloda da bu sayılar genellikle sistem tarafından otomatik olarak arttırılır ve her bilgi tek tek eklenir birinci kursun iki eğitmeni varsa ilk eğitmeni ayrı eklenir
+ikinci eğitmeni ayrı eklenir  
+bir kursu daha önce başka biriyle bir kurs hazırlamış bir eğitmen tek başına hazırlamışsa bu da ayrı şekilde bir bilgi olarak eklenir 
+bu workshopdaki kurslar ve kursegitmen tablosu ile alakalı ilişki şudur kurslar tablosundaki kurs id bir kere tekrar edebilir ancak bu kurs kursegitmen tablosundaki kurs id kolonunda çok defa tekrar edebilir 
+egitmenler ile egitmen id tablosundaki ilişki de egitmenler tablosundaki id bir kere tekrar edebilir ancak kursegitmen tablosundaki egitmen id pek çok kez tekrar edebilir 
+örnek verip gerçekleştirmek için bir veri tabanı serviside ihtiyacımız var bu yüzden RDBMS yi kuracağız 
+google>sql server>sql indirmeleri>express hemen indir 
+SQL Server 2019 Express masaüstünde, web üzerinde ve küçük sunucularda çalışan uygulamaları geliştirmek ve üretmek için ideal olan ücretsiz bir sürümdür.
+kurulum bittiği zaman SQL Server Management Studio yu da yüklememiz gerekiyor tik taıp yükleyebiliriz 
+bu da sql serverımız için bir arayüz sunar 
+veritabanına o arayüzle erişip sorgular yazabiliyoruz 
+sql server managment studio da verilerimizi veritabanlarımızı kurup bunları görsel bir şekilde takip edebiliyoruz 
+sql de gelen ilk pencerede login hatası alıyoruz bunun sebebi sql server ın başlatılmamasıdır bunu çözmek için çalıştırı açıyoruz services.msc yazıyoruz 
+Karşınıza Hizmetler penceresi gelecektir.Bu pencereden SQL Server (MSSQLSERVER)‘ı bulunuz.
+
+bu dersimizde kurslar tablosunu oluşturacağız 
+sql server managment studio yu açıyoruz bu program ile veritabanlarımızı kurup bunları görsel olarak takip edebiliyoruz
+excel de bir taslak olarak oluşturduğumuz veritabanını gerçek bie sisteme taşıyabiliyoruz 
+gelen ekranda connect diyerek bağlanıyoruz sol tarafta Database isimli başlığa gelip sağ tık yapıp New Database diyoruz 
+daha sonra Database name: kısmına Education yazıyoruz daha sonr OK diyoruz daha sonra Database başlığının altından Education a geliyoruz 
+bunun da altında Tables kısmında veritabanımızdaki tablolarımızın bulunduğu yerdir Tables in üzerinde sağ tık yapıp New Table diyoruz 
+yeni bir tablo oluşturuyoruz daha sonra sağda açılan bölümde column name kısmı tablodaki sütunları tanımladığımız inputtur column name 
+e Id yazıyoruz data type kısmına int(tam sayı integer ın kısaltması) decimal = ondalık sayılar 
+Allow Null boş geçmeye izin ver demek ancak id kısmı bir tablodaki en önemli sütunlardan biri olduğu için default olarak seçili olan bu
+ kutucuğun tikini kaldırıyoruz daha sonra diğer column name i giriyoruz Name yazıyoruz data type ına varchar(50) yazıyoruz 
+ varchar (metinsel alan) parantez içinde 50 yazmamız bu alana maksimum 50 karakter girilebilir demektir bu kısımda Allow Null işaretli kalıcak 
+ daha sonra diğer column name i vereceğiz Description yazıyoruz varchar(500) yazıyoruz datatype ına ya da varchar(MAX) yazarak maximum değer 
+ girilebilir şeklinde de izin verebiliriz bu kısımda da Allow Null işaretli kalıcak daha sonra Column Name kısmının hemen üstindeki 
+ tab ( sekmenin) sonundaki x -ççarpı- işaretine basıp Courses yazarak tablomuza bir isim veriyoruz ardından OK diyerek kaydediyoruz 
+ ardından sol taraftan tekrar Tables kısmına sağ tıklayıp Refresh(yenile) diyoruz bu başlığın altına hemen Courses tablomuzun geldiğini görebiliriz 
+ Tables > dbo.Courses e sağ tıklayıp Design a basıyoruz bu tablodaki bütun Allow Null kutucuklarının tikini kaldırıyoruz 
+ en üstteki satır id nin hemen solundaki sağa doğru bakan ok ikonuna -işaretine- gelip sağ tıkladığımızda bu id alanı bir kaydın diğerlerinden farklı benzersiz 
+ olduğunu ifade ettiğimiz belirleyici bir sütun olduğu için bu id sütununun benzersiz bir alan olduğunu belirtmemiz gerekiyor biz buna 
+ primary key diyoruz (birincil anahtar) bu oka sağ tık yapıp Set Primary Key (birincil anahtarı ayarla diyoruz) buna tıkladıktan sonra bu okun yanında 
+ küçük bir anahtar simgesi de görülecek artık sql de çok önemli bir kural vardır bir tabloda sadece ve sadece bir primary key (birincil anahtar) 
+ olur bu tablomuzu ctrl+s ile kaydediyoruz bir ekran ile karşılaşıyoruz (kullanıcıyı korumak için yetki ile alakalı default açık olarak gelen 
+ bir özellik ne olduğunu araştır) bunu kapatmak için öncelikle çıkan ekranda Cansel seçeneğini seçip en üstteki tablardan Tools kısmına girip 
+Options kısmına giriyoruz 
+Designers > Table and Database Designers bu kısımda Prevent saving changes that requiere table re-creation (ne anlama gedliğini araştır bu ayarın) 
+daha sonra ctrl+s ile tekrar tablomuzu kaydediyoruz ve başarıyla kaydetmeyi başardık 
+şimdi bir sonraki tablomuza geçelim bu tablomuzun ismi de eğitmenler tablosu olacak yine soldaki Tables başlığına sağ tıklayıp New Table diyoruz 
+column name Id datatype int ve yine başındaki ok a sağ tık yapıp set primary key e tıklıyoruz allow null tikini kaldırıyoruz 
+diğer column name FirstName datatype varchar(50) diğer column name LastName datatype varchar(50) yapıyoruz bu ikisinin de allow nulltiklerini 
+kaldırıyoruz bunuda column name başlığının üstündeki sekmenin sonundaki küçük x işaretiyle kapatıp Instructors yazıp OK e basıyoruz 
+tekrar soldaki Tables e sağ tıklayıp refresh yapıyoruz ve yeni oluşturduğumuz Instructors tablosu karşımıza geldi 
+şimdi de KursEgitmen tblosunu oluşturalım New Table diyoruz Id>int set primary key diyoruz allow null tikini kaldırıyoruz 
+bir sonraki column name CourseId>int olarak ayarlıyoruz diğer column name InstructorsId>int oalrak ayarlıyoruz bunların da allow null larının 
+tikini kaldırıyoruz çarpı ile kapatıp tablomuuzn ismini de CourseInstructors yapıyoruz (kurs eğitmenleri anlamına gelir)
+ardından OK diyip refreshliyoruz 
+
+
+bu dersimizde unique  key ile çalışmayı öğrenelim sql server managment studio yu açıyoruz CourseInstructors table ımza sağ tık yapıp Design diyoruz 
+CourseId satırına sağ tık yapıp Indexes/Keys i seçiyoruz bu seçenek bize  ilgili sütunun indekslerini ve sahip olduğu anahtarları gösterir 
+halihazırda zaten bu sütunun bir primary key i varmış açılan pencerede sol altta add butonuna basıyoruz oluşan anahtarı seçip 
+sağda Identity başlığının altındaki (Name) satırındaki UX değerini silip UK yazıyoruz (UNIQUE KEY anlamında/sadece bu kısmı değiştiriyoruz geri kalanlar aynı 
+kalazak) Daha sonra aynı kısımda General başlığının altında Columns satırına tıklıyoruz ve satırın sonunda çıkan ... ikonuna tıklıyoruz 
+hangi kolonlar buna dahil yani hangi kolonlar unique key = benzersiz anahtara sahip olacak bunu seçmek için Column Name kısmının altındaki ilk 
+seçeneği CourseId seçiyoruz ikinci seçenekte de InstructorsId yi seçiyoruz daha sonra sağ alttaki OK tuşuna basıyoruz 
+daha sonra sağ alttan Close diyerek bu pencereyi de kapatıyoruz ve daha sonra sağ taraftaki beyaz kısmın üzerindeki sarı renkteki 
+ve üzerinde table ımızın isminin yazdığı tab ı x (çarpı) işaretinden kapatıp Yes diyip kaydediyoruz daha sonra yine sağ taraftan dbo.CourseInstructors
+table ına sağ tık yapıp Edit Top 200 rows ı seçiyoruz (table ın içerisindeki datayı görüntüleme seçeneklerinden biri) daha sonra bu tabı da x e tıklayıp kapatıyoruz 
+ardından sol tarafta table kısmından dbo.Courses sağ tık yapıp Edit Top 200 rows a tıklıyoruz (bu kısımdan table a veri girişi yapabiliriz) 
+daha sonra id kısmına 1 name kısmına sql kursu description kısmına da sql kursu açıklaması yazıyoruz daha sonra sol taraftaki table kısmından 
+dbo.Instructors table ına sağ tık yapıp edit top 200 rows ı seçiyoruz first name kısmına engin  lastname kısmına demiroğ  id kısmına da 1 yaıyoruz 
+daha sonra alt kısımdaki input alanına tıklıyoruz imleci buraya getiriyoruz yani bu değişikliği kaydetmesi için önceki tablo için de böyle yapmamız lazım 
+kaydetmesi için 
+daha sonra dbo.CourseInstructors sağ tık yapıp edit top 200 rows u sçeiyoruz id kısmına 1 course id kısmına 1 ve InstructorsId kısmına da 1 yazıyoruz 
+daha sonra bir alt satıra imleçle tıklıyoruz id 2 courseid 1  InstructorsId 1 girdik ve bir aşağı satıra geçtik  eğer bu girişi yapabildiysek 
+ve bir hata vermediyse biz unique key i yanlış verdik demektir şimdi bunu düzeltelim 2. oluşturduğumuz satıra sağ tıklayıp Delete diyerek veya sol tık seçip (delete)
+tuluna basarak silebiliriz 
+
+soldan dbo.CourseInstructors sağ tık yapıp Design a tıklıyoruz InstructorsId ye sağ tık yapıp Indexes/Keys i seçiyoruz 
+UK olan satırı/anahtarı seçiyoruz sağ tarafta general başlığının altındaki type satırındaki Index kısmını satırın sonundaki ... ikonuna tıklayıp 
+Unique Key olarak değiştiriyoruz daha sonra sağ alttan close yapıp kapatıyoruz ve sol üstte mavi dosya ikonuna tıklayıp veya ctrl+s yapıp kaydediyoruz 
+daha sonra dbo.CourseInstructors a sağ tık yapıp edit top 200 rows a tıklıyoruz 2. satıra id kısmına 2 courseid kısmına 1 ve InstructorsId kısmına da 1 yazıyoruz 
+ve beyaz alana tıkladığımızda bize eşsiz anahtar kuralını ihlal ettin hatası veriyor ve girmiş olduğumuz bu veriyi kabul etmiyor tamam diyerek 
+hata mesajını kapatabiliriz daha sonra dbo.Instructors sağ tık yapıp edit top 200 rows u seçiyoruz 2. satıra imleci getirip id kısmına 
+2  first name kısmına ahmet  lastname kısmına kartal daha sonra açık olan dbo.CourseInstructors tabına tıklayıp 
+id 2 course id 1 ve InstructorsId 2 verilerini girmek istediğimiz zaman bunu kabul etti çünkü girdiğimiz değerler önceki satırdan farklı olduğu 
+için buna izin verdi kısacası unique anahtar bizim belirttiğimiz kolonun veya kolonlar topluluğunun  eşsiz olmasını sağlar 
+şimdi unique key ile ilgili bir best practise(sektörde bu konu ile ilgili yapılması gereken doğru çalışma teknikleri) daha yapalım 
+dbo.Instructors sap tık Design diyoruz sağ taraftaki kısma en alta ıd sütunun altına TcNo datatype kısmına char(11) [tcno 11 karakterden oluşan 
+sabit bir girdi olduğu için bu tarz değerleri varchar(11) yerine char(11) olarak yazarız sektörde] sağdaki allow null kutucuğunu kaldırırsak 
+sistem hata verecektir önceki datalar (sütunların altındaki veri girilecek alanlar) boş bu yüzden izin vermeyecek bundan dolayı allow nulls ı seçiyoruz 
+daha sonra sol üstten kaydediyoruz ve LastName satırına sağ tık yapıp Indexes/Keys e tıklıyoruz sol alttan add diyoruz UX ı UK yapıyoruz 
+ve Instructors_TcNo olarak değiştiriyoruz sonunu Type kısmını Unique Key yapıyoruz (çünkü biz biliyoruz ki bir tabloda bir tckimlik no birden 
+fazla tekrar edemez ve unique-benzersizdir) daha sonra column satırındaki ... basıyoruz ilk kısmı TcNo seçiyoruz sağ alttan ok diyoruz daha sonra
+close diyerek kapatıyoruz unique key tek bir kolonda da olabilir birden fazla kolon da unique bir değere sahip olabilir [yani tek bir sütun altına aynı 2 adet değer girilemeyebilir / 
+ya da 2 farklı kolon birleştirilip ikisinin de sahip olduğu id alttaki iki değere aynı şekilde verilemsi de engellenebilir]
+bu tabloyu kaydettiğimizde bu sefer bize şu hatayı verecek şimdi tcno ve diğer 2 değerimiz de unique di ama ikisinin tc kimlik kısmı boş yani 
+null olduğu için unique olmadı yani boş boş şeklinde olması bile unique kuralına aykırıdır tam anlamıyla her özelliği ile unique olmalı boş boş 
+olsa dahi aynı olacaktır :) 
+
+bu dersimizde iliişkilerin fiziksel oluşturulmasını öğrenelim 
+
+SQL Server Management Studio da sol tarafta Education başlığının altında Database Diagrams kısmına tıklıyoruz bir ekran çıkacak burada Yes diyoruz
+bu bizim tablolarımızın bir diagram şeklinde görünmesini sağlar 
+Diyagram, herhangi bir olayın gelişim ve değişimini gösteren grafik. 
+Noktalı diyagramlar, bölümlü alan diyagramlar ile çizgi ve sütun diyagramları olmak üzere başlıca üç grupta incelenebilir. 
+Database Diagrams a sağ tık yapıp New Database Diagram diyoruz açılan pencerede sol tık a basılı tutarak bütün tablolarımızı seçip daha sonra 
+sol tık ı bırakıp hemen altındaki Add butonuna basıyoruz CourseInstructors table ını ortaya alıyoruz sırayla courses CourseInstructors ve Instructors 
+olacak Courses table ına sağ tık yapıp Table View kısmından Standart ı seçiyoruz tablomuzu daha detaylı bir şekilde görüntüleyip çalışmalarımıza
+burada da devam edebiliriz yine Table View kısmından Column Names e tıklarsak  bu tablomuzdaki sütun isimlerini görebiliriz buraya tıklıyoruz 
+şimdi Courses ile CourseInstructors ın birbiriyle ilişkili olduğunu biliyoruz ilişkisel veri tabanlarında biz ilişkileri fiziksel olarak belirleriz ki 
+yanlış datalar sisteme dahil olmasın bu yüzden bu iki table arasındaki ilişkiyi belirleyelim Courses table ındaki Id ile CourseInstructors table 
+ındaki CourseId aynı datayı / veriyi ifade ettiği için şimdi ikisini fiziksel olarak ilişkilendireceğiz Courses table ındaki Id ye sol tık ile 
+tıklıyoruz ardından basılı tutup sürükleyip CourseInstructors table ındaki CourseId nin üzerine bırakıyoruzdaha sonra açılan pencerede OK diyoruz 
+karşımıza çıkan 2. pencereye de OK diyoruz şimdi bizim için çok önemli olan bir anahtar daha çıktı o da Foreign Key (Yabancı Anahtar / İkincil Anahtar)
+Foreign Key bir tabloda bulunan bir sütunun başka bir tabloda aynı veriyi ifade eden başka bir sütununa Foreign Key denir 
+biz sürüklerken Courses table ındaki Id den basılı tutup diğer tarafta sürükleyip bıraktık çünkü Primary Key Courses tablosundaki Id sütunuydu 
+Courses Tablosundaki Id ===> Primary Key //  CourseInstructors tablosundaki CourseId ===> Foreign Key 
+OK dedikten sonra arasında bir bağ kuruldu kalın bir çizgi ile iki tablomuzun çizginin sol taraftaki tablomuz yani Courses tablosundaki ucunda 
+bir anahtar resmi CourseInstructors tablosundaki ucunda ise sonsuzluk işaretine benzer bir işaret vardır 
+bu 1 (bir'e) ===> çok ilişki anlamına gelir şimdi aynı olayı Instructors tablosı ile CourseInstructors tablosu arasında tekrarlayalım 
+hangisinden hangisine sürükleyip bırakacağız ? tabii ki Instructors table ındaki Id yi sürükleyip CourseInstructors tablosundaki 
+InstructorsId ye sürükleyip bırakacağız çünkü asıl olan(primry key olan) Instructors tablosundaki Id sütunudur yine OK > OK diyoruz iki kere 
+daha sonra dbo.CourseInstructors a sağ tıklayıp (sol taraftan)  Edit Top 200 Rows diyoruz burada bir sıkıntı yok 
+daha sonra dbo.Courses e sağ tık yapıp Edit Top 200 Rows diyoruz burada da bir sıkıntı yok daha sonra dbo.Instructors a sağ tık yapıp 
+Edit Top 200 rows diyoruz burada da beklenmedik bir kayıt yok daha sonra Sol üstteki disket simgesinden mevcut durumumuzu kaydediyoruz 
+CourseInstructor diye isimlendirip OK diyoruz gelen pencerede Yes diyoruz daha sonra sol taraftan Database Diagrams kısmına sağ tık yapıp Refresh 
+diyerek yeniliyoruz ve kaydettiğimiz diyagramı burada göreceğiz daha sonra dbo.CourseInstructorsa sağ tık yapıp edit top 200 rows a tıklıyoruz 
+Id kısmına 1 CourseId kısmına 1 diyoruz ve InstructorId kısmına da 1 yazıp boş bir kısma tıklıyoruz bir hata verdi ilişkili olan tabloda
+yani Instructors tablosunda id sütununda 1 isimli bir kayıt bulamadığı için bu hatayı verdi bu tablo ile ilişkili olduğu için ana tabloda 
+bulunmayan bir kaydı ekleyemeyiz şimdi dbo.Courses e sağ tık yapıp edit top 200 rows diyoruz Id kısmına 1 Name kısmına sql kursu Description kısmına 
+da açıklama yazıyoruz ve başka bir yere tıklıyoruz kaydetmesi için veriyi bunu kaydettik ve hiç bir hata almadık çünkü bu ana -primary key- 
+in bulunduğu tablo daha sonra dbo.Instructors a gelip sağ tık edit top 200 rows diyoruz Id kısmına 1 FirstName kısmına Engin 
+LastName ksımına Demiroğ tcno 11111111111 (11 haneli girmek zorunda olduğumuz için bu şekilde girdik) alt satıra tıkladığımızda bu veriyi kaydetmemize 
+de izin verdi çünkü bu tablo da primary key in bulunduğu ana tabloydu bu tableri sağ taraftaki beyaz ekranın en üstündeki şeritlerden x e basarak kapattık 
+    daha sonra CourseInstructors a sağ tık yapıp edit top 200 rows diyoruz Id 1 CourseId 1 InstructorId 1 yaptık ve boş br kere tıkladığımızda 
+    hiç bir hata almadık veriyi başarılı bir şekilde ekledik çünkü eklediğimiz verilerin ilişkili olduğu tablolarda girmiş olduğumuz değerler mevcut 
+    olduğu için işte bu örnek tam olarak ilişkisel bir veritabanının çalışma mntığıdır ardından dbo.Courses edit top 200 dedik 
+    ve ilk satırdaki verimizin olduğu satıra sağ tık yapıp Delete del e tıklayıp silmek istedik Evet dedik  ve bir hata aldık 
+    burada silmek istediğimiz verinin diğer tablolarda ilişkisel oalrak bir karşılığı olduğu için bu veriyi silmemize izin vermedi 
+    ancak önce CourseInstructors table ındaki sonra da dbo.Courses tableındaki veriyi sildikten sonra ancak en son Instructors table ındaki 
+    veriyi silebiliriz bir nevi önce foreign key in bulunduğu veriyi bulunan table dan sildikten sonra primary key lerin bulunduğu table dan bu primary 
+    keyleri silebiliriz örneğin bir e ticaret sitesinin veritabanını yönetiyoruz ve bir müşteriyi engellemek istiyyoruz ancak bu müşteri daha önce 
+    bizim sistemimizden alışveriş yapmış daha önce bu müşterinin verisini silmek yerine onun durumunu pasif hale çekeriz o müşterinin kaydı 
+    durur ama sadece durumunu pasif hale getiririz 
+
+    
+bu dersimizde sql de otomatik artan alanlarla çalışmayı görelim 
+sql server managment sutido yu açıyoruz sol taraftaki dbo.Courses tablosuna sağ tık yapıp Desing a tıklıyoruz buradaki sütun isimlerini 
+elle girdik Id inputuna sağ tıklayıp (id yazan kısma) Properties e tıklıyoruz (Alt+Enter) genellikle veri tabanlarında bu şekilde 
+id sütununa değerler elle girilmez veritabanlarında bu değerleri otomatik artıran / atayan alanlar vardır sağ tarafta açılan alanda Table Designer 
+kısmının altındaki Identity Columns un yanındaki boş inputa tıklayıp çıkan Id seçeneğini seçiyoruz bunu yaptığımız zaman artık Id değerleri 
+veritabanı tarafından otomatik artırılacaktır (1,2,3,4 olarak) orta kısmın üzerindeki tablo isminin yer aldığı sekmeyi çarpıdan kapatıp Yes 
+diyoruz daha sonra yine Yes diyoruz ardından sol taraftaki dbo.Courses tablosuna gelip sağ tık yapıyoruz edit top 200 rows diyoruz 
+ilk satırdaki name sütununun altında sql kursu description kısmına da açıklama yazıyoruz 
+daha sonra bir alt satırın name sütununa geliyoruz ve aşağı tıklayınca ilk satırın id sini otomatik olarak 1 olarak ayarladığını görüyoruz 
+name kısmına c# kursu desription a da açıklama yazıyoruz ve tekrar bir aşağı satıra tıkladığımızda buranın id sine otomatik olarak 2 verildiğini görüyoruz 
+eğer 2. satırdaki verileri silip daha sonra 2. satıra bir veri girersek id olarak 3 verecek çünkü bir veri silinse bile daha sonra eklenen veriler 
+daha önce herhangi bir sarıda kullanılmış / satıra verilmiş bir değere sahip olmaz !! 
+ şimdi de dbo.Instructors tablosuna sağ tık design diyoruz sağ tarafta yine ıdentity colums un sağındaki boş inputu seçip Id ye tıklıyoruz 
+ daha sonra sekmeden çarpıya basıp burayı kapatıyoruz Yes > Yes diyoruz  ardından dbo.CourseInstructors a geliyoruz sağ tık design diyoruz 
+ yine sağ taraftan Identity columns yun sağındaki boş inputa tıklıyoruz ve gelen çıktılardan Id yi seçiyoruz (neden başka yazılarda geldi bu tabloda
+ diğerlerine tıklasak ne olurdu ne gibi bir farkı olurdu bunu araştır) burayı da sekme kısmından çarpı ile kapatıyoruz  yes > yes diyoruz 
+
+ bu dersimizde hazır bir veritabanının kurulması konusunu öğrenelim 
+kursun 19. bölüümündeki kaynajkar kısmından instnwnd.zip dosyasını indiriyoruz ve arşivden çıkarıyoruz arşivden çıkan dosyalardan instnwnd.sql 
+dosyasına sağ tık yapıyoruz birlikte aç diyoruz ve not defterini seçiyoruz ardından ctrl+a ile hepsini seçiyoruz ctrl+c ile kopyalıyoruz 
+bu verileri bir veritabanı haline getireceğiz sql server managment studio programını açıp sol tarafta sol tarafında sarı bir klasör simgesi 
+olan Database kısmına tıklıyoruz ve programın en üstünde bulunan sondan bir önceki seçenek olan Window kısmının hemen altında New Query 
+seçeneğine tıklıyoruz (Ctrl+N kısayolunu kullanarak da açabiliriz) ardından orta kısımda yazı yazabileceğimiz bir alan açılacak kopyaladığımız bütün 
+kodu buraya yapıştırıyoruz 
+
+örneğin bir işe başladık ve bize şirkette veritabanına erişim yetkisi verildi veritabanımızın da ismi north-wind bu bir e ticaret veritabanıdır 
+müşteriler, ürünler, siparişler bir önceki dersteki hazır veritabanını sql server managment studio da kurduktan sonra programın sol kısımında 
+yer alan Database Diagrams yazısının hemen başındaki + ikonuna basıyoruz ardından gelen bildirime Yes diyoruz ardından Database Diagrams a 
+sağ tıklayıp New Database Diagram ı seçiyoruz açılan pencereden Categories(kategoriler),Customers(müşteriler),Employers(çalışanlar),Orders
+(siparişler),Orders Details (Siparişlerin detayları),Products(ürünler) ı seçip sağ alttaki Add butonuna basıyoruz 6 adet tabloyu seçtik 
+bunlar en önemlileri olduğu için sadece bunşarı seçtik ardından 3 tanesi yukarıda (sırayla categories,products,orders details)
+3 tanesi de aşağıda olmak üzere (sırayla employers,customers,orders) şeklinde konumlandırıyoruz şimdi categories tablosunu inceleyelim 
+bu ürünlerin sınıflandırıldığı kategori isimlerinin tutulduğu tablodur sol taraftan dbo.Categories e sağ tık yapıp Select top 1000 rows diyoruz 
+açılan kısımda sol alttaki font ölçeklendirme kısmından 200% diyoruz categories tablosundaki CategoryID sütunu primary key bir alandır 
+ve bu kısım sayısal bir alandır diagramda görsel olarak gösterilen categories tablosuna sağ tık yapıp table view > Standart ı seçersek 
+buradan da hangi sütunun hangi veri tipine izin verilidğini ilgili sütuna girilecek değerlerin hangi veritipine ait olması/ait olduğu bilgisini 
+görebiliriz 
+
+categories ile products tablosunun arasındaki ikisini birbirine bağlayan gri renkli kalın çizgiye sağ tık yapıyoruz properties (alt+enter)
+hemen sağ kısımda açılan bölümde hangi tablodan hangi tabloya nasıl bir ilişki olduğunu görebiliriz sağ kısımda Tables and Columns Specification
+yazının başındaki + işareti ile bu başlığın detaylarını açıyoruz burada nasıl bir ilişki olduğunu görebiliriz (burayı tam anlamadım ingilizce 
+olduğu için burayı anla bu ana başlığın altındaki bilgilerde ne anlatılmak istemiş bunu öğren buraya yaz )
+ardından Customers tablosuna sağ tıklıyoruz diagramda Table view > Standart diyoruz burada açılan kısımda CustomerID satırındaki değerler nchar(5)
+olarak tutulmuş buradaki n ifadesi özel karakterleri tutabilmek içindir (örneğin japonja çince vs ifadeler gibi)
+
+ardından sol taraftan dbo.Customers sağ tık yapıp > select top 1000 rows diyoruz bir tabloda iki sütunda 2 tane primary key varsa (ikonu varsa)
+bu beraber primary key dir (bu nedemek iyie anla buraya yaz)
+
+bu dersimizde sql de select ifadesiyle çalışmaya başlayalım select bir veya birden fazla tablodan veri çekmek için kullanılır 
+select * from Products bir query dir (yani veriyi çekmek için kulanılan bir sorgu komutudur) komuttadaki select = veri çekmek istiyorum demektir 
+* ise (all/hepsini/her şeyi ) bütün verileri çek demektir (all columns yani bütün sütunları getir demektir) from = ... veri tabanın -DAN/-DEN 
+anlamına gelir Products = table ismi bu tablo isminden getir anlamında tablo ismini girdiğimiz kısım ardından managment studio ya gelip diagramın olduğu 
+tab ı hemen yukarıda ilgili satırın sonundaki x den kapatıyoruz yes diyoruz ardından OK diyoruz 
+ programın en üstünde bulunan sondan bir önceki seçenek olan Window kısmının hemen altında New Query 
+seçeneğine tıklıyoruz (Ctrl+N kısayolunu kullanarak da açabiliriz) ve yeni açılan komut istemcisinin üstündeki tab ın hemen üstünde bir 
+selector var buraya tıklayıp Northwind i seçtiğimizden emin oluyoruz ardından bu komut istemcisine Select * from Products yazıp 
+az önce seçtiğimiz selector un hemen sağındaki yeşil ok ikonuna sahip Execute butonuna basıyoruz (kısayol olarak F5 e de basabiliriz)
+ve bunu yaptığımız zaman hemen aşağıdaki kısımda bu veritabanındaki bütün kolon bilgileri getirildi (aşağıdaki kısmın ın Result tabında)
+
+bu veritabanındaki spesifik bir tablodan spesifik bir kolonu çekmek için de select ProductName from Products çalıştırıyoruz 
+eğer iki adet kolon çekmek istersek bunun için de select ProductId,ProductName from Products çalıştırıyoruz , ile iki kolon ismini birbirinden 
+ayırıyoruz sql de sorgu çalıştırırken büyük küçük harf duyarlılığı yoktur ancak Oracle veritabanında vardır (case sensetivy) 
+örneğin istediğimiz kolonları bizim belirlediğimiz bir kolon ismiyle getirmek istersek bunun için de 
+select ProductId as Id,ProductName as Name from Products çalıştırıyoruz gelen sonuçlarda Id ile Name sütunları olacaktır ve bu sütunlara gelen bilgiler 
+productId ve productname sütunundan gelen bilgiler olacaktır (bu as ile çağırma işlemine Alliance denir)
+
+bunu as olmadan çalıştırmak için de select ProductId Id,ProductName Name from Products çalıştırabiliriz ancak bunu imleç ile seçip çalıştırmamız 
+gerek eğer command propt da birden fazla kod varsa !!! 
+
+select ProductName from Products yazmak yerine select p.ProductName çalıştırabiliriz buradaki p = Products tablosunu ifade eder 
+
+şimdi biz her bir üründeki bütün stokları satarsak kaç birim para elde ederiz bunu öğrenelim Products tablosundaki UnitPrice ilgili ürünün 
+fiyatını, UnitInStock sütunu da ilgili ürünün stoktaki sayısını ifade eder 
+
+select p.ProductName, p.UnitInStock from Products p çalıştırdığımıda (neden sondaki küçük p ve from itibaren fromdan sonraki kısımlar var 
+halbuki biz p. diyerek zaten Products dan getir demiştik bunu araştır buraya yaz) Products tablosundaki ProductName ve UnitInStock sütunlarını ve 
+bunların altındaki değerleri getirmiş oluruz 
+
+select p.ProductName, p.UnitInStock * p.UnitPrice as Total from Products p çalıştırdığımızda ProductName sütunu ve altındaki değerler ile Total 
+sütunu ve stoksayısı * ürün fiyatı çıktısını bize getirecek yani istediğimiz uygulamayı gerçekleştirmiş olduk 
+
+yani kodumuzda select ten sonraki her bit virgül bir kolonu (sütunu) ifade ediyor sadece çarpma işlemi değil 
+
+select p.ProductName, p.UnitInStock + p.UnitPrice as Total from Products p bu şekilde toplama işlemi de yapabiliriz 
+
+select p.ProductName + ' '  + QuantityPerUnit from Products p şeklinde m etinsel ifadeleri toplayabiliriz burada toplamak ifadesi yan yana getiril
+mesi anlamına gelir bu yüzden birbirine bitişik olmasın diye kodumuzun içerisinde + ' ' yazarak bir boşluk ekledik/bıraktık burada 
+veritabanındaki ürününismi ve açıklamasını topladık 
+
+select 'Engin Demiroğ' as Egitmen çalıştırırsak Egitmen ismindeki bir sütunun altında Engin Demiroğ isimli bir veri karşımıza çıkar 
+
+aynı şekilde select 8*9 as Sonuc şeklinde de yazabiliriz 
+
+bu dersimizde sql de şartlı ifadelerle çalışma konusunu öğrenelim 
+
+biz sql de sorgularımızı çekerken genellikle * karakterini kullanmayız verilerimizi filtreleyerek getiririz bir sorguyu filtrelemenin en temel 
+yöntemi WHERE/where koşulunu kullanmaktır örneğin select * from Products where Categoryıd = 1 sorgusu gibi 
+burada products tablosundaki categoryıd si 1 olan bütün verileri getir demek istedik sql server managment studio da komut yazarsak imleç ile 
+hangi komutu seçili hale getirirsek o komut çalıştırılır ve heöen altındaki bölümde / tabloda listeler 
+
+bu sorguyu çalıştırdığımızda 12 adet ürün geldi kısaca categoryıd si 1 olan bütün ürünlerin productıd leri supplierId si Product name i gibi 
+sahip olduğu bütün diğer sütunlar ve bu sütunlardaki değerleri de gelmiş oldu 
+
+aynı şekilde select * from Products where UnitsInStok>10 çalıştırdığımızda burada stok sayısı 10 dan fazla olan ürünleri ve bu ürünlerin 
+diğer sütunlarındaki değerleri ve aynı zamanda diğer sütunların isimlerini de ekrana bastırabiliriz 
+10>= dersek 10 a eşit ve daha büyük sayıları getirir 
+
+örneğin yöneticimiz bize stokta azalmış ürünleri bana göster dedi bunun için de azalmanın şartı olarak stok sayısının 5 olduğunu varsayarsak 
+select * from Products where UnitsInStok<5 şeklinde bir sorgu çalıştırabiliriz stokta hiç kalmamış / stoğu bitmiş ürünleri de 
+select * from Products where UnitsInStok=0 sorgusuyla getirebiliriz yine aynı şekilde 
+select * from Products where UnitsInStok=5+1 ile stok adedi 6 olan ürünleri getirebiliriz direk 6 olarak yazmamamızın sebebi burada = den sonra 
+birden fazla sayı veya rakam kullanabileceğimizi göstermek içindir mantıksal olarak saçma bir örnek olacak ama şu şekilde de komutumuzu çalıştıra 
+biliriz 
+
+select * from Products where UnitsInStok=UnitPrice * UnitsOrder şeklinde de başarılı bir sorgu yapabiliriz 
+
+örneğin stokta mevcut olmayan / stoğu bitmiş ama müşteri tarafından siparişi verilmiş / sipariş edilmiş / sipariş bekleyen ürünleri de şu sorgu 
+ile ekranımıza getirebiliriz select * from Products where UnitsInStok=0 and UnitOnOrder>0 burada kullanılan and koşulu aynı bir programlama 
+dilindeki mantıkta çalışır and den önce ve sonraki koşulları çalıştırır xxx verisini and (yani ve) yyy verisini getir gibi 
+pazardan elma ve armut al gibi düşünebiliriz yani iki (daha fazla da olabilir) şartın beraber sağlandığı durumları ifade eder 
+
+bu dersimizde or ve not koşulları ile çalışmayı öğrenelim örneğin select * from Products where UnitsInStock=0 or UnitsOnOrder=0 çalıştırırsak 
+bu sorguda veritabanımızdaki stokta olmayan veya hiç sipariş edilmemiş ürünleri/verileri bize getirir 
+
+şimdi de not koşulunu öğrenelim örneğin select * from Products where ProductName='Chai' sorgusunu çalıştırdığımızda ürün ismi Chai olan ürünü 
+bize getir diyoruz ancak select * from Products where not ProductName='Chai' sorgusunu çalıştırırsak ürün ismi Chai nin dışında / ürün ismi 
+Chai olmayan bütün ürünleri bize getir diyoruz aynı şekilde şu şekilde bir sorgu da çalıştırabiliriz 
+select * from Products where not ProductName='Chai' and UnitInStock=0 dediğimiz de ürün ismi Chai olmayan ve stokta kalmamış ürünleri getir 
+demiş oluruz 
+
+bu dersimizde sıralama sorgularıyla çalışalım 
+
+şimdi select ile beraber sıklıkla kullanacağımız order by ifadesini görelim 
+
+select * Products kısmını artık ezbere biliyoruz ardından gelen Order by ProductName ne anlama geliyor ? 
+
+verileri listelediğimiz zaman bu verilerimizi belli bir kolon/sütuna göre sıralanmasını isteyebiliriz çünkü normalde verileri çektiğimiz 
+zaman bu veriler veritabanında kayıt oldukları sıraya göre listelenecektir ekranımıza yani select * from Products komutunu çalıştırdığımızda 
+ilgili veritabanındaki o tabloda veriler yukarıdan aşağı nasıl kaydedildiyse bu sorgumuzun çıktısı da aynı görünüme sahip olacaktır 
+
+ancak select * from Products order by ProductName çalıştırdığımızda gelen çıktıda ProductName sütunundaki bilgiler A-Z ye doğru alfsabetik olarak 
+sıralanacak / listelenecektir (eğer çekilen verinin türü string ise alfabetik olarak, sayısal bir veri ise numeric olarak sıralanır)
+
+eğer select * from Product order by UnitPrice dediğimizde ürünlerin fiyatının bulunduğu listedeki verileri ucuzdan pahalıya doğru listelemiş 
+olduk peki pahalıdan ucuza sıralamak istesek ne yapmamız erekiyor bunun için de 
+
+eğer select * from Product order by UnitPrice desc çalıştırmamız gerekiyor buradaki desc ifadesi descending (azalan) kelimesinin kısaltmasıdır 
+
+aynı şekilde string ifadelerde Z-A ya doğru bir sıralama olmasını istersek yine select * from Products order by ProductName desc çalıştırmamız 
+gerekiyor tek başına select * from Products order by ProductName ve select * from Product order by UnitPrice komutlarımızın default olarak 
+değeri asc dir yani bu komutların sonunda bir boşluk tan sonra asc değeri vardır bu da ascending (yükselen) anlamına gelir a-z ye ve azdan-çoğa 
+doğru sıralamayı ifade eder select * from Products order by UnitPrice,ProductName şeklinde bir komut çalıştırdığımızda bu hem UnitPrice kolonunu 
+hem de ProductName kolonunu asc olarak sırala demektir peki unitprice ı aynı olan ancak isimleri farklı olan ürünler olursa ne olacak burada 
+koddaki sıra gözetilerek bir sıralama yapılır unitprice kodda daha önce yazıldığı için aynı fiyata sahip ürünler olduğu zaman bunlar alt alta 
+sıralanacaktır ancak bu sıralanma rastgele olmaz örneğin armut ceviz ve zeytin diye 3 tane ürünümüz var ve hepsinin fiyatı 10 tl 
+bunlar alt alta yukarıdan aşağı sırayla 
+
+armut              10tl
+ceviz              10tl
+zeytin             10tl 
+
+şeklinde sıralanacaktır çünkü kodun devamında ProductName yer aldığı için bu ürünleri alfabetik olarak sıralayacaktır kendileri içinde 
+eğer bu konu yazmasaydık veritabanında kayıt oldukları sıraya göre sıralanacaktılar 
+
+biz unitprice ı asc productname i desc olarak listeleyebiliyoruz bunun için select * from Products order by UnitPrice asc, ProductName desc 
+şeklinde kodumuzu çalıştırıyoruz 
+
+bunları sql server managment dtudio da yazdık !!! eğer kodda önce productname sütunu yazılsaydı bu sefer öncelik alfabetik sıralamaya verilirdi 
+aynı fiyata sahip ürünler olsa bile alt alta yazılmazlardı 
+
+şimdi sıklıkla kullanılan bir başka sorgu türünü öğrenelim bu komutumuz like komutu kelime anlamı benzer demektir 
+
+örneğin bir e-ticaret sitesinde bir ürünü search kısmına yazarken örneğin bu ürün laptop olsun ürünün isminin tamamını yazmayabiliriz 
+haırlamayabiliriz veya yazmak istemeyebiliriz dolayısıyla içerisinde geçen ifadeleri ararız (search kısmına lap yazdığımızda sorgumuzu 
+tamamlamadan laptop ların küçük ikonlar halinde listelenmesi / gösterilmesi gibi) işte bu içinde geçen ifadeleri aradığımız komutumuzun ismi 
+like dır 
+
+select * from Products where ProductName = 'Chai' bu komutu çalıştırdığımız zaman chai ismindeki ürünleri bize getirir 1 tane var o yüzden bir 
+tane getirdi ama örneğin biz ismi hatırlayamadık select * from Products where ProductName like 'ch' ch ismi ile başlayan bir ürünümüz vardı ama 
+ismini tam hatırlayamadığımız bir örnekte bu komutu kullanabiliriz ancak bu komuttan bir çıktı alamayacağız çünkü case-sensetivy olduğu 
+için komutumuzu select * from Products where ProductName like 'Ch' yazmamız gerekiyor ancak 'ch' yazarak da çıktımızı almak istersek 
+select * from Products where ProductName like 'ch%' bu komutu ürkçeye ch ile başlayan ve case sensetivy önemli olmaksızın bütün verileri 
+getir demektir aynı şekilde select * from Products where ProductName like '%ch' komutu da başında herhangi bir ifade olabilir ama sonu ch ile 
+biten bütün verileri getir (örneğin biri ch diğer Ch ile bitiyorsa yine getirir mi araştır buraya yaz )
+
+aynı şekilde select * from Products where ProductName like '%ch%' komutunu çalıştırdığımızda ne ile başladığı veya bittiği önemli değil ürün 
+isminde herhangi bir yerde ch ifadesi geçiyorsa onu getir demek (case sensetivy var mı araştır doğrula buraya yaz yokmuş araştırdım)
+
+
+bu dersimizde between ile in ile çalışmayı öğrenelim select * from Products where UnitPrice between 10 and 50 çalıştırdığımızda unit price sütu 
+nundaki ürün fiyatı 10 ile 50 arasındaki olan bütün ürünleri ekrana basarız between (arasında) demektir 
+
+hatta bu şekilde sıraladığımız ürünleri asc ile sıralamak da mümkün bunun için select * from Products where UnitPrice between 10 and 50 order by UnitPrice 
+çalıştırarak bunu yapabiliriz (10 ve 50 de çıktılarda gelir bunlar dahildir yani)
+
+select * from Products where CategoryId in (1,2) bu products tablosundaki categoryid si 1 veya 2 olanları ekrana bastırabiliriz sadece bu ürünler 
+gelecektir eğer bu parantez içerisindeki ifade string -metinsel bir ifade- olsaydı bunları da tek tırnak (çift de olur muydu araştır?)
+yazacaktık ('string-ifade') şeklinde 
+
+bu dersimizde Aggregeation Fonksiyonlarıyla Çalışmak count fonksiyonu ve detayları konusunu öğrenelim 
+
+şimdi sql de çok sık kullanılan belli başlı fonksiyonlardan bazılarına bakalım 
+fonksiyon aslında bizim için belirlediğimiz bir hesabı veya bir işi yapan kod bloklarıdır ve bu fonksiyonlarımızı sql sorgu komutlarımıızın 
+içerisinde kullanabiliriz örneğin bir şeyin sayısını bulmak gibi (stokta tükenmiş olan kaç adet var problemi gibi veya bu gün yapılan satışların 
+adedi kaç gibi gibi problemleri count fonksiyonu ile çözebiliriz)
+
+sql server managment te bir kaç ders önce import ettiğimiz hazır veritabanını kullanacağız bu dersimizde de import ettiğimiz bir veritabanını 
+sql server managment studio da View tabının 2 altındaki radio selector kısmından Northwind i seçebiliriz   
+
+select * from Products where CategoryId in (1,2) 
+
+select Count(*) from Products kodumuzu çalıştırdığımızda -imleç ile sadece bu kodu seçersek aşağıda Results tabında 77 çıktısını alırız-
+bu Products tablosunda 77 adet ürün olduğu anlamına geliyor select Count(*) as [Ürün Sayısı] from Products şeklinde çalıştırırsak 
+
+77 çıktısı 
+
+     Ürün Sayısı
+1       77 
+
+
+şeklinde bir formatla gelecektir as kullandıktan sonra gelen ifademiz sütun değeri mi oluyor demek bu araştır doğrula buraya yaz 
+buradaki count(yıldız) sorgusu bize aslında Products tablosundaki satır sayısını verdi 
+
+Select Count(ProductName) from Products kodumuzu çalıştırdığımızda da 77 çıktısını aldık 
+
+sql sever managment studio da programın en solunda yukarıdan aşağı yatay bir şekilde yazılmış olan Object Explorer yazısına basıyoruz 
+daha sonra açılan pencerede Databases > Northwind > Tables > dbo.Products sağ tık select top 1000 rows a basıyoruz programın en sağ altında 
+sarı bir şerit üzerinde bu tabloda 77 rows (satır) olduğunu görebiliriz 
+
+count(*) ilgili tablodaki satır sayısını count(sütun-ismi) ilgili sütunda kaç adet satır,veri sayısını verecektir count(*) her zaman 
+o tablodaki BÜTÜN sütunların aynı değere / aynı satır sayıısna sahip olduğu anlamına gelmez bir sütunda 50 veri diğerinde 30,5 10 gibi sayılar 
+olabilir 
+
+count(Region) da kaç adet bölge ismi var bunun sayıısnı verir bize 
+
+NULL / null sql ve ilgili satırda bir kayıt olmadığı anlamına gelir BOŞ demek değildir sadece o satır ile ilgili bir değer atanmadığını ifade eder 
+
+!!! count() fonksiyonu içinde NULL / null olan değerleri saymaz satır sayısı olarak verdiği çıktıda null satırları sayılmayacaktır !!! 
+peki boş olan alanları sayar mı bunu araştır buraya yaz (empty)
+
+bu dersimizde  Min-Max-Rand-Sum-Avg Fonksiyonlarıyla Çalışmak konusunu öğrenelim 
+
+select * from Products where CategoryId in (1,2) 
+
+select min(UnitPrice) from Products komutunu çalıştırarak Products tablomuzdaki en ucuz ürünün fiyatını ekrana bastırabiliriz 
+sadece bu kodu seçip çalıştırdığımızda 2,50 çıktısını aldık eğer aynı değere sahip birden fazla ürün varsa onları da çıktı olarak verir 
+o üründen kaç adet varsa hepsinin fiyatını alt alta çıktı olarak getirecektir 
+
+count() fonksiyonunda ise tek sütun ve sek satır bir çıktı getirir bize sadece 
+
+aynı mantıkla select max(UnitPrice) from Products çalıştırdığımız zaman en pahalı ürünün fiyatını ekrana bastıracaktır 
+
+şimdi diğer fonksiyonlar ile devam edelim (avg( = avarage (ortalama) anlamına gelir bu fonksiyon)) 
+sql de yorum satırı oluşturmak için stringimizin başına -- koyuyoruz koyduktan sonra kodun sonuna da -- koymak zorunda mıyız yoksa sadece o satır 
+ile mi sınırlı kalıyor yorum satırı bunu araştır doğrula buraya yaz 
+
+örneğin şirketimizde bir ürünün ortalama fiyatı nedir (yani bütün ürünlerinin toplam fiyatının ürün sayısına bölümü nedir) 
+select avg(UnitPrice) from Products
+
+select sum(UnitPrice) from [Order Details] eğer her üründen bir adet satsaydık ne kadar para kazanacağımızın çıktısını alırız 
+
+bunu select sum(UnitPrice) as Kazanç from [Order Details] şeklinde de yazabiliriz burada Order Details tablo ismi arada boşluk bırakılarak yazıldığı için 
+köşeli parantez içerisine almamız gerekiyor kodumuzu yazarken as Kazanç diyerek gelecek çıktının Kazanç ismindeki bir sütunun altına gelmesini 
+sağlayabiliriz select sum(UnitPrice * Quantity) as Kazanç from [Order Details] şeklinde çalıştırırsak her ürünün stokta olduğu kadarıyla satsaydık
+ne kadar para kazanacağımızın çıktısını alabiliriz burada quantity = ürünün miktarını / stok sayısını ifade eder 
+kodumuzda da her satırda ürün fiyatı x ürün miktarını çarp ve kümülatif olarak bu çarpımları kendi arasında topla işlemini gerçekleştirdik 
+
+şimdi rand() fonksiyonunu öğrenelim 
+select rand() çalıştırdığımızda aşağıda results tabında kodu her çalıştırdığımızda rastgele bir sayı üretildiğini görürüz rand() fonksiyonu 
+bizim için rastgele bir sayı üretmeye yarar 
+
+
+bu dersimizde Left-Right-Len-Lower-Upper Fonksiyonlarıyla Çalışmak konularını öğrenelim object explorer dan Northwind > Programmability > 
+Functions > System Functions şeklinde sql server içerisinde onlarca belki yüzlerce fonksiyon tanımlı olabilir 
+bu fonksiyonların ismi veritabanından veritabanına göre değişir (oracle,mysql vs) 
+
+bu dersimizde bu fonksiyonlardan sektörde büyük oranda kullanılan fonksiyonları öğrenelim 
+
+select * from Products where CategoryId in (1,2) 
+select left object explorer da String Functions kısmından Left fonksiyonunun bir alt dizinine inersek left() fonksiyonunda kullanılan parametreleri 
+görebiliriz Left > Parameters içinde 
+
+zaten select left( şeklinde parantezi kapamadan bu kadar yazdığımızda left yazısının hemen altında buraya ne gibi bir parametre kullanmamız gerek 
+tiğini bize söylüyor sql burada expressionnvarchar(1) şeklinde bir ifade var bu left() in içerisinde string bir ifade kullanmamız gerektiği 
+anlamına gelir 
+
+select left('engin demiroğ',3) çalıştırırsak    tek bir sütun ve tek bir satırda eng çıktısını alırız bu fonksiyon metnin solundan 
+(yani en başından itibaren sağa dorğ yani metnin sonuna doğru 3 karakteri al ve ekrana bas anlamına geliyor) 
+
+select left(ProductName,3) from Products kodumuzla Products tablosundaki ProductName sütununun altındaki bütün verilerin ilk üç harfini (karak 
+terini) getiririz  [soldan itibaren ilk üç karakter]
+
+select right('Engin Demiroğ',3) from Products burada da sağdan ilk üç harf yani son 3 harfi alır alacağımız çıktı da roğ olacaktır 
+
+yine çok kullanabilecğeimiz bir diğer fonksiyon da LEN fonksiyonu (lenght=uzunluk kelimesinin kısaltmasıdır)
+
+select len('engin demiroğ') çalıştırdığımız zaman 
+
+    no column name
+1   13
+
+çıktısını alırız yani kodumundaki stringin karakter sayısını bize verir 
+
+
+engin = 5 (1 adet space yani boşluk) = 1 ve demiroğ = 6 = 13 
+
+select len(ProductName) from Products çalıştırdığımızda ürün isimlerinin karakter sayılarını ekrana bastırdık 
+
+select ProductName,len(ProductName) as Karakter from Products çalıştırdığımızda 
+
+2 sütuna sahip bir tablo çıktısı alırız ilk sütunun ismi ProductName ve altında ürün isimleri, ikinci sütunun ismi de Karakter ve bu sütunun 
+altında da bu (ProductName sütununun altındaki ürün isimlerinin) karakter sayıları yer alacaktır 
+
+
+şimdi lower fonksiyonunu görelim 
+
+select lower('eNgİn DeMiRoĞ') çalıştırdığımızda aşağıdaki kısımda engin demiroğ çıktısını alırız bu bir string ifademizdeki bütün karakterleri 
+küçük harfe dönüştürür 
+
+select upper('engin dmeiroğ') çalıştırdığımızda da ENGİN DEMİROĞ çıktısını alırız 
+
+bu dersimizde Trim-Ltrim-Rtrim-Reverse Fonksiyonlarını öğrenelim 
+
+select trim('          engin demiroğ           ') çalıştırdığımızda  aşağıdaki kısımda soldaki ve sağdaki boşluklar silinmiş bir şekilde 
+sadece, engin demiroğ çıktısını alırız trim fonksiyonu bu işe yarar 
+
+aşağıda çıktıdaki demiroğ kısmından sonra boşluk gibi görünen kısım boşluk değildir çıktımız kolon genişliğini doldurmadığı için bu şekilde 
+gözükmektedir 
+
+select * from Products where ProductName = 'Chai' yçalıştırdığımızda eğer Chai ürünü veritabanına stringin başında sonunda veya ortasında herhangi bir 
+yerde '    Chai' / 'Chai    ' veya 'Cha i' şeklinde eklenmişse bu komutu çalıştırdığımız zaman hiç bir çıktı alamayız / verimiz gelmez 
+
+işte bu noktada Chai çıktımızın gelmesi için select * from Products where trim(ProductName) = 'Chai' çalıştırabiliriz 
+
+çalıştırdıktan sonra aşağıda çıktıda Chai ismi veritabanına kaydedildiği şekilde BOŞLUK lu bir şekilde çıktı olarak geldi çünkü biz veritabanında 
+değişiklik yapacak bir sorgu çalıştırmadık sadece bütün boşluklar atıldığında Chai stringi ortayaa çıkan bir veri varsa bu veriyi VERİ TABANINA 
+KAYDEDİL DİĞİ GİBİ getir isteğini gerçekleştirdik 
+
+ancak select trim(ProductName) from Products where trim(ProductName) = 'Chai' şeklinde çalıştırsaydık yie veritabanında değişiklik yapmadık ama 
+çıktı olarak bu sefer boşluksuz bir şekile Chai çıktısı geldi 
+
+örneğin veritabanımızda 10 karakterden daha uzun olan ürün ismine sahip olan ürünlerin çıktısını nasıl alabiliriz? 
+
+select * from Products where len(ProductName)>10 çalıştırdığımızda sadece ProductName sütunu çıktı olarak gelmez ürünismi > 10 olan ürün 
+isimleri tablodaki diğer bütün sütunlarla ve bu sütunlardaki karşılık gelen değerler ile birlikte çıktı olarak gelir 
+
+select ltrim('    engin demiroğ') çalıştırdığımızda sadece soldaki boşluklar atılır engin demiroğ çıktısını alırız 
+select rtrim('engin demiroğ        ') çalıştırdığımızda da sadece soldaki boşluklar atılır engin demiroğ çıktısı alırız 
+tersi tarafta boşluk varsa çıktıda bu boşlukların kaldırılmadığını görebiliriz 
+
+[trim fonksiyonunda 'engin demiroğ' engin demiroğ olarak mı çıktı verir yoksa engindemiroğ diye hiç boşluksuz olarak mı araştır buraya yaz]
+
+şimdi reverse fonksiyonunu öğrenelim 
+
+select reverse('engin demiroğ') çalıştırdığımızda ğorimeD nignE çıktısını aldık yani stringimizin son karakterinden itibaren ilk karakterine doğru 
+stringi baştan sıralar / görüntüler 
+
+
+bu dersimizde ubstring-Reverse-CharIndex-Ascii-Char Fonksiyonlarıyla Çalışmak konularını öğrenelim 
+
+şimdi oldukça yoğun kullanılan bazı string fonsiyonlarını öğrenelim 
+
+select charindex('n','Engin Demiroğ',1) çalıştırdığımızda aşağıda 2 çıktısını alırız çünkü engin demiroğ stringinde ilk n karakteri 2. sırada / index numarasında 
+yani kısaca çıktı 0 dan büyükse aranan karakter veya ifade o metinde vardır diyebiliriz  
+peki N yapsaydık çıktı alır mıydık bunu araştır buraya yaz ya da engingdemiroğ yapsaydık çıktı alır mıydık 
+kodun içerisindeki 1 de n karakterini aranacak stringin (birinci ve ikini virgül arasındaki string yani Engin Demiroğ kısmı) kaçında karakterinden 
+başlayarak arama yapılsın demek biz 1. yani ilk yani E karakterinden başla dedik peki 0 deseydik ne olacaktı araştır buraya yaz 
+charindex fonksiyonu bir metin içerisinde başka bir metin geçiyor mu / yer alıyor mu diye bulmak için kullanılır
+
+select charindex('n','Engin Demiroğ',3) çalıştırsaydık gin Demiroğ stringinde arayacağı için alacağımız çıktı 5 olacaktı 
+
+peki biz charindex fonksiyonunu günlük hayatta nasıl bir örnekte kullanabiliriz bunu öğrenelim 
+
+select ProductName from Products where charindex(' ',ProductName,1)>0 çalıştırarak ürün isimlerinin içerisinde boşluk karakteri var mı diye aratabiliriz 
+ve içinde boşluk olan (stringin içerisinde başta sonda veya herhangi bir yerde olması farketmez) bütün ürün isimleri çıktı olarak gelir 
+ancak bu sefer tek bir sütun olacaktır gelen çıktıda o da ProductName sütunu bunun alltında da ürün isimleri vardır 
+charindex fonksiyonunda tek bir karakter arayabildiğimiz gibi bir string veya karakterler kümelerini de arayabiliriz
+
+
+sıklıkla kullandığımız bir başka fonksiyın da replace : bir karakteri veya karakter topluluğunu başka bir karakter veya karakter topluluğu 
+ile değiştirmeye yarayan bir fonksiyondur
+bu fonksiyonu günlük hayatta örneğin içerisinde s I c gibi olanları ş İ ç şeklinde türkçe karakterlere değiştirmek isteyebiliriz 
+örnek olarak müşteri ismi vyea ürün ismi gibi örneklerde 
+
+select replace('Engin Demiroğ',' ','_')
+
+bu kod genellikle ilgili ürünü geliştirenler tarafından kullanılan bir komuttur 
+bu komut Engin Demiroğ isimli bir kayıt / veri / string /varchar bir ifade görürsen bu ifadenin içerisinde herhangi bir yerde boşluk (' ')
+olan yerleri alt çizgi = _ ile değiştir anlamına gelir 
+
+replace fonksiyonu kısaca şu şekilde kullanılır select replace('degistirmek istediğimiz string','değiştirilme şartı / koşulu','değişitirilecek şey')
+şeklindedir 
+
+değiştir('neyi','neyle','nasıl')
+
+select replace(ProductName,' ','_') from Products bu komut ile Products tablosundaki ProductName sütununa ait / bu sütunun altındaki bütün 
+değerlerdeki boşlukları (eğer varsa) alt çizgi '_' ile değiştirdik 
+
+ProductName yerine başka sütun isimleri de yazabilriz 
+
+şimdi bir diğer fonksiyonumuz olan substring i görelim bu fonksiyon da sıklıkla kulllanılır sektörde 
+bu fonksiyon bir metni parçalamaya yarar 
+
+select substring('Engin Demiroğ',1,5) çalıştırdığımızda Engin çıktısını alırız bu komutta Engin Demiroğ ifadesindeki ilk karakterden 5. karaktere 
+kadar 5. karakter de dahil olmak üzere bu kısmın çıkarılması işlemidir (bu komut ilgili veriyi değiştirir mi yoksa formatlama için mi kullanılır 
+sadece araştır buraya yaz) substring LEFT komutu gibi çalışır ama biz left yerine bu uygulamada bunu kullandık 
+
+şimdi de ascii fonksiyonunu öğrenelim 
+
+örneğin bizim kurumdaki mesleğimiz geliştirici / programcı isek ascii fonksiyonu bize lazım olabilir
+select ascii('a') çalıştırdığımızda 97 çıktısını alırız bu komut bize ilgili karakterin ascii (ilgili karaakterin binary/ikili değerinin 
+onluk sistemdeki karşılığıdır) 
+
+select Char(65) çalıştırdığımızda da A öıktısını alırız kısacası Char fonksiyonu bize girdi olarak veriğimiz ascii değerinin karşılığı olan 
+karakteri ekrana bastırır 
+
+
+
+bu dersimizde Distinct İle Çalışmak konusunu öğrenelim bu dersimizde birden fazla tablonun etkileşimi uygulamalarına yavaş yavaş giriş yapalım 
+
+Distinct fonksiyonu bir kolondaki / sütundaki tekrar eden kayıtları, tekrarlanmadan bir defa getirilmesi işlemini gerçekleştirir 
+örneğin sql managment studio da import ettiğimiz veritabanında sol tarafta dbo.Customers tablosuna sağ tık select top 1000 rows dediğimizde 
+sağ tarafta gelen verilerde City kolonunun altında aynı isimle birden çok fazla tekrar eden stringler i / Şehir isimlerini görüyoruz 
+
+bu verilerin bu şekilde Customers tablosunda olması çok güvenli bir yöntem değil şehir isimleri için City isimli bir tablo oluşturup 
+bu veriler unique olarak cityid isimli bir kolonda verilmesi çok daha mantıklıdır 
+
+örneğin bizim müşterilerimiz hangi ülkelerden geliyor ? hangi ülkelerden öüşterilerimiz var bunu sorgulamak için 
+
+select distinct(Country) from Customers çalıştırdığımızda tek bir sütun gelecek Country sütunu bu sütunun altında şehir isimleri 
+bu şehir isimlerinin baında da aşağı doğru 1,2,3,4,5,6 şeklinde artan satır numaraları yer alır ancak satır numaraları country kaydından bağımsız
+bir yerde bu sql tarafından otomatik olarak atanan bir değer mi değiştiirlebilyor mu güvensiz olması söz konusu mu bu durumun araştır buraya yaz 
+
+
+select distinct(Country) from Customers order by Country çalıştırdığımızda ülke isimlerini alfabetik olarak listeler 
+
+bu distinct komutu aynı ülke ismi ilgili kolona farklı şekilde italy Italy ITALY italya şeklinde girişmiş bu bunu görmek için sektörde sıklıkla 
+kullanılır 
+
+şimdi burada sql yazarlarının sıklıkla yaptığı bir hatadan bahsedelim select distinct(Country),ContactName from Customers order by Country
+çalıştırırsak distinct fonksiyonumuz çalışmayacaktır ve her iki kolona ait olan kayıtları sadece yan yana bir tablo içerisinde getirmiş olacağız 
+yani ardıık olarak artan (1,2,3,4,5,6) satır numarası country sütunu yanında ContactName sütunu ve bu sütünların altında bu sütunlara kaydedilmiş olan bütün 
+verileri getirmiş oluruz sadece eğer iki kolonun da distinct olmasını istiyorsa 
+
+select distinct(Country,ContactName) from Customers order by Country çalıştırabiliriz 
+(bir önceki komutta hiç bir sütunda mı distinct fonksiyonu çalışmaz yoksa ContactName sütunu için çalışır ve oradaki verileri tekrarlanmadan 
+mı getirir araştırıp buraya yaz)
+
+select distinct Country,City from Customers order by Country şeklinde de yazarsak country ve city değerleri / bilgileri / kayıtları AYNI olan 
+bir satır birden fazla tekrar etmeyecek tir tek başına bir ülke ismi veya bir şehir ismi birden fazla tekrar edebilir ama ikisi bir arada 
+aynı kayda sahip birden fazla kayıt olmayacaktır burada hangisi önce ise onu seçip diğerlerini listelemez mi bir de bir önceki 
+
+
+şimdi de hayati derecede önemli ve raporlamada yoğun olarak kullanılan fakat ilk defa öğrenirken anlaşılmakta zorlanan group by fonksiyonunu 
+öğrenelim 
+
+örneğin çalıştığımız firmamız bize biz hangi ülkelerde ürünlerimizin ne kadar sattığı veya kaç adet müşterimiz var; dolayısıyla buna göre 
+bir reklama stratejisi geliştirmwk istiyoruz isteğiyle geldikleri zaman biz bu bilgiyi getirecek olan sorguyu group by ifadesi ile yazabiliriz
+
+select Country from Customers soegusu bize bütün ülkelerin çıktısını verir 
+
+select Country from Customers group by Country şeklinde bir sorgu çalıştırdığımızda ise ülke isimlerini district fonksiyonu gibi alfabetik olarak 
+her ülke yalnızca bir defa geçecek şekilde bize listeler (bir önceki sorgumuzda ise ne kadar veri kaydeidldiyse ve verilerin kaydedildiği 
+sıraya göre çıktıyı bize veriyordu? doğrula böyle miydi buraya yaz)
+
+select Country from Customers group by Country ile select distinct Country from Customers komutu ile hiç bir farkı yok (farkı yok mu emin değilim 
+araştır doğrula)
+
+aslında distinct te bir group by ifadesidir (bu cümle ne anlama geliyor? group by = parent; distinct te = child gibi bir şey mi)
+
+
+
+select Country,count(*) Adet from Customers group by Country çalıştırdığımız zaman Customers tablosundaki Country sütunununun altına girilen verileri
+alfabetik olarak ve ilgili ülkedeki müşteri sayısını (müşteri sayısı olup olmadığından tam emin değilim) ekrana bastırır
+ aldığımız çıktıda 
+
+ Country    Adet
+argentina    3 
+austria      2 
+belgium      2 
+brazil       9 
+
+şeklinde bir çıktı aldık buradaki adet süttununun altındaki değerler neyi ifade ediyor neyin sayısını ifade ediyor yani bunu araştır buraya yaz 
+(acaba country sütunun altında her ülke için aynı isimde kaç adet veri girdiğini mi sayıyor böylece o ülkeden olan müşteri sayısı ortaya çıkmış oluyor?)
+
+örneğin 
+mexico
+brazil
+turkey 
+india 
+mexico
+usa 
+canada 
+belgium 
+france 
+mexico 
+
+yazdığımız zaman mexico nun karşısındaki adet değeri 3 oluyor yani bu mantıkta mı ilgili verileri getirir 
+
+
+select Country,count(*) Adet from Customers sorgusunu çalıştırmak istediğimiz zaman hata alırız çünkü burada aynı veri birden fazla kez girildiği 
+zaman hangi veri için count fonksiyonu çalıştırılacağı bilinemez yani ne kadar veri varsa getirileceği için örneğin yukarıdaki örnekten 
+gidecek olursak hangi mexico stringinin karşısına 3 değeri koyulması gerekiyor hepsinin karşısına 3 koyulursa bu sefer mantıken bir yanlışlık 
+olmuş olur çünkü bu toplam 9 defa mexico stringinin geçmiş olduğu anlamına gelir ki 9 değil, 3 defa geçmiştir hepsnin karşısına 1 yazılsa 
+bu sefer de count fonksiyonu görevini doğru bir şekilde yapmamız olur çünkü KAÇ ADET VAR İSE o kadar çıktı verir 3 tane olmasına rağmen karşısına 
+1 yazdı bu yüzden count fonksiyonunu district veya group by fonksiyonu ile beraber kullanmalıyız (peki her bir veri yalnızca bir defa tekrarlanıyorsa 
+yani her girilen veriden yalnızca bir tane varsa bu komutu group by sız çalıştırabilir miyiz bunu araştı buraya yaz)
+
+eğer reklam stratejisinde hangi ÜLKELER VE ŞEHİRLER de KAÇ TANE müşterimiz var bunu bulmamız isteniyorsa 
+
+select country, city,count(*) Adet from Customers group bye Country, City şeklinde bir sorgu çalıştırırsak bu değerleri alabilriz 
+
+aldığımız çıktı da 
+
+
+  Country  City  Adet 
+1
+2
+3
+4
+5                      
+6                      
+
+şeklinde olacaktır 
+
+
+
+bu dersimizde Having ile çalışma konusunu öğrenelim 
+
+şirketteki yöneticimiz bize gelip ülke ve şehir bazında birden fazla müşterimiz olan (ülke ve şehirler) nerelerdir ? dedi bunu bulmak için 
+
+
+select country, city,count(*) Adet from Customers group bye Country, City having count(*)>1 çalıştırırsak   
+
+bir önceki aldığımız 
+
+
+  Country  City  Adet 
+1
+2
+3
+4
+5                      
+6                      
+
+çıktısından tek fark olarak adet sütununun altındaki bütün değerler 1 den büyük olacaktır dolayısıyla sadece en az 2 müşterinin olduğu 
+ülkeler ve şehirler ekrana gelecektir burada eğer bir ülkede örneğin 4 müşteri var bunlardan 2 si o ülkenin farklı bir şehrinden diğer 2 si farklı bir 
+şehrinden ise country sütununda aynı isime sahip olan ülkeler birden fazla tekrarlanabilir örneğin 2 defa brazil yazması gibi  
+(halbuki group by de gelen çıktılar her zmaan gruplandırılırde ve bir veri birden fazla kez tekrarlanmazdı)
+
+[burada birden fazla kez tekrarlanması demek 1 defa yazdılırması demektir 2 değil yani]
+
+ve adet sütununda dikkat çeken şey yukarıdan aşağı veya aşağıdan yukarı; büyükten küçüğe veya küçükten büyüğe bir sıra halinde çıktı almadık 
+karışık bir şekilde aldık bundan önceki adet sütununa sahip çıktılarda da durum böyleydi (adet sayısını da büyükten küçüğe veya tam tersi sıralama 
+yı öğren örnek bir komut yaz)
+
+having metodu ile group by gibi bir koşul söz konusu olduğunda bu koşulun kapsamını / istisna durumlarını  belirtebiliriz örneğin having ile 
+and komutu kullanıldığında x ve y olmadığı sürece ilgili tablodaki ilgili sütundaki verileri getirme ancak z,w,a,b,c (satırlarındaki veya içinde 
+bu tarz bir string geçenler hariç gibi bir sorgu çalıştırabilir miyiz araştır buraya yaz)
+
+having = bir sorgudaki koşulun, koşulu diyebiliriz.
+
+a dan z ye göre sıralamak için group by kullanılmıyor muydu yoksa bu sıralamayı yapmak için kesinlikle order by fonksiyonunu kullanmamız gerekiyor mu 
+
+select Country, City,count(*) Afet from Customers group by Country,City having count(*)>1 order by Country çalıştırdığımızda 
+
+select Country, City,count(*) Afet from Customers group by Country,City having count(*)>1  çalıştırdığımızda Country ve City sütunları kendi 
+aralarında mı alfabetik olarak sarılanır yani yukarıdan aşağı her sütun için alfabetik sıralamadan ziyade 
+alfabetik olarak 
+
+kısaca  group by Country,City ifadesinde bir alfabetik sıralama var mı var ise bu sıralamanın mantığı nedir anla buraya yaz
+
+having fonksiyonu, kümülatif şartlar için kullanılır (bu ifadede de demek istemiş araştır buraya yaz)
+
+select Country,City şehirler from Customers where City <> 'Nantes'
+
+şeklinde yazdığımızda city sütünunda Nantes olan verileri çıktıya dahil etmez <> ifadesi de farklıdır anlamında kullanılır bu kodumuzun 
+devamında group by ifadesini kullanarak bir sorgu daha yazsaydık bu sadece içerisindeki Nantes içermeyen veriler arasında bir koşul olacaktı 
+
+where fonksiyonu ile having fonksiyonu arasındaki farklı açıklayıcı bir şekilde yaz 
+
+bu dersimizde de sql yazarlığının olmazsa olmaz konularından bir tanesini öğrenelim bu konu Join(ler) dir 
+
+join : örneğin bizim 2 tane tablomuz var bunlardan bir tanesi Product diğeri ise Category tablosu olduğunu varsayalım biz Products tablosundaki
+bir ürünü listelediğimiz zaman bize bu ürünün CategoryID si karşımıza çıkar ama yöneticimiz CategoryID yi değil category nin ismini görmek istiyor 
+/ isteyebilir (neden nasıl bir örnek için böyle bir istekte bulunur bunu araştır örnek ver) 
+
+yani kısacası biz ürünler tablosundaki bütün verileri listelediğimizde 
+
+1
+2
+3
+4
+5
+6 
+
+şeklinde ilerleyen categoryid lerin yerine 1,2,3,4,5,6 yerine yani category nin isimlerini yani ilgili satırdaki ürünün hangi category e ait olduğu 
+bilgisini ekrana bastırmak istiyoruz işte biz bunu gerçekleştirmek için join fonksiyonundan yararlanıyoruz join = bir araya getirmek / bir araya 
+gelmek anlamında kullanılır 
+
+bunu gerçek hayattan bir örnek ile şöyle açıklayalım örneğin iki insanın gerçek hayatta bir araya gelmesi için ORTAK bir sebeplerinin olması gerekir 
+
+peki bu join de başka bir tablodaki veriyi istediğimiz ilgili tabloda listelerken bu iki tablonun da ortak özelliği CategoryID lerdir 
+her iki tabloda da CategoryID yer alır (bu iki categoryıd ler aynı bilgiyi mi ifade ederler sadece categoryid başlığı kapsamında mı benzer 
+noktalar taşıyorlar araştır buraya yaz) 
+
+şimdi bunu örnek üzerinde anlayalım ardından northwind veritabanı içerisinde select * from Products inner join Categories 
+bu komut ile iki tablo içeriisnde sadece ORTAK olan verileri eşleştirir ortak olmayanları eşleştirmez 
+
+yani örneğin select * from Products inner join Categories  çalıştırdığımızda iki tabloda herhangi bir sütunda aynı değere sahip satırları getirir 
+yani örneğin iki tabloda da CategoryID isimli bir sütun var ve bu sütunda her iki tablodan da aynı değere sahip satırlar var bu satıırlar 
+eşleşen diğer sütunlar olup olmasına bakılmaksızın ekrana bastırılır (eşleşen veya eşleşmeyen bütün sutünlarda ilgili satırlara ait değerler ile 
+birlikte)
+ (select * from Products inner join Categories komutu bir çıtkı verir mi dene yoksa hata mı alırız?)
+
+ select * from Products inner join Categories on Products.CategoryID = Categories.CategoryID çalıştırırsak da komuttaki on ifadesinden sonra 
+ select * from Products inner join Categories  komutuna bir koşul eklemiş yani bir filtreleme ve şart belirtmiş oluruz sadece her iki tablodan da 
+ CategoryID sütünunda aynı değerlere sahip satırlar ekrana basıtırlsın diye (yine eşleşen bir sütun varsa o satırdaki bütün sütun değerleri ile basıtırılır 
+ eşleşen satırlar yani sadece eşleşen sütundaki değerleri ile bastırılmaz)
+
+ bu sorgumuzun devamında 
+
+ select * from Products inner join Categories on Products.CategoryID = Categories.CategoryID  where Products.UnitPrice>20 çalıştırırsak 
+
+
+ select * from Products inner join Categories on Products.CategoryID = Categories.CategoryID sorgumuzun çıktısı içerisinde UnitPrice sütunundaki 
+ değerler sadece 20 sayısından büyük olan çıktılar ekrana bastırılacaktır (yine eşleşen ve eşleşmeyen bütün sütunlar getirelecektir eşleşen satırların)
+
+
+select * from Products inner join Categories on Products.CategoryID = Categories.CategoryID  where Products.UnitPrice>20 order by Categories.CategoryID 
+ sorgusunu çalıştırdığımızda sonraki order by ifadesi ne değişiklik farklılık katıyor çıktı geldiğinde araştır buraya yaz 
+
+en sondaki sorgumuzu şu şekilde de yazabiliriz 
+
+select * from Products p inner join Categories c on p.CategoryID = c.CategoryID  where p.UnitPrice>20 order by c.CategoryID 
+şeklinde Alliance yani kısaltma kullanarak kullanabiliriz 
+
+bu dersimizde birden çok tabloyla join fonksiyonunu öğrenelim 
+
+biz veritabanımızdaki hangi üründen bu güne kadar sipariş aldık  bunu öğrenmek istiyoruz 
+
+ürün ismi | ilgili ürünün sipariş tarihi | ürün satışından kazanılan tutar 
+
+şeklinde bir çıktı almak istiyoruz bu çıktıyı almak için yazmamız gereken sorgu nedir ?  
+
+bu çıktıları almak için öncelikle hangi tablo isimlerine ihtiyacımız var buna karar verelim ürün ismi için Products tablosunun ProductName sütununda
+ ürün sipariş tarihi için  Orders tablosundaki OrderDate sütunundaki bilgilere ihtiyacımız var ve ne kadar ilgili ürünlerden ne kadar para kazandığımız 
+bilgisi için de Order Details tablosundaki UnitPrice ve Quantity sütunlarındaki değer (unitprice * quantity = o güne kadar ilgili ürünün satışından kazanılan 
+toplam miktar / para)
+
+kısacası biz bu 3 farklı tablodaki ihtiyacımız olan sütunlardaki bilgileri join etmemiz gerekiyor 
+
+bunun için; 
+
+select * from Products p inner join Orders o 
+on p.ProductID = o.ProductID çalıştırırsak bir çıktı alamayız çünkü Orders tablosunun içerisinde Products tablosuyla eşleştirebileceği daha doğrusu 
+eşleşen bir kayır / satır var mı sorgulayabileceği ProductID isimli bir sütun yok yani kolon / sütun isimleri aynı olan iki tabloyu join etmemiz 
+gerektiği için biz normalde ürünün sipariş tarihi içeren ama ortak kolon ismine sahip olmayan Orders tablosundan değil de hem ürünün sipariş tarihini 
+hem de ProductID sütunlarını içeren Order Details isimli tablo ile Products tablomuzu join edelim bunun için 
+
+select * from Products p inner join [Order Details] od çalıştırıyoruz buradsa köşeli parantez kullandık Order Details yazarken çünkü Order Details tablo 
+ismi bir adet boşluk karakteri içeriyor (buradaki od ifadesi de Alliance olarak od = order detail ın kısaltmasıdır)
+
+select * from Products p inner join [Order Details] od
+on p.ProductID = od.ProductID diyerek başarıyla ikisini ProductID ye göre joinledik 
+
+
+select * from Products p inner join [Order Details] od
+on p.ProductID = od.ProductID
+inner join Orders o 
+on o.OrderID = od.OrderID 
+
+şeklinde yazıyoruz yani her bir tablo isminin ortak özelliği olan sütunu alıyoruz ve join ediyoruz ilk aşamada Products ve Order Details 
+da ortak olan ve bizim ihtiyacımız olan sütun ismi ProductID ydi (nedne productid ydi neden başka bir sütun ismiyle başlamadık bunu araştır buraya yaz)
+
+daha sonra join ettiğimiz bu bilgi içerisinde 2 sinin ortak sonucu ile mi yoksa sadece Order Details ı mı Orders ile join ettik burayı tam anlamadım 
+
+bu noktadan sonra sadece eşleşen sonuçlar geldiği için sorgumuzun başındaki * (yıldız) yerine istediğimiz bilgileri yazalım 
+
+yani; 
+
+select p.ProductName,o.OrderDate,od.Quantit * od.UnitPrice as Total from Products p inner join [Order Details] od
+on p.ProductID = od.ProductID
+inner join Orders o 
+on o.OrderID = od.OrderID 
+
+
+sorgusunu çalıştırdığımızda 
+
+boş buton       ProductName       OrderDate                 Total 
+1      ürün ismi          sipariş tarihi           üründen-kazancı (ürün sayısı * ürün fiyatı)
+2
+3
+4
+5
+
+şeklinde çıktılarımız gelecekir
+
+
+select p.ProductName,o.OrderDate,od.Quantit * od.UnitPrice as Total from Products p inner join [Order Details] od
+on p.ProductID = od.ProductID
+inner join Orders o 
+on o.OrderID = od.OrderID 
+order by p.ProductName şeklinde (alfabetik olarak mı sıraladık sonraki order by ile önceki notlara bak ne yaptığımızı anla buraya yaz)
+
+
+select p.ProductName,o.OrderDate,od.Quantit * od.UnitPrice as Total from Products p inner join [Order Details] od
+on p.ProductID = od.ProductID
+inner join Orders o 
+on o.OrderID = od.OrderID 
+order by p.ProductName, o.OrderDate 
+
+şeklinde o.OrderDate ile ne gibi bir değişiklik yaptık araştır buraya yaz 
+
+
+boş buton       ProductName       OrderDate                 Total 
+1               ürün ismi          sipariş tarihi           üründen-kazancı (ürün sayısı * ürün fiyatı)
+2
+3
+4
+5
+
+
+
+şeklinde sql server managment studio da çıktı kısmında boş buton kısmındaki beyaz alana tıklarsak çıktı olarak gelen tablonun tamamı seçilir 
+ve sağ tık copy dersek ve bunu excel e yapıştırırsak çalışmalarımıza excel den devam edebiliriz 
+
+yine hepsini seçtiksek sonra sağ tık copy with headers dersek ne yapar tam anlamadım bir önceki örnekte sadece satır bilgilerini mi kopyalıyor 
+bu örnekte kolon isimleriyle beraber mi kopyalar deene buraya yaz sonucu 
+
+sorgumuzdaki od.Quantit * od.UnitPrice kısım calculated colon (hesaplanmış kolon ifadesi ile kullanılır sektörde)
+
+
+bu dersimizde left join nedir ve left join ile çalışma konusunu öğrenelim 
+
+left join de eşleşmeyen dataların da gelmesini istediğimiz bir senaryoda kullanabiliriz 
+
+örneğin biz hepsiburada.com a girdik ve müşteri olduk yani hesap açtık ama ürün satın almadık; şimdi hepsiburada.com biz daha önce hiç ürün alma 
+dığımız için bize marketing yapmak istiyor veya reklam göndermek istiyor işte örneğin bize özel %15 indirim vs gibi ama bu kampanyaları daha önce hiç 
+ürün almamış kullanıcılara yapmak istiyor dolayısıyla biz veritabanında müşteriler tablosunda varız ama siparişler / sipariş edenler tablosunda yokuz 
+
+işte left join ile biz bu data yı da alabiliriz kısacası hem join olanları getiriyor ; hem join olmayanlerı getirir 
+
+left ve right join sadece sorgunun yazımı ile alakalı isim farklılıklarıdır her ikisinin de sonucu / çıktısı aynı yere çıkar 
+
+ama iç içe sorgularda duruma göre bazen left bazen right join kullanılması gerekebilir 
+
+tabii biz northwind veritabanı için atışı hiç yapılmayan / yapılamayan ürünler nelerdir bunları görmek istiyoruz bunların üzerinden gidelim 
+
+
+
+
+select * from Products p inner join [Order Details] od
+on p.ProductID = od.ProductID
+
+bu sorgu bize sadece eşleşenleri yani joinleri getirir (inner kelimesi zaten iç içe olan / eşleşen demektir)
+
+select * from Products p left join [Order Details] od
+on p.ProductID = od.ProductID
+
+çalıştırdığımızda az önceki inner ile çalıştırdığımız sorgu ile aynı çıktıyı aldık sonuç sayısı satır / sütün sayısı vs değişmedi yani tamamen 
+aynı çıktıyı aldık (sonuç sayısı değişmediği tamamen aynı çıktı olduğu anlamına gelmiyor elbette kontrol edilmeli!!!)
+
+yani bu bizim satılmayan hiç bir ürünümüz olmadığı anlamına geliyor peki bunu nasıl bilebileceğiz yani bundan nasıl emin olabiliriz 
+
+select * from Products p inner join [Order Details] od
+on p.ProductID = od.ProductID
+where od.ProductID is null
+
+çalıştırdığımızda, bu sorgu için OrderDetails tablosunu seçmemizin sebebi bir sipariş olduysa bu orderdetails de yazar olmadıysa da yazar çünkü 
+Products tablosuyla join ettik (left join de hem eşleşen hem eşleşmeyen bütün veriler mi geliyor?) sütun olarak da ProductID yi seçmemiz / join 
+etmemizin sebebi de Products tablosu ile ortak bir sütun olduğu içindir (left join de iki tbalo arasında join edilecek tablo ikisinde de yer 
+alması gerekir mi araştır buraya yaz) ve sorgumuzun devamında where od.ProductID is null ikisi join edildikten sonra productid de olup 
+orderdetails de olmayan (orderdetails in join edilmediği hali yani normalinde bulunmayan bir ProductID null yani boş bir kayıt olarak ekleneceğin 
+den / join edileceğinden dolayı böyle bir kayıt var mı bunu sorguladık) ve hiç bir çıktı almadık yani bu, böyle bir çıtkı olmadığını 
+ve veritabanında satılmayan herhangi bir ürünün bulunmadığı anlamına gelir 
+
+peki şimdi sorgumuzu biraz daha ilerletelim / farklılaştıralım örneğin bir hiç bir ürün satamadığımız müşterilerimizi görmek istiyoruz 
+
+select * from Customers c inner join Orders o
+ON C.CustomerID = o.CustomerID
+
+bu sorgu ne anlama geliyor araştır gelen çıtkılar neyi ifade eder buraya yaz açık anlaşılır bir şekilde 
+
+
+select * from Customers c left join Orders o
+on C.CustomerID = o.CustomerID
+where o.CustomerID is null 
+
+bu sorgunun çıktıları olan müşterilere hiç satış yapılmamıştır !!! 
+
+left join de 2 tablo join edildiği zaman eşleşen sütunlara eşleşen bilgiler yazılır eşleşmeyen sütunlara NULL değeri yazılır 
+
+peki sorgumuzdaki left kelimesi ne anlama geliyor ? 
+
+left kelimesinin solundaki tabloda olup yani Müşteriler (Customers) tablosunda olup = yani müşteri olup, sağdaki (siparişler =Orders) olmayan 
+sütunları getirir daha doğrusu eşleşen ve eşleşmeyenleri de getirir 
+(bu komutu tam anlamadım customers tablosunda olan ama orders tablosunda olmayan CustomerID leri mi getiriyor eüer öyleyse eşleşen ve eşleşmeyen 
+kayıt lar da geleceğinden where o.CustomerID is null diyerek sadece eşleşmeyenleri mi göstermiş oluyoruz ? )
+
+bir de left join den sonra son satırda where den sonra neden o.CustomerID yazıyoruz başka bir şey yazıp aynı çıktıyı alabilir miyiz yoksa 
+orders sorguda daha sonra yazıldığı için join işlemi onun içinde / üstünde mi gerçekleştiriliyor yoksa oraya c.CustomerID yazsak da 
+aynı çıktıyı alır mıydık iyice araştır anlaşılır ve sade bir şekilde buraya yaz
+
+bu dersimizde right join ile çalışma konusunu öğrenelim 
+
+select * from Orders o right join Customers c
+on o.CustomerID = c.CustomerID
+where o.CustomerID is null  
+
+çalıştırdığımızda 
+
+Customers tablosunda olup Orders tablosunda olmayan yani müşterimiz olup sitemizden hiç alış-veriş yapmayan kişilerin listesini getirebiliriz 
+(yukarıdaki sorgu ile tam olarak neyi getirdik anlamadım anlayıp buraya detaylı açık bir şekilde yaz)
+
+
+ select c.ContactName,c.CustomerID from Orders o right join Customers c
+on o.CustomerID = c.CustomerID
+where o.CustomerID is null  
+
+yine yukarıdaki çıktı ile nasıl bir sorgu yaptık neyi getirip neyi getirmedik neyi filtreledik araştırıp buraya yaz 
+
+
+
+bu dersimizde full join ile çalışmak konusunu öğrenelim 
+
+right join de inner join yani her iki tablonun eşleştiği verileri ve sağdaki tablodaki verileri getirir soldaki tablodaki eşleşen haricindeki 
+kalan kısımdakileri dilersek is null şeklinde getirebiliriz tam tersi de left join için geçerlidir 
+
+full join de ise hem inner join yani eşleşen verileri hem sağda olup  solda olmayan hem de solda olup sağda olmayan verileri getirmemizi sağlar 
+
+full join in kullanıldığı sorgılar genel olarak 2 tablo arasında sıkı sıkıya bir ilişkinin olmadığı durumlarda söz konusudur 
+
+çünkü aralarında bir ilişki varsa bu, bir tabloda olmayan bir tabloda olan veriler ile ilgili durumlarda kullanılır 
+
+
+select * Customers c inner join Orders o 
+on o.CustomerID = c.CustomerID
+
+bu sorgu siparii olan müşterilerin çıktısını verir / yani daha önce sitede alıv veriş yapmış / bir ürün satın alan kişilerin çıktısı 
+
+select * Customers c left join Orders o 
+on o.CustomerID = c.CustomerID
+
+bu sorgu müşteri olup, herhangi bir siparişi olmayan kullanıcıları ifade eder 
+
+select * Customers c right join Orders o 
+on o.CustomerID = c.CustomerID
+
+bu sorgu ilgili siteden alışveriş yapıp müşteri olmayan kişileri ifade eder örneğin bazı sitelerde kullanıcı olmadan ilgili ürünü 
+satıl alabiliyoruz bu kimselere siteye üye olmaları için bir takım indirimler kuponlar hediyeler vs reklsm vr pazarlamacılık stratejleri izlenebilir 
+
+select * Customers c full join Orders o 
+on o.CustomerID = c.CustomerID
+
+yukarıdaki sorgu ile tam olarak hangi bilgileri getirdik bu gibi sorguları hangi senaryolarda kullanırız ne işimize yarar ? iyice araştır 
+anlayıp buraya açık bir şekilde yaz
+
+
+bu dersimizde bir workshop (atölye çalışması ile devam edelim)
+
+konumuz şu; hiç satış yapamayan bir personelimiz var mı? Varsa bu personelimiz kimlerdir ? 
+
+bu sorumuzun cevabı olan sorguyu yine northwind veritabanında gerçekleştiriyoruz
+
+bu soruda iki tablomuz olduğunu biliyoruz; "Hiç SATIŞ yapamayan PERSONEL var mı ? / varsa kimdir ? 
+
+personel tablomuz = dbo.Employers tablosu idi sql server managmnt studio sol taraftaki da dbo.Employers tablosuna sağ tık > Select Top 1000 Rows a tıklıyoruz 
+
+bu tabloda pek çok sütun olduğunu görüyoruz bizim bu sütunların hepsini bilmemize gerek yok bir personeli başka bir personelden benzersiz bir 
+şekilde ayıran verilerin girildiği sütunu bilmemiz yeterlidir bu tablo için de bu sütun EmployeeID dir çünkü ID ler unique(benzersiz) olmalıdır 
+
+çünkü unique olmayan bir sütun seçmeseydik ilgili sütunda aynı bilgi birden çok personel için geçerli / mevcut olabileceğinden yaptığımız 
+sorgunun çıktısında hatalı sonuç alabilirdik 
+
+personel kısmı tamam şimdi siparişler kısmına geçelim sol tarafta dbo.Orders tablosuna sağ tık > Select Top 100 Rows diyoruz 
+
+ve tablomuzda EmployeeID sütunu olduğunu görüyoruz şimdi sorgumuzu yazmaya başlayalım 
+
+Select * from Employees e inner join Orders o
+on e.EmployeeID = o.EmployeeID 
+
+bu sorgumuz hem personel olup hem de siparişler listesinde id si olan personelleri çıktı olarak verir yani kısaca bir ürün satmış personelleri 
+çıktı olarak verir 
+
+bize bu sorguda solda olup yani Employee tablosunda EmployeeID de olup sağdaki siparişler tablosundaki EmployeeID sütununda olmayan personeller 
+lazım bunun için de 
+
+Select * from Employees e left join Orders o
+on e.EmployeeID = o.EmployeeID 
+
+sorgusunu çalıştırabiliriz 
+
+eğer sorgumuzun çıktısı 830 satırdan -yani inner join ile yaptığımız sorgu çıktıısndan fazla bir sayıda satır çıktısı gelirse satış yapamayan 
+personelimiz vardır demektir-
+
+(yani bu şu anlama mı eliyor şimdi left join = inner join + sol tarafta olup sağda olmayan EmployeeID ler yani sadece eşleşmeyenleri çıktıya getirmiyor 
+eşleşenler + eşleşmeyenleri çıktı olarak getiriyor bu doğru mu araştır buraya yaz; bir de hem eşleşen hem eleşmeyenleri getiriyorsa biz 
+personel olup satış yapamayanları nasıl bulacağız bu içıktı içinden bunu araştır buraya yaz)
+
+ve left join sorgumuzda çıktı satır sayısı değişmedi bu satış yapamayan personel olmadığı anlamına geliyor 
+
+ama yine de biz bu durumu test etmek istiyoruz 
+
+Select * from Employees e inner join Orders o
+on e.EmployeeID = o.EmployeeID 
+where o.EmployeeID is null 
+
+sorgusunu çalıştırıyoruz; çalıştırdığımızda hiç bir çıktı gelmediyse demek ki satış yapamayan bir personelimiz yoktur demektir 
+(burada where den sonra neden o.EmployeeID olduğunu tam anlamadım burayı iyi bir şekilde anla açık ve detaylı bir şekilde yaz)
+
+
+bu dersimizde başka bir workshop yapalım 
+
+sorularımız : 
+
+Soru 1: Hangi üründen kaç tane satmışız ? 
+
+Soru2 : Hangi kategoriden kaç tane satmışız ? 
+
+ilk sorumuzdan başlayalım : "Hangi ÜRÜNDEN kaç adet SATMIŞIZ ? Yani bakmamız gereken tablolar Products ve Orders tablolarıdır 
+
+
+select * from Products p inner join [Order Details] o
+on p.ProductID = o.ProductID 
+
+sorgusunu çalıştırırsak hem ürünler tablosunda olan hem de sipariş detayları tablosunda olan ürünler yani hem ürünler tablosunda olan hem de 
+satılan ürünlerin çıktısını getiririz 
+
+select * from Products p inner join [Order Details] o
+on p.ProductID = o.ProductID 
+order by p.ProductName 
+
+sorgusundan hangi çıktıyı getiririz araştır buraya yaz 
+
+select p.ProductName,count(*) as Adet from Products p inner join [Order Details] o
+on p.ProductID = o.ProductID 
+group by p.ProductName
+order by p.ProductName 
+
+sorgusunu çalıştırırsak 
+
+         ProductName       Adet
+1         Alice Mutton     37
+2        Aniseed Syrup     12
+3
+4
+5
+
+
+şeklinde bir çıktı alırız yani hangi üründen kaç adet satıldığının çıktısını alırız bu sorguyu ta tam olarak anlamadım her satırda tam 
+olarak nasıl bir işlem / filtreleme gerçekleştiriliyor araştır buraya yaz 
+
+Discount sütunu ilgili rünüle alakalı indirim bilgilerini içerir (bu sütundaki değer indirimle alakalı ne gibi bir bilgi içerir yüzde kaç indirim gibi 
+bir bilgi mi araştır buraya yaz)
+
+Örneğin biz şunu bilmek isteyebiliriz kampanya (indirim) yaptığımız ürünlerden kaçar tane satmışız ? 
+
+ki hangi kampanyalar işe yarıyor / ürün sattırıyor bunu öğrenelim diye 
+
+
+select p.ProductName,count(*) as Adet from Products p inner join [Order Details] o
+on p.ProductID = o.ProductID 
+where o.Discount >0 
+group by p.ProductName
+order by p.ProductName 
+
+sorgusunu çalıştırırsak kampanya yapılan ürünlerden kaçar tane sattığımızın çıktııs ekrana gelir 
+
+şimdi hangi kategoriden kaç adet ürün satıldığı sorusunu çözelim 
+
+bu sorumuzda bakmamız gereken 2 tane tablo var bunlar Categories ve OrderDetails ancak OrderDetails tablosuna bakarska CategoryID sütununu göremiyoruz
+çünkü OrderDetails da böyle bir sütun yok ancak bizim CategoryID yi bilmemiz gerekiyor 
+
+ancak Products tablosunda CategoryID var biz Categories tablosu ve Order Details tablosu arasında bir bağlantı kurmak için 
+Products tablosunu kullanabiliriz 
+
+select * from Products p inner join Categories c 
+on p.CategoryID = c.CategoryID
+inner join [Order Details] od 
+on od.ProductID = p.ProductID
+
+bu çıktının tam olarak hangi verileri getirdiğini anlamadım araştırıp buraya yaz 
+
+select c.CategoryName from Products p inner join Categories c 
+on p.CategoryID = c.CategoryID
+inner join [Order Details] od 
+on od.ProductID = p.ProductID
+
+sorgusunu da aynı şekilde araştırıp hangi çıktıyıgetirdiğini,mantığını yaz hangi durumlarda bu sorgu kullanılır bunu yaz 
+
+select c.CategoryName from Products p inner join Categories c 
+on p.CategoryID = c.CategoryID
+inner join [Order Details] od 
+on od.ProductID = p.ProductID
+group by c.CategoryName
+
+yine aynı şekilde bu sorguyu da araştır 
+
+select c.CategoryName,count(*) as Adet from Products p inner join Categories c 
+on p.CategoryID = c.CategoryID
+inner join [Order Details] od 
+on od.ProductID = p.ProductID
+group by c.CategoryName
+
+bu sorguyu da araştır 
+
+sql de bir satırı yorum satıtı haline çevirmek istiyorsak başına -- (iki adet kısa çizgi / tire karakteri kullanabiliriz)
+
+bu dersimizde bir workshop uygulaması yapalım 
+
+sql server managment studiodan > dboEmployees tablosuna sağ tık > Select Top 1000 Rows diyoruz 
+
+buradaki LastName ve Firstname sütunlarında çalışanlarımızın isim ve soyisimleri bilgileri yer alır 
+
+yine aynı tabloda snlara doğru ReportsTo isimli bir sütun var bu sütun ilgili çalışanın hangi EmployeeID ye sahip olan personele rapor verdiğini 
+yani üst mevkisindeki kişiyi ifade eder burada NULL yazan kişi kimseye rapor vermez çünkü şirketin CEO su dur anlamındadır 
+
+bizim istediğimiz bu workshop da 2 adet sütun olsun ve şu formatta gözüksün 
+
+       Çalışanın İsmi         Rapor-verdiği-kişinin-ismi
+1
+2
+3
+4
+5
+
+şeklinde 
+
+şimdi yukarıdaki workshop ımızın çözümünü gerçekleştirelim 
+
+bu uygulamada aslında üzerinde çalıştığımız tablo bir tane ama birbiriyle ilişkili 2 adet kolonumuz var 
+
+bu uygulamaya aynı zamanda self join denir yani biz, aynı tabloyu kendi kendisi ile join edeceğiz / tabloyu kendisiyle join edeceğiz 
+
+
+select e2.Firstname + ' '+e2.LastName as Personel from Employees e1 inner join Employees e2 
+on e1.EmployeeID = e2.ReportsTo
+
+sorguusnu çalıştırırsak 
+
+     Personel
+1    personel-ismi-1
+2    personel-ismi-2
+3    personel-ismi-3
+4    personel-ismi-4
+5    personel-ismi-5
+
+şeklinde bir çıktı alırız bu sorguyu da tam anlamadım araştırıp mantığını anla buraya yaz 
+
+select e2.Firstname + ' '+e2.LastName as Personel,
+e1.FirstName + ' '+e1.LastName as Üstü
+from Employees e1 inner join Employees e2 
+on e1.EmployeeID = e2.ReportsTo
+
+sorgusunu çalıştırırsak 
+
+     Personel            Üstü (rapor verilen kişi)
+1    personel-ismi-1     personel1-in-üstü
+2    personel-ismi-2     personel2-in-üstü
+3    personel-ismi-3     personel3-in-üstü
+4    personel-ismi-4     personel4-in-üstü
+5    personel-ismi-5     personel5-in-üstü
+
+bu sorgunun doğruluğunu doğrulamak için, aldığımız çıktıyı select * from Employees sorgusunun çıktısı ile karşılaştırabiliriz 
+
+ancak burada dikkat edersek CEO muz olan Andrew Fuller ı getirmedi çünkü onun ReportsTo kolonundaki değeri NULL ve inner join de 
+NULL ile bir şeyi join edemediğimiz için onu getirmedi (diğer joinlerde null ile bir şey join edilebiliyor mu araştır buraya yaz)
+
+eğer illa andrew i de çıktıda görmek istersek right join yapabiliriz yani 
+
+select e2.Firstname + ' '+e2.LastName as Personel,
+e1.FirstName + ' '+e1.LastName as Üstü
+from Employees e1 right join Employees e2 
+on e1.EmployeeID = e2.ReportsTo
+
+çalıştırırsak Andrew Fuller    NULL şeklinde ismi ve reportsTo şeklindeki değerleri gelecektir 
+
+bu dersimizde veritabanında değişiklik yapan sorguları öğrenelim
+
+Insert : veritabanına yeni bir kayıt eklemek için 
+
+Update : veritabanında, şarta uyan kayıtları güncellemek için 
+
+Delete: yine veritabanında, şarta uyan kayıtları silmek için (şarta uyan kayıtları güncellemek ve silmek tam olarak ne demektir neyi ifade eder araştırıp buraya yaz hem update ile ilgili hem de delete ile ilgili bir örnek yaz)
+
+kullanılırlar. 
+
+sql de Identity Column kavramı / kullanımı ne demek, neyi ifade eder ? bunu araştır buraya yaz 
+
+sql server / sql data types konusunu araştır
+
+(insert = ekle into = içine (neyin içine? - ilgili tablonun içine) Categories yani içerisine veri eklenecek tablonun ismi)
+
+bunlardan sonra ilgili tablonun içerisinde hangi sütun / kolonlara veri girmek istiyorsak onları ve daha sonra da bu kolonlara girmek istediğimiz 
+
+verileri yazmamız gerekiyor (CategoryName,Description) örneğin bunlar ilgili tablonun içerisindeki sütun isimleridir sql server managment studio da 
+
+Description kelimesi mavi renkle gözüküyor olabilir bu Description kelimesinin sql de in-build yani yerleşik / hazır olarak gelen bir komutu 
+ifade etmesidir ama bu sorug içeriisnde parantez içerisinde bu kelimeyi yazdığımız için sql bu kelimenin sütun ismi olduğunu bilir ve ona göre 
+davranır 
+
+örneğin Sütunlardan birinin ismi Picture ve biz bu sütuna bir veri girmek istiyoruz; hatta bu sütuna girdiğimiz veri ile 
+yani insert komutu ile bu sütuna eklediğimiz veri ile buraya bir resim yüklemek istiyoruz bunu, yüklemek istediğimiz resmin binary kodlarını 
+komut içeriisne yazarak yapabiliriz 
+
+values ('Test Category','Test category description') şeklinde yazarak ilgili sütunlara ilgili verileri sırayla girmiş oluruz yani 
+
+sütun isimlerinde ilk önce hangi sütun ismini yazdıysak value yazdıktan sonra parantez içerisinde eklenecek ilk veri o sütuna eklenecek 
+, (virgül) ile ayrıldıktan sonra sıradaki veri de 2. sırada belirtilen sütun a eklenecektir ve bu şekilde süreç ilerler..
+
+insert into Categories (CategoryName,Description)
+values ('Test Category','Test category description')
+
+ardından bu komutu çalıştırdıktan sonra 
+
+(1 row affected) = yani bu çalıştırdığımız sorgudan dolayı ilgili tabloda 1 satır etkilendi (değişti anlamında) bir çıktı alırız bu yapmış olduğumuz 
+
+sorgunun başarıyla gerçekleştiği anlamına gelir 
+
+ardından sql server managment studio da sol tarafta dbo.Categories tablosuna sağ tık yapıp Select 1000 rows dediğimizde 
+
+girmiş olduğumuz verilerin ilgili tablonun son satırında yer aldığını görerek bunu doğrulayabiliriz 
+
+insert ile eklediğimiz satırın Picture sütunundaki değerinin NULL olduğunu görüyoruz bunun sebebi 
+
+dbo.Categories sağ tık > Design dediğimizde Picture isimli Column Name in karşısındaki Allow Nulls kutucuğunun işaretli olmasıdır 
+
+yani, eğer yeni bir satır eklendiğinde Picture sütununa bir değer girilmez ise bu değer otomatik olarak NULL şeklinde atanır (boş bırakılmaz)
+
+bu tabloda Allow Nulls şeklinde işaretlenmeyenler kesinlikle bu tabloya veri eklendiği zaman bu satırlara eklenmesi gerektiği anlamına geliyor 
+
+(CategoryID hariç yani hariç dediğim, manuel olarak eklemiyoruz CategoryID zaten Identity Column olduğu için kendisi artar bir değere 
+sahip yeni bir veri eklenince buradaki değer ve kendiliğinden artıyor) Allow Nulls yani boşluklara izin vermek demek bir veri girilmese de 
+olur yani veri girmesseniz kendisi otomatik olarak NULL şeklinde ayarlanacak demek ancak NULL lara iizn verilmeyen sütunlarda kesinlikle 
+bir veri girmeliyiz !! (girmezsek hata mı alırız araştır / dene buraya yaz)
+
+dilersek insert i farklı bir kullanım ile de kullanabiliriz 
+
+bu kullanım örneğini de Order Details tablosu üzerinden yapalım 
+
+(bu arada sql server managment studio da sol taraftaki tablolardan birine sağ tık > select top 1000 rows dediğimizde otomatik olarak üst tarafta 
+sorgularımızı çalıştırmamızı sağlayan bir terminal geliyor)
+
+dbo.Order Details > sağ tık Design diyoruz karşımıza gelen çıktıda / tabloda OrderID ve ProductID satırlarının başında (her ikisinde de)
+
+küçük küçük ikonlar var bu ikonlar, OrderID ve ProductID nin ikisinin birlikte primary key olduğunu görüyoruz ve burada OrderID yi seçip 
+
+programın en sğındaki Properties kısmına basarsak OrderID nin özelliklerinden Table Designer başlığının altındaki Identity Column satırındaki 
+
+değerin boş olduğunu yani bu değerin bir veri eklendiğinde otomatik olarak eklenmeyeceğini ve bizim bu sütuna ait veriyi elle girmemiz gerektiği anlamına gelir
+
+2 sütün, ikisi birden primary key ve ikisi birden tekrar edemez demek ne anlama geliyor yani birinde geçen / eklenen / verilen bir sayı,değer,veri 
+
+diğerinde olamaz mı yoksa bir satırda bu 2 sütuna ait verilen veriler başka bir sütunda aynı şekilde tekrar edemez mi bunu tam anlamadım (burayı araştır buraya yaz)
+
+
+insert into [Order Details] values(10248,12,12,10,0)
+
+çalıştırdığımızda 1 row affected çıktısı alırız 
+
+burada mantık şu şekilde yukarıdkai komutumuzda herhangi bir kolon ismi belirtmediğimiz için 
+
+values() yani değerleri eklerken parantez içerisinde [Order Details] daki soldan sağa doğru bütün sütunlar ile ilgili verileri 
+sırayla girmemiz gerekiyor örneğin yukarıdaki komutumuzda 
+
+10248 = OrderID sütununun verisine veri olarak denk geliyor 
+
+12 = ProductID sütununa 
+
+12 = UnitPrice sütununa 
+
+10 = Quantity sütununa 
+
+0 = Discount sütununa tegabül eder 
+
+eğer örneğin 
+
+insert into [Order Details] values(10248,12,12,10,0,1) veya insert into [Order Details] values(10248,12,12,10)
+
+şeklinde (Order Details) de var olan sütun sayısından fazla veya eksik bir veri eklemek isteseydik ve yukarıdai 2 komutu çalıştırsaydık 
+
+bizim sağladığımız değerler tablodaki sütun sayısıyla eşleşmiyor hatası alırız 
+
+peki mesela bir satırdaki sadece bir veya bir kaç sütunu değiştirmek veya o sütundaki değer NULL ilse oraya bir değer eklemek istiyoruz 
+
+yukarıdaki komut ile değiştirmek veya güncellemek istediğimiz sütunlara istediğimiz değerleri girip geriye kalan sütunlara denk gelecek değerleri 
+de komutta belirtip çalıştırsak komutumuz çalışır mı ? / yoksa güncellemek için sadece update komutunu mu kullanabiliriz (bunu araştır buraya yaz)
+
+komutumuzu başarıyla çalıştırığ istediğimiz verileri ekledikten sonra dbo.Order Details > select top 100 rows dediğimizde 
+
+üstteki select kısmından sonra TOP(1000) ifadesi kullanıldığı için ilgli tablonun en üstteki 1000 satırını aşağıda çıktı olarak getirir 
+
+bu yüzden TOP(1000) kısmını silip bu kısımdaki bütün kodları sol tık ile basılı tutup seçersek ilgili kod / sorgu otomatik olarak çalışır 
+ve aşağı kısımda da çıktısı gelir 
+
+bu sefer eklediğimiz satır index numarasından dolayı yani her sütunun numerik olarak (eğer sütundaki değerler string olsaydı alfabetik şekilde olurdu)
+gittiğini görüyoruz (bu numerik sıralamada ilk sütun mu esas olarak alınır yani önce ilk sütunda sıra gözetilip bu sıra sağlandıktan sonra 
+sırayla soldan sağa 2-3-4 şeklinde mi devam eder bunu araştır buraya yaz)
+
+bu dersimizde update komuutnu öğrenelim 
+
+veritabanında, tablomuzda belirli bir şarta göre; kolon veya kolonları güncellemek için kullanılan sorgu türüdür.
+
+
+update Categories set CategoryName=''
+
+asla çalıştırmamamız gerken bir sorgudur çünkü update güncelle -neyi?- set = ayarla,değiştir -neyi- Categories tablosunu -hangi şart ile?-
+
+CategoryName yani Categories isimli tablodaki CategoryName isimli sütunun değerlerini güncele / değiştir / ayarla ='' şeklinde 
+ yani ilgili sütundaki bütün değerleri boşluk yap ('' = boşluk mudur yoksa silmek midir yoksa NULL mudur hangisi araştır buraya yaz yukarıdaki 
+ sorguyu bir veritabanında çalıştırırsak ne olur ?)
+
+ burada sadece bir sütunu değiştirme sınırımız yoktur eğer başka sütunlarda da güncelleme işlemi yapmak istersek , (virgül) karakterinden sonra
+ ilgili sütunu yazıp onun için de işlem yapabilriz (örneğin 2. sütunda değiştirmek istediğimiz satırı da ilk sütundan sonra virgül koyup 2. tablodaki sütunun ismini mi yazmamız gerekiyor araştır buraya yaz)
+
+ Categories tablosunda denemeyelim çünkü bu tabloyu örneklerimizde sıklıkla kullanıyoruz ama sol taraftaki dbo.Territories (bölgeler) isimli 
+ tabloda sağ tık > select top 1000 rows diyerek deneyebiliriz. 
+
+ daha sonra sorgu terminalimize gelip update Territories set TerritoryDescription='İç Anadolu' çalıştırdığımızda 
+
+tekrar dbo.Territorie select top 1000 rpws dediğimizde TerritoryDescription sütunundaki bütün verileri İç Anadolu olarak değiştirdiğimizi 
+görebiliriz 
+
+update Categories set CategoryName='Test Category 2'
+where CategoryId=10 
+
+yukarıdaki komut Categories isimli tablodaki CategoryId si 10 olan satırın CategoryName sütununa denk gelen verisini Test Category 2 olarak 
+değiştirmemizi sağlar. 
+
+
+update Categories set CategoryName='Test Category 2'
+where CategoryId>=9
+
+çalıştırarak bir range (aralık) belirterek / vererek örneğin bu örnekte category id si 9 a eşit veya 9dan bütük olan satırların 
+
+(peki daha spesifik olarak örneğin category id 5 den büyük 8 den küçük olanları değiştirmek istesek hangi sorguyu çalıştırmamız gerekiyor bunu araştır buraya yaz)
+
+category name sütununa denk gelen verilerini Test Category 2 olarak güncellememizi değiştirmemizi sağlar 
+
+bu arada eğer ilgili sütunda boş olan değerler varsa atadığımız değer bu boş satırları da doldurur mu bunu araştır buraya yaz 
+
+
+update Categories set CategoryName='Test Category 2' , 
+Description = "Test Category 3 Description
+where CategoryId>=9
+
+şeklinde çalıştırırsak bu sefer de categoryid si 9 a eşit veya büyük olan satırların categoryname sütununu test category2 olarak 
+description sütunundaki verileri de test vategory 3 decription olarak değiştirmemizi sağlar 
+
+(peki tek bir sorguda birden fazla tablodaki -her bir tabloda 1 sütunu veya daha fazla sütünu değiştirmek istersk bunu yapaibliyor muuyz araştır buraya yaz)
+
+
+bu dersimizde delete komutunu öğrenelim 
+
+delete in kelime anlamı silmek demek.
+
+delete from Categories çalıştırırsak Categories tablosunun tamamını siler (tablonun içindeki bütün sütunları silip bomboş bir şekilde Categories 
+olarak içi boş bir şekilde tablomuz var olmaya devam mı eder yoksa Categories tablosunu TAMAMEN mi siler yani tablo listesinde Categories i göremez miyin hangiis araştır buraya yaz -tabi bu Categories tablosunu bu komut ile silme işlemi eğer tablo içerisinde ilişkisle bir durum söz konusu değise!)
+
+(ilişkisel durum ne demek ve delete in silmesine nasıl engel oluyor araştır buraya yaz)
+
+eğer biz bu komutu yani delete from Categories çalıştırırsak bize bir hata verir çünkü foreign key olarak bu yüzden silemeyiz 
+
+ama eğer bir ilişki olmasaydı direkt olarak bütün tabloyu silerdi.
+
+delete from Categories where CategoryID = 9 çalıştırırsak CategoryID sütünundaki 9 değerine sahip olan satırın tamamını ? -bundan tam emin değilim doğrula buraya yaz- 
+siler (evet öyleymiş bütün satırı tamamen siliyor)
+
+bu dersimizde select ifadeleriyle insert yapmayı öğrenelim 
+
+şöyle bir senaryo düşünelim; örneğin bizim veritabanımızda müşteriler tablomuz var (örneğin bu northwind için dbo.Customers)
+
+ve bizim bu tablodaki örneğin dbo.Customers tablosundaki sadece CustomerID, CompanyName ve ContactName  sütunlarıyla çalışmamaız gerekiyor
+
+işte bu üç kolonu canlı sistem üzerinde değil de başka 'safe' bir alana alıp bu kolonlarla o alanda çalışmak istiyoruz.
+
+örneğin bu kolonları excel e aldığımızı varsayalım 
+
+ardından sol taraftaki Tables yazan ve solunda küçük sarı bir klasör ikonu bulunan yazığa sağ tık > New > Table a tıklıyoruz 
+
+ardından sol taraftan dbo.Customers sağ tık > Design diyoruz nöyle yaptığımızda yukarıda hem yeni oluşturduğumuz boş table hem de dbo.Customers 
+ın design kısmı tabs halinde olacaktır. 
+
+ardından yeni oluşturduğumuz tablo nun olduğu sekmeye geliyoruz 
+
+Column Nmae sütunun altında  
+
+CustomerID yazıyoruz hemen sağından bu sütunun data type ını nchar(3) olarak ayarlıyoruz / elle yazıyoruz 
+
+ardından yine aynı satırda Allow Nulls kutucuğunu işaretliyoruz 
+
+nchar da çince veya arapça karakter ekleyebiliyoruz 
+
+ardından CustomerID nin bir altındaki satırdan devam ediyoruz.
+
+CompanyName yazıyoruz ve data type ını nvarchar(40) şeklinde ayarlıyoruz ve allow nulls kutucuğunu işaretlemiyoruz (tiksiz olacak) [sql de allow nulls kutucuğunun işaretlenmediği durumlara nullable değil denir]
+
+ContactName yazıyoruz ve data type ını nvarchar(30) şeklinde ayarlıyoruz ve allow nulls kutucuğunu işaretliyoruz
+
+ardından en üstteki satırdaki CustomerID ye tıklıyoruz ve hemen satırın solunda küçük play ok tuşuna benzer siyah renkte bir ikon çıkıyor buna tıklıyoruz 
+ve Set Primary Key e basarak CustomerID yi primary key olarak ayarlıyoruz 
+ 
+allow null kutucuğu işaretli sütün isimlerine de nullable denir
+
+ardından yeni oluşturdğumuz tablo nun sekmeler kısmındaki sarı renkli yerden x işaretine basarak kapatıyoruz ve karşımıza çıkan pencerede 
+Yes butonuna basıyoruz ardından bizden bu yeni oluşturduğumuz tabloya bir isim vermemizi istiyor CustomersWork yazıp OK tuşuna basıyoruz.
+
+ardından sorgulaırmızı çalıştırıdğımız kısma geliyoruz 
+
+select * from CustomersWork çalıştırdığımızda aşağıda hiç bir çıktı almıyorsak bu sql server managöent studio nun bir bugıdır yani programı kapatıp 
+açsak düzelir 
+
+bizim şuanki amacımız Customers tbalosundaki müşterileri CustomersWork isimli tabloya aktarmak 
+
+bunu yapmak için; 
+
+insert into CustomersWork (CustomerId,CompanyName,ContactName)
+select CustomerId, CompanyName, ContactName from Customers
+
+komutunu, imleç ile insert ten from Customer e kadar 2 satırı da tamamen alacak şekilde çalıştırdığımızda 91 rows affected çıktısını alırız 
+
+buradan şunu anlıyoruz ki ilk satır tek bir komut ikinci tsatır tek bir komut değil zaten ilk satırı seçip çalıştırmaya çalışsak hata alırız bu iki satır
+birlikte TEK bir komuttur.
+
+ardından sol taraftan Tables sağ tık > Refresh yaparak yeniliyoruz ve select * from CustomersWork komutunu çalıştırdığımızda 
+
+ilgili tbalomuzdaki bütün kayıtları çıktı olarak alırız ardından delete from CustomersWork çalıştırıyoruz 
+
+bu aşamada tekrar select * from CustomersWork çalıştır ve tablonun güncel halini kontrol et 
+
+daha sonra; 
+
+insert into CustomersWork (CustomerId,CompanyName,ContactName)
+select CustomerId, CompanyName, ContactName from Customers
+where ContactName like '%em%' 
+
+çalıştırıyoruz ve çalıştırdığımızda Customers tablosundaki ContactName sütunundaki değerler içerisinde en stringi / metni / ifadesi geçen 
+
+satırların tamamını bizim CustomersWork isimli tablomuza getirdi 
+
+
+bu dersimizde join yaparak update yazmak konusunu öğrenelim.
+
+bu uygulamamızda senayomuz; örneğin bizim CustomersWork tablomuzdaki diye bazı datalarımızda problem / 
+problemler olduğunu düşündük ve Customers tablomuzda da bazı problemlerin olduğunu düşündük / şüphelendik 
+
+ve bu Customers tablosundaki (bütün verileri mi belirli verileri mi) verileri CustomersWork e aktardık.
+
+ardından dbo.CustomersWorks sağ tık Edit top 200 rows a tıklıyoruz CompanyName sütunundaki 
+ 
+
+ Ernst Handel TEST 
+
+ Antonio Moreno Taqueria TEST 
+
+ Ottilies Kaseladen TEST 
+
+ Wellington Impordatora TEST 
+
+ şeklinde problem olduğunu düşündüğümüz satırları düzenleyip tabloları düzeltip CustomersWork tablosundaki 
+ hangi verileri güncelledik bunu anlayalım diye güncellediğimiz verilerin sonuna bu şekilde TEST yazarak verilerimizi kaydettik 
+
+ ve bu yaptığımız yani hatalı olan verileri değiştirip düzelttikten sonraki halini Customers a aktararak 
+
+ Customers ı güncellemek / update yapmak istiyoruz 
+
+ burada şu soru sorulabilir e o zaman biz bu değişiklikleri direk olarak Customers da yapsaydık ? neden 
+
+ CustomersWork de yapıp şimdi geri Customers a atıyoruz diye bu soruyu şu şekilde cevaplayabiliriz 
+
+ Customers da yapılacak değişiklikler riskli olacağından ötürü yedek bir tabloda bu değişiklikleri gerçekleştirip olası bir risk durumunda ana sistemin kendisini tehlikeye atmamış ve yedek sistemde / tabloda 
+ test edip doğruluğunu onayladıktan sonra bu bilgiler ile Customers tablosunu güncellemek daha doğru olur.
+
+senayomuza göre bizim değiştirmek istediğimiz kolon Customers daki CompanyName dir.
+
+ardından sorgularımızı çalıştırdığımız terminale geliyoruz.
+
+update Customers set CompanyName = CustomersWork.CompanyName bu şekilde sorgumuzu çalıştırırsak 
+
+CustomersWork deki CompanyName sütununu olduğu gibi Customers tablosundaki CompanyName le mi değiştirir 
+
+bunu istemediğimiz durumlar olabilir veya / bu sorguyu çalıştırdığımızda istemediğimiz sonuçlar doğurabileceğinden sadece test ettiğimiz ve doğruluğundan emin olduğumuz verilerle değiştirmek istiyoruz bu örneğimizde. 
+
+
+bunu yapmak için de;
+
+update Customers set CompanyName = CustomersWork.CompanyName
+from
+Customers inner join CustomersWork
+on Customers.CustomerID = CustomersWork.CustomerID
+
+yukarıdaki sorguyu çalıştırırska bir önceki ile arasındaki fark ne olur bunu araştır buraya yaz
+
+(aşağıdaki where i vermezsek yani bu şekilde çalıştırırsak burada join olanların tamamını günceller.)
+
+eğer biz dilersek 
+
+
+update Customers set CompanyName = CustomersWork.CompanyName
+from
+Customers inner join CustomersWork
+on Customers.CustomerID = CustomersWork.CustomerID
+where CustomersWork.CompanyName like '%Test%'
+
+şeklinde sadece içerisinde test geçen satırlar ile ilgili bir sorgu da çalıştırabiliriz bu sorguyu çalıştırdığımızda yine öncekilerle farkı ne olur bunu araştır buraya yaz.
+
+ve bu sorguyu çalıştırdığımızda 4 rows affected çıktısını aldık neden dört çünkü TEST geçen 4 satır var ondan dolayı 
+
+ilgili kayıtların güncellendiğini de select * from Customers çalıştırarak gelen çıktıda CompanyName 
+sütununu kontrol ederek doğrulayabiliriz.
+
+BU DERSİMİZDE JOİN İLE DELETE YAPMAK konusunu öğrenelim 
+
+Select * from Customers 
+
+delete Customers 
+from
+Customers inner join CustomersWork
+on Customers.CustomerID = CustomersWork.CustomerID
+where CustomersWork.CompanyName like '%Test%'
+
+çalıştırdığımızda ne sonucu alırız dene buraya yaz bir de delete yaparken select * from customers kullanamız gerekiyor mu yoksa delete den sonra Customers yazmamız yeterli mi 
+
+delete komutunu ilişkili olan verileri silerken kullanırsak hata alırız bunun sebebi ne öğren buraya yaz ve silmek istediğimiz verinin bir ilişkisi varsa bu ilişkiyi nasıl ortadan kaldırabiliriz bunu araştır buraya yaz.
+
+
+bu dersimizde union ile çalışmak konusunu öğrenelim (union = birleştirme, bir araya getirme anlamına gelir)
+
+union ile join birbirinden farklı komutlar / operatörlerdir örneğin join de iki tabloyu yan yana getiriyoruz;
+
+union da ise alt alta getiriyoruz.
+
+örneğin bizim iki tane tablomuz var ikisinde de benzer datalar var yani bu iki farklı tablodaki benzer verileri biz alt alta getirip / listeleyip sunum yapmak istiyoruz. bu senaryoda / durumda union u kullanabiliriz.
+
+örneğin iki farklı tabloda bir join sorgumuz var ve bu farklı join sorguların sonuçlarını alt alta getirmek istiyoruz bu senaryo için de yine union u kullanabiliriz.
+
+örneğin biz 
+
+select * from Customers
+
+select * from CustomersWork 
+
+şeklinde iki sorgumuzu imleçle seçip çalıştırdığımızda bu iki farklı sorgu olduğu için sql server managment std. da aşağı kısımda iki farklı bölüm açılarak her bir sorgunun çıktıları ayrı ayrı gösterilir ancak biz bu iki çıktıyu tek bir çıktıda listelemek / görüntyülemek istiyoruz bunun için;
+
+select * from Customers
+union
+select * from CustomersWork 
+
+bunu çalıştırdığımız zaman aşağıda bir hata alırız bu hatamızın sebebi seçtiğimiz iki tablonun kolon / sütun sayılarının farklı olmasıdır; yani union sorgusu çalıştırılırken union yapılacak bütün tabloların sütun sayıları eşit olmalıdır 4 ise hepsinin sütun sayısı dört olmalıdır oyksa bu hatayı alırız.
+
+
+select CustomerId,CompanyName,ContactName from Customers
+union
+select * from CustomersWork 
+
+çalıştırdığımız zaman 95 satır çıktı alırız 
+
+ancak Customers tablosunda 97 adet çıktı ve CustomersWork tablosunda da 17 adet çıktı vardı yani toplamda 108 adet çıktı olması gerekiyordu biz neden 95 adet çıktı aldık bunun sebebi union sorgusu çalıştırıldığında iki tablodaki SADECE farklı olan verilerin bulunduğu satırlar çıktı olarak gelir. Bu da union operatörü ile ilgili bilinmesi gereken diğer bir önemli özelliktir.
+
+(yukarıdaki sorguda select CustomerId,CompanyName,ContactName kısmındaki sütun isimleri her iki tabloda da mevcut olan sütun isimleridir peki birinde mevcut olup diğerinde olmasaydı yine hata alır mıydık bunu araştır buraya yaz.)
+
+union 2 adet sorguyu (dikkat et tabloyu değil SORGUYU) alt alta getirmeye yarıyor
+
+eğer tekrar eden verileri içeren satırları da çıktı olarak getirmek istersek.
+
+select CustomerId,CompanyName,ContactName from Customers
+union all
+select * from CustomersWork 
+
+şeklinde union all yazarak bu sorgumuzu gerçekleştirebiliriz.
+
+(bir de union da union edilecek verilerin yani sorguların çıktılarının veri tiplerinin aynı olması gerekir biri string biri int/sayısal veriler union edilmez)
+
+bu dersimizde bu kurs boyunca bu zamana kadar yaptığımız bütün sql sorguları hakkında genel bir tekrar yapalım
+
+select ifadeleri veri tabanında değişiklik yapmadan (özel / istisna durumlar hariç) veri çekmek / seçmek için kullanılan yapılardır. 
+
+select kolonismi from tabloismi şeklinde sorgumuzu yapabiliriz.
+
+select * from xyz sorgusunda * (yıldız) karakteri wildcard (joker karakter) olarak geçer.
+
+bu sorguda * kullanarak biz ilgili tablodaki bütün kolonları getirmek istediğimizi söylüyoruz.
+
+select ProductId as Id, ProductName as Name from Products sorgusu ile Products tablosundaki ProductId kolonundaki bilgileri Id kolonu şeklinde kolon ism değiştirerek ProductId kolonunda bulunan bütün biglileri Id isimli bir kolonun altında listlemeyi aynı şekilde ProductName ismindeki kolonun altındaki bilgileri de Name isminde bir kolonun altında listeleyebiliriz.
+
+Select p.ProductName,p.UnitStock * p.UnitPrice as Total from Products p sorgusu ile biz 
+
+az önceki ilgili sütunun altındaki bilgileri biizm belirlediğimiz bir isimdeki sütunu altında listeleyebildiğimiz gibi verileri çektiğimiz tabloya da bir alliance yani takma isim veya kısaltma kullanıp uzun uzun yazmak yerine bu kısaltmayı kullnarak sorgularımızı gerçekleştirebiliriz.
+
+sorgumuzda p.tablo ismi yazdığımız zaman Products tablosundaki ilgili sütun ismini belirttiğimiz anlaşılır.
+
+tabii son sorgumuzdaki *(yıldız) karakterinin anlamı UnitStock sütunu ve UnitPrice sütunundaki birbirleriyle aynı satırda bulunan verileri birbirleriyle çarpma anlamında kullandık bu sorguda kısaca ilgili ürünün stoğundaki sayı ve o ürünün fiyatının çarpımı ile o ürünün tamamını sattığımızda ne kadar gelir elde ederiz bunu öğrenmek için yaptığımız bir sorgu idi.
+
+select p.ProductName + '-' + p.QuantityPerUnit from Products p bu sorgumuz ile nasıl bir çıktı alıyoruz tam anlamadım bunu dene buraya yaz 
+
+select 'Engin Demirog' as Egitmen sorgusunun çıktısı nasıl oluyor dene buraya yaz.
+
+where operatörü / koşulu ile biz, tablomuzdaki KOŞULLU olarak çıktı olarak gelecek verilerimizi filtreleyebiliyoruz.
+
+Select p.ProductName from Products as p Where UnitsInStock=0 and UnitsOnOrder>0 komutu ile Products tablosundaki ProductName sütunundaki verilerin SADECE UnitsInStock yani ürünün stoktaki sayısını ifade eden sütun daki değeri 0 olan yani kısaca stokta olmayan ürün isimlerini ve UnitsOnOrder>0 yani sipariş sayısı 0 dan büyük olan ürünlerin İSİMLERİNİ yani sadece bu koşula uyan ProductName leri ekrana bastırır. 
+
+bu sorguyu yapmamızın sebebi de stokta olmayan ama siparişi yapılan ürün varsa bu ürünleri bilip tedarik etmektir.
+
+burada and koşulu kullanılmıştır and koşulu kaç adet koşul kontrol ediliyorsa bunların hepsinin gerçekleşmesi gereken bir kontroldür yani
+
+ x = 1
+
+ x<2 and x > 0 şeklinde bir koşul varsa bu koşul doğrudur çünkü x yani 1 sayısı hem 2 den küçük, hem de 0 dan büyüktür. 
+
+ select * from where not  ProductName='Perth Pasties' and UnitInStock=0 sorgumuzda da ProductName sütunundaki değeri Perth Pasties ve UnitInStock sütunundaki değeri 0 olan bütün sütun ve bu sütunun altındaki verileri getirmiş oluruz burada not OLMAYAN / DEĞİL gibi anlamlara gelir.
+
+ burada not ın kapsamı sadece ProductName='Perth Pasties' kısmı için geçerlidir
+
+ select * from Products order by UnitPrice asc,ProductName desc sorgumuzda ise order by yani (... ya göre sırala) operatörümüz ile UnitPrice sütunundaki değerleri asc artan yani örneğin bu sütundaki değer sayısal ise 1,2,3,4,5,6 veya 11,36,71,94 gibi veya metinsel ifade ise alfabetik olarak a-Z ye doğru veri sıralanır.
+
+desc de ise bunun tam tersi azalan yani tersine doğru bir sıralama gerçekleştirilir.
+
+sadece UnitPrice a göre değil ProductName e göre de sıralama yapmamızın sebebi aynı isme sahip 2 veya daha fazla ürün olursa bunları sıralamada kafa karıştırıcı şekilde listelenmemesi / görünmemesi için örneğin UnitPrice e göre önce artan bir şekilde sıraladık aynı fiyata ürün varsa bunlar üst üste görüneceğinden dolayı (sadece productname e göre sıralasaydık yangi ürün üstte hangisi altta görünecekti bunu araştır buraya yaz) ProductName e göre desc şeklinde sıralayarak aynı ürünün alt alta görünme riskini daha az bir olasılığa indirdik 
+
+select * from Products where ProductName like '%ch%' sorgumuz ile ilgili tabloda içinde ch ifadesi geçen bütün verilerin bulunduğu sütunları getirmiş oluruz. (Ch veya cH da buna dahil mi araştır buraya yaz)
+
+eğer bu sorgu %ch şeklinde olsaydı ch ifadesi ile biten bütün verilerin bulunduğu satırı bize getirirdi
+
+select * from Products where UnitPrice between 10 and 46 order by UnitPrice komutu ile UnitPrice sütunundaki değeri 10 sayısı ile 46 sayısı arasında olan bütün verileirn bulunduğu satırları biizm için getirir.
+
+order by UnitPrice ifadesi tek başına ne analma geliyor araştır buraya yaz.
+
+select * from Products where CategoryId in (1,2) bu sorgumuz ile CategoryId si 1 OR / VEYA 2 olan verilerin bulunduğu satırları bize getirir.
+
+daha sonra aggregeation functions konusunu öğrenelim (kümülatif fonksiyonlar) yani tek sütun ve tek satır
+çıktı dönen fonksiyonlardır.
+
+yani örneğin kaç adet ürünümüz var sorusu için yazdığımız; 
+
+select Count(*) as [Ürün Sayısı] from Products sorgumuzdaki count operatörü kümülatif bir fonksiyondur.
+
+count fonksiyonu değeri NULL olan kayıtları saymaz / getirmez / çıktıya dahil etmez.
+
+select Min(UnitPrice) from Products sorgumuz en yüksek fiyata sahip ürünü
+select Min(UnitPrice) from Products sorgumuz en düşük fiyata sahip ürünü
+select Min(UnitPrice) from Products sorgumuz ortalama birim fiyatını 
+select Sum(UnitPrice * Quantity) as Kazanç from [Order Details] sorgumuz kümülatif toplamı yani bütün ürünlerimizi satarsak ne kadar para kazanırız sorusunun cevabını almak için yazdığımız sorgu.
+Select Rand() sorgumuz 0 ile 1 arasında rastgele bir sayı üretir.
+
+Select LEFT('Engin Demirog',3) engin demirog stringinin soldan sağa doğru kaç karakter var ise o kadar karakteri alıp bu alınan ifadeyi ekrana bastırır. Eng çıktısını alırız
+
+select LEFT(ProductName,3) from Products çıktısından ne alacağımızı dene bu sorgunun ne analma geldiğini tam olarak anlamadım. LEFT yerine RİGHT yazdığımızda da bu sefer tam tersini yani sağdan 3 karakter seçip ekrana bastırır ancak ğor şeklinde değil roğ çıktısını alırız 
+
+Select LEN('Engin Demirog') sorgumuz ile ilgili metinsel ifadenin karakter sayısını ekrana bastırırız.
+
+Select LOWER('EnGiN DeMiRoĞ') ilgili stringin bütün karakterlerini küçük harf yapar 
+
+Select UPPER('EnGiN DeMiRoĞ') ilgili stringin bütün karakterlerini büyük harf yapar 
+
+select TRIM('     ENGİN DEMİROG    ') ' ' arasındaki ifadede soldaki ve sağdaki bütün boşlukları kaldırır ENGİN DEMİROG çıktısını alırız.
+
+LTRIM sadece sol taraftaki boşlukları atar 
+
+RTRIM ise sadece sağdaki boşlukları atar
+
+Select REVERSE('engin demirog') karakterleri tersten yazar
+
+Select CHARINDEX('n','engin demirog',3) sorgumuz ilgili stringin 3. karakterinden itibaren n karakterinin  
+
+ilgili stringin kaçıcı karakterinde ilk defa geçtiğini ekrana basar bu tarz sorgular ilgili karakter veya ifade ilgili stringin veya metnin içerisinde var mı yok mu sorgulanmak için kullanılır.
+
+Select REPLACE('Engin Demirog',' ','_') sorgumuz ilgili stringin içerisindeki  ' ' (boşluk) karakterini _ (alt çizgi) ile değiştirir yani Engin_Demirog çıktısını alırız.
+
+bu sorgu örneğin veritabanında türkçe karaktere sahip olan verileri ingilizce karaktere çevirmek için kullanılabilir.
+
+select SUBSTRING('engin demirog',2,5) sorgumuz ilgili stringin 2. karakterinden itibaren 5 karakter alıp 
+bu karakteri ekrana basmamızı sağlar ngin çıktısını alırız burada 4 karakter gözükür ancak boşluk da bir karakter olarak kabul edilidğindneb oşluk ile beraber 5 karakter aldı.
+
+SELECT Ascii('B') ilgili karakterin ascii değerini ekrana bastırır.
+
+SELECT Char(65) parantez içerisindeki ascii değerinin hangi karaktere ait olduğunu ekrana bastırır.
+
+select distinct Country,City from Customers sorgumuz customers tablosundaki country ve city sütunlarında ki verileri birden fazla tekrar etmeyecek şekilde listeleyerek getirir (burada her bir sütunda ayrı ayrı tekrar eden karakterleri mi tek olarak getirir yoksa country ve city sütunundaki değerlerin aynı olduğu örneğin usa,new york ve yine başka bir satırda usa,new york verisi varsa mı bunu bir defa olarak getirir bunu araştır buraya yaz.)
+
+
+bu dersimizde profesyonel bir veri tabanı tasarladığımız bir demo yapalım.
+
+* bankacılık sektöründe çalışıyoruz
+
+* müşterilerimiz bireysel veya kurumsal olabilir.
+
+* sadece müşteri tablolarını tasarlayınız.
+
+
+öncelikle hangi sütun / sütun isimlerini ve tablo isimlerini belirlemek için tasarımımızın taslağını excel de oluşturalım.
+
+ancak PowerDesigner veya Erwin gibi araçlar ile de veritabanı tasarımımızı yapabiliriz.
+
+bu gibi programlar ile veritabanı tasarımımızı bir defa yaptıktan sonra program dilersek bu tasarımı Oracle veritabanına, Mysql veya PostgreSql veritabanlarına uygun bir hale getirebiliyorlar bu yüzden sektörde sıkça kullanılırlar.
+
+örneğin veritabanımızda Müşteriler isimli bir tablomuz olsun -ki bu çok normaldir çünkü demomuzun konusundaki veritabanı bir banka / bankacılık veritabanıdır.
+
+örneğin bu müşteriler tablomuz için, Id, Firstname, LastName, IdentityNumber -tc no olarak da düşünebiliriz. 
+
+genellikle kurumsal organizasyonlarda sütun ismi olarak IdentityNumaer şeklinde isimlendirilir sütun ismi TC NO şeklinde değil..
+
+ancak bu şekilde eğer müşterimiz bireysel bir kişi değil de kurumsal bir firma ise bir şirketin / kurumun identity number ı olmadığı için bu konuda problwm yaşayacaktır ya da bir kurumun LastName gibi bir ismi olmadığı için bu alan doldurulurken problem yaşanabilir. Bu sorunu gidermek için sütun ismi olarak CompanyName şeklinde bir sütun ekleyebiliriz ancak bu sefer bireysel bir müşterinin de bir CompanyName i olmayacağından dolayı aynı sorunu bu sefer bireysel müşterimiz için yaşamış oluruz; bu tarz bir tasarımda yapabileceğimiz şey ilgili müşteri için ilgili sütunlar hakkında NULL şeklinde bir değer girilerek veriler eklenebilir ancak bu sefer de isteyerek veya istemeyerek adı olan ancak soyadı olmayan bireysel müşteriler veya soyadı olup adı olmayan, companyname i olup identity number ı olmayan bireysel müşteriler veya benzer senaryolar yaşayabilecek kurumsal müşteri durumları da olabilir.
+
+bu istenmeyen durumlara Data Leakage (veri kaçağı denir.)
+
+bu durumların yaşanmaması için 
+
+sadece Id, Name, IdentityNumber sütunlarını kullanabiliriz.
+
+bireysel kullanıcı için bir problem yaşamayızz bu çözümde ancak kurumsal olan firmanın bir tc kimlik numarası olmayacağı ve identitynumber da 11 karakter ile sınırlanığı için ilgili kurum buraaya vergi numarası veya onun gibi ayırt edici bir numarayı girerken problem yaşayabilir.
+
+bu durumda da verilerin girileceği sütunlara ait ilgili veri için veri tipleri ve karakter sayı sınırlamaları kullanabiliriz. 
+
+yani kısaca bir tablo oluturulduğunda belirlenecek olan sütun isimleri en minimalist ve en işlevsel genel isimlere sahip olmalıdır.
+
+bu dersimizde sql de Inheritance İle Bire-bir İlişki konusunu öğrenelim.
+
+bir önceki dersimizde bireysel ve kurumsal müşterileri tek bir sütunda toplamak yerine 
+
+bireysel müşteriler için PrivateCustomers (private burada bireysel / özel / şahsi anlamına gelir)
+
+PrivateCustomers tablosunun altında;
+
+- Id 
+
+- FirstName
+ 
+- LastName
+
+- IdentityNumber
+    
+
+kurumsal müşteriler için de CommercialCustomers isminde bir sütun oluşturalım.
+
+Commercial sütununun altındaki satırlar da;
+
+- Id 
+
+- Name (ilgili şirketin ismi anlamında)
+
+- TaxNumber (vergi numarası)
+
+örneğin Kredi isminde başka bir sütun / sütun ismimiz de mevcut ve hem bireysel hem kurumsal müşterilerimiz de kredi çekmek / almak istiyorlar peki biz kredi almak isteyen müşterilerin Id sini nereden alacağız Id bilgisini nereden alacağız sonuç olarak iki sütunda da Id satırı var ve aynı değere sahip olan birden çok Id de olabilir.
+
+bu iki sütundaki id lerin bir müşteriye ait olduğuna veritabanının karar vermesi için başka bir tablo oluşturmamız gerekiyor.
+
+bu tablo da Customers tablosu olsun (PrivateCustomers,CommercialCustomers,Customers sütun isimleri değil tablo isimleri yukarıda yanlış yazdım orayı düzelt.)
+
+Customers tablosunda diğer her iki tablo da ortak olan sütün isimlerini alabiliriz örneğin misal olarak
+
+- Id
+
+- TelephoneNumber
+
+gibi
+
+Customers daki bir Id PrivateCustomers veya CommercialCustomers da yalnızca bir kere geçebilir bu duruma da bire-bir ilişki denir
+
+peki veritabanı bir müşterinin kurumsal mı yoksa bireysel mi olduğunu nasıl anlar çünkü Customers tablosuna bunu anlamak için CustomerType gibi bir sütun eklersek ileride büyük problemlere yol açabilir yanlış girilen veri yüzünden aslında kurumsal olan bir müşteri bireysel, bireysel olan da veritabanında kurumsal olarak gözükebilir.
+
+müşteri tipinin hangisi olduğunu anlamak için 2 yöntem vardır birincisi müşteri uygulamayı kullanırken kendisi hangi türmüşteri olduğunu uygulama içerisinde seçer
+
+(buna müşteri feedback i denir.)
+
+diğer bir yöntem de kodsal bir id ile çalışmak örneğin id si P ile başlayanlar bireysel müşteri C ile başlayanlar kurumsal müşteri veya 1 ile başlayanlar bireysel 2 ile başlayanlar kurumsal x haneli olursa bireysel y haneli olursa kurumsal gibi 
+
+bu dersimizde demo muz üzerinden bire çok ilişki konusunu öğrenelim
+
+bir önceki konuda (demomuzda) bir müşterinin birden çok / fazla adresi olabilir.
+
+bu dersimizde demomuzda müşterilerin adres / adreslerini tutacak tasarımı yapalım 
+
+adres bilgisini Customers tablosunun içine Address şeklinde bir sütun ismi ekleyerek yapabiliriz ancak bu şekilde birden fazla adresi olan bir müşteri olduğu zaman address1, address2, address3 şeklinde yazmamız gerekir ki bu da hatalı bir tasarım olur çünkü bu sefer tek bir address e sahip olan müşterilerin address2-3-4
+kolonları NULL olur.
+
+bu gibi durumlarda adress bilgisini, özellikle de müşterilerden birden fazla adrese sahip olanlar var ise 
+
+bunu;
+
+Addresses
+
+- Id
+
+- CustomerId
+
+- Detail 
+
+şeklinde Addresses isimli bir tablo oluşturup bu tabloya Id (Bu Id adres in id sini içerir), CustomerId (bu ilgili müşterinin id sidir Customers tablosundaki Id ile ilişkilidir.) ve Detail (burada da adres bilgileri yer alır)
+
+Customers ve Addresses tablosu arasında bire çok ilişki var ama customers daki hangi kolon ile Addresses daki hangi kolon arasında bire çok ilişki var ve bire çok ilişki tam olarak ne anlama geliyor onu analamdım araşırıp buraya yaz.
+
+(burada hangi sütun primary key hangi sütun foreign key araştırıp buraya yaz)
+
+bir tabloda sütun isimlerini yazarken foeign key i primary key den sonra yazmalıyız daha düzenli görünmesi için 
+
+

